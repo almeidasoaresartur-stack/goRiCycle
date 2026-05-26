@@ -1,0 +1,147 @@
+# goRiCycle — scrape automático gratuito (GitHub Actions free tier)
+#
+# Diário (incremental): actualiza preços das 4 lojas activas
+# Domingo (full): re-scan completo do catálogo
+#
+# Requisitos no GitHub: Settings → Actions → General →
+#   "Workflow permissions" → Read and write permissions
+
+name: Scrape diário
+
+on:
+  schedule:
+    # 06:00 UTC ≈ 07:00 Lisboa (inverno) — incremental
+    - cron: "0 6 * * 1-6"
+    # 03:00 UTC domingo — full semanal
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Modo de scrape"
+        required: true
+        default: incremental
+        type: choice
+        options:
+          - incremental
+          - full
+
+concurrency:
+  group: scrape-daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  # Lojas activas no site (Back Market excluído — Cloudflare)
+  SCRAPE_SOURCES: iservices,refurbed,swappie,certideal
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Instalar Playwright Chromium
+        run: playwright install chromium --with-deps
+
+      - name: Determinar modo
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "$(date -u +%u)" = "7" ]; then
+            echo "value=full" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=incremental" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Correr scrapers
+        run: |
+          python scrapers/run_all.py \
+            --mode "${{ steps.mode.outputs.value }}" \
+            --sources "$SCRAPE_SOURCES"
+
+      - name: Verificar sumário
+        run: |
+          python <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          path = Path("data/last_run_summary.json")
+          if not path.exists():
+              print("❌ last_run_summary.json em falta")
+              sys.exit(1)
+
+          summary = json.loads(path.read_text(encoding="utf-8"))
+          total = summary.get("grand_total", 0)
+          sources = summary.get("sources", {})
+
+          print(f"Modo: {summary.get('mode')} | Total: {total}")
+          for name, stats in sources.items():
+              errors = stats.get("errors", 0)
+              count = stats.get("total", 0)
+              flag = "⚠️" if errors or count == 0 else "✓"
+              print(f"  {flag} {name}: {count} produtos, {errors} erros")
+              if stats.get("fatal_error"):
+                  print(f"      {stats['fatal_error'][:120]}")
+
+          if total < 400:
+              print(f"⚠️ grand_total ({total}) abaixo do esperado (~900+)")
+          PY
+
+      - name: Sync data para Next.js (Vercel)
+        run: |
+          mkdir -p web/data
+          cp data/iservices_produtos.json \
+             data/refurbed_produtos.json \
+             data/swappie_produtos.json \
+             data/certideal_produtos.json \
+             data/last_run_summary.json \
+             web/data/
+
+      - name: Commit dados actualizados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            data/iservices_produtos.json \
+            data/refurbed_produtos.json \
+            data/swappie_produtos.json \
+            data/certideal_produtos.json \
+            data/last_run_summary.json \
+            web/data/iservices_produtos.json \
+            web/data/refurbed_produtos.json \
+            web/data/swappie_produtos.json \
+            web/data/certideal_produtos.json \
+            web/data/last_run_summary.json
+
+          if git diff --staged --quiet; then
+            echo "Sem alterações nos JSON — nada a commitar."
+            exit 0
+          fi
+
+          git commit -m "$(cat <<EOF
+chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})
+
+Actualização automática via GitHub Actions.
+EOF
+)"
+          git push

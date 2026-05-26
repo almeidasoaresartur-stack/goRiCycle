@@ -1,0 +1,103 @@
+{
+  "run_at": "2026-05-26T16:27:23.093928+00:00",
+  "mode": "full",
+  "categories": [
+    "iphones",
+    "ipads",
+    "macs",
+    "apple_watch",
+    "tablets",
+    "laptops",
+    "samsung_phones"
+  ],
+  "sources": {
+    "iservices": {
+      "total": 292,
+      "by_category": {
+        "iphones": 196,
+        "ipads": 71,
+        "macs": 24,
+        "apple_watch": 1,
+        "tablets": 0,
+        "laptops": 0,
+        "samsung_phones": 0
+      },
+      "errors": 0
+    },
+    "refurbed": {
+      "total": 274,
+      "by_category": {
+        "iphones": 88,
+        "ipads": 69,
+        "macs": 0,
+        "apple_watch": 10,
+        "tablets": 49,
+        "laptops": 0,
+        "samsung_phones": 58
+      },
+      "errors": 0
+    },
+    "backmarket": {
+      "total": 0,
+      "by_category": {
+        "iphones": 0,
+        "ipads": 0,
+        "macs": 0,
+        "apple_watch": 0,
+        "tablets": 0,
+        "laptops": 0,
+        "samsung_phones": 0
+      },
+      "errors": 0
+    },
+    "swappie": {
+      "total": 402,
+      "by_category": {
+        "iphones": 252,
+        "ipads": 150
+      },
+      "errors": 0
+    },
+    "certideal": {
+      "total": 98,
+      "by_category": {
+        "iphones": 44,
+        "ipads": 12,
+        "macs": 30,
+        "apple_watch": 0,
+        "tablets": 0,
+        "laptops": 0,
+        "samsung_phones": 12
+      },
+      "errors": 0
+    }
+  },
+  "grand_total": 1066,
+  "affiliate_revenue_estimate": {
+    "iservices": {
+      "commission_pct": null,
+      "avg_basket": null,
+      "est_per_conversion": null
+    },
+    "refurbed": {
+      "commission_pct": 7.0,
+      "avg_basket": 370,
+      "est_per_conversion": 25.9
+    },
+    "backmarket": {
+      "commission_pct": 5.0,
+      "avg_basket": 300,
+      "est_per_conversion": 15.0
+    },
+    "swappie": {
+      "commission_pct": null,
+      "avg_basket": null,
+      "est_per_conversion": null
+    },
+    "certideal": {
+      "commission_pct": null,
+      "avg_basket": null,
+      "est_per_conversion": null
+    }
+  }
+}

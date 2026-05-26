@@ -1,0 +1,16 @@
+# riCycle — dependências Python
+#
+# Instalação (na raiz do projeto):
+#   cd "/caminho/para/riCycle"
+#   python3 -m venv .venv
+#   source .venv/bin/activate
+#   pip install --upgrade pip
+#   pip install -r requirements.txt
+#   playwright install chromium
+#
+#   python scrapers/backmarket_scraper.py --mode full
+#   python scrapers/backmarket_probe.py capture   # 1.º: passar Cloudflare
+#   python scrapers/backmarket_probe.py probe --categories iphones
+
+playwright>=1.40.0
+python-dotenv>=1.0.0

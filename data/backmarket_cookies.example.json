@@ -1,0 +1,22 @@
+[
+  {
+    "name": "cf_clearance",
+    "value": "COLOCA_AQUI_O_VALOR_EXPORTADO_DO_BROWSER",
+    "domain": ".backmarket.pt",
+    "path": "/",
+    "expirationDate": 1780000000,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "__cf_bm",
+    "value": "COLOCA_AQUI",
+    "domain": ".backmarket.pt",
+    "path": "/",
+    "expirationDate": 1779820000,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "no_restriction"
+  }
+]
