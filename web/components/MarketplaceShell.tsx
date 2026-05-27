@@ -94,7 +94,11 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
         {!catalogMode ? (
           <>
             <h3 className="mb-4 text-lg font-semibold text-white">Destaques goRiCycle</h3>
-            <ProductResultsGrid products={displayProducts} minPrice={minPrice} />
+            <ProductResultsGrid
+              products={displayProducts}
+              minPrice={minPrice}
+              activeColorFilter={filters.color}
+            />
             <div className="mt-8 text-center">
               <button
                 type="button"
@@ -121,7 +125,11 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
                 <option value="price_desc">Preço: mais alto primeiro</option>
               </select>
             </div>
-            <ProductResultsGrid products={displayProducts} minPrice={minPrice} />
+            <ProductResultsGrid
+              products={displayProducts}
+              minPrice={minPrice}
+              activeColorFilter={filters.color}
+            />
           </>
         )}
       </div>

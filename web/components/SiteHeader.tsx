@@ -13,8 +13,8 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/95 shadow-lg shadow-black/20 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo size="header" />
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Logo size="header" theme="dark" />
         <nav className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/faq"

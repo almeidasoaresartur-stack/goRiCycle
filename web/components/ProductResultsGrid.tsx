@@ -4,7 +4,7 @@ import { ProductCardImage } from "@/components/ProductCardImage";
 import { StoreLogo } from "@/components/StoreLogo";
 import type { AggregatedProduct } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
-import { getProductCardImage } from "@/lib/product-images";
+import { getCleanProductData } from "@/lib/product-display";
 
 const GRADE_STYLES: Record<string, string> = {
   Premium: "bg-purple-50 text-purple-800 ring-purple-100",
@@ -33,9 +33,14 @@ function gradeEmoji(tier: string): string {
 type ProductResultsGridProps = {
   products: AggregatedProduct[];
   minPrice?: number | null;
+  activeColorFilter?: string | null;
 };
 
-export function ProductResultsGrid({ products, minPrice }: ProductResultsGridProps) {
+export function ProductResultsGrid({
+  products,
+  minPrice,
+  activeColorFilter,
+}: ProductResultsGridProps) {
   const safeProducts = (products ?? []).filter(
     (item) => item?.id && typeof item.minPrice === "number" && item.bestListing,
   );
@@ -59,8 +64,7 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
         const best = item.bestListing;
         const isBest = globalMin != null && item.minPrice === globalMin;
         const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
-        const scraperUrl = item.imageUrl ?? best?.imageUrl ?? null;
-        const imageUrl = getProductCardImage(item.model ?? "", item.tech, scraperUrl);
+        const clean = getCleanProductData(item, { activeColorFilter });
         const storeCount = item.storeCount ?? item.offers?.length ?? 1;
 
         return (
@@ -72,9 +76,9 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
           >
             <div className="relative flex items-center justify-center overflow-hidden bg-white">
               <ProductCardImage
-                src={imageUrl}
-                fallbackSrc={scraperUrl}
-                alt={item.model ?? "Produto"}
+                src={clean.imageUrl}
+                fallbackSrc={clean.scraperFallbackUrl}
+                alt={clean.displayName}
               />
               {isBest && (
                 <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
@@ -106,12 +110,12 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
               </div>
 
               <h3 className="line-clamp-2 text-base font-semibold leading-snug text-slate-900">
-                {item.model ?? "Modelo desconhecido"}
+                {clean.displayName}
               </h3>
 
               <p className="mt-1 text-sm text-slate-500">
                 {[
-                  item.storage,
+                  clean.storageLabel,
                   best?.warrantyMonths ? `${best.warrantyMonths} meses garantia` : null,
                   storeCount > 1 ? `${storeCount} lojas comparadas` : null,
                 ]

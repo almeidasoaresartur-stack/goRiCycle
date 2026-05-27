@@ -3,13 +3,14 @@ import { makeAffiliateUrl } from "./affiliate";
 import { inferBrand } from "./inference";
 import { getStoreInfo } from "./stores";
 import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
+import { isLaunchLaptopModel } from "./product-display";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
 export type TechType = "smartphones" | "tablets" | "laptops" | "wearables";
 
-/** Categorias visíveis no lançamento (esconde laptops e wearables). */
-export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets"];
+/** Categorias visíveis no lançamento. */
+export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets", "laptops"];
 
 export type ProductListing = {
   id: string;
@@ -80,13 +81,18 @@ const GRADE_MAP: Record<string, NormalizedGrade> = {
 export const TECH_TYPES: { id: TechType; label: string; icon: string }[] = [
   { id: "smartphones", label: "Smartphones", icon: "📱" },
   { id: "tablets", label: "Tablets", icon: "📲" },
+  { id: "laptops", label: "Laptops", icon: "💻" },
 ];
 
 export function filterLaunchProducts(products: AggregatedProduct[]): AggregatedProduct[] {
-  return (products ?? []).filter((p) => LAUNCH_TECH_TYPES.includes(p.tech));
+  return (products ?? []).filter((p) => {
+    if (p.tech === "smartphones" || p.tech === "tablets") return true;
+    if (p.tech === "laptops") return isLaunchLaptopModel(p.model);
+    return false;
+  });
 }
 
-export const BRAND_OPTIONS = ["Apple", "Samsung", "Huawei", "Google", "Xiaomi", "OnePlus"] as const;
+export const BRAND_OPTIONS = ["Apple", "Samsung", "Google", "Xiaomi", "Lenovo", "Dell"] as const;
 
 export const STORAGE_OPTIONS = ["32GB", "64GB", "128GB", "256GB", "512GB"] as const;
 
@@ -412,7 +418,10 @@ export function buildHighlightProducts(products: AggregatedProduct[]): Aggregate
     return picks;
   };
 
-  return [...pickDiverse("smartphones"), ...pickDiverse("tablets")].slice(0, maxTotal);
+  return [...pickDiverse("smartphones"), ...pickDiverse("tablets"), ...pickDiverse("laptops")].slice(
+    0,
+    maxTotal,
+  );
 }
 
 export function catalogFiltersForView(

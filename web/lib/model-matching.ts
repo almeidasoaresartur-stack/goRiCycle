@@ -110,8 +110,13 @@ export function isRelevantForHighlights(product: HighlightProduct): boolean {
       if (numbered) return parseInt(numbered[1], 10) >= 13;
 
       if (model.includes("iphone se")) {
-        if (model.includes("2020") || model.includes("2016") || model.includes("2017")) return false;
-        return model.includes("2022") || model.includes("se 3") || model.includes("(3");
+        return (
+          model.includes("2020") ||
+          model.includes("2022") ||
+          model.includes("se 2") ||
+          model.includes("se 3") ||
+          model.includes("(3")
+        );
       }
 
       return false;
@@ -140,12 +145,11 @@ export function isRelevantForHighlights(product: HighlightProduct): boolean {
 
   if (tech === "laptops") {
     if (model.includes("macbook")) {
-      const yearMatch = model.match(/20(\d{2})/);
-      if (yearMatch) return parseInt(`20${yearMatch[1]}`, 10) >= 2020;
-      if (/\bm[1-4]\b/.test(model)) return true;
-      return false;
+      return /\bm[123]\b/.test(model) || /\bm1\b|\bm2\b|\bm3\b/.test(model);
     }
-    return true;
+    if (model.includes("thinkpad")) return true;
+    if (model.includes("latitude")) return true;
+    return false;
   }
 
   if (tech === "wearables") {

@@ -8,6 +8,9 @@ export const DISCLAIMER_PARAGRAPHS = [
   "Ao navegar e utilizar este site, o utilizador reconhece que qualquer contrato de compra e venda é celebrado exclusivamente entre si e a loja parceira final escolhida. Os preços apresentados reflectem os dados recolhidos no último scrape e podem divergir ligeiramente do valor actual no site de destino.",
 ] as const;
 
+export const NFPM_FOOTNOTE =
+  "*NFPM: Dados de capacidade/memória não fornecidos previamente pela loja na listagem original.";
+
 export const FRESHNESS_POLICY_TITLE = "Como garantimos a frescura dos preços?";
 
 export const FRESHNESS_POLICY_PARAGRAPHS = [

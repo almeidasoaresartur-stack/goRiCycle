@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Logo, SLOGAN } from "@/components/Logo";
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
+import { NFPM_FOOTNOTE } from "@/lib/legal";
 
 type SiteFooterProps = {
   totalProducts?: number;
@@ -46,8 +47,8 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
           <div className="flex flex-col items-center sm:items-start">
-            <div className="rounded-xl bg-white px-4 py-2.5">
-              <Logo size="sm" href={null} />
+            <div className="rounded-xl bg-slate-800 px-4 py-2.5 ring-1 ring-slate-700">
+              <Logo size="sm" theme="dark" href={null} />
             </div>
             <p className="mt-3 max-w-sm text-center text-sm sm:text-left">{SLOGAN}</p>
           </div>
@@ -75,6 +76,9 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
                 Termos e responsabilidade
               </Link>
             </nav>
+            <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-600 sm:text-right">
+              {NFPM_FOOTNOTE}
+            </p>
           </div>
         </div>
       </div>
