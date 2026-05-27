@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -40,6 +41,32 @@ from config import CATEGORY_KEYS, ISERVICES_CONFIG
 CFG = ISERVICES_CONFIG
 SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
+
+
+def clean_price(price: float | None) -> float | None:
+    # Rejeita valores que são claramente anos ou valores impossíveis
+    # Um iPhone recondicionado nunca custa menos de 30€ nem mais de 3000€
+    if price is not None and (price < 30 or price > 3000):
+        logger.warning("Preço rejeitado por estar fora do intervalo válido: %s", price)
+        return None
+    if price is not None and 2010 <= price <= 2035 and abs(price - round(price)) < 0.01:
+        logger.warning("Preço rejeitado por parecer um ano: %s", price)
+        return None
+    return price
+
+
+def parse_iservices_price_eur(text: str | None) -> float | None:
+    """Ignora datas de promoção (ex. 29-05-2026) no bloco de preço."""
+    if not text:
+        return None
+    cleaned = re.split(r"Promoção|promoção", text, maxsplit=1)[0]
+    match = re.search(r"(\d+[,.]\d{2})", cleaned.replace("\xa0", " "))
+    if match:
+        try:
+            return clean_price(float(match.group(1).replace(",", ".")))
+        except ValueError:
+            return None
+    return clean_price(parse_price_eur(cleaned))
 
 
 def dismiss_cookie_banner(page: Page) -> None:
@@ -115,7 +142,7 @@ def collect_listing_cards(page: Page) -> list[dict[str, Any]]:
             cards.append(
                 {
                     "model": name,
-                    "listing_price": parse_price_eur(price_raw),
+                    "listing_price": clean_price(parse_iservices_price_eur(price_raw)),
                     "original_price": parse_original_price_eur(price_raw),
                     "image_url": image_url,
                     "url": href,
@@ -270,7 +297,7 @@ def _variants_from_detail_page(
                 human_delay(CFG["delays"], "after_variant_select")
 
                 price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-                price = parse_price_eur(price_raw)
+                price = clean_price(parse_iservices_price_eur(price_raw))
                 if price is None:
                     continue
 

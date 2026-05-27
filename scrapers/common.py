@@ -52,6 +52,26 @@ def page_wait_ms(delays: dict[str, Any], key: str = "page_load") -> None:
         time.sleep(ms / 1000.0)
 
 
+def normalize_model_name(name: str) -> str:
+    """
+    Normaliza nomes de modelo para consistência entre fontes.
+    Aplica a TODOS os scrapers.
+    """
+    if not name:
+        return name
+    replacements = {
+        " mini": " Mini",
+        " plus": " Plus",
+        " pro max": " Pro Max",
+        " pro": " Pro",
+        " max": " Max",
+    }
+    result = name.strip()
+    for old, new in replacements.items():
+        result = re.sub(re.escape(old), new, result, flags=re.IGNORECASE)
+    return result
+
+
 def parse_price_eur(text: str | None) -> float | None:
     if not text:
         return None
@@ -231,6 +251,7 @@ def build_normalized_product(
     extra_grade_keywords: tuple[tuple[str, str], ...] = (),
 ) -> dict[str, Any]:
     """Schema único riCycle com campos de afiliado."""
+    model = normalize_model_name(model)
     storage_norm = storage or extract_storage(model)
     grade_norm = grade or extract_grade(model, extra_grade_keywords)
 

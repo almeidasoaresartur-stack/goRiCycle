@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -43,6 +44,33 @@ from config import CATEGORY_KEYS, REFURBED_CONFIG
 CFG = REFURBED_CONFIG
 SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
+
+
+def clean_price(price: float | None) -> float | None:
+    # Rejeita valores que são claramente anos ou valores impossíveis
+    # Um iPhone recondicionado nunca custa menos de 30€ nem mais de 3000€
+    if price is not None and (price < 30 or price > 3000):
+        logger.warning("Preço rejeitado por estar fora do intervalo válido: %s", price)
+        return None
+    if price is not None and 2010 <= price <= 2035 and abs(price - round(price)) < 0.01:
+        logger.warning("Preço rejeitado por parecer um ano: %s", price)
+        return None
+    return price
+
+
+def parse_refurbed_price_eur(text: str | None) -> float | None:
+    """Preço PT com separador de milhares (ex. 1.131,99 €) — evita apanhar só os centimos."""
+    if not text:
+        return None
+    cleaned = re.split(r"/\s*m[eê]s|refurbed\+", text, maxsplit=1, flags=re.I)[0]
+    cleaned = cleaned.replace("\xa0", " ").strip()
+    match = re.search(r"(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2})", cleaned)
+    if match:
+        try:
+            return float(match.group(1).replace(".", "").replace(",", "."))
+        except ValueError:
+            return None
+    return clean_price(parse_price_eur(cleaned))
 
 
 def dismiss_cookie_banner(page: Page) -> None:
@@ -157,7 +185,7 @@ def collect_listing_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
             cards.append(
                 {
                     "model": name,
-                    "listing_price": parse_price_eur(price_raw),
+                    "listing_price": clean_price(parse_refurbed_price_eur(price_raw)),
                     "original_price": parse_original_price_eur(price_raw),
                     "image_url": image_url,
                     "url": href,
@@ -329,7 +357,7 @@ def _variants_from_detail_page(
     records: list[dict[str, Any]] = []
     if items:
         for item in items:
-            price = parse_price_eur(item.get("price"))
+            price = clean_price(parse_refurbed_price_eur(item.get("price")))
             if price is None:
                 continue
             records.append(
@@ -356,7 +384,7 @@ def _variants_from_detail_page(
         price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
     except Exception:
         pass
-    price = parse_price_eur(price_raw) or card.get("listing_price")
+    price = clean_price(parse_refurbed_price_eur(price_raw)) or clean_price(card.get("listing_price"))
     if price is None:
         return []
 
