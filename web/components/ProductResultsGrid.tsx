@@ -154,10 +154,16 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
                 </a>
               </div>
 
-              <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-slate-400">
-                <Shield className="h-3.5 w-3.5" />
-                Preço e link recolhidos do scrape · {best?.store ?? "loja parceira"}
-              </p>
+              <div className="mt-3 space-y-1">
+                <p className="inline-flex items-center gap-1.5 text-xs text-slate-400">
+                  <Shield className="h-3.5 w-3.5" />
+                  Preço do site oficial · {best?.store ?? "loja parceira"}
+                </p>
+                <div className="flex items-center gap-1 text-[10px] font-medium text-green-600">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+                  Atualizado diariamente
+                </div>
+              </div>
             </div>
           </article>
         );

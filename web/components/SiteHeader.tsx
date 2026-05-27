@@ -12,7 +12,7 @@ export function SiteHeader({
   ctaLabel = "Explorar ofertas",
 }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/60 bg-white/90 shadow-sm shadow-slate-900/5 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white shadow-sm shadow-slate-900/5">
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo size="header" />
         <nav className="flex items-center gap-4 sm:gap-6">

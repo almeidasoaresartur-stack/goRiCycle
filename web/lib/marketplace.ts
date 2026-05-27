@@ -77,7 +77,7 @@ export const TECH_TYPES: { id: TechType; label: string; icon: string }[] = [
 
 export const BRAND_OPTIONS = ["Apple", "Samsung", "Huawei", "Google", "Xiaomi", "OnePlus"] as const;
 
-export const STORAGE_OPTIONS = ["128GB", "256GB", "512GB"] as const;
+export const STORAGE_OPTIONS = ["32GB", "64GB", "128GB", "256GB", "512GB"] as const;
 
 export const GRADE_TIER_OPTIONS: { id: GradeTier; label: string; emoji: string }[] = [
   { id: "Premium", label: "Premium", emoji: "✨" },
@@ -337,4 +337,40 @@ export function inferModelFromQuery(q: string): string | null {
   const storageMatch = trimmed.match(/(\d+\s*GB)/i);
   const modelPart = trimmed.replace(/(\d+\s*GB)/i, "").trim();
   return modelPart || null;
+}
+
+export function hasSpecificFilters(filters: MarketplaceFilters): boolean {
+  return Boolean(
+    filters.brand ||
+      filters.model ||
+      filters.storage ||
+      filters.grade ||
+      filters.q?.trim() ||
+      (filters.tech && filters.tech !== "smartphones"),
+  );
+}
+
+export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): boolean {
+  if (viewAll) return true;
+  return hasSpecificFilters(filters);
+}
+
+export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
+  const pickCheapest = (tech: TechType) =>
+    (products ?? [])
+      .filter((p) => p?.tech === tech && typeof p.minPrice === "number")
+      .sort((a, b) => a.minPrice - b.minPrice)
+      .slice(0, 4);
+
+  return [...pickCheapest("smartphones"), ...pickCheapest("laptops"), ...pickCheapest("wearables")];
+}
+
+export function catalogFiltersForView(
+  filters: MarketplaceFilters,
+  viewAll: boolean,
+): MarketplaceFilters {
+  if (viewAll && !hasSpecificFilters(filters)) {
+    return { tech: null, brand: null, model: null, storage: null, grade: null, q: null };
+  }
+  return filters;
 }

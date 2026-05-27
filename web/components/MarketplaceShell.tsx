@@ -1,18 +1,23 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { ProductResultsGrid } from "@/components/ProductResultsGrid";
 import {
   buildFilterOptionsFromAggregated,
+  buildHighlightProducts,
+  catalogFiltersForView,
   computeMinPrice,
   filterAggregatedProducts,
+  isCatalogView,
   parseMarketplaceFilters,
   type AggregatedProduct,
   type MarketplaceFilters,
 } from "@/lib/marketplace";
+
+type SortOrder = "price_asc" | "price_desc";
 
 type MarketplaceShellProps = {
   allProducts: AggregatedProduct[];
@@ -21,6 +26,8 @@ type MarketplaceShellProps = {
 
 function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const [sortOrder, setSortOrder] = useState<SortOrder>("price_asc");
 
   const filters = parseMarketplaceFilters({
     tech: searchParams?.get("tech") ?? defaultFilters.tech ?? "smartphones",
@@ -30,6 +37,9 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     grade: searchParams?.get("grade") ?? defaultFilters.grade ?? undefined,
     q: searchParams?.get("q") ?? defaultFilters.q ?? undefined,
   });
+
+  const viewAll = searchParams?.get("view") === "all";
+  const catalogMode = isCatalogView(filters, viewAll);
 
   const safeProducts = allProducts ?? [];
   const scopedForOptions = filterAggregatedProducts(safeProducts, {
@@ -41,13 +51,77 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     q: filters.q,
   });
   const options = buildFilterOptionsFromAggregated(scopedForOptions);
-  const products = filterAggregatedProducts(safeProducts, filters);
-  const minPrice = computeMinPrice(products);
+
+  const displayProducts = useMemo(() => {
+    if (!catalogMode) {
+      return buildHighlightProducts(safeProducts);
+    }
+
+    const activeFilters = catalogFiltersForView(filters, viewAll);
+    const filtered = filterAggregatedProducts(safeProducts, activeFilters);
+
+    return [...filtered].sort((a, b) =>
+      sortOrder === "price_asc" ? a.minPrice - b.minPrice : b.minPrice - a.minPrice,
+    );
+  }, [catalogMode, filters, viewAll, safeProducts, sortOrder]);
+
+  const catalogCount = useMemo(() => {
+    const activeFilters = catalogFiltersForView(filters, viewAll);
+    return filterAggregatedProducts(safeProducts, activeFilters).length;
+  }, [filters, viewAll, safeProducts]);
+
+  const minPrice = computeMinPrice(displayProducts);
+
+  const showAllCatalog = () => {
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.set("view", "all");
+    params.set("section", "comparador");
+    router.push(`/?${params.toString()}#comparador`, { scroll: false });
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(260px,30%)_1fr] lg:gap-8">
-      <FilterSidebar filters={filters} options={options} resultCount={products.length} />
-      <ProductResultsGrid products={products} minPrice={minPrice} />
+      <FilterSidebar
+        filters={filters}
+        options={options}
+        resultCount={catalogMode ? catalogCount : safeProducts.length}
+      />
+
+      <div>
+        {!catalogMode ? (
+          <>
+            <h3 className="mb-4 text-lg font-semibold text-gray-900">Destaques goRiCycle</h3>
+            <ProductResultsGrid products={displayProducts} minPrice={minPrice} />
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                onClick={showAllCatalog}
+                className="text-sm font-medium text-gray-600 transition hover:text-emerald-700"
+              >
+                Ver todos os {safeProducts.length.toLocaleString("pt-PT")} produtos →
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm text-gray-500">
+                {catalogCount.toLocaleString("pt-PT")} resultado
+                {catalogCount !== 1 ? "s" : ""}
+              </span>
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+                className="appearance-none rounded-lg border border-gray-200 bg-white px-3 py-1.5 pr-8 text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300"
+              >
+                <option value="price_asc">Preço: mais baixo primeiro</option>
+                <option value="price_desc">Preço: mais alto primeiro</option>
+              </select>
+            </div>
+            <ProductResultsGrid products={displayProducts} minPrice={minPrice} />
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -55,10 +129,10 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 function MarketplaceFallback() {
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(260px,30%)_1fr] lg:gap-8">
-      <div className="h-96 animate-pulse rounded-2xl bg-slate-200/60" />
+      <div className="h-96 animate-pulse rounded-2xl bg-gray-200/60" />
       <div className="grid gap-5 sm:grid-cols-2">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-72 animate-pulse rounded-2xl bg-slate-200/60" />
+          <div key={i} className="h-72 animate-pulse rounded-2xl bg-gray-200/60" />
         ))}
       </div>
     </div>
@@ -68,7 +142,7 @@ function MarketplaceFallback() {
 export function MarketplaceShell(props: MarketplaceShellProps) {
   return (
     <section
-      className="scroll-mt-24 bg-[#f5f5f7] px-4 py-10 sm:px-6 sm:py-14 lg:px-8"
+      className="scroll-mt-24 bg-[#F9FAFB] px-4 py-10 sm:px-6 sm:py-14 lg:px-8"
       id="comparador"
     >
       <div className="mx-auto max-w-7xl">

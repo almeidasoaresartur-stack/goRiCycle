@@ -43,6 +43,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (value) params.set(key, value);
     else params.delete(key);
+    params.set("view", "all");
     params.set("section", "comparador");
     router.push(`/?${params.toString()}#comparador`, { scroll: false });
   };
@@ -64,7 +65,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
     }`;
 
   return (
-    <aside className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 shadow-sm backdrop-blur-sm lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
+    <aside className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:border-r">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-emerald-600" />
