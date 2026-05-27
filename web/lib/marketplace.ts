@@ -186,7 +186,11 @@ function categoryToTech(category: string | null | undefined): TechType | null {
 }
 
 function normalizeModel(text: string): string {
-  return text.toLowerCase().replace(/\s+/g, " ").trim();
+  return text
+    .toLowerCase()
+    .replace(/[""″'']/g, '"')
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function listingMatchesColor(item: AggregatedProduct, color: string): boolean {
@@ -408,7 +412,11 @@ export function buildHighlightProducts(products: AggregatedProduct[]): Aggregate
     const picks: AggregatedProduct[] = [];
 
     for (const product of pool) {
-      const key = normalizeModel(product.model);
+      const key = [
+        normalizeModel(product.model),
+        product.storage?.toUpperCase() ?? "",
+        product.gradeTier,
+      ].join("|");
       if (seen.has(key)) continue;
       seen.add(key);
       picks.push(product);

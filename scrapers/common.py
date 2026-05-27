@@ -72,39 +72,50 @@ def normalize_model_name(name: str) -> str:
     return result
 
 
-def parse_price_eur(text: str | None) -> float | None:
-    if not text:
+def _normalize_price_text(text: str) -> str:
+    return text.replace("\xa0", " ").replace("\u202f", " ").strip()
+
+
+def _pt_amount_to_float(raw: str) -> float | None:
+    """Converte '1.139,00', '1 139,00' ou '1139,00' para float."""
+    cleaned = raw.strip()
+    if not cleaned:
         return None
-    numbers = re.findall(r"\d+[,.]?\d*", text.replace("\xa0", " "))
-    if not numbers:
-        return None
-    valor = numbers[-1].replace(".", "").replace(",", ".")
+    # Remove separadores de milhar (espaço ou ponto antes de grupos de 3 dígitos)
+    cleaned = re.sub(r"(?<=\d)[.\s](?=\d{3}(?:[,\s]|$))", "", cleaned)
+    cleaned = cleaned.replace(",", ".")
     try:
-        return float(valor)
+        return float(cleaned)
     except ValueError:
         return None
+
+
+def parse_pt_eur_amount(text: str | None) -> float | None:
+    """Extrai o último valor monetário PT/EUR de um texto."""
+    if not text:
+        return None
+    cleaned = _normalize_price_text(text)
+    pattern = re.compile(
+        r"\d{1,3}(?:[.\s]\d{3})+,\d{2}|\d+,\d{2}|\d{1,3}(?:[.\s]\d{3})+(?!\d)|\d+(?:\.\d{2})?"
+    )
+    amounts: list[float] = []
+    for match in pattern.finditer(cleaned):
+        value = _pt_amount_to_float(match.group(0))
+        if value is not None:
+            amounts.append(value)
+    return amounts[-1] if amounts else None
+
+
+def parse_price_eur(text: str | None) -> float | None:
+    return parse_pt_eur_amount(text)
 
 
 def parse_swappie_price_eur(text: str | None) -> float | None:
-    """Preço actual Swappie — ignora preço Apple e trata milhares PT (ex. 1.169,00 €)."""
+    """Preço actual Swappie — ignora preço Apple e trata milhares PT (ex. 1 139,00 €)."""
     if not text:
         return None
     cleaned = re.split(r"Preço de lançamento|Apple\s*:", text, maxsplit=1, flags=re.I)[0]
-    cleaned = cleaned.replace("\xa0", " ").strip()
-    match = re.search(r"(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2})", cleaned)
-    if match:
-        try:
-            return float(match.group(1).replace(".", "").replace(",", "."))
-        except ValueError:
-            return None
-    numbers = re.findall(r"\d+[,.]?\d*", cleaned)
-    if not numbers:
-        return None
-    valor = numbers[0].replace(".", "").replace(",", ".")
-    try:
-        return float(valor)
-    except ValueError:
-        return None
+    return parse_pt_eur_amount(cleaned)
 
 
 def parse_original_price_eur(text: str | None) -> float | None:

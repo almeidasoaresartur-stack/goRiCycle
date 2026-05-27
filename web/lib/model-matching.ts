@@ -62,6 +62,17 @@ export function modelMatches(
     return !unwantedVariants(product, search);
   }
 
+  if (/^ipad(?:\s+(?:pro|air|mini))?(?:\s*\(\d{4}\))?/.test(search)) {
+    const searchYear = search.match(/\((\d{4})\)/);
+    const productYear = product.match(/\((\d{4})\)/);
+    if (searchYear && productYear && searchYear[1] !== productYear[1]) return false;
+    if (searchYear && !productYear) return false;
+    if (!product.includes(search.replace(/\(\d{4}\)/, "").trim()) && !product.startsWith(search.split("(")[0].trim())) {
+      return false;
+    }
+    return true;
+  }
+
   const wanted = explicitVariants(search);
   if (wanted.length > 0) {
     if (!product.includes(search) && !search.split(" ").every((t) => product.includes(t))) {
@@ -136,8 +147,12 @@ export function isRelevantForHighlights(product: HighlightProduct): boolean {
 
   if (tech === "tablets") {
     if (model.includes("ipad")) {
+      const year = model.match(/\((\d{4})\)/);
+      if (year) return parseInt(year[1], 10) >= 2018;
+
       const gen = model.match(/ipad\s*(?:pro|air|mini)?\s*(\d+)/);
       if (gen) return parseInt(gen[1], 10) >= 9;
+
       return model.includes("m1") || model.includes("m2") || model.includes("m3") || model.includes("m4");
     }
     return true;

@@ -14,10 +14,43 @@ const NOISE_PATTERNS = [
   /\brecondicionad[oa]s?\b/gi,
   /\bgrade\s*[a-d]\b/gi,
   /\b(premium|excelente|muito bom|bom|correcto|correto)\b/gi,
-  /\b\d+\s*gb\b/gi,
   /\b(novo|usado|semi[- ]?novo)\b/gi,
   /\b(refurbished|renewed)\b/gi,
 ];
+
+function formatIpadDisplayName(name: string): string | null {
+  const match = name.match(
+    /ipad(?:\s+(?:pro|air|mini))?(?:\s*\(\d{4}\))?(?:\s*[\d.]+\s*(?:["″'']|pol|mm)?)?/i,
+  );
+  if (!match) return null;
+
+  let result = match[0].trim();
+  result = result
+    .replace(/^ipad/i, "iPad")
+    .replace(/\s+pro\b/i, " Pro")
+    .replace(/\s+air\b/i, " Air")
+    .replace(/\s+mini\b/i, " Mini")
+    .replace(/\s*([\d.]+)\s*(?:["″'']|pol)\b/i, ' $1"')
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  return result;
+}
+
+function formatMacbookDisplayName(name: string): string | null {
+  const match = name.match(
+    /macbook(?:\s+(?:pro|air))?(?:\s*[\d.]+\s*(?:["″'']|pol)?)?(?:\s*\(\d{4}\))?(?:\s*\d{4})?(?:\s*m[1-4]\b)?/i,
+  );
+  if (!match) return null;
+
+  return match[0]
+    .replace(/^macbook/i, "MacBook")
+    .replace(/\s+pro\b/i, " Pro")
+    .replace(/\s+air\b/i, " Air")
+    .replace(/\s*([\d.]+)\s*(?:["″'']|pol)\b/i, ' $1"')
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
 
 /** Extrai apenas o modelo base legível para o cartão. */
 export function cleanBaseModel(raw: string): string {
@@ -29,6 +62,9 @@ export function cleanBaseModel(raw: string): string {
   for (const pattern of NOISE_PATTERNS) {
     name = name.replace(pattern, " ");
   }
+
+  // Capacidade só fora do nome base (mantém GB no URL/filtros via storage)
+  name = name.replace(/\b\d+\s*gb\b/gi, " ");
 
   name = name.replace(/\(\s*\)/g, "").replace(/\s{2,}/g, " ").trim();
 
@@ -55,19 +91,11 @@ export function cleanBaseModel(raw: string): string {
   const pixel = name.match(/pixel\s*\d+(?:\s*pro|\s*a)?/i);
   if (pixel) return pixel[0].replace(/^pixel/i, "Pixel");
 
-  const ipad = name.match(/ipad(?:\s*(?:pro|air|mini))?(?:\s*\d+)?/i);
-  if (ipad) {
-    return ipad[0]
-      .replace(/^ipad/i, "iPad")
-      .replace(/pro/i, "Pro")
-      .replace(/air/i, "Air")
-      .replace(/mini/i, "Mini");
-  }
+  const ipad = formatIpadDisplayName(name);
+  if (ipad) return ipad;
 
-  const macbook = name.match(/macbook(?:\s*(?:pro|air))?(?:\s*\d+)?/i);
-  if (macbook) {
-    return macbook[0].replace(/^macbook/i, "MacBook").replace(/pro/i, "Pro").replace(/air/i, "Air");
-  }
+  const macbook = formatMacbookDisplayName(name);
+  if (macbook) return macbook;
 
   if (/thinkpad/i.test(name)) {
     const tp = name.match(/thinkpad\s*[a-z0-9\s]*/i);

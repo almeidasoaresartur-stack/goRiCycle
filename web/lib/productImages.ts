@@ -1,6 +1,6 @@
 /**
  * Imagens de produto servidas localmente via Vercel CDN (/public/images/products).
- * Gerado a partir de scripts/download_product_images.py — não usar URLs externas.
+ * Gerado por scripts/download_product_images.py — não usar URLs externas.
  */
 
 const MODEL_IMAGE_MAP: Record<string, string> = {
@@ -112,8 +112,8 @@ const MODEL_IMAGE_MAP: Record<string, string> = {
   "iphone air": "/images/products/iphone-air.png",
   "iphone se (2020)": "/images/products/iphone-se-2020.png",
   "iphone se (2022)": "/images/products/iphone-se-2022.png",
-  "iphone se 2 (2020) 128 gb branco": "/images/products/iphone-se-2-2020-branco.jpg",
   "iphone se 2 (2020) 128 gb vermelho": "/images/products/iphone-se-2-2020-vermelho.jpg",
+  "iphone se 2 (2020) 64 gb branco": "/images/products/iphone-se-2-2020-branco.jpg",
   "iphone se 2 (2020) 64 gb preto": "/images/products/iphone-se-2-2020-preto.jpg",
   "iphone se 2 (2020)": "/images/products/iphone-se-2-2020.jpg",
   "iphone se 2020": "/images/products/iphone-se-2020.png",
