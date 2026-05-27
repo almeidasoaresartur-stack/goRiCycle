@@ -86,11 +86,18 @@ def parse_price_eur(text: str | None) -> float | None:
 
 
 def parse_swappie_price_eur(text: str | None) -> float | None:
-    """Preço actual Swappie — ignora o preço de lançamento Apple no mesmo bloco."""
+    """Preço actual Swappie — ignora preço Apple e trata milhares PT (ex. 1.169,00 €)."""
     if not text:
         return None
     cleaned = re.split(r"Preço de lançamento|Apple\s*:", text, maxsplit=1, flags=re.I)[0]
-    numbers = re.findall(r"\d+[,.]?\d*", cleaned.replace("\xa0", " "))
+    cleaned = cleaned.replace("\xa0", " ").strip()
+    match = re.search(r"(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2})", cleaned)
+    if match:
+        try:
+            return float(match.group(1).replace(".", "").replace(",", "."))
+        except ValueError:
+            return None
+    numbers = re.findall(r"\d+[,.]?\d*", cleaned)
     if not numbers:
         return None
     valor = numbers[0].replace(".", "").replace(",", ".")

@@ -31,7 +31,6 @@ from common import (
     human_delay,
     normalize_grade_swappie,
     page_wait_ms,
-    parse_price_eur,
     parse_swappie_price_eur,
     resolve_image_url,
     setup_logging,
@@ -45,6 +44,16 @@ logger = logging.getLogger(__name__)
 _VARIANT_BUTTON = SEL.get("variant_button", "button[class*='ListItem']")
 _GRADE_LINE_RE = re.compile(r"^(Satisfatório|Satisfatorio|Muito Bom|Excelente|Premium|Bom)$", re.I)
 _STORAGE_LINE_RE = re.compile(r"^\d+\s*GB$", re.I)
+
+
+def clean_price(price: float | None) -> float | None:
+    if price is not None and (price < 30 or price > 3000):
+        logger.warning("Preço rejeitado por estar fora do intervalo válido: %s", price)
+        return None
+    if price is not None and 2010 <= price <= 2035 and abs(price - round(price)) < 0.01:
+        logger.warning("Preço rejeitado por parecer um ano: %s", price)
+        return None
+    return price
 
 
 def dismiss_cookie_banner(page: Page) -> None:
@@ -96,7 +105,7 @@ def collect_model_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
                 {
                     "model": name,
                     "url": href.rstrip("/") + "/",
-                    "listing_price": parse_price_eur(price_raw),
+                    "listing_price": clean_price(parse_swappie_price_eur(price_raw)),
                     "image_url": image_url,
                     "storages_hint": storages,
                 }
@@ -157,7 +166,7 @@ def _read_detail_price(page: Page) -> float | None:
         price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
     except Exception:
         return None
-    return parse_swappie_price_eur(price_raw)
+    return clean_price(parse_swappie_price_eur(price_raw))
 
 
 def _variants_from_model_page(
@@ -212,7 +221,7 @@ def _variants_from_model_page(
                 logger.debug("Condição não clicável: %s (%s)", grade_key, card.get("url"))
                 continue
 
-            price = _read_detail_price(page) or card.get("listing_price")
+            price = clean_price(_read_detail_price(page) or card.get("listing_price"))
             if price is None:
                 continue
 
@@ -232,14 +241,14 @@ def _variants_from_model_page(
                 )
             )
 
-    if not records and card.get("listing_price"):
+    if not records and clean_price(card.get("listing_price")):
         records.append(
             build_normalized_product(
                 CFG,
                 category=category,
                 url=product_url,
                 model=model,
-                price=card["listing_price"],
+                price=clean_price(card["listing_price"]),
                 image_url=image_url,
                 source_page=source_page,
                 scraped_at=scraped_at,
