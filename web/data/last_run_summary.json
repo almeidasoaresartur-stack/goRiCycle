@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-05-26T16:27:23.093928+00:00",
-  "mode": "full",
+  "run_at": "2026-05-27T08:34:10.186319+00:00",
+  "mode": "incremental",
   "categories": [
     "iphones",
     "ipads",
@@ -8,71 +8,74 @@
     "apple_watch",
     "tablets",
     "laptops",
-    "samsung_phones"
+    "samsung_phones",
+    "google_phones",
+    "huawei_phones",
+    "xiaomi_phones",
+    "oneplus_phones"
   ],
   "sources": {
     "iservices": {
-      "total": 292,
+      "total": 7,
       "by_category": {
-        "iphones": 196,
-        "ipads": 71,
-        "macs": 24,
-        "apple_watch": 1,
+        "iphones": 4,
+        "ipads": 3,
+        "macs": 0,
+        "apple_watch": 0,
         "tablets": 0,
         "laptops": 0,
-        "samsung_phones": 0
+        "samsung_phones": 0,
+        "google_phones": 0,
+        "huawei_phones": 0,
+        "xiaomi_phones": 0,
+        "oneplus_phones": 0
       },
       "errors": 0
     },
     "refurbed": {
-      "total": 274,
+      "total": 64,
       "by_category": {
-        "iphones": 88,
-        "ipads": 69,
-        "macs": 0,
-        "apple_watch": 10,
-        "tablets": 49,
-        "laptops": 0,
-        "samsung_phones": 58
-      },
-      "errors": 0
-    },
-    "backmarket": {
-      "total": 0,
-      "by_category": {
-        "iphones": 0,
-        "ipads": 0,
+        "iphones": 45,
+        "ipads": 6,
         "macs": 0,
         "apple_watch": 0,
-        "tablets": 0,
+        "tablets": 2,
         "laptops": 0,
-        "samsung_phones": 0
+        "samsung_phones": 6,
+        "google_phones": 5,
+        "huawei_phones": 0,
+        "xiaomi_phones": 0,
+        "oneplus_phones": 0
       },
       "errors": 0
     },
     "swappie": {
-      "total": 402,
+      "total": 12,
       "by_category": {
-        "iphones": 252,
-        "ipads": 150
+        "iphones": 5,
+        "ipads": 7
       },
       "errors": 0
     },
     "certideal": {
-      "total": 98,
+      "total": 14,
       "by_category": {
-        "iphones": 44,
-        "ipads": 12,
-        "macs": 30,
+        "iphones": 0,
+        "ipads": 1,
+        "macs": 13,
         "apple_watch": 0,
         "tablets": 0,
         "laptops": 0,
-        "samsung_phones": 12
+        "samsung_phones": 0,
+        "google_phones": 0,
+        "huawei_phones": 0,
+        "xiaomi_phones": 0,
+        "oneplus_phones": 0
       },
       "errors": 0
     }
   },
-  "grand_total": 1066,
+  "grand_total": 97,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
