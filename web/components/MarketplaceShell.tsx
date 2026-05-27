@@ -35,6 +35,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     model: searchParams?.get("model") ?? defaultFilters.model ?? undefined,
     storage: searchParams?.get("storage") ?? defaultFilters.storage ?? undefined,
     grade: searchParams?.get("grade") ?? defaultFilters.grade ?? undefined,
+    color: searchParams?.get("color") ?? defaultFilters.color ?? undefined,
     q: searchParams?.get("q") ?? defaultFilters.q ?? undefined,
   });
 
@@ -48,6 +49,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     model: null,
     storage: null,
     grade: null,
+    color: null,
     q: filters.q,
   });
   const options = buildFilterOptionsFromAggregated(scopedForOptions);
@@ -129,10 +131,10 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 function MarketplaceFallback() {
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(260px,30%)_1fr] lg:gap-8">
-      <div className="h-96 animate-pulse rounded-2xl bg-gray-200/60" />
+      <div className="h-96 animate-pulse rounded-2xl bg-slate-200/50" />
       <div className="grid gap-5 sm:grid-cols-2">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-72 animate-pulse rounded-2xl bg-gray-200/60" />
+          <div key={i} className="h-72 animate-pulse rounded-2xl bg-slate-200/50" />
         ))}
       </div>
     </div>
@@ -142,7 +144,7 @@ function MarketplaceFallback() {
 export function MarketplaceShell(props: MarketplaceShellProps) {
   return (
     <section
-      className="scroll-mt-24 bg-[#F9FAFB] px-4 py-10 sm:px-6 sm:py-14 lg:px-8"
+      className="scroll-mt-24 bg-slate-50 px-4 py-10 sm:px-6 sm:py-14 lg:px-8"
       id="comparador"
     >
       <div className="mx-auto max-w-7xl">
@@ -155,7 +157,7 @@ export function MarketplaceShell(props: MarketplaceShellProps) {
               Compara recondicionados
             </h2>
             <p className="mt-2 text-sm text-slate-500">
-              Preços reais dos scrapers — filtra por marca, modelo e estado estético.
+              Selecção curada de modelos recentes — pesquisa ou filtra para ver o catálogo completo.
             </p>
           </div>
         </div>

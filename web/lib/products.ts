@@ -1,6 +1,7 @@
 import type { StoreOffer } from "@/components/ComparatorSection";
 import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { inferBrand, inferCategory, parseSearchQuery, inferTechFromQuery } from "./inference";
+import { modelMatches } from "./model-matching";
 import { makeAffiliateUrl } from "./affiliate";
 import { ACTIVE_SOURCES, loadScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
 import { getStoreInfo } from "./stores";
@@ -32,33 +33,6 @@ function normalizeGrade(grade: string | null): NormalizedGrade {
   if (!grade) return "Bom";
   const key = grade.toLowerCase().trim();
   return GRADE_MAP[key] ?? "Bom";
-}
-
-function normalizeModel(text: string): string {
-  return text.toLowerCase().replace(/\s+/g, " ").trim();
-}
-
-function modelMatches(productModel: string | null | undefined, searchModel: string | null | undefined): boolean {
-  const p = normalizeModel(productModel ?? "");
-  const s = normalizeModel(searchModel ?? "");
-  if (!p || !s) return false;
-
-  if (p.includes(s)) {
-    if (/^iphone \d+$/.test(s)) {
-      for (const v of ["mini", "pro max", "pro", "plus"]) {
-        if (p.includes(v)) return false;
-      }
-    }
-    return true;
-  }
-
-  const sTokens = s.split(" ").filter((t) => t.length > 2);
-  if (sTokens.length >= 2) {
-    const hits = sTokens.filter((t) => p.includes(t));
-    if (hits.length >= Math.min(3, sTokens.length)) return true;
-  }
-
-  return false;
 }
 
 function isValidPrice(product: ScrapedProduct, category: string): boolean {

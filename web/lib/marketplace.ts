@@ -2,6 +2,7 @@ import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { makeAffiliateUrl } from "./affiliate";
 import { inferBrand } from "./inference";
 import { getStoreInfo } from "./stores";
+import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
@@ -23,6 +24,7 @@ export type ProductListing = {
   imageUrl: string | null;
   warrantyMonths: number;
   scrapedAt: string | null;
+  color: string | null;
 };
 
 /** Produto agregado: menor preço real entre lojas para o mesmo modelo/capacidade/estado. */
@@ -39,6 +41,7 @@ export type AggregatedProduct = {
   offers: ProductListing[];
   imageUrl: string | null;
   storeCount: number;
+  color: string | null;
 };
 
 export type MarketplaceFilters = {
@@ -47,6 +50,7 @@ export type MarketplaceFilters = {
   model?: string | null;
   storage?: string | null;
   grade?: string | null;
+  color?: string | null;
   q?: string | null;
 };
 
@@ -54,6 +58,7 @@ export type FilterOptions = {
   brands: string[];
   models: string[];
   storages: string[];
+  colors: string[];
 };
 
 function storeLabel(source: ProductSource): string {
@@ -78,6 +83,19 @@ export const TECH_TYPES: { id: TechType; label: string; icon: string }[] = [
 export const BRAND_OPTIONS = ["Apple", "Samsung", "Huawei", "Google", "Xiaomi", "OnePlus"] as const;
 
 export const STORAGE_OPTIONS = ["32GB", "64GB", "128GB", "256GB", "512GB"] as const;
+
+export const COLOR_SWATCHES = [
+  { id: "preto", label: "Preto", hex: "#1f2937" },
+  { id: "branco", label: "Branco", hex: "#f9fafb" },
+  { id: "prata", label: "Prata", hex: "#d1d5db" },
+  { id: "ouro", label: "Ouro", hex: "#ca8a04" },
+  { id: "azul", label: "Azul", hex: "#2563eb" },
+  { id: "verde", label: "Verde", hex: "#16a34a" },
+  { id: "vermelho", label: "Vermelho", hex: "#dc2626" },
+  { id: "rosa", label: "Rosa", hex: "#f472b6" },
+  { id: "roxo", label: "Roxo", hex: "#9333ea" },
+  { id: "cinzento", label: "Cinzento", hex: "#6b7280" },
+] as const;
 
 export const GRADE_TIER_OPTIONS: { id: GradeTier; label: string; emoji: string }[] = [
   { id: "Premium", label: "Premium", emoji: "✨" },
@@ -156,13 +174,9 @@ function normalizeModel(text: string): string {
   return text.toLowerCase().replace(/\s+/g, " ").trim();
 }
 
-function keywordMatches(listing: ProductListing, keyword: string): boolean {
-  const k = normalizeModel(keyword);
-  if (!k) return true;
-  const haystack = normalizeModel(
-    [listing.model, listing.brand ?? "", listing.storage ?? ""].join(" "),
-  );
-  return haystack.includes(k);
+function listingMatchesColor(item: AggregatedProduct, color: string): boolean {
+  if (colorMatches(item.color, color)) return true;
+  return (item.offers ?? []).some((offer) => colorMatches(offer.color, color));
 }
 
 export function scraperProductToListing(product: ScrapedProduct): ProductListing | null {
@@ -196,6 +210,7 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
         ? product.warranty_months
         : 12,
     scrapedAt: safeStr(product?.scraped_at) || null,
+    color: safeStr(product?.color) || null,
   };
 }
 
@@ -240,6 +255,7 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
       offers: sorted,
       imageUrl: best.imageUrl,
       storeCount: sorted.length,
+      color: best.color,
     });
   }
 
@@ -255,16 +271,18 @@ export function filterAggregatedProducts(
   const model = safeStr(filters.model);
   const storage = safeStr(filters.storage).toUpperCase();
   const grade = safeStr(filters.grade) as GradeTier | "";
+  const color = safeStr(filters.color);
   const q = safeStr(filters.q);
 
   return (products ?? []).filter((item) => {
     if (!item?.id || typeof item.minPrice !== "number") return false;
     if (tech && item.tech !== tech) return false;
     if (brand && item.brand?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (model && !normalizeModel(item.model).includes(normalizeModel(model))) return false;
+    if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (q && !keywordMatches(item.bestListing, q)) return false;
+    if (color && !listingMatchesColor(item, color)) return false;
+    if (q && !queryMatchesModel(item.model, q)) return false;
     return true;
   });
 }
@@ -289,16 +307,18 @@ export function filterListings(
   const model = safeStr(filters.model);
   const storage = safeStr(filters.storage).toUpperCase();
   const grade = safeStr(filters.grade) as GradeTier | "";
+  const color = safeStr(filters.color);
   const q = safeStr(filters.q);
 
   return listings.filter((item) => {
     if (!item?.id || !item?.price) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && item.brand?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (model && !normalizeModel(item.model).includes(normalizeModel(model))) return false;
+    if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (q && !keywordMatches(item, q)) return false;
+    if (color && !colorMatches(item.color, color)) return false;
+    if (q && !queryMatchesModel(item.model, q)) return false;
     return true;
   });
 }
@@ -307,17 +327,20 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
   const brands = new Set<string>();
   const models = new Set<string>();
   const storages = new Set<string>();
+  const colors = new Set<string>();
 
   for (const item of listings ?? []) {
     if (item?.brand) brands.add(item.brand);
     if (item?.model) models.add(item.model);
     if (item?.storage) storages.add(item.storage.toUpperCase());
+    if (item?.color) colors.add(item.color);
   }
 
   return {
     brands: [...brands].sort((a, b) => a.localeCompare(b, "pt")),
     models: [...models].sort((a, b) => a.localeCompare(b, "pt")).slice(0, 40),
     storages: STORAGE_OPTIONS.filter((s) => storages.has(s) || storages.size === 0),
+    colors: [...colors].sort((a, b) => a.localeCompare(b, "pt")),
   };
 }
 
@@ -328,6 +351,7 @@ export function parseMarketplaceFilters(params: Record<string, string | undefine
     model: params.model ?? null,
     storage: params.storage ?? null,
     grade: params.grade ?? null,
+    color: params.color ?? null,
     q: params.q ?? null,
   };
 }
@@ -345,6 +369,7 @@ export function hasSpecificFilters(filters: MarketplaceFilters): boolean {
       filters.model ||
       filters.storage ||
       filters.grade ||
+      filters.color ||
       filters.q?.trim() ||
       (filters.tech && filters.tech !== "smartphones"),
   );
@@ -356,13 +381,32 @@ export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): bo
 }
 
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
-  const pickCheapest = (tech: TechType) =>
-    (products ?? [])
-      .filter((p) => p?.tech === tech && typeof p.minPrice === "number")
-      .sort((a, b) => a.minPrice - b.minPrice)
-      .slice(0, 4);
+  const perTech = 4;
+  const maxTotal = 12;
 
-  return [...pickCheapest("smartphones"), ...pickCheapest("laptops"), ...pickCheapest("wearables")];
+  const pickDiverse = (tech: TechType) => {
+    const pool = (products ?? [])
+      .filter((p) => p?.tech === tech && isRelevantForHighlights(p))
+      .sort((a, b) => a.minPrice - b.minPrice);
+
+    const seen = new Set<string>();
+    const picks: AggregatedProduct[] = [];
+
+    for (const product of pool) {
+      const key = normalizeModel(product.model);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      picks.push(product);
+      if (picks.length >= perTech) break;
+    }
+
+    return picks;
+  };
+
+  return [...pickDiverse("smartphones"), ...pickDiverse("laptops"), ...pickDiverse("wearables")].slice(
+    0,
+    maxTotal,
+  );
 }
 
 export function catalogFiltersForView(
@@ -370,7 +414,15 @@ export function catalogFiltersForView(
   viewAll: boolean,
 ): MarketplaceFilters {
   if (viewAll && !hasSpecificFilters(filters)) {
-    return { tech: null, brand: null, model: null, storage: null, grade: null, q: null };
+    return {
+      tech: null,
+      brand: null,
+      model: null,
+      storage: null,
+      grade: null,
+      color: null,
+      q: null,
+    };
   }
   return filters;
 }

@@ -1,8 +1,9 @@
-import { Crown, ExternalLink, Shield, Store } from "lucide-react";
+import { Crown, ExternalLink, Store } from "lucide-react";
 
 import { StoreLogo } from "@/components/StoreLogo";
 import type { AggregatedProduct } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
+import { getProductCardImage } from "@/lib/product-images";
 
 const GRADE_STYLES: Record<string, string> = {
   Premium: "bg-purple-50 text-purple-800 ring-purple-100",
@@ -10,6 +11,9 @@ const GRADE_STYLES: Record<string, string> = {
   "Muito Bom": "bg-teal-50 text-teal-800 ring-teal-100",
   Bom: "bg-amber-50 text-amber-900 ring-amber-100",
 };
+
+const CARD_SHADOW =
+  "shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)]";
 
 function formatPrice(value: number | null | undefined): string {
   if (typeof value !== "number" || !Number.isFinite(value)) return "—";
@@ -38,7 +42,7 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
 
   if (safeProducts.length === 0) {
     return (
-      <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-white p-12 text-center shadow-sm">
+      <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-slate-200/60 bg-white p-12 text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <p className="text-lg font-semibold text-slate-800">Nenhum resultado encontrado</p>
         <p className="mt-2 max-w-sm text-sm text-slate-500">
           Ajusta os filtros ou pesquisa por exemplo &ldquo;iPhone 13&rdquo; ou &ldquo;Galaxy
@@ -54,30 +58,26 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
         const best = item.bestListing;
         const isBest = globalMin != null && item.minPrice === globalMin;
         const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
-        const imageUrl = item.imageUrl ?? best?.imageUrl ?? undefined;
+        const imageUrl = getProductCardImage(item.model ?? "", item.tech);
         const storeCount = item.storeCount ?? item.offers?.length ?? 1;
 
         return (
           <article
             key={item.id}
-            className={`group flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-              isBest ? "border-emerald-300 ring-2 ring-emerald-100" : "border-slate-200/80"
+            className={`group flex flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
+              isBest ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200/50"
             }`}
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
-              {imageUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
+            <div className="relative aspect-square overflow-hidden bg-white">
+              <div className="flex h-full w-full items-center justify-center p-8">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={imageUrl}
                   alt={item.model ?? "Produto"}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="max-h-full max-w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
-              ) : (
-                <div className="flex h-full items-center justify-center text-4xl text-slate-300">
-                  📱
-                </div>
-              )}
+              </div>
               {isBest && (
                 <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
                   <Crown className="h-3 w-3" />
@@ -85,7 +85,7 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
                 </span>
               )}
               {item.brand && (
-                <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-700 shadow-sm backdrop-blur-sm">
+                <span className="absolute right-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 shadow-sm ring-1 ring-slate-100">
                   {item.brand}
                 </span>
               )}
@@ -154,16 +154,11 @@ export function ProductResultsGrid({ products, minPrice }: ProductResultsGridPro
                 </a>
               </div>
 
-              <div className="mt-3 space-y-1">
-                <p className="inline-flex items-center gap-1.5 text-xs text-slate-400">
-                  <Shield className="h-3.5 w-3.5" />
-                  Preço do site oficial · {best?.store ?? "loja parceira"}
-                </p>
-                <div className="flex items-center gap-1 text-[10px] font-medium text-green-600">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-                  Atualizado diariamente
-                </div>
-              </div>
+              <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
+                Preço do site oficial · {best?.store ?? "loja parceira"}{" "}
+                <span className="text-slate-300">|</span>{" "}
+                <span className="font-medium text-green-600">✓ Atualizado diariamente</span>
+              </p>
             </div>
           </article>
         );

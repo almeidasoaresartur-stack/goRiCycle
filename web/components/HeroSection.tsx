@@ -9,9 +9,9 @@ type HeroSectionProps = {
 
 export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#fafafa] to-emerald-50/40 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-teal-100/50 blur-3xl" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-50 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8">
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-slate-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-emerald-100/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-4xl text-center animate-fade-up">
         <div className="mb-6 flex justify-center">
@@ -41,6 +41,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
             const q = String(new FormData(e.currentTarget).get("q") ?? "").trim();
             const params = new URLSearchParams();
             if (q) params.set("q", q);
+            params.set("view", "all");
             params.set("tech", "smartphones");
             params.set("section", "comparador");
             window.location.href = `/?${params.toString()}#comparador`;
