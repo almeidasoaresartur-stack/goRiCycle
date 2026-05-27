@@ -37,7 +37,7 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <SiteHeader />
 
-      <main className="bg-slate-900">
+      <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} />
         <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <BenefitsSection />

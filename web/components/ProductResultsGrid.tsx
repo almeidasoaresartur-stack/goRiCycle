@@ -15,7 +15,7 @@ const GRADE_STYLES: Record<string, string> = {
 };
 
 const CARD_SHADOW =
-  "shadow-[0_4px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.18)]";
+  "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]";
 
 function formatPrice(value: number | null | undefined): string {
   if (typeof value !== "number" || !Number.isFinite(value)) return "—";
@@ -49,7 +49,7 @@ export function ProductResultsGrid({
 
   if (safeProducts.length === 0) {
     return (
-      <div className="flex min-h-[320px] flex-col items-center justify-center rounded-2xl border border-slate-200/60 bg-white p-12 text-center shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
+      <div className="flex min-h-[320px] flex-col items-center justify-center rounded-xl border border-slate-200/80 bg-white p-12 text-center shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
         <p className="text-lg font-semibold text-slate-800">Nenhum resultado encontrado</p>
         <p className="mt-2 max-w-sm text-sm text-slate-500">
           Ajusta os filtros ou pesquisa por exemplo &ldquo;iPhone 13&rdquo; ou &ldquo;Galaxy
@@ -71,11 +71,11 @@ export function ProductResultsGrid({
         return (
           <article
             key={item.id}
-            className={`group flex flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
+            className={`group flex flex-col overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
               isBest ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200/50"
             }`}
           >
-            <div className="relative w-full overflow-hidden rounded-t-2xl bg-white">
+            <div className="relative w-full overflow-hidden rounded-t-xl bg-white">
               <ProductCardImage
                 src={clean.imageUrl}
                 fallbackSrc={getProductImage("", techToImageCategory(item.tech))}
@@ -160,7 +160,7 @@ export function ProductResultsGrid({
 
               <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
                 Preço do site oficial · {best?.store ?? "loja parceira"}{" "}
-                <span className="text-slate-300">|</span>{" "}
+                <span className="text-slate-400">|</span>{" "}
                 <span className="font-medium text-green-600">✓ Atualizado diariamente</span>
               </p>
             </div>

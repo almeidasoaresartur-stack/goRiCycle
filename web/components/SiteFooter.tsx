@@ -29,14 +29,14 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
     : null;
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-900 text-slate-400">
-      <div className="border-b border-slate-800/80 px-4 py-8 sm:px-6 lg:px-8">
+    <footer className="border-t border-slate-200 bg-white text-slate-600">
+      <div className="border-b border-slate-100 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <DisclaimerBlock compact />
           <p className="mt-4">
             <Link
               href="/termos"
-              className="text-xs font-medium text-slate-400 underline-offset-2 transition hover:text-emerald-400 hover:underline"
+              className="text-xs font-medium text-slate-500 underline-offset-2 transition hover:text-emerald-600 hover:underline"
             >
               Ler aviso completo
             </Link>
@@ -47,10 +47,8 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
           <div className="flex flex-col items-center sm:items-start">
-            <div className="rounded-xl bg-slate-800 px-4 py-2.5 ring-1 ring-slate-700">
-              <Logo size="sm" theme="dark" href={null} />
-            </div>
-            <p className="mt-3 max-w-sm text-center text-sm sm:text-left">{SLOGAN}</p>
+            <Logo size="sm" href={null} />
+            <p className="mt-3 max-w-sm text-center text-sm text-slate-600 sm:text-left">{SLOGAN}</p>
           </div>
           <div className="text-center text-xs text-slate-500 sm:text-right">
             <p>
@@ -62,21 +60,21 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
             <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-end">
               <Link
                 href="/faq"
-                className="font-medium text-slate-400 transition hover:text-emerald-400"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
               >
                 Perguntas frequentes
               </Link>
-              <span className="hidden text-slate-700 sm:inline" aria-hidden>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
                 ·
               </span>
               <Link
                 href="/termos"
-                className="font-medium text-slate-400 transition hover:text-emerald-400"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
               >
                 Termos e responsabilidade
               </Link>
             </nav>
-            <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-600 sm:text-right">
+            <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-400 sm:text-right">
               {NFPM_FOOTNOTE}
             </p>
           </div>

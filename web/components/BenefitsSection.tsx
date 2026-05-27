@@ -20,15 +20,15 @@ const BENEFITS = [
 
 export function BenefitsSection() {
   return (
-    <section className="border-y border-slate-800 bg-slate-800/50 px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+    <section className="border-y border-slate-200/80 bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-3 sm:gap-8">
         {BENEFITS.map(({ icon: Icon, title, description }) => (
           <div key={title} className="flex flex-col items-center text-center sm:items-start sm:text-left">
-            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
               <Icon className="h-5 w-5" strokeWidth={2} />
             </div>
-            <h3 className="text-sm font-semibold text-white">{title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{description}</p>
+            <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{description}</p>
           </div>
         ))}
       </div>

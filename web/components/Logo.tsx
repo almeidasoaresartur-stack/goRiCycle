@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export const SLOGAN =
@@ -12,11 +11,13 @@ type LogoProps = {
   href?: string | null;
 };
 
+const LOGO_SRC = "/images/upscalemedia-transformed-1.png";
+
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
   md: "h-9 sm:h-10",
   lg: "h-11 sm:h-12",
-  header: "h-10 w-auto sm:h-12",
+  header: "h-9 w-auto",
 } as const;
 
 const DARK_THEME_CLASS = "brightness-0 invert";
@@ -34,18 +35,17 @@ export function Logo({
   const themeClass = isDark ? DARK_THEME_CLASS : "";
 
   const image = isHeader ? (
-    <Image
-      src="/logo-goricycle.png"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={LOGO_SRC}
       alt="goRiCycle"
-      width={280}
-      height={48}
-      priority
-      className={`block object-contain ${SIZE_CLASS.header} max-w-[min(280px,70vw)] ${themeClass} ${className}`}
+      className={`block object-contain ${SIZE_CLASS.header} ${className}`}
+      decoding="async"
     />
   ) : (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={isFull ? "/logo-goricycle.png" : "/logo-icon.png"}
+      src={isFull ? LOGO_SRC : "/logo-icon.png"}
       alt="goRiCycle"
       width={isFull ? 220 : 48}
       height={isFull ? 48 : 48}

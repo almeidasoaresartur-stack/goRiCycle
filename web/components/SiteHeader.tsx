@@ -12,19 +12,19 @@ export function SiteHeader({
   ctaLabel = "Explorar ofertas",
 }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/95 shadow-lg shadow-black/20 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-[#F8FAFC]/95 shadow-[0_1px_3px_rgba(0,0,0,0.04)] backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo size="header" theme="dark" />
+        <Logo size="header" />
         <nav className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/faq"
-            className="hidden text-sm font-medium text-slate-300 transition hover:text-emerald-400 sm:inline"
+            className="hidden text-sm font-medium text-slate-600 transition hover:text-emerald-600 sm:inline"
           >
             FAQs
           </Link>
           <Link
             href="/termos"
-            className="hidden text-sm font-medium text-slate-300 transition hover:text-emerald-400 sm:inline"
+            className="hidden text-sm font-medium text-slate-600 transition hover:text-emerald-600 sm:inline"
           >
             Termos
           </Link>
