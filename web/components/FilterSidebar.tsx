@@ -72,7 +72,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
   );
 
   return (
-    <aside className="rounded-xl border border-slate-200/80 bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] lg:overflow-y-auto lg:overscroll-y-contain">
+    <aside className="rounded-xl border border-slate-200/80 bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
       <div className="mb-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-emerald-600" />

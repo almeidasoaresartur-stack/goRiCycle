@@ -173,27 +173,24 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
   return (
     <div
-      className={`grid grid-cols-1 gap-6 transition-[grid-template-columns,gap] duration-300 ease-in-out lg:gap-8 ${
-        showFilterSidebar ? "lg:grid-cols-[minmax(260px,30%)_minmax(0,1fr)] lg:items-start" : ""
-      }`}
+      className={
+        showFilterSidebar
+          ? "grid grid-cols-1 items-start gap-6 md:grid-cols-[280px_1fr] lg:gap-8"
+          : "grid grid-cols-1 items-start gap-6 lg:gap-8"
+      }
     >
-      <div
-        className={`min-w-0 transition-opacity duration-300 ease-in-out lg:self-start ${
-          showFilterSidebar
-            ? "overflow-visible opacity-100"
-            : "pointer-events-none max-h-0 overflow-hidden opacity-0 lg:max-h-0"
-        }`}
-        aria-hidden={!showFilterSidebar}
-      >
-        <FilterSidebar
-          filters={filters}
-          options={options}
-          resultCount={catalogMode ? catalogCount : safeProducts.length}
-        />
-      </div>
+      {showFilterSidebar ? (
+        <div className="sticky top-28 z-10 self-start max-h-[calc(100vh-8rem)] w-full overflow-y-auto overscroll-y-contain md:w-[280px]">
+          <FilterSidebar
+            filters={filters}
+            options={options}
+            resultCount={catalogMode ? catalogCount : safeProducts.length}
+          />
+        </div>
+      ) : null}
 
       <div
-        className={`min-w-0 transition-all duration-300 ease-in-out ${
+        className={`min-w-0 ${
           showFilterSidebar ? "" : "mx-auto w-full max-w-5xl"
         }`}
       >
