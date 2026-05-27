@@ -1,9 +1,14 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { FilterSidebar } from "@/components/FilterSidebar";
+import {
+  getTotalPages,
+  paginateItems,
+  ProductPagination,
+} from "@/components/ProductPagination";
 import { ProductResultsGrid } from "@/components/ProductResultsGrid";
 import { TechCategoryPicker } from "@/components/TechCategoryPicker";
 import {
@@ -74,6 +79,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   const searchParams = useSearchParams();
   const router = useRouter();
   const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filters = parseMarketplaceFilters({
     tech: searchParams?.get("tech") ?? defaultFilters.tech ?? undefined,
@@ -114,12 +120,49 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     [baseProducts, sortOrder],
   );
 
+  const paginationResetKey = useMemo(
+    () =>
+      JSON.stringify({
+        tech: filters.tech,
+        brand: filters.brand,
+        model: filters.model,
+        storage: filters.storage,
+        grade: filters.grade,
+        color: filters.color,
+        q: filters.q,
+        viewAll,
+        catalogMode,
+        sortOrder,
+      }),
+    [filters, viewAll, catalogMode, sortOrder],
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [paginationResetKey]);
+
+  const totalPages = getTotalPages(displayProducts.length);
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const paginatedProducts = useMemo(
+    () => paginateItems(displayProducts, safeCurrentPage),
+    [displayProducts, safeCurrentPage],
+  );
+
   const catalogCount = useMemo(() => {
     const activeFilters = catalogFiltersForView(filters, viewAll);
     return filterAggregatedProducts(safeProducts, activeFilters).length;
   }, [filters, viewAll, safeProducts]);
 
   const minPrice = computeMinPrice(displayProducts);
+
+  const handleSortChange = (value: ProductSortOption) => {
+    setSortOrder(value);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const showAllCatalog = () => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
@@ -166,13 +209,18 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
           <>
             <ProductSortBar
               sortOrder={sortOrder}
-              onSortChange={setSortOrder}
+              onSortChange={handleSortChange}
               title="Destaques goRiCycle"
             />
             <ProductResultsGrid
-              products={displayProducts}
+              products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+            />
+            <ProductPagination
+              currentPage={safeCurrentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
             />
             <div className="mt-6 text-center">
               <button
@@ -188,13 +236,18 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
           <>
             <ProductSortBar
               sortOrder={sortOrder}
-              onSortChange={setSortOrder}
+              onSortChange={handleSortChange}
               resultLabel={`${catalogCount.toLocaleString("pt-PT")} resultado${catalogCount !== 1 ? "s" : ""}`}
             />
             <ProductResultsGrid
-              products={displayProducts}
+              products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+            />
+            <ProductPagination
+              currentPage={safeCurrentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
             />
           </>
         )}
