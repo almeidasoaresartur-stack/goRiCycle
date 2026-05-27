@@ -13,7 +13,7 @@ type LogoProps = {
 
 const LOGO_SRC = "/images/goricycle-logo.png";
 const LOGO_WIDTH = 1024;
-const LOGO_HEIGHT = 171;
+const LOGO_HEIGHT = 243;
 
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
