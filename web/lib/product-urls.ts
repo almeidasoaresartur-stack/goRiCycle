@@ -7,6 +7,8 @@ export type ProductUrlInput = {
   storage?: string | null;
   url?: string | null;
   affiliateEnabled?: boolean;
+  /** "search" salta reconstrução de slug e usa pesquisa directa na loja. */
+  fallback?: "rebuild" | "search";
 };
 
 const TRACKING_PARAMS = new Set([
@@ -166,11 +168,11 @@ function buildStoreSearchUrl(store: ProductSource, model: string, storage?: stri
     case "certideal":
       return `https://www.certideal.pt/procurar?search_query=${encodeURIComponent(query)}`;
     case "iservices":
-      return `https://loja.iservices.pt/pesquisa?controller=search&s=${encodeURIComponent(query)}`;
+      return `https://iservices.pt/search?q=${encodeURIComponent(query)}`;
     case "refurbed":
-      return `https://www.refurbed.pt/search/?query=${encodeURIComponent(query)}`;
+      return `https://www.refurbed.pt/search/?q=${encodeURIComponent(query)}`;
     case "swappie":
-      return `https://swappie.com/pt/search/?q=${encodeURIComponent(query)}`;
+      return `https://swappie.com/pt/procurar/?query=${encodeURIComponent(query)}`;
     default:
       return "#";
   }
@@ -257,9 +259,15 @@ export function generateExactProductUrl(input: ProductUrlInput): string {
   let resolved = cleaned;
 
   if (!resolved || isGenericListingUrl(store, resolved)) {
-    resolved = rebuildStoreProductUrl(store, model, storage);
+    resolved =
+      input.fallback === "search"
+        ? buildStoreSearchUrl(store, model, storage)
+        : rebuildStoreProductUrl(store, model, storage);
   } else if (!urlMatchesModel(store, resolved, model)) {
-    resolved = rebuildStoreProductUrl(store, model, storage);
+    resolved =
+      input.fallback === "search"
+        ? buildStoreSearchUrl(store, model, storage)
+        : rebuildStoreProductUrl(store, model, storage);
   }
 
   if (!resolved || resolved === "#") {
@@ -272,3 +280,19 @@ export function generateExactProductUrl(input: ProductUrlInput): string {
 export function resolveListingUrl(input: ProductUrlInput): string {
   return generateExactProductUrl(input);
 }
+
+/**
+ * Link infalível: usa URL do catálogo se for específico; caso contrário pesquisa na loja.
+ * Ideal para destaques do banner onde o stock muda frequentemente.
+ */
+export function resolveInfallibleProductUrl(input: ProductUrlInput): string {
+  const cleaned = cleanScrapedUrl(input.url);
+
+  if (cleaned && !isGenericListingUrl(input.store, cleaned)) {
+    return generateExactProductUrl({ ...input, url: cleaned, fallback: "rebuild" });
+  }
+
+  return generateExactProductUrl({ ...input, url: null, fallback: "search" });
+}
+
+export { buildStoreSearchUrl };

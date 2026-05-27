@@ -5,20 +5,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 
 import { StoreLogo } from "@/components/StoreLogo";
-import {
-  formatBannerPrice,
-  getFeaturedBannerSlides,
-  type FeaturedBannerSlide,
-} from "@/lib/featured-banner";
+import type { FeaturedBannerSlide } from "@/lib/featured-banner-shared";
+import { formatBannerPrice } from "@/lib/featured-banner-shared";
 
 const AUTOPLAY_MS = 5000;
-const SLIDES = getFeaturedBannerSlides();
 
 type FeaturedCarouselProps = {
-  slides?: FeaturedBannerSlide[];
+  slides: FeaturedBannerSlide[];
 };
 
-export function FeaturedCarousel({ slides = SLIDES }: FeaturedCarouselProps) {
+export function FeaturedCarousel({ slides }: FeaturedCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [timerSeed, setTimerSeed] = useState(0);
   const isPausedRef = useRef(false);
