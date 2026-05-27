@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { LayoutGrid, LayoutList } from "lucide-react";
 
 import { FilterSidebar } from "@/components/FilterSidebar";
 import {
@@ -9,7 +10,7 @@ import {
   paginateItems,
   ProductPagination,
 } from "@/components/ProductPagination";
-import { ProductResultsGrid } from "@/components/ProductResultsGrid";
+import { ProductResultsGrid, type ProductViewMode } from "@/components/ProductResultsGrid";
 import { TechCategoryPicker } from "@/components/TechCategoryPicker";
 import {
   buildFilterOptionsFromAggregated,
@@ -35,18 +36,36 @@ const SORT_OPTIONS: { value: ProductSortOption; label: string }[] = [
 ];
 
 const SORT_SELECT_CLASS =
-  "ml-auto appearance-none rounded-lg border border-slate-200 bg-white px-3 py-1.5 pr-8 text-sm text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-emerald-500/20";
+  "appearance-none rounded-lg border border-slate-200 bg-white px-3 py-1.5 pr-8 text-sm text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-emerald-500/20";
+
+const VIEW_TOGGLE_CLASS =
+  "inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-sm font-medium transition";
+
+function viewToggleClass(active: boolean): string {
+  return active
+    ? `${VIEW_TOGGLE_CLASS} border-emerald-600 bg-emerald-600 text-white shadow-sm`
+    : `${VIEW_TOGGLE_CLASS} border-slate-200 bg-white text-slate-600 hover:border-emerald-300 hover:bg-emerald-50/50`;
+}
 
 type ProductSortBarProps = {
   sortOrder: ProductSortOption;
   onSortChange: (value: ProductSortOption) => void;
+  viewMode: ProductViewMode;
+  onViewModeChange: (mode: ProductViewMode) => void;
   title?: string;
   resultLabel?: string;
 };
 
-function ProductSortBar({ sortOrder, onSortChange, title, resultLabel }: ProductSortBarProps) {
+function ProductSortBar({
+  sortOrder,
+  onSortChange,
+  viewMode,
+  onViewModeChange,
+  title,
+  resultLabel,
+}: ProductSortBarProps) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-3">
+    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
       {title ? (
         <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
       ) : resultLabel ? (
@@ -54,18 +73,44 @@ function ProductSortBar({ sortOrder, onSortChange, title, resultLabel }: Product
       ) : (
         <span className="text-sm font-medium text-slate-900">Ordenar por</span>
       )}
-      <select
-        value={sortOrder}
-        onChange={(e) => onSortChange(e.target.value as ProductSortOption)}
-        className={SORT_SELECT_CLASS}
-        aria-label="Ordenar produtos"
-      >
-        {SORT_OPTIONS.map(({ value, label }) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
+
+      <div className="ml-auto flex flex-wrap items-center gap-2">
+        <div className="flex items-center gap-1 rounded-md border border-slate-200 bg-white p-0.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+          <button
+            type="button"
+            onClick={() => onViewModeChange("grid")}
+            className={viewToggleClass(viewMode === "grid")}
+            aria-label="Ver em grelha"
+            aria-pressed={viewMode === "grid"}
+          >
+            <LayoutGrid className="h-4 w-4" />
+            <span className="hidden sm:inline">Grelha</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => onViewModeChange("list")}
+            className={viewToggleClass(viewMode === "list")}
+            aria-label="Ver em lista"
+            aria-pressed={viewMode === "list"}
+          >
+            <LayoutList className="h-4 w-4" />
+            <span className="hidden sm:inline">Lista</span>
+          </button>
+        </div>
+
+        <select
+          value={sortOrder}
+          onChange={(e) => onSortChange(e.target.value as ProductSortOption)}
+          className={SORT_SELECT_CLASS}
+          aria-label="Ordenar produtos"
+        >
+          {SORT_OPTIONS.map(({ value, label }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
@@ -80,6 +125,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   const router = useRouter();
   const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
   const [currentPage, setCurrentPage] = useState(1);
+  const [viewMode, setViewMode] = useState<ProductViewMode>("grid");
 
   const filters = parseMarketplaceFilters({
     tech: searchParams?.get("tech") ?? defaultFilters.tech ?? undefined,
@@ -201,12 +247,15 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
             <ProductSortBar
               sortOrder={sortOrder}
               onSortChange={handleSortChange}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
               title="Destaques goRiCycle"
             />
             <ProductResultsGrid
               products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+              viewMode={viewMode}
             />
             <ProductPagination
               currentPage={safeCurrentPage}
@@ -228,12 +277,15 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
             <ProductSortBar
               sortOrder={sortOrder}
               onSortChange={handleSortChange}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
               resultLabel={`${catalogCount.toLocaleString("pt-PT")} resultado${catalogCount !== 1 ? "s" : ""}`}
             />
             <ProductResultsGrid
               products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+              viewMode={viewMode}
             />
             <ProductPagination
               currentPage={safeCurrentPage}
