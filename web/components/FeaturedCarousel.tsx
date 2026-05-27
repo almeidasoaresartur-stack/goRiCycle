@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 
 import { StoreLogo } from "@/components/StoreLogo";
@@ -20,32 +20,52 @@ type FeaturedCarouselProps = {
 
 export function FeaturedCarousel({ slides = SLIDES }: FeaturedCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [timerSeed, setTimerSeed] = useState(0);
+  const isPausedRef = useRef(false);
 
-  const goTo = useCallback((index: number) => {
-    if (slides.length === 0) return;
-    setActiveIndex(((index % slides.length) + slides.length) % slides.length);
-  }, [slides.length]);
+  const slideCount = slides.length;
 
-  const goNext = useCallback(() => {
-    goTo(activeIndex + 1);
-  }, [activeIndex, goTo]);
+  const goToSlide = useCallback(
+    (index: number, options?: { resetTimer?: boolean }) => {
+      if (slideCount === 0) return;
+      const nextIndex = ((index % slideCount) + slideCount) % slideCount;
+      setActiveIndex(nextIndex);
+      if (options?.resetTimer) {
+        setTimerSeed((seed) => seed + 1);
+      }
+    },
+    [slideCount],
+  );
 
   useEffect(() => {
-    if (isPaused || slides.length <= 1) return;
+    if (slideCount <= 1) return;
 
-    const timer = window.setInterval(goNext, AUTOPLAY_MS);
-    return () => window.clearInterval(timer);
-  }, [activeIndex, goNext, isPaused, slides.length]);
+    const timerId = window.setInterval(() => {
+      if (isPausedRef.current) return;
+      setActiveIndex((current) => (current + 1) % slideCount);
+    }, AUTOPLAY_MS);
 
-  if (slides.length === 0) return null;
+    return () => window.clearInterval(timerId);
+  }, [slideCount, timerSeed]);
+
+  const handlePointerEnter = () => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      isPausedRef.current = true;
+    }
+  };
+
+  const handlePointerLeave = () => {
+    isPausedRef.current = false;
+  };
+
+  if (slideCount === 0) return null;
 
   return (
     <section
       className="bg-[#F8FAFC] px-4 pb-2 pt-4 sm:px-6 sm:pb-3 lg:px-8"
       aria-label="Destaques premium das lojas parceiras"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     >
       <div className="relative mx-auto max-w-7xl">
         <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.06)] sm:min-h-[300px]">
@@ -55,8 +75,10 @@ export function FeaturedCarousel({ slides = SLIDES }: FeaturedCarouselProps) {
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                  isActive ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0"
+                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                  isActive
+                    ? "z-10 translate-x-0 opacity-100"
+                    : "pointer-events-none z-0 translate-x-3 opacity-0"
                 }`}
                 aria-hidden={!isActive}
               >
@@ -127,7 +149,7 @@ export function FeaturedCarousel({ slides = SLIDES }: FeaturedCarouselProps) {
               <button
                 key={slide.id}
                 type="button"
-                onClick={() => goTo(index)}
+                onClick={() => goToSlide(index, { resetTimer: true })}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
                   index === activeIndex
                     ? "w-7 bg-slate-800"
