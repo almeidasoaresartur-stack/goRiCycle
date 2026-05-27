@@ -1,6 +1,6 @@
-import type { AggregatedProduct, TechType } from "./marketplace";
+import type { AggregatedProduct } from "./marketplace";
 import { normalizeColor } from "./model-matching";
-import { findCatalogImageByModelAndColor, getTechFallbackImage } from "./product-images";
+import { getProductImage, techToImageCategory } from "./productImages";
 
 export type CleanProductData = {
   displayName: string;
@@ -146,18 +146,19 @@ export function getCleanProductData(
   product: AggregatedProduct,
   options?: { activeColorFilter?: string | null },
 ): CleanProductData {
-  const displayName = cleanBaseModel(product.model ?? product.bestListing?.model ?? "");
+  const rawModel = product.model ?? product.bestListing?.model ?? "";
+  const displayName = cleanBaseModel(rawModel);
   const scraperFallbackUrl = product.imageUrl ?? product.bestListing?.imageUrl ?? null;
   const detectedColor = detectProductColor(
     product.color ?? product.bestListing?.color,
     options?.activeColorFilter,
   );
 
-  const catalogImage = findCatalogImageByModelAndColor(displayName, detectedColor);
-  const imageUrl =
-    catalogImage ??
-    scraperFallbackUrl?.trim() ??
-    getTechFallbackImage(product.tech as TechType);
+  const imageUrl = getProductImage(
+    rawModel,
+    techToImageCategory(product.tech),
+    scraperFallbackUrl ?? undefined,
+  );
 
   return {
     displayName,

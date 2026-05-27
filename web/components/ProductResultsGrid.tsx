@@ -74,7 +74,7 @@ export function ProductResultsGrid({
               isBest ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200/50"
             }`}
           >
-            <div className="relative flex items-center justify-center overflow-hidden bg-white">
+            <div className="relative w-full overflow-hidden rounded-t-2xl bg-white">
               <ProductCardImage
                 src={clean.imageUrl}
                 fallbackSrc={clean.scraperFallbackUrl}
