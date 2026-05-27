@@ -129,6 +129,15 @@ export function isRelevantForHighlights(product: HighlightProduct): boolean {
     return true;
   }
 
+  if (tech === "tablets") {
+    if (model.includes("ipad")) {
+      const gen = model.match(/ipad\s*(?:pro|air|mini)?\s*(\d+)/);
+      if (gen) return parseInt(gen[1], 10) >= 9;
+      return model.includes("m1") || model.includes("m2") || model.includes("m3") || model.includes("m4");
+    }
+    return true;
+  }
+
   if (tech === "laptops") {
     if (model.includes("macbook")) {
       const yearMatch = model.match(/20(\d{2})/);

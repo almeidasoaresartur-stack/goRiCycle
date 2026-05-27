@@ -14,8 +14,8 @@ type LogoProps = {
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
   md: "h-9 sm:h-10",
-  lg: "h-12 sm:h-14",
-  header: "h-12 w-auto",
+  lg: "h-14 sm:h-16",
+  header: "h-12 w-auto sm:h-14",
 } as const;
 
 export function Logo({
@@ -31,10 +31,10 @@ export function Logo({
     <Image
       src="/logo-goricycle.png"
       alt="goRiCycle"
-      width={300}
-      height={48}
+      width={360}
+      height={56}
       priority
-      className={`block object-contain ${SIZE_CLASS.header} max-w-[min(300px,60vw)] ${className}`}
+      className={`block object-contain ${SIZE_CLASS.header} max-w-[min(360px,75vw)] ${className}`}
     />
   ) : (
     // eslint-disable-next-line @next/next/no-img-element

@@ -6,7 +6,10 @@ import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel 
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
-export type TechType = "smartphones" | "laptops" | "wearables";
+export type TechType = "smartphones" | "tablets" | "laptops" | "wearables";
+
+/** Categorias visíveis no lançamento (esconde laptops e wearables). */
+export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets"];
 
 export type ProductListing = {
   id: string;
@@ -76,9 +79,12 @@ const GRADE_MAP: Record<string, NormalizedGrade> = {
 
 export const TECH_TYPES: { id: TechType; label: string; icon: string }[] = [
   { id: "smartphones", label: "Smartphones", icon: "📱" },
-  { id: "laptops", label: "Laptops", icon: "💻" },
-  { id: "wearables", label: "Wearables", icon: "⌚" },
+  { id: "tablets", label: "Tablets", icon: "📲" },
 ];
+
+export function filterLaunchProducts(products: AggregatedProduct[]): AggregatedProduct[] {
+  return (products ?? []).filter((p) => LAUNCH_TECH_TYPES.includes(p.tech));
+}
 
 export const BRAND_OPTIONS = ["Apple", "Samsung", "Huawei", "Google", "Xiaomi", "OnePlus"] as const;
 
@@ -112,6 +118,7 @@ const TECH_CATEGORIES: Record<TechType, string[]> = {
     "xiaomi_phones",
     "oneplus_phones",
   ],
+  tablets: ["ipads", "tablets"],
   laptops: ["macs", "laptops"],
   wearables: ["apple_watch"],
 };
@@ -133,6 +140,8 @@ const MIN_PRICE: Record<string, number> = {
 const PLACEHOLDER_IMAGES: Record<TechType, string> = {
   smartphones:
     "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop&q=80",
+  tablets:
+    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop&q=80",
   laptops:
     "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop&q=80",
   wearables:
@@ -403,10 +412,7 @@ export function buildHighlightProducts(products: AggregatedProduct[]): Aggregate
     return picks;
   };
 
-  return [...pickDiverse("smartphones"), ...pickDiverse("laptops"), ...pickDiverse("wearables")].slice(
-    0,
-    maxTotal,
-  );
+  return [...pickDiverse("smartphones"), ...pickDiverse("tablets")].slice(0, maxTotal);
 }
 
 export function catalogFiltersForView(

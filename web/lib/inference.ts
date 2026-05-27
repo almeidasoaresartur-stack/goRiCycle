@@ -34,15 +34,17 @@ export function parseSearchQuery(query: string): { model: string; storage: strin
   return { model, storage };
 }
 
-export function inferTechFromQuery(q: string): "smartphones" | "laptops" | "wearables" | null {
+export function inferTechFromQuery(q: string): "smartphones" | "tablets" | "laptops" | "wearables" | null {
   const cat = inferCategory(q);
-  const map: Record<string, "smartphones" | "laptops" | "wearables"> = {
+  const map: Record<string, "smartphones" | "tablets" | "laptops" | "wearables"> = {
     iphones: "smartphones",
     samsung_phones: "smartphones",
     google_phones: "smartphones",
     huawei_phones: "smartphones",
     xiaomi_phones: "smartphones",
     oneplus_phones: "smartphones",
+    ipads: "tablets",
+    tablets: "tablets",
     macs: "laptops",
     laptops: "laptops",
     apple_watch: "wearables",

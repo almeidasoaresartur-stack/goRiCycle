@@ -9,27 +9,27 @@ type HeroSectionProps = {
 
 export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-50 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-slate-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-emerald-100/30 blur-3xl" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-900 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8">
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-slate-700/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-4xl text-center animate-fade-up">
         <div className="mb-6 flex justify-center">
           <Logo size="lg" href={null} />
         </div>
 
-        <p className="mb-5 inline-flex max-w-2xl items-center rounded-full border border-emerald-200/80 bg-emerald-50 px-4 py-2 text-xs font-medium leading-relaxed tracking-wide text-emerald-800 sm:text-sm">
+        <p className="mb-5 inline-flex max-w-2xl items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-medium leading-relaxed tracking-wide text-emerald-300 sm:text-sm">
           {SLOGAN}
         </p>
 
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
           Compara recondicionados em Portugal —{" "}
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
             num só sítio
           </span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
           Comparamos Apple, Samsung, Google Pixel, Xiaomi, Huawei e mais — num só sítio, com
           preços claros e condições que percebes.
         </p>
@@ -53,20 +53,20 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
               name="q"
               type="search"
               defaultValue={defaultQuery}
-              placeholder="iPhone, Galaxy S23, Pixel 8, Xiaomi 13..."
-              className="h-14 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+              placeholder="iPhone, Galaxy S23, Pixel 8, iPad..."
+              className="h-14 w-full rounded-2xl border border-slate-700 bg-slate-800 pl-12 pr-4 text-base text-white shadow-sm outline-none transition placeholder:text-slate-500 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20"
             />
           </div>
           <button
             type="submit"
-            className="h-14 shrink-0 rounded-2xl bg-slate-900 px-8 text-base font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:bg-slate-800 active:scale-[0.98]"
+            className="h-14 shrink-0 rounded-2xl bg-emerald-600 px-8 text-base font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-500 active:scale-[0.98]"
           >
             Comparar
           </button>
         </form>
 
-        <p className="mt-4 text-sm text-slate-500">
-          4 lojas · Apple & Android · iServices · Refurbed · Swappie · Certideal
+        <p className="mt-4 text-sm text-slate-400">
+          4 lojas · Smartphones & Tablets · iServices · Refurbed · Swappie · Certideal
         </p>
       </div>
     </section>

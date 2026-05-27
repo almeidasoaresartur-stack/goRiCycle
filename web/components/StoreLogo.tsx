@@ -12,10 +12,11 @@ export function StoreLogo({
   storeSlug,
   storeLabel,
   className = "",
-  height = 28,
+  height = 42,
 }: StoreLogoProps) {
   const info = getStoreInfo(storeSlug);
   const label = storeLabel ?? info?.label ?? "Loja";
+  const imgHeight = height;
 
   if (info?.logoSrc) {
     return (
@@ -23,8 +24,8 @@ export function StoreLogo({
       <img
         src={info.logoSrc}
         alt={label}
-        height={height}
-        className={`h-7 w-auto object-contain ${className}`}
+        height={imgHeight}
+        className={`h-10 w-auto object-contain sm:h-11 ${className}`}
         loading="lazy"
       />
     );
