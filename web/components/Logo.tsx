@@ -12,6 +12,8 @@ type LogoProps = {
 };
 
 const LOGO_SRC = "/images/goricycle-logo.png";
+const LOGO_WIDTH = 1024;
+const LOGO_HEIGHT = 171;
 
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
@@ -39,6 +41,8 @@ export function Logo({
     <img
       src={LOGO_SRC}
       alt="goRiCycle"
+      width={LOGO_WIDTH}
+      height={LOGO_HEIGHT}
       className={`block object-contain object-left ${SIZE_CLASS.header} ${className}`}
       decoding="async"
     />
@@ -47,8 +51,8 @@ export function Logo({
     <img
       src={isFull ? LOGO_SRC : "/logo-icon.png"}
       alt="goRiCycle"
-      width={isFull ? 220 : 48}
-      height={isFull ? 48 : 48}
+      width={isFull ? LOGO_WIDTH : 256}
+      height={isFull ? LOGO_HEIGHT : 256}
       className={`block object-contain ${isFull ? `${SIZE_CLASS[size]} max-w-[min(280px,70vw)]` : "h-8 w-auto sm:h-9"} ${themeClass} ${className}`}
       decoding="async"
     />
