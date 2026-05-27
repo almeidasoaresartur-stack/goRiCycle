@@ -174,28 +174,22 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   return (
     <div
       className={`grid grid-cols-1 gap-6 transition-[grid-template-columns,gap] duration-300 ease-in-out lg:gap-8 ${
-        showFilterSidebar ? "lg:grid-cols-[minmax(260px,30%)_minmax(0,1fr)]" : ""
+        showFilterSidebar ? "lg:grid-cols-[minmax(260px,30%)_minmax(0,1fr)] lg:items-start" : ""
       }`}
     >
       <div
-        className={`min-w-0 overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`min-w-0 transition-opacity duration-300 ease-in-out lg:self-start ${
           showFilterSidebar
-            ? "max-h-[3000px] opacity-100"
-            : "pointer-events-none max-h-0 opacity-0 lg:max-h-0"
+            ? "overflow-visible opacity-100"
+            : "pointer-events-none max-h-0 overflow-hidden opacity-0 lg:max-h-0"
         }`}
         aria-hidden={!showFilterSidebar}
       >
-        <div
-          className={`transition-transform duration-300 ease-in-out ${
-            showFilterSidebar ? "translate-x-0" : "-translate-x-3"
-          }`}
-        >
-          <FilterSidebar
-            filters={filters}
-            options={options}
-            resultCount={catalogMode ? catalogCount : safeProducts.length}
-          />
-        </div>
+        <FilterSidebar
+          filters={filters}
+          options={options}
+          resultCount={catalogMode ? catalogCount : safeProducts.length}
+        />
       </div>
 
       <div
