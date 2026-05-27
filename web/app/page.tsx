@@ -1,5 +1,6 @@
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { FaqSection } from "@/components/FaqSection";
+import { FeaturedCarousel } from "@/components/FeaturedCarousel";
 import { HeroSection } from "@/components/HeroSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
 import { ScrollToHash } from "@/components/ScrollToHash";
@@ -35,6 +36,7 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} />
+        <FeaturedCarousel />
         <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <BenefitsSection />
         <FaqSection />
