@@ -4,7 +4,6 @@ import { HeroSection } from "@/components/HeroSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { getAllAggregatedProducts } from "@/lib/load-listings";
 import { parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
 import { inferTechFromQuery } from "@/lib/inference";
@@ -34,8 +33,6 @@ export default async function HomePage({ searchParams }: PageProps) {
   return (
     <>
       <ScrollToHash trigger={`${query}-${params.tech ?? ""}`} />
-
-      <SiteHeader />
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} />

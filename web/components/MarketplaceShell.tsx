@@ -14,11 +14,54 @@ import {
   filterLaunchProducts,
   isCatalogView,
   parseMarketplaceFilters,
+  sortAggregatedProducts,
   type AggregatedProduct,
   type MarketplaceFilters,
+  type ProductSortOption,
 } from "@/lib/marketplace";
 
-type SortOrder = "price_asc" | "price_desc";
+const SORT_OPTIONS: { value: ProductSortOption; label: string }[] = [
+  { value: "relevance", label: "Relevância" },
+  { value: "newest", label: "Novidades" },
+  { value: "price_asc", label: "Preço (mais baixo)" },
+  { value: "price_desc", label: "Preço (mais alto)" },
+];
+
+const SORT_SELECT_CLASS =
+  "ml-auto appearance-none rounded-lg border border-slate-200 bg-white px-3 py-1.5 pr-8 text-sm text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-emerald-500/20";
+
+type ProductSortBarProps = {
+  sortOrder: ProductSortOption;
+  onSortChange: (value: ProductSortOption) => void;
+  title?: string;
+  resultLabel?: string;
+};
+
+function ProductSortBar({ sortOrder, onSortChange, title, resultLabel }: ProductSortBarProps) {
+  return (
+    <div className="mb-4 flex items-center justify-between gap-3">
+      {title ? (
+        <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+      ) : resultLabel ? (
+        <span className="text-sm text-slate-600">{resultLabel}</span>
+      ) : (
+        <span className="text-sm font-medium text-slate-900">Ordenar por</span>
+      )}
+      <select
+        value={sortOrder}
+        onChange={(e) => onSortChange(e.target.value as ProductSortOption)}
+        className={SORT_SELECT_CLASS}
+        aria-label="Ordenar produtos"
+      >
+        {SORT_OPTIONS.map(({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
 type MarketplaceShellProps = {
   allProducts: AggregatedProduct[];
@@ -28,7 +71,7 @@ type MarketplaceShellProps = {
 function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [sortOrder, setSortOrder] = useState<SortOrder>("price_asc");
+  const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
 
   const filters = parseMarketplaceFilters({
     tech: searchParams?.get("tech") ?? defaultFilters.tech ?? "smartphones",
@@ -55,18 +98,18 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   });
   const options = buildFilterOptionsFromAggregated(scopedForOptions);
 
-  const displayProducts = useMemo(() => {
+  const baseProducts = useMemo(() => {
     if (!catalogMode) {
       return buildHighlightProducts(safeProducts);
     }
-
     const activeFilters = catalogFiltersForView(filters, viewAll);
-    const filtered = filterAggregatedProducts(safeProducts, activeFilters);
+    return filterAggregatedProducts(safeProducts, activeFilters);
+  }, [catalogMode, filters, viewAll, safeProducts]);
 
-    return [...filtered].sort((a, b) =>
-      sortOrder === "price_asc" ? a.minPrice - b.minPrice : b.minPrice - a.minPrice,
-    );
-  }, [catalogMode, filters, viewAll, safeProducts, sortOrder]);
+  const displayProducts = useMemo(
+    () => sortAggregatedProducts(baseProducts, sortOrder),
+    [baseProducts, sortOrder],
+  );
 
   const catalogCount = useMemo(() => {
     const activeFilters = catalogFiltersForView(filters, viewAll);
@@ -93,7 +136,11 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
       <div>
         {!catalogMode ? (
           <>
-            <h3 className="mb-3 text-lg font-semibold text-slate-900">Destaques goRiCycle</h3>
+            <ProductSortBar
+              sortOrder={sortOrder}
+              onSortChange={setSortOrder}
+              title="Destaques goRiCycle"
+            />
             <ProductResultsGrid
               products={displayProducts}
               minPrice={minPrice}
@@ -111,20 +158,11 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
           </>
         ) : (
           <>
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-600">
-                {catalogCount.toLocaleString("pt-PT")} resultado
-                {catalogCount !== 1 ? "s" : ""}
-              </span>
-              <select
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-                className="appearance-none rounded-lg border border-slate-200 bg-white px-3 py-1.5 pr-8 text-sm text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-              >
-                <option value="price_asc">Preço: mais baixo primeiro</option>
-                <option value="price_desc">Preço: mais alto primeiro</option>
-              </select>
-            </div>
+            <ProductSortBar
+              sortOrder={sortOrder}
+              onSortChange={setSortOrder}
+              resultLabel={`${catalogCount.toLocaleString("pt-PT")} resultado${catalogCount !== 1 ? "s" : ""}`}
+            />
             <ProductResultsGrid
               products={displayProducts}
               minPrice={minPrice}

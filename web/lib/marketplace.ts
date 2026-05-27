@@ -272,6 +272,41 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
   return aggregated.sort((a, b) => a.minPrice - b.minPrice);
 }
 
+export type ProductSortOption = "relevance" | "newest" | "price_asc" | "price_desc";
+
+function getProductFreshnessTimestamp(product: AggregatedProduct): number {
+  const scrapedDates = (product.offers ?? [product.bestListing])
+    .map((offer) => offer.scrapedAt)
+    .filter((value): value is string => Boolean(value))
+    .map((value) => Date.parse(value))
+    .filter((timestamp) => Number.isFinite(timestamp));
+
+  return scrapedDates.length ? Math.max(...scrapedDates) : 0;
+}
+
+export function sortAggregatedProducts(
+  products: AggregatedProduct[],
+  sort: ProductSortOption,
+): AggregatedProduct[] {
+  if (sort === "relevance") return products;
+
+  const copy = [...products];
+  switch (sort) {
+    case "newest":
+      return copy.sort((a, b) => {
+        const timeDiff = getProductFreshnessTimestamp(b) - getProductFreshnessTimestamp(a);
+        if (timeDiff !== 0) return timeDiff;
+        return b.id.localeCompare(a.id);
+      });
+    case "price_asc":
+      return copy.sort((a, b) => a.minPrice - b.minPrice);
+    case "price_desc":
+      return copy.sort((a, b) => b.minPrice - a.minPrice);
+    default:
+      return products;
+  }
+}
+
 export function filterAggregatedProducts(
   products: AggregatedProduct[],
   filters: MarketplaceFilters,

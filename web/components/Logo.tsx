@@ -11,13 +11,13 @@ type LogoProps = {
   href?: string | null;
 };
 
-const LOGO_SRC = "/images/upscalemedia-transformed-1.png";
+const LOGO_SRC = "/images/goricycle-logo.png";
 
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
   md: "h-9 sm:h-10",
   lg: "h-11 sm:h-12",
-  header: "h-9 w-auto",
+  header: "h-14 w-auto md:h-16",
 } as const;
 
 const DARK_THEME_CLASS = "brightness-0 invert";
@@ -39,7 +39,7 @@ export function Logo({
     <img
       src={LOGO_SRC}
       alt="goRiCycle"
-      className={`block object-contain ${SIZE_CLASS.header} ${className}`}
+      className={`block object-contain object-left ${SIZE_CLASS.header} ${className}`}
       decoding="async"
     />
   ) : (
@@ -59,7 +59,7 @@ export function Logo({
   }
 
   return (
-    <Link href={href} className="inline-flex items-center">
+    <Link href={href} className="inline-flex shrink-0 items-center bg-transparent">
       {image}
     </Link>
   );

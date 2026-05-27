@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { getCatalogStats } from "@/lib/products";
 
@@ -18,8 +17,6 @@ export default function FaqPage() {
 
   return (
     <>
-      <SiteHeader ctaHref="/#comparador" ctaLabel="Comparar preços" />
-
       <main className="flex-1">
         <section className="border-b border-slate-100 bg-gradient-to-b from-white to-[#f5f5f7] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">

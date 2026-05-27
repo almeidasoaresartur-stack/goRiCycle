@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { getCatalogStats } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -17,8 +16,6 @@ export default function TermosPage() {
 
   return (
     <>
-      <SiteHeader ctaHref="/#comparador" ctaLabel="Comparar preços" />
-
       <main className="flex-1">
         <section className="border-b border-slate-100 bg-gradient-to-b from-white to-[#f5f5f7] px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
