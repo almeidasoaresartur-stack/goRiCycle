@@ -56,7 +56,6 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
     const params = new URLSearchParams();
     const q = searchParams?.get("q");
     if (q) params.set("q", q);
-    params.set("tech", "smartphones");
     params.set("section", "comparador");
     router.push(`/?${params.toString()}#comparador`, { scroll: false });
   };

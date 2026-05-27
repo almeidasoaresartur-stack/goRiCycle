@@ -391,7 +391,7 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
 
 export function parseMarketplaceFilters(params: Record<string, string | undefined>): MarketplaceFilters {
   return {
-    tech: params.tech ?? "smartphones",
+    tech: params.tech ?? null,
     brand: params.brand ?? null,
     model: params.model ?? null,
     storage: params.storage ?? null,
@@ -399,6 +399,10 @@ export function parseMarketplaceFilters(params: Record<string, string | undefine
     color: params.color ?? null,
     q: params.q ?? null,
   };
+}
+
+export function hasActiveTechFilter(tech: string | null | undefined): tech is TechType {
+  return LAUNCH_TECH_TYPES.includes(tech as TechType);
 }
 
 export function inferModelFromQuery(q: string): string | null {
@@ -416,7 +420,7 @@ export function hasSpecificFilters(filters: MarketplaceFilters): boolean {
       filters.grade ||
       filters.color ||
       filters.q?.trim() ||
-      (filters.tech && filters.tech !== "smartphones"),
+      hasActiveTechFilter(filters.tech),
   );
 }
 

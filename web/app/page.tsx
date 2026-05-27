@@ -6,7 +6,6 @@ import { ScrollToHash } from "@/components/ScrollToHash";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getAllAggregatedProducts } from "@/lib/load-listings";
 import { parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
-import { inferTechFromQuery } from "@/lib/inference";
 import { getCatalogStats, inferBrand, parseSearchQuery } from "@/lib/products";
 
 type PageProps = {
@@ -18,7 +17,7 @@ export default async function HomePage({ searchParams }: PageProps) {
   const query = params.q?.trim() ?? "";
 
   const defaultFilters: MarketplaceFilters = parseMarketplaceFilters({
-    tech: params.tech ?? (query ? inferTechFromQuery(query) ?? "smartphones" : "smartphones"),
+    tech: params.tech,
     brand: params.brand ?? (query ? inferBrand(parseSearchQuery(query).model) ?? undefined : undefined),
     model: params.model ?? (query ? parseSearchQuery(query).model : undefined),
     storage: params.storage ?? (query ? parseSearchQuery(query).storage ?? undefined : undefined),

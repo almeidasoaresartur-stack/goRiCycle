@@ -35,7 +35,6 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
             const params = new URLSearchParams();
             if (q) params.set("q", q);
             params.set("view", "all");
-            params.set("tech", "smartphones");
             params.set("section", "comparador");
             window.location.href = `/?${params.toString()}#comparador`;
           }}

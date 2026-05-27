@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { ProductResultsGrid } from "@/components/ProductResultsGrid";
+import { TechCategoryPicker } from "@/components/TechCategoryPicker";
 import {
   buildFilterOptionsFromAggregated,
   buildHighlightProducts,
@@ -12,6 +13,7 @@ import {
   computeMinPrice,
   filterAggregatedProducts,
   filterLaunchProducts,
+  hasActiveTechFilter,
   isCatalogView,
   parseMarketplaceFilters,
   sortAggregatedProducts,
@@ -74,7 +76,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
 
   const filters = parseMarketplaceFilters({
-    tech: searchParams?.get("tech") ?? defaultFilters.tech ?? "smartphones",
+    tech: searchParams?.get("tech") ?? defaultFilters.tech ?? undefined,
     brand: searchParams?.get("brand") ?? defaultFilters.brand ?? undefined,
     model: searchParams?.get("model") ?? defaultFilters.model ?? undefined,
     storage: searchParams?.get("storage") ?? defaultFilters.storage ?? undefined,
@@ -85,6 +87,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
   const viewAll = searchParams?.get("view") === "all";
   const catalogMode = isCatalogView(filters, viewAll);
+  const showFilterSidebar = hasActiveTechFilter(filters.tech);
 
   const safeProducts = useMemo(() => filterLaunchProducts(allProducts ?? []), [allProducts]);
   const scopedForOptions = filterAggregatedProducts(safeProducts, {
@@ -126,14 +129,39 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(260px,30%)_1fr] lg:gap-8">
-      <FilterSidebar
-        filters={filters}
-        options={options}
-        resultCount={catalogMode ? catalogCount : safeProducts.length}
-      />
+    <div
+      className={`grid grid-cols-1 gap-6 transition-[grid-template-columns,gap] duration-300 ease-in-out lg:gap-8 ${
+        showFilterSidebar ? "lg:grid-cols-[minmax(260px,30%)_minmax(0,1fr)]" : ""
+      }`}
+    >
+      <div
+        className={`min-w-0 overflow-hidden transition-all duration-300 ease-in-out ${
+          showFilterSidebar
+            ? "max-h-[3000px] opacity-100"
+            : "pointer-events-none max-h-0 opacity-0 lg:max-h-0"
+        }`}
+        aria-hidden={!showFilterSidebar}
+      >
+        <div
+          className={`transition-transform duration-300 ease-in-out ${
+            showFilterSidebar ? "translate-x-0" : "-translate-x-3"
+          }`}
+        >
+          <FilterSidebar
+            filters={filters}
+            options={options}
+            resultCount={catalogMode ? catalogCount : safeProducts.length}
+          />
+        </div>
+      </div>
 
-      <div>
+      <div
+        className={`min-w-0 transition-all duration-300 ease-in-out ${
+          showFilterSidebar ? "" : "mx-auto w-full max-w-5xl"
+        }`}
+      >
+        {!showFilterSidebar && <TechCategoryPicker activeTech={filters.tech} />}
+
         {!catalogMode ? (
           <>
             <ProductSortBar
@@ -177,12 +205,14 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
 function MarketplaceFallback() {
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(260px,30%)_1fr] lg:gap-8">
-      <div className="h-96 animate-pulse rounded-xl bg-slate-200/60" />
-      <div className="grid gap-5 sm:grid-cols-2">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-72 animate-pulse rounded-xl bg-slate-200/60" />
-        ))}
+    <div className="grid grid-cols-1 gap-6 lg:gap-8">
+      <div className="mx-auto w-full max-w-5xl">
+        <div className="mb-5 h-20 animate-pulse rounded-xl bg-slate-200/60" />
+        <div className="grid gap-5 sm:grid-cols-2">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-72 animate-pulse rounded-xl bg-slate-200/60" />
+          ))}
+        </div>
       </div>
     </div>
   );
