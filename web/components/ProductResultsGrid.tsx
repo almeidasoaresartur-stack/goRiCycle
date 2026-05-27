@@ -2,10 +2,11 @@ import { Crown, ExternalLink, Store } from "lucide-react";
 
 import { ProductCardImage } from "@/components/ProductCardImage";
 import { StoreLogo } from "@/components/StoreLogo";
-import type { AggregatedProduct } from "@/lib/marketplace";
+import type { AggregatedProduct, ProductListing } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
 import { getCleanProductData } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
+import { resolveListingUrl } from "@/lib/product-urls";
 
 export type ProductViewMode = "grid" | "list";
 
@@ -45,6 +46,18 @@ type ProductCardProps = {
   isBest: boolean;
   activeColorFilter?: string | null;
 };
+
+function listingHref(listing: ProductListing | null | undefined): string {
+  if (!listing) return "#";
+
+  return resolveListingUrl({
+    store: listing.storeSlug,
+    model: listing.model,
+    storage: listing.storage,
+    url: listing.url,
+    affiliateEnabled: listing.storeSlug === "swappie" || listing.storeSlug === "refurbed",
+  });
+}
 
 function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) {
   const best = item.bestListing;
@@ -131,7 +144,7 @@ function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) 
             </p>
           </div>
           <a
-            href={best?.url || "#"}
+            href={listingHref(best)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"
@@ -230,7 +243,7 @@ function ProductListRow({ item, isBest, activeColorFilter }: ProductCardProps) {
           </p>
         </div>
         <a
-          href={best?.url || "#"}
+          href={listingHref(best)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"

@@ -2,7 +2,7 @@ import type { StoreOffer } from "@/components/ComparatorSection";
 import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { inferBrand, inferCategory, parseSearchQuery, inferTechFromQuery } from "./inference";
 import { modelMatches } from "./model-matching";
-import { makeAffiliateUrl } from "./affiliate";
+import { generateExactProductUrl } from "./product-urls";
 import { ACTIVE_SOURCES, loadScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
 import { getStoreInfo } from "./stores";
 
@@ -72,7 +72,13 @@ function toStoreOffer(product: ScrapedProduct | null | undefined): StoreOffer | 
       typeof product.warranty_months === "number" && product.warranty_months > 0
         ? product.warranty_months
         : 12,
-    url: makeAffiliateUrl(product) || product.url || "#",
+    url: generateExactProductUrl({
+      store: source,
+      model: product.model,
+      storage: product.storage,
+      url: product.url,
+      affiliateEnabled: Boolean(product.affiliate_enabled),
+    }),
     affiliateEnabled: Boolean(product.affiliate_enabled),
     brand: product.brand ?? null,
   };

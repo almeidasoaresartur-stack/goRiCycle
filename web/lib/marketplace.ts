@@ -1,5 +1,5 @@
 import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
-import { makeAffiliateUrl } from "./affiliate";
+import { generateExactProductUrl } from "./product-urls";
 import { inferBrand } from "./inference";
 import { getStoreInfo } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
@@ -213,7 +213,13 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
     price,
     store: storeLabel(source),
     storeSlug: source,
-    url: makeAffiliateUrl(product) || safeStr(product?.url) || "#",
+    url: generateExactProductUrl({
+      store: source,
+      model,
+      storage,
+      url: safeStr(product?.url),
+      affiliateEnabled: Boolean(product?.affiliate_enabled),
+    }),
     imageUrl: localImage,
     warrantyMonths:
       typeof product?.warranty_months === "number" && product.warranty_months > 0

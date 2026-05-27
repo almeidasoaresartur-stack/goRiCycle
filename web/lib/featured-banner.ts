@@ -1,5 +1,6 @@
 import type { ProductSource } from "./types";
 import { getProductImage } from "./productImages";
+import { generateExactProductUrl } from "./product-urls";
 
 export type FeaturedBannerSlide = {
   id: string;
@@ -27,6 +28,7 @@ const SLIDE_DEFINITIONS = [
     subtitle: "128GB · Titanium · Premium recondicionado",
     price: 519,
     url: "https://swappie.com/pt/modelo/iphone-15-pro/",
+    storage: "128GB",
     catalogModel: "iPhone 15 Pro",
     imageCategory: "smartphone",
     backgroundClass: "bg-gradient-to-br from-emerald-50 via-white to-teal-50",
@@ -42,6 +44,7 @@ const SLIDE_DEFINITIONS = [
     subtitle: "128GB · Garantia até 36 meses",
     price: 320,
     url: "https://loja.iservices.pt/iphone-14/1117-iphone-14",
+    storage: "128GB",
     catalogModel: "iPhone 14",
     imageCategory: "smartphone",
     backgroundClass: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
@@ -57,6 +60,7 @@ const SLIDE_DEFINITIONS = [
     subtitle: "Chip M2 · Portátil premium recondicionado",
     price: 879,
     url: "https://www.refurbed.pt/c/macs/",
+    storage: "256GB",
     catalogModel: 'MacBook Air 15" 2023',
     imageCategory: "laptop",
     backgroundClass: "bg-gradient-to-br from-violet-50 via-white to-purple-50",
@@ -72,6 +76,7 @@ const SLIDE_DEFINITIONS = [
     subtitle: "512GB · Ecrã Liquid Retina XDR",
     price: 999,
     url: "https://www.certideal.pt/ipad-recondicionados-118",
+    storage: "512GB",
     catalogModel: 'iPad Pro (2024) 13"',
     imageCategory: "tablet",
     backgroundClass: "bg-gradient-to-br from-sky-50 via-white to-cyan-50",
@@ -89,7 +94,13 @@ export function getFeaturedBannerSlides(): FeaturedBannerSlide[] {
     model: slide.model,
     subtitle: slide.subtitle,
     price: slide.price,
-    url: slide.url,
+    url: generateExactProductUrl({
+      store: slide.store,
+      model: slide.model,
+      storage: slide.storage,
+      url: slide.url,
+      affiliateEnabled: slide.store === "swappie" || slide.store === "refurbed",
+    }),
     imageUrl: getProductImage(slide.catalogModel, slide.imageCategory),
     backgroundClass: slide.backgroundClass,
     accentClass: slide.accentClass,
