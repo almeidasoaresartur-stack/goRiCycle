@@ -176,24 +176,18 @@ export function getCleanProductData(
 ): CleanProductData {
   const rawModel = product.model ?? product.bestListing?.model ?? "";
   const displayName = cleanBaseModel(rawModel);
-  const scraperFallbackUrl = product.imageUrl ?? product.bestListing?.imageUrl ?? null;
   const detectedColor = detectProductColor(
     product.color ?? product.bestListing?.color,
     options?.activeColorFilter,
   );
-
-  const imageUrl = getProductImage(
-    rawModel,
-    techToImageCategory(product.tech),
-    scraperFallbackUrl ?? undefined,
-  );
+  const imageUrl = getProductImage(rawModel, techToImageCategory(product.tech));
 
   return {
     displayName,
     imageUrl,
     storageLabel: formatStorageLabel(product.storage),
     detectedColor,
-    scraperFallbackUrl,
+    scraperFallbackUrl: null,
   };
 }
 

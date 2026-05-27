@@ -2,6 +2,8 @@ import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { makeAffiliateUrl } from "./affiliate";
 import { inferBrand } from "./inference";
 import { getStoreInfo } from "./stores";
+import { normalizeScrapedPrice } from "./parse-price";
+import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
 import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
 import { isLaunchLaptopModel } from "./product-display";
 
@@ -129,39 +131,24 @@ const TECH_CATEGORIES: Record<TechType, string[]> = {
   wearables: ["apple_watch"],
 };
 
-const MIN_PRICE: Record<string, number> = {
-  iphones: 80,
-  ipads: 100,
-  macs: 200,
-  apple_watch: 80,
-  tablets: 80,
-  laptops: 150,
-  samsung_phones: 80,
-  google_phones: 80,
-  huawei_phones: 60,
-  xiaomi_phones: 60,
-  oneplus_phones: 80,
-};
-
 const PLACEHOLDER_IMAGES: Record<TechType, string> = {
-  smartphones:
-    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop&q=80",
-  tablets:
-    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop&q=80",
-  laptops:
-    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop&q=80",
-  wearables:
-    "https://images.unsplash.com/photo-1579586337278-3bef891a6597?w=400&h=400&fit=crop&q=80",
+  smartphones: "/images/products/iphone-14.png",
+  tablets: "/images/products/ipad-109-2022-10-gerao.jpg",
+  laptops: "/images/products/macbook-air-13-2022.jpg",
+  wearables: "/images/products/apple-watch-series-9-alumnio-41-mm-2023.jpg",
 };
 
 function safeStr(value: string | null | undefined): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function safePrice(value: number | null | undefined, category: string): number | null {
-  if (typeof value !== "number" || !Number.isFinite(value)) return null;
-  const floor = MIN_PRICE[category] ?? 50;
-  return value >= floor ? value : null;
+function safePrice(
+  value: number | string | null | undefined,
+  category: string,
+  model: string,
+  storage: string | null | undefined,
+): number | null {
+  return normalizeScrapedPrice(value, model, storage, category);
 }
 
 function normalizeGrade(grade: string | null | undefined): NormalizedGrade {
@@ -201,14 +188,18 @@ function listingMatchesColor(item: AggregatedProduct, color: string): boolean {
 export function scraperProductToListing(product: ScrapedProduct): ProductListing | null {
   const category = safeStr(product?.category);
   const tech = categoryToTech(category);
-  const price = safePrice(product?.price, category);
   const model = safeStr(product?.model);
+  const storage = safeStr(product?.storage) || null;
+  const price = safePrice(product?.price, category, model, storage);
   const source = product?.source as ProductSource | undefined;
 
   if (!tech || !price || !model || !source || !getStoreInfo(source)) return null;
+  if (!isInOfficialCatalog(model)) return null;
 
   const grade = normalizeGrade(product?.grade);
   const brand = safeStr(product?.brand) || inferBrand(model) || null;
+  const localImage =
+    getProductImage(model, techToImageCategory(tech)) || PLACEHOLDER_IMAGES[tech];
 
   return {
     id: safeStr(product?.product_id) || `${source}-${model}-${price}`,
@@ -216,14 +207,14 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
     brand,
     category,
     tech,
-    storage: safeStr(product?.storage) || null,
+    storage,
     grade,
     gradeTier: toGradeTier(grade),
     price,
     store: storeLabel(source),
     storeSlug: source,
     url: makeAffiliateUrl(product) || safeStr(product?.url) || "#",
-    imageUrl: safeStr(product?.image_url) || PLACEHOLDER_IMAGES[tech],
+    imageUrl: localImage,
     warrantyMonths:
       typeof product?.warranty_months === "number" && product.warranty_months > 0
         ? product.warranty_months

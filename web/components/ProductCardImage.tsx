@@ -5,26 +5,13 @@ import { useState } from "react";
 
 type ProductCardImageProps = {
   src: string;
+  /** Fallback local (/images/products/...) se a imagem principal falhar */
   fallbackSrc?: string | null;
   alt: string;
 };
 
 export function ProductCardImage({ src, fallbackSrc, alt }: ProductCardImageProps) {
-  const [useFallback, setUseFallback] = useState(false);
-  const currentSrc = useFallback && fallbackSrc ? fallbackSrc : src;
-  const isExternal = /^https?:\/\//i.test(currentSrc);
-
-  if (isExternal) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={currentSrc}
-        alt={alt}
-        className="h-44 w-full object-contain p-4"
-        loading="lazy"
-      />
-    );
-  }
+  const [currentSrc, setCurrentSrc] = useState(src);
 
   return (
     <div className="relative h-44 w-full overflow-hidden bg-white">
@@ -35,8 +22,8 @@ export function ProductCardImage({ src, fallbackSrc, alt }: ProductCardImageProp
         className="object-contain p-4"
         sizes="(max-width: 768px) 50vw, 33vw"
         onError={() => {
-          if (fallbackSrc && !useFallback) {
-            setUseFallback(true);
+          if (fallbackSrc && currentSrc !== fallbackSrc) {
+            setCurrentSrc(fallbackSrc);
           }
         }}
       />

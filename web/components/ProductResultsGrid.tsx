@@ -5,6 +5,7 @@ import { StoreLogo } from "@/components/StoreLogo";
 import type { AggregatedProduct } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
 import { getCleanProductData } from "@/lib/product-display";
+import { getProductImage, techToImageCategory } from "@/lib/productImages";
 
 const GRADE_STYLES: Record<string, string> = {
   Premium: "bg-purple-50 text-purple-800 ring-purple-100",
@@ -77,7 +78,7 @@ export function ProductResultsGrid({
             <div className="relative w-full overflow-hidden rounded-t-2xl bg-white">
               <ProductCardImage
                 src={clean.imageUrl}
-                fallbackSrc={clean.scraperFallbackUrl}
+                fallbackSrc={getProductImage("", techToImageCategory(item.tech))}
                 alt={clean.displayName}
               />
               {isBest && (

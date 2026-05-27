@@ -164,17 +164,20 @@ const CATEGORY_FALLBACKS: Record<string, string> = {
 
 const SORTED_MODEL_KEYS = Object.keys(MODEL_IMAGE_MAP).sort((a, b) => b.length - a.length);
 
-export function getProductImage(
-  rawName: string,
-  category: string,
-  scraperImageUrl?: string,
-): string {
-  const normalized = rawName
+/** Normaliza o nome do modelo para lookup no catálogo oficial. */
+export function normalizeModelForCatalog(rawName: string): string {
+  return rawName
     .toLowerCase()
-    .replace(/\b(64|128|256|512|1024)gb\b/gi, "")
+    .replace(/[""″'']/g, '"')
+    .replace(/\b(64|128|256|512|1024)\s*gb\b/gi, "")
     .replace(/\b(grade [abc]|excelente|premium|bom|refurbished|recondicionado)\b/gi, "")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Resolve imagem local do catálogo oficial (149 modelos). Null se não mapeado. */
+export function resolveCatalogImagePath(rawName: string): string | null {
+  const normalized = normalizeModelForCatalog(rawName);
 
   if (MODEL_IMAGE_MAP[normalized]) {
     return MODEL_IMAGE_MAP[normalized];
@@ -186,10 +189,24 @@ export function getProductImage(
     }
   }
 
-  const catFallback = CATEGORY_FALLBACKS[category?.toLowerCase()];
-  if (catFallback) return catFallback;
+  return null;
+}
 
-  return scraperImageUrl || CATEGORY_FALLBACKS.smartphone;
+/** Produto pertence ao catálogo curado com imagem local validada. */
+export function isInOfficialCatalog(rawName: string): boolean {
+  return resolveCatalogImagePath(rawName) !== null;
+}
+
+export function getOfficialCatalogSize(): number {
+  return Object.keys(MODEL_IMAGE_MAP).length;
+}
+
+export function getProductImage(rawName: string, category: string): string {
+  return (
+    resolveCatalogImagePath(rawName) ??
+    CATEGORY_FALLBACKS[category?.toLowerCase()] ??
+    CATEGORY_FALLBACKS.smartphone
+  );
 }
 
 export function cleanProductName(rawName: string): string {
