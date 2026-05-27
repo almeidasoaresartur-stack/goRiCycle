@@ -138,10 +138,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "$(cat <<EOF
-chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})
-
-Actualização automática via GitHub Actions.
-EOF
-)"
+          git commit -m "chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})"
           git push
