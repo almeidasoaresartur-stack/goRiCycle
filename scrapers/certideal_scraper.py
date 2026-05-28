@@ -31,9 +31,11 @@ from common import (
     extract_grade,
     extract_storage,
     human_delay,
+    log_discarded_listing,
     page_wait_ms,
     parse_price_eur,
     setup_logging,
+    validate_listing_card,
 )
 from config import CATEGORY_KEYS, CERTIDEAL_CONFIG
 
@@ -145,15 +147,31 @@ def collect_listing_cards(
             if image_loc.count():
                 image_url = image_loc.get_attribute("data-src") or image_loc.get_attribute("src")
 
-            if not href or not parsed.get("model"):
-                continue
-            if require_price and parsed.get("price") is None:
+            price = parsed.get("price")
+            model = parsed.get("model")
+            ok, reason = validate_listing_card(
+                model=model,
+                url=href,
+                price=price,
+                source=CFG["source"],
+                require_price=require_price,
+            )
+            if not ok:
+                log_discarded_listing(
+                    logger,
+                    reason,
+                    model=model,
+                    url=href,
+                    price=price,
+                    index=index + 1,
+                    total=total,
+                )
                 continue
 
             cards.append(
                 {
-                    "model": parsed["model"],
-                    "listing_price": parsed.get("price"),
+                    "model": model,
+                    "listing_price": price,
                     "storage": parsed.get("storage"),
                     "grade": parsed.get("grade"),
                     "color": parsed.get("color"),
@@ -376,13 +394,25 @@ def extract_product(
 ) -> list[dict[str, Any]] | None:
     try:
         price = card.get("listing_price")
-        if price is None:
+        model = card.get("model")
+        url = card.get("url")
+
+        ok, reason = validate_listing_card(
+            model=model,
+            url=url,
+            price=price,
+            source=CFG["source"],
+            require_price=True,
+        )
+        if not ok:
+            log_discarded_listing(logger, reason, model=model, url=url, price=price)
             return []
+
         record = build_normalized_product(
             CFG,
             category=category,
-            url=card["url"],
-            model=card["model"],
+            url=url,
+            model=model,
             price=price,
             image_url=card.get("image_url"),
             source_page=card.get("source_page") or source_page,

@@ -31,6 +31,7 @@ from common import (
     detect_brand,
     extract_storage,
     human_delay,
+    log_discarded_listing,
     normalize_grade_refurbed,
     page_wait_ms,
     parse_original_price_eur,
@@ -38,6 +39,7 @@ from common import (
     parse_rating,
     resolve_image_url,
     setup_logging,
+    validate_listing_card,
 )
 from config import CATEGORY_KEYS, REFURBED_CONFIG
 
@@ -175,17 +177,34 @@ def collect_listing_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
 
             name = card.locator(SEL["product_name"]).first.inner_text(timeout=5000).strip()
             price_raw = card.locator(SEL["product_price"]).first.inner_text(timeout=5000)
+            listing_price = clean_price(parse_refurbed_price_eur(price_raw))
             image_loc = card.locator(SEL["product_image"]).first
             image_url = resolve_image_url(image_loc) if image_loc.count() else None
             seller_rating = _listing_rating(card)
 
-            if not href or not name:
+            ok, reason = validate_listing_card(
+                model=name,
+                url=href,
+                price=listing_price,
+                source=CFG["source"],
+                require_price=True,
+            )
+            if not ok:
+                log_discarded_listing(
+                    logger,
+                    reason,
+                    model=name,
+                    url=href,
+                    price=listing_price,
+                    index=index + 1,
+                    total=total,
+                )
                 continue
 
             cards.append(
                 {
                     "model": name,
-                    "listing_price": clean_price(parse_refurbed_price_eur(price_raw)),
+                    "listing_price": listing_price,
                     "original_price": parse_original_price_eur(price_raw),
                     "image_url": image_url,
                     "url": href,
@@ -418,6 +437,23 @@ def extract_product(
     scraped_at: str,
 ) -> list[dict[str, Any]] | None:
     try:
+        ok, reason = validate_listing_card(
+            model=card.get("model"),
+            url=card.get("url"),
+            price=card.get("listing_price"),
+            source=CFG["source"],
+            require_price=True,
+        )
+        if not ok:
+            log_discarded_listing(
+                logger,
+                reason,
+                model=card.get("model"),
+                url=card.get("url"),
+                price=card.get("listing_price"),
+            )
+            return []
+
         records = _variants_from_detail_page(page, card, category, source_page, scraped_at)
         if records:
             logger.info("%s [%s]: %s registo(s)", card.get("model"), category, len(records))

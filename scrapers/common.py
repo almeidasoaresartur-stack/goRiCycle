@@ -24,6 +24,8 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
+CATEGORY_URL_MARKERS = ("/c/", "/cat/")
+
 # Marcas detectáveis a partir do nome do modelo (ordem importa — Apple primeiro)
 BRAND_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Apple", ("apple watch", "apple", "iphone", "ipad", "macbook", "imac", "mac ")),
@@ -50,6 +52,100 @@ def page_wait_ms(delays: dict[str, Any], key: str = "page_load") -> None:
     ms = delays.get(key)
     if isinstance(ms, (int, float)) and ms > 0:
         time.sleep(ms / 1000.0)
+
+
+def count_model_words(model: str) -> int:
+    """Conta palavras significativas no nome do modelo (ex.: 'iPhone 13' → 2)."""
+    if not model:
+        return 0
+    return len([word for word in re.split(r"\s+", model.strip()) if word])
+
+
+def is_valid_product_model(model: str | None) -> bool:
+    """Rejeita rótulos de categoria ('Samsung', 'Apple') — exige ≥2 palavras."""
+    return count_model_words(model or "") >= 2
+
+
+def is_valid_listing_price(price: float | None) -> bool:
+    return price is not None and price > 0
+
+
+def is_category_url(url: str | None, source: str | None = None) -> bool:
+    """
+    Detecta URLs de categoria/hub em vez de produto individual.
+    Regras base: /c/, /cat/, URL demasiado curto.
+    """
+    if not url:
+        return True
+
+    cleaned = url.strip()
+    if len(cleaned) < 15:
+        return True
+
+    lower = cleaned.lower()
+    if any(marker in lower for marker in CATEGORY_URL_MARKERS):
+        return True
+
+    path = urlparse(cleaned).path.strip("/")
+    if not path:
+        return True
+
+    segments = [segment for segment in path.split("/") if segment]
+
+    if source == "certideal" and len(segments) == 1:
+        slug = segments[0].lower()
+        # Listagens de categoria (plural): ipad-recondicionados-118
+        if re.search(r"-recondicionados-\d+$", slug):
+            return True
+        # Hubs de modelo sem SKU: iphone-16-545, iphone-15-pro-416
+        if re.search(r"-\d{2,4}$", slug) and "recondicionado" not in slug:
+            return True
+
+    if source == "refurbed" and "/c/" in lower and "/p/" not in lower:
+        return True
+
+    return False
+
+
+def validate_listing_card(
+    *,
+    model: str | None,
+    url: str | None,
+    price: float | None,
+    source: str | None = None,
+    require_price: bool = True,
+) -> tuple[bool, str]:
+    """Valida cartão de listagem. Devolve (ok, motivo_rejeição)."""
+    if not url:
+        return False, "sem URL"
+    if is_category_url(url, source):
+        return False, "URL de categoria/hub"
+    if not is_valid_product_model(model):
+        return False, "modelo inválido (categoria, não produto)"
+    if require_price and not is_valid_listing_price(price):
+        return False, "preço ausente ou inválido"
+    return True, ""
+
+
+def log_discarded_listing(
+    log: logging.Logger,
+    reason: str,
+    *,
+    model: str | None = None,
+    url: str | None = None,
+    price: float | None = None,
+    index: int | None = None,
+    total: int | None = None,
+) -> None:
+    prefix = f"Cartão {index}/{total} " if index is not None and total is not None else ""
+    log.info(
+        "%sdescartado (%s): model=%r url=%r price=%s",
+        prefix,
+        reason,
+        model,
+        url,
+        price,
+    )
 
 
 def normalize_model_name(name: str) -> str:

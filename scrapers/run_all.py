@@ -22,9 +22,11 @@ if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
 from common import estimate_per_conversion, setup_logging
-from config import ALL_SOURCE_KEYS, CATEGORY_KEYS, DATA_DIR, LAST_RUN_SUMMARY_JSON, SOURCE_CONFIGS
+from config import ALL_SOURCE_KEYS, CATEGORY_KEYS, DATA_DIR, LAST_RUN_SUMMARY_JSON, PROJECT_ROOT, SOURCE_CONFIGS
 
 logger = logging.getLogger(__name__)
+
+WEB_DATA_DIR = PROJECT_ROOT / "web" / "data"
 
 SOURCE_MODULES = {
     "iservices": "iservices_scraper",
@@ -66,6 +68,38 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def cleanup_source_json(sources: list[str], mode: str) -> None:
+    """
+    Limpeza pré-scrape: remove JSONs antigos/corrompidos para evitar duplicados
+    ou dados parciais de execuções anteriores.
+    """
+    for source in sources:
+        cfg = SOURCE_CONFIGS.get(source)
+        if not cfg:
+            continue
+
+        output: Path = cfg["output_json"]
+        targets = [output, WEB_DATA_DIR / output.name]
+
+        if mode == "full":
+            for path in targets:
+                if path.exists():
+                    path.unlink()
+                    logger.info("Limpeza pré-scrape: removido %s", path)
+            continue
+
+        if not output.exists():
+            continue
+
+        try:
+            json.loads(output.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            for path in targets:
+                if path.exists():
+                    path.unlink()
+                    logger.warning("Limpeza pré-scrape: JSON corrompido removido %s", path)
+
+
 def run_source(source: str, mode: str, categories: list[str] | None) -> dict:
     module_name = SOURCE_MODULES.get(source)
     if not module_name:
@@ -91,6 +125,8 @@ def main() -> None:
     invalid_sources = [s for s in sources if s not in SOURCE_MODULES]
     if invalid_sources:
         raise ValueError(f"Fontes inválidas: {invalid_sources}")
+
+    cleanup_source_json(sources, args.mode)
 
     run_at = datetime.now(timezone.utc).isoformat()
     summary: dict = {
