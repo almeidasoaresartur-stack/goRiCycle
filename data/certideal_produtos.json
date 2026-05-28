@@ -13,8 +13,8 @@
     "xiaomi_phones",
     "oneplus_phones"
   ],
-  "scraped_at": "2026-05-28T12:35:20.362093+00:00",
-  "total_products": 86,
+  "scraped_at": "2026-05-28T18:37:07.099428+00:00",
+  "total_products": 87,
   "products": [
     {
       "source": "certideal",
@@ -1733,6 +1733,26 @@
       "url": "https://www.certideal.pt/mac-mini-2020-638",
       "image_url": "https://cf5.certideal.com/c/638-thumb_default/mac-mini-2020.jpg",
       "source_page": "https://www.certideal.pt/mac-recondicionado-157?p=2",
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
+      "source": "certideal",
+      "scraped_at": "2026-05-28T18:37:07.099428+00:00",
+      "product_id": "certideal_iphone-8-64-gb-prateado-bom-3719_64gb_bom_iphone_8_64_gb_prateado",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 8 64 GB Prateado",
+      "storage": "64GB",
+      "color": "iPhone 8 64 GB Prateado",
+      "grade": "Bom",
+      "price": 119.99,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 24,
+      "url": "https://www.certideal.pt/iphone-8-recondicionado/iphone-8-64-gb-prateado-bom-3719",
+      "image_url": "https://cf4.certideal.com/19940-thumb_default/iphone-8-64-gb-prateado-bom.jpg",
+      "source_page": "https://www.certideal.pt/iphone-recondicionado-82?p=2",
       "affiliate_enabled": false,
       "affiliate_network": null
     }
