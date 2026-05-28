@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-05-28T17:53:28.722917+00:00",
-  "mode": "incremental",
+  "run_at": "2026-05-28T21:42:01.298566+00:00",
+  "mode": "full",
   "categories": [
     "iphones",
     "ipads",
@@ -16,12 +16,12 @@
   ],
   "sources": {
     "iservices": {
-      "total": 11,
+      "total": 300,
       "by_category": {
-        "iphones": 5,
-        "ipads": 3,
-        "macs": 3,
-        "apple_watch": 0,
+        "iphones": 198,
+        "ipads": 74,
+        "macs": 27,
+        "apple_watch": 1,
         "tablets": 0,
         "laptops": 0,
         "samsung_phones": 0,
@@ -33,13 +33,13 @@
       "errors": 0
     },
     "refurbed": {
-      "total": 54,
+      "total": 220,
       "by_category": {
-        "iphones": 34,
-        "ipads": 14,
+        "iphones": 95,
+        "ipads": 61,
         "macs": 0,
-        "apple_watch": 0,
-        "tablets": 2,
+        "apple_watch": 10,
+        "tablets": 50,
         "laptops": 0,
         "samsung_phones": 0,
         "google_phones": 4,
@@ -50,19 +50,19 @@
       "errors": 0
     },
     "swappie": {
-      "total": 9,
+      "total": 357,
       "by_category": {
-        "iphones": 9,
-        "ipads": 0
+        "iphones": 271,
+        "ipads": 86
       },
       "errors": 0
     },
     "certideal": {
-      "total": 1,
+      "total": 42,
       "by_category": {
-        "iphones": 1,
-        "ipads": 0,
-        "macs": 0,
+        "iphones": 23,
+        "ipads": 7,
+        "macs": 12,
         "apple_watch": 0,
         "tablets": 0,
         "laptops": 0,
@@ -75,7 +75,7 @@
       "errors": 0
     }
   },
-  "grand_total": 75,
+  "grand_total": 919,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
