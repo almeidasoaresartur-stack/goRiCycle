@@ -4,7 +4,7 @@ import { inferBrand } from "./inference";
 import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
-import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
+import { isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
@@ -105,19 +105,6 @@ export const BRAND_OPTIONS = ["Apple", "Samsung", "Google", "Xiaomi", "Lenovo", 
 
 export const STORAGE_OPTIONS = ["32GB", "64GB", "128GB", "256GB", "512GB"] as const;
 
-export const COLOR_SWATCHES = [
-  { id: "preto", label: "Preto", hex: "#1f2937" },
-  { id: "branco", label: "Branco", hex: "#f9fafb" },
-  { id: "prata", label: "Prata", hex: "#d1d5db" },
-  { id: "ouro", label: "Ouro", hex: "#ca8a04" },
-  { id: "azul", label: "Azul", hex: "#2563eb" },
-  { id: "verde", label: "Verde", hex: "#16a34a" },
-  { id: "vermelho", label: "Vermelho", hex: "#dc2626" },
-  { id: "rosa", label: "Rosa", hex: "#f472b6" },
-  { id: "roxo", label: "Roxo", hex: "#9333ea" },
-  { id: "cinzento", label: "Cinzento", hex: "#6b7280" },
-] as const;
-
 export const GRADE_TIER_OPTIONS: { id: GradeTier; label: string; emoji: string }[] = [
   { id: "Premium", label: "Premium", emoji: "✨" },
   { id: "Excelente", label: "Excelente", emoji: "👍" },
@@ -185,11 +172,6 @@ function normalizeModel(text: string): string {
     .replace(/[""″'']/g, '"')
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function listingMatchesColor(item: AggregatedProduct, color: string): boolean {
-  if (colorMatches(item.color, color)) return true;
-  return (item.offers ?? []).some((offer) => colorMatches(offer.color, color));
 }
 
 export function scraperProductToListing(product: ScrapedProduct): ProductListing | null {
@@ -308,6 +290,43 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
   return aggregated.sort((a, b) => a.minPrice - b.minPrice);
 }
 
+function flattenAggregatedToListings(products: AggregatedProduct[]): ProductListing[] {
+  const listings: ProductListing[] = [];
+
+  for (const product of products ?? []) {
+    if (product.offers?.length) {
+      listings.push(...product.offers);
+    } else if (product.bestListing) {
+      listings.push(product.bestListing);
+    }
+  }
+
+  return listings;
+}
+
+/** Por modelo + capacidade + estado + loja, mantém apenas o listing mais barato. */
+export function deduplicateByBestPricePerStore(
+  products: AggregatedProduct[],
+): AggregatedProduct[] {
+  const map = new Map<string, ProductListing>();
+
+  for (const listing of flattenAggregatedToListings(products)) {
+    const key = [
+      normalizeModel(listing.model),
+      listing.storage?.toUpperCase() ?? "",
+      listing.grade ?? "",
+      listing.storeSlug ?? "",
+    ].join("|");
+
+    const existing = map.get(key);
+    if (!existing || listing.price < existing.price) {
+      map.set(key, listing);
+    }
+  }
+
+  return aggregateListings(Array.from(map.values()));
+}
+
 export type ProductSortOption = "relevance" | "newest" | "price_asc" | "price_desc";
 
 function getProductFreshnessTimestamp(product: AggregatedProduct): number {
@@ -352,7 +371,6 @@ export function filterAggregatedProducts(
   const model = safeStr(filters.model);
   const storage = safeStr(filters.storage).toUpperCase();
   const grade = safeStr(filters.grade) as GradeTier | "";
-  const color = safeStr(filters.color);
   const q = safeStr(filters.q);
   const storeFilter = filters.stores ?? [];
 
@@ -363,7 +381,6 @@ export function filterAggregatedProducts(
     if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (color && !listingMatchesColor(item, color)) return false;
     if (q && !queryMatchesModel(item.model, q)) return false;
     if (storeFilter.length > 0) {
       const hasStore = (item.offers ?? []).some((offer) => storeFilter.includes(offer.storeSlug));
@@ -417,7 +434,6 @@ export function filterListings(
   const model = safeStr(filters.model);
   const storage = safeStr(filters.storage).toUpperCase();
   const grade = safeStr(filters.grade) as GradeTier | "";
-  const color = safeStr(filters.color);
   const q = safeStr(filters.q);
 
   return listings.filter((item) => {
@@ -427,7 +443,6 @@ export function filterListings(
     if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (color && !colorMatches(item.color, color)) return false;
     if (q && !queryMatchesModel(item.model, q)) return false;
     return true;
   });
@@ -437,20 +452,18 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
   const brands = new Set<string>();
   const models = new Set<string>();
   const storages = new Set<string>();
-  const colors = new Set<string>();
 
   for (const item of listings ?? []) {
     if (item?.brand) brands.add(item.brand);
     if (item?.model) models.add(item.model);
     if (item?.storage) storages.add(item.storage.toUpperCase());
-    if (item?.color) colors.add(item.color);
   }
 
   return {
     brands: [...brands].sort((a, b) => a.localeCompare(b, "pt")),
     models: [...models].sort((a, b) => a.localeCompare(b, "pt")).slice(0, 40),
     storages: STORAGE_OPTIONS.filter((s) => storages.has(s) || storages.size === 0),
-    colors: [...colors].sort((a, b) => a.localeCompare(b, "pt")),
+    colors: [],
     stores: [],
   };
 }
@@ -486,7 +499,6 @@ export function hasSpecificFilters(filters: MarketplaceFilters): boolean {
       filters.model ||
       filters.storage ||
       filters.grade ||
-      filters.color ||
       filters.q?.trim() ||
       (filters.stores?.length ?? 0) > 0 ||
       hasActiveTechFilter(filters.tech),

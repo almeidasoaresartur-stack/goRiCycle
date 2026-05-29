@@ -5,7 +5,6 @@ import { SlidersHorizontal } from "lucide-react";
 
 import {
   BRAND_OPTIONS,
-  COLOR_SWATCHES,
   GRADE_TIER_OPTIONS,
   STORAGE_OPTIONS,
   TECH_TYPES,
@@ -197,34 +196,6 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
               </option>
             ))}
           </select>
-        </FilterGroup>
-
-        <FilterGroup title="Cor">
-          <div className="flex flex-wrap gap-2">
-            {COLOR_SWATCHES.map(({ id, label, hex }) => {
-              const active = filters.color === id;
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  title={label}
-                  aria-label={label}
-                  onClick={() => updateFilter("color", active ? null : id)}
-                  className={`h-7 w-7 rounded-full border-2 transition ${
-                    active
-                      ? "border-emerald-500 ring-2 ring-emerald-100"
-                      : "border-white shadow-sm ring-1 ring-slate-200 hover:ring-emerald-200"
-                  }`}
-                  style={{ backgroundColor: hex }}
-                />
-              );
-            })}
-          </div>
-          {filters.color && (
-            <p className="mt-2 text-xs text-slate-500">
-              {COLOR_SWATCHES.find((c) => c.id === filters.color)?.label ?? filters.color}
-            </p>
-          )}
         </FilterGroup>
 
         <FilterGroup title="Capacidade">

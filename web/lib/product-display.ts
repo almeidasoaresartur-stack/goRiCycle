@@ -1,12 +1,10 @@
 import type { AggregatedProduct } from "./marketplace";
-import { normalizeColor } from "./model-matching";
 import { getProductImage, techToImageCategory } from "./productImages";
 
 export type CleanProductData = {
   displayName: string;
   imageUrl: string;
   storageLabel: string;
-  detectedColor: string | null;
   scraperFallbackUrl: string | null;
 };
 
@@ -122,71 +120,15 @@ export function formatStorageLabel(storage: string | null | undefined): string {
   return "NFPM*";
 }
 
-const COLOR_ALIASES: Record<string, string> = {
-  preto: "preto",
-  black: "preto",
-  midnight: "preto",
-  meia: "preto",
-  branco: "branco",
-  white: "branco",
-  starlight: "branco",
-  prata: "prata",
-  silver: "prata",
-  ouro: "ouro",
-  gold: "ouro",
-  dourado: "ouro",
-  azul: "azul",
-  blue: "azul",
-  sierra: "azul",
-  verde: "verde",
-  green: "verde",
-  vermelho: "vermelho",
-  red: "vermelho",
-  rosa: "rosa",
-  pink: "rosa",
-  rose: "rosa",
-  roxo: "roxo",
-  purple: "roxo",
-  violeta: "roxo",
-  purpura: "roxo",
-  cinzento: "cinzento",
-  gray: "cinzento",
-  grey: "cinzento",
-  grafite: "cinzento",
-  sideral: "cinzento",
-};
-
-export function detectProductColor(
-  rawColor: string | null | undefined,
-  activeFilter?: string | null,
-): string | null {
-  if (activeFilter?.trim()) return activeFilter.trim().toLowerCase();
-  if (!rawColor?.trim()) return null;
-
-  const normalized = normalizeColor(rawColor);
-  for (const [alias, key] of Object.entries(COLOR_ALIASES)) {
-    if (normalized.includes(normalizeColor(alias))) return key;
-  }
-  return null;
-}
-
-export function getCleanProductData(
-  product: AggregatedProduct,
-  options?: { activeColorFilter?: string | null },
-): CleanProductData {
+export function getCleanProductData(product: AggregatedProduct): CleanProductData {
   const rawModel = product.model ?? product.bestListing?.model ?? "";
   const displayName = cleanBaseModel(rawModel);
-  const detectedColor = detectProductColor(
-    product.color ?? product.bestListing?.color,
-    options?.activeColorFilter,
-  );
   const imageUrl = getProductImage(rawModel, techToImageCategory(product.tech));
 
   return {
     displayName,
     imageUrl,
     storageLabel: formatStorageLabel(product.storage),
-    detectedColor,
     scraperFallbackUrl: null,
   };
 }

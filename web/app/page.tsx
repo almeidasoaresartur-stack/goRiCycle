@@ -23,7 +23,6 @@ export default async function HomePage({ searchParams }: PageProps) {
     model: params.model ?? (query ? parseSearchQuery(query).model : undefined),
     storage: params.storage ?? (query ? parseSearchQuery(query).storage ?? undefined : undefined),
     grade: params.grade,
-    color: params.color,
     q: query || undefined,
   });
 

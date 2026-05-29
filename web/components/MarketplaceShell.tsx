@@ -17,6 +17,7 @@ import {
   buildHighlightProducts,
   catalogFiltersForView,
   computeMinPrice,
+  deduplicateByBestPricePerStore,
   filterAggregatedProducts,
   filterLaunchProducts,
   hasActiveTechFilter,
@@ -133,7 +134,6 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     model: searchParams?.get("model") ?? defaultFilters.model ?? undefined,
     storage: searchParams?.get("storage") ?? defaultFilters.storage ?? undefined,
     grade: searchParams?.get("grade") ?? defaultFilters.grade ?? undefined,
-    color: searchParams?.get("color") ?? defaultFilters.color ?? undefined,
     q: searchParams?.get("q") ?? defaultFilters.q ?? undefined,
     stores: searchParams?.get("stores") ?? defaultFilters.stores?.join(",") ?? undefined,
   });
@@ -156,10 +156,12 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
   const baseProducts = useMemo(() => {
     if (!catalogMode) {
-      return buildHighlightProducts(safeProducts);
+      return buildHighlightProducts(deduplicateByBestPricePerStore(safeProducts));
     }
     const activeFilters = catalogFiltersForView(filters, viewAll);
-    return filterAggregatedProducts(safeProducts, activeFilters);
+    return deduplicateByBestPricePerStore(
+      filterAggregatedProducts(safeProducts, activeFilters),
+    );
   }, [catalogMode, filters, viewAll, safeProducts]);
 
   const displayProducts = useMemo(
@@ -175,7 +177,6 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
         model: filters.model,
         storage: filters.storage,
         grade: filters.grade,
-        color: filters.color,
         q: filters.q,
         stores: filters.stores,
         viewAll,
@@ -198,7 +199,9 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
   const catalogCount = useMemo(() => {
     const activeFilters = catalogFiltersForView(filters, viewAll);
-    return filterAggregatedProducts(safeProducts, activeFilters).length;
+    return deduplicateByBestPricePerStore(
+      filterAggregatedProducts(safeProducts, activeFilters),
+    ).length;
   }, [filters, viewAll, safeProducts]);
 
   const minPrice = computeMinPrice(displayProducts);
@@ -271,7 +274,6 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
             <ProductResultsGrid
               products={paginatedProducts}
               minPrice={minPrice}
-              activeColorFilter={filters.color}
               activeStoreSlugs={filters.stores}
               viewMode={viewMode}
             />
@@ -302,7 +304,6 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
             <ProductResultsGrid
               products={paginatedProducts}
               minPrice={minPrice}
-              activeColorFilter={filters.color}
               activeStoreSlugs={filters.stores}
               viewMode={viewMode}
             />

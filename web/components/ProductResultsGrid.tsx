@@ -40,7 +40,6 @@ function gradeEmoji(tier: string): string {
 type ProductResultsGridProps = {
   products: AggregatedProduct[];
   minPrice?: number | null;
-  activeColorFilter?: string | null;
   activeStoreSlugs?: ProductSource[] | null;
   viewMode?: ProductViewMode;
 };
@@ -48,7 +47,6 @@ type ProductResultsGridProps = {
 type ProductCardProps = {
   item: AggregatedProduct;
   isBest: boolean;
-  activeColorFilter?: string | null;
   activeStoreSlugs?: ProductSource[] | null;
 };
 
@@ -64,10 +62,10 @@ function listingHref(listing: ProductListing | null | undefined): string {
   });
 }
 
-function ProductGridCard({ item, isBest, activeColorFilter, activeStoreSlugs }: ProductCardProps) {
+function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
-  const clean = getCleanProductData(item, { activeColorFilter });
+  const clean = getCleanProductData(item);
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
   const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
   const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
@@ -197,10 +195,10 @@ function ProductGridCard({ item, isBest, activeColorFilter, activeStoreSlugs }: 
   );
 }
 
-function ProductListRow({ item, isBest, activeColorFilter, activeStoreSlugs }: ProductCardProps) {
+function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
-  const clean = getCleanProductData(item, { activeColorFilter });
+  const clean = getCleanProductData(item);
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
   const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
   const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
@@ -309,7 +307,6 @@ function ProductListRow({ item, isBest, activeColorFilter, activeStoreSlugs }: P
 export function ProductResultsGrid({
   products,
   minPrice,
-  activeColorFilter,
   activeStoreSlugs,
   viewMode = "grid",
 }: ProductResultsGridProps) {
@@ -338,7 +335,6 @@ export function ProductResultsGrid({
             key={item.id}
             item={item}
             isBest={globalMin != null && item.minPrice === globalMin}
-            activeColorFilter={activeColorFilter}
             activeStoreSlugs={activeStoreSlugs}
           />
         ))}
@@ -353,7 +349,6 @@ export function ProductResultsGrid({
           key={item.id}
           item={item}
           isBest={globalMin != null && item.minPrice === globalMin}
-          activeColorFilter={activeColorFilter}
           activeStoreSlugs={activeStoreSlugs}
         />
       ))}
