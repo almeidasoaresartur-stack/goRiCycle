@@ -19,6 +19,11 @@ const PARTNER_STORES = [
     href: "https://www.certideal.pt",
     logoSrc: "/stores/certideal.svg",
   },
+  {
+    name: "Callphone",
+    href: "https://callphone.pt",
+    logoSrc: "/stores/callphone.svg",
+  },
 ] as const;
 
 export function PartnerStoresSection() {
@@ -28,7 +33,7 @@ export function PartnerStoresSection() {
         <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
           Lojas Parceiras
         </p>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {PARTNER_STORES.map((store) => (
             <a
               key={store.name}

@@ -32,6 +32,12 @@ export const STORES: Record<ProductSource, StoreInfo> = {
     logoSrc: "/stores/certideal.svg",
     accentClass: "text-emerald-700",
   },
+  callphone: {
+    slug: "callphone",
+    label: "Callphone",
+    logoSrc: "/stores/callphone.svg",
+    accentClass: "text-teal-700",
+  },
 };
 
 export function getStoreInfo(slug: ProductSource | string | null | undefined): StoreInfo | null {

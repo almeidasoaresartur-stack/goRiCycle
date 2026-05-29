@@ -36,6 +36,7 @@ SOURCES = {
     "refurbed": DATA_DIR / "refurbed_produtos.json",
     "swappie": DATA_DIR / "swappie_produtos.json",
     "certideal": DATA_DIR / "certideal_produtos.json",
+    "callphone": DATA_DIR / "callphone_produtos.json",
 }
 
 # URLs que indicam página genérica/pesquisa — produto inválido

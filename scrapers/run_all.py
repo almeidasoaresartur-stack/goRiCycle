@@ -34,6 +34,7 @@ SOURCE_MODULES = {
     "backmarket": "backmarket_scraper",
     "swappie": "swappie_scraper",
     "certideal": "certideal_scraper",
+    "callphone": "callphone_scraper",
 }
 
 

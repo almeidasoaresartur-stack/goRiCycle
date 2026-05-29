@@ -1,6 +1,6 @@
 # goRiCycle — scrape automático gratuito (GitHub Actions free tier)
 #
-# Diário (incremental): actualiza preços das 4 lojas activas
+# Diário (incremental): actualiza preços das 5 lojas activas
 # Domingo (full): re-scan completo do catálogo
 #
 # Requisitos no GitHub: Settings → Actions → General →

@@ -1,6 +1,6 @@
 export type NormalizedGrade = "Premium" | "Excelente" | "Muito Bom" | "Bom";
 
-export type ProductSource = "iservices" | "refurbed" | "swappie" | "certideal";
+export type ProductSource = "iservices" | "refurbed" | "swappie" | "certideal" | "callphone";
 
 export type ScrapedProduct = {
   source: ProductSource;

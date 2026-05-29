@@ -3,7 +3,7 @@ import { ArrowDownRight, Crown, ExternalLink } from "lucide-react";
 export type StoreOffer = {
   id: string;
   store: string;
-  storeSlug: "iservices" | "refurbed" | "swappie" | "certideal";
+  storeSlug: "iservices" | "refurbed" | "swappie" | "certideal" | "callphone";
   grade: "Premium" | "Excelente" | "Muito Bom" | "Bom";
   price: number;
   currency: "EUR";
@@ -26,6 +26,7 @@ const STORE_STYLES: Record<StoreOffer["storeSlug"], { bg: string; text: string; 
   refurbed: { bg: "bg-violet-50", text: "text-violet-700", ring: "ring-violet-100" },
   swappie: { bg: "bg-orange-50", text: "text-orange-700", ring: "ring-orange-100" },
   certideal: { bg: "bg-emerald-50", text: "text-emerald-700", ring: "ring-emerald-100" },
+  callphone: { bg: "bg-teal-50", text: "text-teal-700", ring: "ring-teal-100" },
 };
 
 const GRADE_STYLES: Record<StoreOffer["grade"], string> = {

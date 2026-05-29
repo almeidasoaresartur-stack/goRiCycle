@@ -156,6 +156,12 @@ export function isGenericListingUrl(store: ProductSource, rawUrl: string): boole
       return segments.length <= 1;
     }
 
+    case "callphone":
+      if (pathname.includes("/products/") && pathname.split("/").filter(Boolean).length >= 2) {
+        return false;
+      }
+      return true;
+
     default:
       return false;
   }

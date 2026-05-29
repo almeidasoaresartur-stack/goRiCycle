@@ -12,7 +12,13 @@ import type { ProductSource, ProductsFile, ScrapedProduct } from "./types";
  * 2. Adicionar o slug em ACTIVE_SOURCES
  * 3. Registar label + logo em lib/stores.ts
  */
-export const ACTIVE_SOURCES: ProductSource[] = ["iservices", "refurbed", "swappie", "certideal"];
+export const ACTIVE_SOURCES: ProductSource[] = [
+  "iservices",
+  "refurbed",
+  "swappie",
+  "certideal",
+  "callphone",
+];
 
 export type ScraperCatalogMeta = {
   sources: ProductSource[];

@@ -494,6 +494,28 @@ CERTIDEAL_CONFIG: dict[str, Any] = {
     },
 }
 
+# -----------------------------------------------------------------------------
+# Callphone (Shopify JSON)
+# -----------------------------------------------------------------------------
+
+CALLPHONE_CONFIG: dict[str, Any] = {
+    "source": "callphone",
+    "base_url": "https://callphone.pt",
+    "products_json": "https://www.callphone.pt/products.json",
+    "currency": "EUR",
+    "warranty_months": 24,
+    "output_json": DATA_DIR / "callphone_produtos.json",
+    "log_file": DATA_DIR / "callphone_scraper.log",
+    "affiliate": {
+        "enabled": False,
+        "network": "direct",
+        "base_tag": AFFILIATE_PLACEHOLDER,
+        "url_template": "{product_url}",
+        "commission_pct": None,
+        "avg_basket_eur": None,
+    },
+}
+
 # Mapa de todas as fontes (orquestrador + affiliate_links)
 SOURCE_CONFIGS: dict[str, dict[str, Any]] = {
     "iservices": ISERVICES_CONFIG,
@@ -501,6 +523,7 @@ SOURCE_CONFIGS: dict[str, dict[str, Any]] = {
     "backmarket": BACK_MARKET_CONFIG,
     "swappie": SWAPPIE_CONFIG,
     "certideal": CERTIDEAL_CONFIG,
+    "callphone": CALLPHONE_CONFIG,
 }
 
 ALL_SOURCE_KEYS: tuple[str, ...] = tuple(SOURCE_CONFIGS.keys())
