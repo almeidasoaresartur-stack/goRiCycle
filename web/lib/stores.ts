@@ -11,7 +11,7 @@ export const STORES: Record<ProductSource, StoreInfo> = {
   iservices: {
     slug: "iservices",
     label: "iServices",
-    logoSrc: "/stores/iservices.svg",
+    logoSrc: "/stores/iservices.png",
     accentClass: "text-sky-700",
   },
   refurbed: {
@@ -23,7 +23,7 @@ export const STORES: Record<ProductSource, StoreInfo> = {
   swappie: {
     slug: "swappie",
     label: "Swappie",
-    logoSrc: "/stores/swappie.svg",
+    logoSrc: "/stores/swappie.png",
     accentClass: "text-orange-700",
   },
   certideal: {
@@ -35,7 +35,7 @@ export const STORES: Record<ProductSource, StoreInfo> = {
   callphone: {
     slug: "callphone",
     label: "Callphone",
-    logoSrc: "/stores/callphone.svg",
+    logoSrc: "/stores/callphone.png",
     accentClass: "text-teal-700",
   },
 };
