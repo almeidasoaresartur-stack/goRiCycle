@@ -1,11 +1,10 @@
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { FaqSection } from "@/components/FaqSection";
-import { FeaturedCarousel } from "@/components/FeaturedCarousel";
+import { PartnerStoresSection } from "@/components/PartnerStoresSection";
 import { HeroSection } from "@/components/HeroSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { SiteFooter } from "@/components/SiteFooter";
-import { getFeaturedBannerSlides } from "@/lib/featured-banner";
 import { getAllAggregatedProducts } from "@/lib/load-listings";
 import { parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
 import { getCatalogStats, inferBrand, parseSearchQuery } from "@/lib/products";
@@ -30,15 +29,13 @@ export default async function HomePage({ searchParams }: PageProps) {
 
   const allProducts = getAllAggregatedProducts();
   const stats = getCatalogStats();
-  const bannerSlides = getFeaturedBannerSlides();
-
   return (
     <>
       <ScrollToHash trigger={`${query}-${params.tech ?? ""}`} />
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} />
-        <FeaturedCarousel slides={bannerSlides} />
+        <PartnerStoresSection />
         <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <BenefitsSection />
         <FaqSection />
