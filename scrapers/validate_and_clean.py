@@ -157,6 +157,12 @@ def validate_model(product: dict) -> tuple[bool, str]:
     model = product.get("model") or product.get("name") or ""
     if not model:
         return False, "Sem modelo"
+
+    title_lower = model.lower()
+    tablet_keywords = ["ipad", "galaxy tab", "tab s", "tab a", "lenovo tab"]
+    if any(k in title_lower for k in tablet_keywords):
+        return True, ""
+
     if len(model.split()) < 2:
         return False, f"Modelo com apenas uma palavra: '{model}' (provavelmente categoria)"
     category_words = [

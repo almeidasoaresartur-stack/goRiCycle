@@ -25,15 +25,15 @@ AFFILIATE_PLACEHOLDER = "PLACEHOLDER"
 CATEGORY_KEYS: tuple[str, ...] = (
     "iphones",
     "ipads",
-    "macs",
-    "apple_watch",
     "tablets",
-    "laptops",
+    # "macs",          # removido temporariamente — foco em smartphones/tablets
+    # "apple_watch",   # removido temporariamente — wearables
     "samsung_phones",
     "google_phones",
     "huawei_phones",
     "xiaomi_phones",
     "oneplus_phones",
+    # "laptops",       # removido temporariamente — foco em smartphones/tablets
 )
 
 # Atributos de imagem por ordem de prioridade (lazy-load)
@@ -104,12 +104,9 @@ ISERVICES_CONFIG: dict[str, Any] = {
     "categories": {
         "iphones": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/iphones-recondicionados-90?lang=pt",
         "ipads": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/ipads-recondicionados-99?lang=pt",
-        # MacBooks recondicionados (Macs portáteis Apple)
-        "macs": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/macbooks-recondicionados-92?lang=pt",
-        "apple_watch": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/apple-watch-recondicionados-116?lang=pt",
-        # iServices não tem categorias dedicadas a tablets/laptops não-Apple
+        # "macs": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/macbooks-recondicionados-92?lang=pt",
+        # "apple_watch": f"{os.getenv('ISERVICES_SHOP_URL', 'https://loja.iservices.pt')}/apple-watch-recondicionados-116?lang=pt",
         "tablets": None,
-        "laptops": None,
         "samsung_phones": None,
     },
     "delays": {
@@ -196,11 +193,10 @@ REFURBED_CONFIG: dict[str, Any] = {
     "categories": {
         "iphones": "https://www.refurbed.pt/c/iphones/",
         "ipads": "https://www.refurbed.pt/c/ipads/",
-        "macs": "https://www.refurbed.pt/c/macbooks/",
-        # Apple Watch via filtro de marca na categoria smartwatches
-        "apple_watch": "https://www.refurbed.pt/c/smartwatches/?brand=Apple",
+        # "macs": "https://www.refurbed.pt/c/macbooks/",
+        # "apple_watch": "https://www.refurbed.pt/c/smartwatches/?brand=Apple",
         "tablets": "https://www.refurbed.pt/c/tablets/",
-        "laptops": "https://www.refurbed.pt/c/computadores-portateis/",
+        # "laptops": "https://www.refurbed.pt/c/computadores-portateis/",
         "samsung_phones": "https://www.refurbed.pt/c/smartphones/?brand=Samsung",
         "google_phones": "https://www.refurbed.pt/c/smartphones/?brand=Google",
         "huawei_phones": "https://www.refurbed.pt/c/smartphones/?brand=Huawei",
@@ -211,8 +207,8 @@ REFURBED_CONFIG: dict[str, Any] = {
     "category_brand_filters": {
         "iphones": ("Apple",),
         "ipads": ("Apple",),
-        "macs": ("Apple",),
-        "apple_watch": ("Apple",),
+        # "macs": ("Apple",),
+        # "apple_watch": ("Apple",),
         "samsung_phones": ("Samsung",),
         "google_phones": ("Google",),
         "huawei_phones": ("Huawei",),
@@ -393,10 +389,9 @@ SWAPPIE_CONFIG: dict[str, Any] = {
     "categories": {
         "iphones": "https://swappie.com/pt/iphone/",
         "ipads": "https://swappie.com/pt/ipad/",
-        "macs": None,
-        "apple_watch": None,
+        # "macs": None,
+        # "apple_watch": None,
         "tablets": None,
-        "laptops": None,
         "samsung_phones": None,
     },
     "delays": {
@@ -460,10 +455,10 @@ CERTIDEAL_CONFIG: dict[str, Any] = {
     "categories": {
         "iphones": "https://www.certideal.pt/iphone-recondicionado-82",
         "ipads": "https://www.certideal.pt/ipad-recondicionados-118",
-        "macs": "https://www.certideal.pt/mac-recondicionado-157",
-        "apple_watch": None,
+        # "macs": "https://www.certideal.pt/mac-recondicionado-157",
+        # "apple_watch": None,
+        # "tablets": "https://www.certideal.pt/tablets/",  # 404 — iPads via ipads
         "tablets": None,
-        "laptops": None,
         "samsung_phones": "https://www.certideal.pt/samsung-recondicionado-90",
     },
     # Hub de modelos (sem preço na listagem) — seguir links e recolher SKUs nas subpáginas

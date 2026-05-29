@@ -118,12 +118,8 @@ def infer_category(product: dict) -> str:
     title = product.get("title", "").lower()
     blob = f"{product_type} {tags_text} {title}"
 
-    if any(k in blob for k in ("macbook", "mac ", "imac", "portátil", "portatil", "laptop")):
-        return "macs"
-    if any(k in blob for k in ("ipad", "tablet")):
-        return "ipads"
-    if any(k in blob for k in ("watch", "relógio", "relogio", "wearable")):
-        return "apple_watch"
+    if any(k in blob for k in ("ipad", "galaxy tab", "tab s", "tab a", "lenovo tab", "tablet")):
+        return "tablets" if "galaxy tab" in blob or "tab s" in blob or "tab a" in blob or "lenovo tab" in blob else "ipads"
     if "samsung" in blob and "galaxy" in blob:
         return "samsung_phones"
     return "iphones"
@@ -148,6 +144,16 @@ def is_valid_product(product: dict) -> bool:
         "stand",
         "bateria",
         "battery",
+        "apple watch",
+        "watch series",
+        "galaxy watch",
+        "macbook",
+        "laptop",
+        "portátil",
+        "portatil",
+        "notebook",
+        "airpods",
+        "earpods",
     ]
     for kw in skip_keywords:
         if kw in title or kw in product_type:
@@ -236,10 +242,19 @@ def fetch_all_products(client: httpx.Client) -> list[dict]:
 
 
 def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, Any]]:
-    if not is_valid_product(shopify_product):
+    title = shopify_product.get("title", "")
+    title_lower = title.lower()
+
+    wearable_keywords = ["watch", "relógio", "relogio", "wearable", "airpod", "earpod"]
+    if any(k in title_lower for k in wearable_keywords):
         return []
 
-    title = shopify_product.get("title", "")
+    laptop_keywords = ["macbook", "laptop", "portátil", "portatil", "notebook", "mac mini", "imac"]
+    if any(k in title_lower for k in laptop_keywords):
+        return []
+
+    if not is_valid_product(shopify_product):
+        return []
     handle = shopify_product.get("handle", "")
     variants = shopify_product.get("variants", [])
     category = infer_category(shopify_product)

@@ -37,15 +37,6 @@ export const APPLE_POPULAR: PopularModel[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1695048133142-9321e483c25?w=600&h=600&fit=crop&q=80",
   },
-  {
-    id: "watch-s8",
-    name: "Apple Watch Series 8",
-    query: "Apple Watch Series 8",
-    category: "apple_watch",
-    brand: "Apple",
-    imageUrl:
-      "https://images.unsplash.com/photo-1579586337278-3bef891a6597?w=600&h=600&fit=crop&q=80",
-  },
 ];
 
 export const ANDROID_POPULAR: PopularModel[] = [
@@ -128,8 +119,6 @@ export type QuickCategory = {
 export const APPLE_CATEGORIES: QuickCategory[] = [
   { id: "iphones", label: "iPhones", query: "iPhone 13 128GB", icon: "smartphone" },
   { id: "ipads", label: "iPads", query: "iPad Air 128GB", icon: "tablet" },
-  { id: "macbooks", label: "MacBooks", query: "MacBook Air 256GB", icon: "laptop" },
-  { id: "apple_watch", label: "Apple Watch", query: "Apple Watch Series 8", icon: "watch" },
 ];
 
 export const ANDROID_CATEGORIES: QuickCategory[] = [

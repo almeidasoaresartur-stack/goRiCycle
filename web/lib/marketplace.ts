@@ -5,14 +5,13 @@ import { getStoreInfo } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
 import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
-import { isLaunchLaptopModel } from "./product-display";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
 export type TechType = "smartphones" | "tablets" | "laptops" | "wearables";
 
-/** Categorias visíveis no lançamento. */
-export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets", "laptops"];
+/** Categorias visíveis no site (foco smartphones + tablets). */
+export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets"];
 
 export type ProductListing = {
   id: string;
@@ -82,16 +81,11 @@ const GRADE_MAP: Record<string, NormalizedGrade> = {
 
 export const TECH_TYPES: { id: TechType; label: string; icon: string }[] = [
   { id: "smartphones", label: "Smartphones", icon: "📱" },
-  { id: "tablets", label: "Tablets", icon: "📲" },
-  { id: "laptops", label: "Laptops", icon: "💻" },
+  { id: "tablets", label: "Tablets", icon: "🖥️" },
 ];
 
 export function filterLaunchProducts(products: AggregatedProduct[]): AggregatedProduct[] {
-  return (products ?? []).filter((p) => {
-    if (p.tech === "smartphones" || p.tech === "tablets") return true;
-    if (p.tech === "laptops") return isLaunchLaptopModel(p.model);
-    return false;
-  });
+  return (products ?? []).filter((p) => p.tech === "smartphones" || p.tech === "tablets");
 }
 
 export const BRAND_OPTIONS = ["Apple", "Samsung", "Google", "Xiaomi", "Lenovo", "Dell"] as const;
@@ -436,7 +430,7 @@ export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): bo
 }
 
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
-  const perTech = 4;
+  const perTech = 6;
   const maxTotal = 12;
 
   const pickDiverse = (tech: TechType) => {
@@ -462,10 +456,7 @@ export function buildHighlightProducts(products: AggregatedProduct[]): Aggregate
     return picks;
   };
 
-  return [...pickDiverse("smartphones"), ...pickDiverse("tablets"), ...pickDiverse("laptops")].slice(
-    0,
-    maxTotal,
-  );
+  return [...pickDiverse("smartphones"), ...pickDiverse("tablets")].slice(0, maxTotal);
 }
 
 export function catalogFiltersForView(

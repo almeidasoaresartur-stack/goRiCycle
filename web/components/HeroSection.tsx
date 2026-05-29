@@ -24,7 +24,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
         </h1>
 
         <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-          Smartphones, tablets e portáteis premium — preços claros de 4 lojas parceiras.
+          Smartphones e tablets premium — preços claros de 5 lojas parceiras.
         </p>
 
         <form
@@ -45,7 +45,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
               name="q"
               type="search"
               defaultValue={defaultQuery}
-              placeholder="iPhone 14, Galaxy S23, iPad, MacBook M2..."
+              placeholder="iPhone 14, Galaxy S23, iPad Air, Galaxy Tab..."
               className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)] outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15"
             />
           </div>
@@ -58,7 +58,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
         </form>
 
         <p className="mt-2 text-xs text-slate-500">
-          iServices · Refurbed · Swappie · Certideal
+          iServices · Refurbed · Swappie · Certideal · Callphone
         </p>
       </div>
     </section>

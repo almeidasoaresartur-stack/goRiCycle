@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "goRiCycle — Descobre a melhor opção em segunda mão",
   description:
-    "Compara preços de iPhones e tech recondicionada em iServices, Refurbed, Swappie e Certideal. Preços transparentes, graus normalizados, links diretos.",
+    "Compara preços de smartphones e tablets recondicionados em iServices, Refurbed, Swappie, Certideal e Callphone. Preços transparentes, graus normalizados, links diretos.",
   icons: {
     icon: "/logo-icon.png",
     apple: "/logo-icon.png",
