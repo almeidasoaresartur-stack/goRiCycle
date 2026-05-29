@@ -38,6 +38,7 @@ from common import (
     parse_price_eur,
     parse_rating,
     resolve_image_url,
+    launch_chromium,
     setup_logging,
     validate_listing_card,
 )
@@ -508,7 +509,7 @@ def run_scraper(
         raise ValueError(f"Modo inválido: {mode}")
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=CFG["headless"])
+        browser = launch_chromium(playwright, headless=CFG["headless"])
         context = browser.new_context(
             user_agent=CFG["user_agent"],
             locale="pt-PT",

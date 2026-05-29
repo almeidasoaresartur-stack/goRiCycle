@@ -31,6 +31,7 @@ from common import (
     parse_original_price_eur,
     parse_price_eur,
     resolve_image_url,
+    launch_chromium,
     setup_logging,
 )
 from config import CATEGORY_KEYS, BACK_MARKET_CONFIG
@@ -84,13 +85,11 @@ def _scroll_to_load(page: Page) -> None:
 
 def create_browser_context(playwright: Any) -> tuple[Any, Any]:
     """Browser + contexto com headers e bypass anti-bot."""
-    launch_kwargs: dict[str, Any] = {"headless": CFG["headless"]}
     slow_mo = CFG.get("slow_mo") or 0
     if slow_mo > 0:
-        launch_kwargs["slow_mo"] = slow_mo
         logger.info("Browser com slow_mo=%s ms", slow_mo)
 
-    browser = playwright.chromium.launch(**launch_kwargs)
+    browser = launch_chromium(playwright, headless=CFG["headless"], slow_mo=slow_mo)
     context = browser.new_context(
         user_agent=CFG["user_agent"],
         locale="pt-PT",

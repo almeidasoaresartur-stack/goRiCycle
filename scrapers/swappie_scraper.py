@@ -33,6 +33,7 @@ from common import (
     page_wait_ms,
     parse_swappie_price_eur,
     resolve_image_url,
+    launch_chromium,
     setup_logging,
 )
 from config import CATEGORY_KEYS, SWAPPIE_CONFIG
@@ -303,7 +304,7 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
         products, known_ids = load_existing_products(CFG["output_json"])
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=CFG["headless"])
+        browser = launch_chromium(playwright, headless=CFG["headless"])
         page = browser.new_context(user_agent=CFG["user_agent"], locale="pt-PT").new_page()
 
         for category in selected:

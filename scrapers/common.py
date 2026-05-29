@@ -11,7 +11,7 @@ import time
 from typing import Any
 from urllib.parse import urlparse
 
-from playwright.sync_api import Locator
+from playwright.sync_api import Browser, Locator, Playwright
 
 from config import (
     AFFILIATE_PLACEHOLDER,
@@ -24,7 +24,29 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
+# Estabilidade em CI / ambientes com pouca RAM (ex.: GitHub Actions)
+CHROMIUM_LAUNCH_ARGS: tuple[str, ...] = (
+    "--disable-dev-shm-usage",
+    "--no-sandbox",
+)
+
 CATEGORY_URL_MARKERS = ("/c/", "/cat/")
+
+
+def launch_chromium(
+    playwright: Playwright,
+    *,
+    headless: bool = True,
+    slow_mo: int = 0,
+) -> Browser:
+    """Lança Chromium com argumentos de estabilidade para scrapers."""
+    kwargs: dict[str, Any] = {
+        "headless": headless,
+        "args": list(CHROMIUM_LAUNCH_ARGS),
+    }
+    if slow_mo > 0:
+        kwargs["slow_mo"] = slow_mo
+    return playwright.chromium.launch(**kwargs)
 
 # Marcas detectáveis a partir do nome do modelo (ordem importa — Apple primeiro)
 BRAND_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (

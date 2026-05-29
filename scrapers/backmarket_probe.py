@@ -42,7 +42,7 @@ from backmarket_session import (
     storage_state_exists,
 )
 from backmarket_scraper import SEL, collect_listing_cards, create_browser_context, dismiss_cookie_banner
-from common import setup_logging
+from common import CHROMIUM_LAUNCH_ARGS, setup_logging
 from config import BACK_MARKET_CONFIG, CATEGORY_KEYS
 
 CFG = BACK_MARKET_CONFIG
@@ -111,6 +111,7 @@ def capture_session(category: str = "iphones") -> Path:
         context = playwright.chromium.launch_persistent_context(
             user_data_dir=str(profile_dir),
             headless=False,
+            args=list(CHROMIUM_LAUNCH_ARGS),
             locale="pt-PT",
             viewport={"width": 1920, "height": 1080},
             bypass_csp=True,
@@ -353,6 +354,7 @@ def export_profile(category: str = "iphones", *, headed: bool = True) -> Path:
         context = playwright.chromium.launch_persistent_context(
             user_data_dir=str(profile_dir),
             headless=not headed,
+            args=list(CHROMIUM_LAUNCH_ARGS),
             locale="pt-PT",
             viewport={"width": 1920, "height": 1080},
             bypass_csp=True,
