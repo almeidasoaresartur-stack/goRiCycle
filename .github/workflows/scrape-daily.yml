@@ -34,7 +34,7 @@ permissions:
 
 env:
   # Lojas activas no site (Back Market excluído — Cloudflare)
-  SCRAPE_SOURCES: iservices,refurbed,swappie,certideal
+  SCRAPE_SOURCES: iservices,refurbed,swappie,certideal,callphone
 
 jobs:
   scrape:
@@ -117,7 +117,7 @@ jobs:
       - name: Sync data para Next.js (Vercel)
         run: |
           mkdir -p web/data
-          for f in iservices_produtos.json refurbed_produtos.json swappie_produtos.json certideal_produtos.json last_run_summary.json validate_and_clean_report.json; do
+          for f in iservices_produtos.json refurbed_produtos.json swappie_produtos.json certideal_produtos.json callphone_produtos.json last_run_summary.json validate_and_clean_report.json; do
             if [ -f "data/$f" ]; then
               cp "data/$f" "web/data/$f"
             fi
@@ -133,11 +133,13 @@ jobs:
             data/refurbed_produtos.json \
             data/swappie_produtos.json \
             data/certideal_produtos.json \
+            data/callphone_produtos.json \
             data/last_run_summary.json \
             web/data/iservices_produtos.json \
             web/data/refurbed_produtos.json \
             web/data/swappie_produtos.json \
             web/data/certideal_produtos.json \
+            web/data/callphone_produtos.json \
             web/data/last_run_summary.json
 
           if [ -f data/validate_and_clean_report.json ]; then
