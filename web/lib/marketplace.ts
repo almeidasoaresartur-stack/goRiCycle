@@ -1,7 +1,7 @@
 import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { generateExactProductUrl } from "./product-urls";
 import { inferBrand } from "./inference";
-import { getStoreInfo } from "./stores";
+import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
 import { colorMatches, isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
@@ -57,6 +57,8 @@ export type MarketplaceFilters = {
   grade?: string | null;
   color?: string | null;
   q?: string | null;
+  /** Slugs de lojas parceiras (seleção múltipla). */
+  stores?: ProductSource[] | null;
 };
 
 export type FilterOptions = {
@@ -64,7 +66,18 @@ export type FilterOptions = {
   models: string[];
   storages: string[];
   colors: string[];
+  stores: ProductSource[];
 };
+
+const PARTNER_STORE_ORDER = Object.keys(STORES) as ProductSource[];
+
+function parseStoreSlugs(raw: string | null | undefined): ProductSource[] {
+  if (!raw?.trim()) return [];
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s): s is ProductSource => s in STORES);
+}
 
 function storeLabel(source: ProductSource): string {
   return getStoreInfo(source)?.label ?? source;
@@ -234,6 +247,29 @@ function listingGroupKey(item: ProductListing): string {
   ].join("|");
 }
 
+/** Restringe um produto agregado às lojas seleccionadas e recalcula o melhor preço. */
+export function narrowProductToStores(
+  item: AggregatedProduct,
+  stores: ProductSource[],
+): AggregatedProduct | null {
+  if (!stores.length) return item;
+
+  const offers = (item.offers ?? []).filter((offer) => stores.includes(offer.storeSlug));
+  if (!offers.length) return null;
+
+  const sorted = [...offers].sort((a, b) => a.price - b.price);
+  const best = sorted[0];
+  if (!best) return null;
+
+  return {
+    ...item,
+    offers: sorted,
+    bestListing: best,
+    minPrice: best.price,
+    storeCount: sorted.length,
+  };
+}
+
 export function aggregateListings(listings: ProductListing[]): AggregatedProduct[] {
   const groups = new Map<string, ProductListing[]>();
 
@@ -318,8 +354,9 @@ export function filterAggregatedProducts(
   const grade = safeStr(filters.grade) as GradeTier | "";
   const color = safeStr(filters.color);
   const q = safeStr(filters.q);
+  const storeFilter = filters.stores ?? [];
 
-  return (products ?? []).filter((item) => {
+  const filtered = (products ?? []).filter((item) => {
     if (!item?.id || typeof item.minPrice !== "number") return false;
     if (tech && item.tech !== tech) return false;
     if (brand && item.brand?.toLowerCase() !== brand.toLowerCase()) return false;
@@ -328,12 +365,40 @@ export function filterAggregatedProducts(
     if (grade && item.gradeTier !== grade) return false;
     if (color && !listingMatchesColor(item, color)) return false;
     if (q && !queryMatchesModel(item.model, q)) return false;
+    if (storeFilter.length > 0) {
+      const hasStore = (item.offers ?? []).some((offer) => storeFilter.includes(offer.storeSlug));
+      if (!hasStore) return false;
+    }
     return true;
   });
+
+  if (!storeFilter.length) return filtered;
+
+  return filtered
+    .map((item) => narrowProductToStores(item, storeFilter))
+    .filter((item): item is AggregatedProduct => item != null);
 }
 
 export function buildFilterOptionsFromAggregated(products: AggregatedProduct[]): FilterOptions {
-  return buildFilterOptions(products.map((p) => p.bestListing));
+  const listings: ProductListing[] = [];
+  const storeSlugs = new Set<ProductSource>();
+
+  for (const product of products ?? []) {
+    for (const offer of product.offers ?? []) {
+      listings.push(offer);
+      storeSlugs.add(offer.storeSlug);
+    }
+    if (!product.offers?.length && product.bestListing) {
+      listings.push(product.bestListing);
+      storeSlugs.add(product.bestListing.storeSlug);
+    }
+  }
+
+  const base = buildFilterOptions(listings);
+  return {
+    ...base,
+    stores: PARTNER_STORE_ORDER.filter((slug) => storeSlugs.has(slug)),
+  };
 }
 
 export function computeMinPrice(products: AggregatedProduct[]): number | null {
@@ -386,10 +451,12 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
     models: [...models].sort((a, b) => a.localeCompare(b, "pt")).slice(0, 40),
     storages: STORAGE_OPTIONS.filter((s) => storages.has(s) || storages.size === 0),
     colors: [...colors].sort((a, b) => a.localeCompare(b, "pt")),
+    stores: [],
   };
 }
 
 export function parseMarketplaceFilters(params: Record<string, string | undefined>): MarketplaceFilters {
+  const stores = parseStoreSlugs(params.stores);
   return {
     tech: params.tech ?? null,
     brand: params.brand ?? null,
@@ -398,6 +465,7 @@ export function parseMarketplaceFilters(params: Record<string, string | undefine
     grade: params.grade ?? null,
     color: params.color ?? null,
     q: params.q ?? null,
+    stores: stores.length ? stores : null,
   };
 }
 
@@ -420,6 +488,7 @@ export function hasSpecificFilters(filters: MarketplaceFilters): boolean {
       filters.grade ||
       filters.color ||
       filters.q?.trim() ||
+      (filters.stores?.length ?? 0) > 0 ||
       hasActiveTechFilter(filters.tech),
   );
 }

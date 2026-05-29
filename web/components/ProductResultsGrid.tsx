@@ -1,12 +1,15 @@
-import { Crown, ExternalLink, Store } from "lucide-react";
+import { Crown, ExternalLink } from "lucide-react";
 
 import { ProductCardImage } from "@/components/ProductCardImage";
+import { StoreFilterBadge } from "@/components/StoreFilterBadge";
 import { StoreLogo } from "@/components/StoreLogo";
 import type { AggregatedProduct, ProductListing } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
+import { isDevDebugMode, isSuspiciousListing } from "@/lib/listing-url-debug";
 import { getCleanProductData } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
 import { resolveListingUrl } from "@/lib/product-urls";
+import type { ProductSource } from "@/lib/types";
 
 export type ProductViewMode = "grid" | "list";
 
@@ -38,6 +41,7 @@ type ProductResultsGridProps = {
   products: AggregatedProduct[];
   minPrice?: number | null;
   activeColorFilter?: string | null;
+  activeStoreSlugs?: ProductSource[] | null;
   viewMode?: ProductViewMode;
 };
 
@@ -45,6 +49,7 @@ type ProductCardProps = {
   item: AggregatedProduct;
   isBest: boolean;
   activeColorFilter?: string | null;
+  activeStoreSlugs?: ProductSource[] | null;
 };
 
 function listingHref(listing: ProductListing | null | undefined): string {
@@ -59,17 +64,24 @@ function listingHref(listing: ProductListing | null | undefined): string {
   });
 }
 
-function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) {
+function ProductGridCard({ item, isBest, activeColorFilter, activeStoreSlugs }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
   const clean = getCleanProductData(item, { activeColorFilter });
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
+  const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
+  const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
 
   return (
     <article
       className={`group flex flex-col overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
-        isBest ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200/50"
+        debugSuspicious
+          ? "border-red-500 ring-2 ring-red-200"
+          : isBest
+            ? "border-emerald-200 ring-1 ring-emerald-100"
+            : "border-slate-200/50"
       }`}
+      title={debugSuspicious ? "Link suspeito (debug dev)" : undefined}
     >
       <div className="relative w-full overflow-hidden rounded-t-xl bg-white">
         <ProductCardImage
@@ -92,12 +104,21 @@ function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) 
 
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          <StoreLogo
-            storeSlug={best?.storeSlug}
-            storeLabel={best?.store}
-            className="max-w-[180px]"
-            height={42}
-          />
+          <div className="flex flex-wrap items-center gap-2">
+            <StoreLogo
+              storeSlug={best?.storeSlug}
+              storeLabel={best?.store}
+              className="max-w-[140px]"
+              height={42}
+            />
+            {best?.storeSlug ? (
+              <StoreFilterBadge
+                storeSlug={best.storeSlug}
+                storeLabel={best.store}
+                active={storeBadgeActive}
+              />
+            ) : null}
+          </div>
           <span
             className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${gradeStyle}`}
           >
@@ -123,13 +144,22 @@ function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) 
         {storeCount > 1 && item.offers?.length > 1 && (
           <div className="mt-3 flex flex-wrap gap-1.5">
             {item.offers.slice(0, 4).map((offer) => (
-              <span
+              <div
                 key={offer?.id}
-                className="inline-flex items-center gap-1 rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-medium text-slate-600"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-medium text-slate-600"
               >
-                <Store className="h-3 w-3" />
-                {offer?.store}: {formatPrice(offer?.price)}
-              </span>
+                {offer?.storeSlug ? (
+                  <StoreFilterBadge
+                    storeSlug={offer.storeSlug}
+                    storeLabel={offer.store}
+                    active={activeStoreSlugs?.includes(offer.storeSlug)}
+                    className="px-1.5 py-0.5 text-[10px] font-medium"
+                  />
+                ) : (
+                  <span>{offer?.store}</span>
+                )}
+                <span>{formatPrice(offer?.price)}</span>
+              </div>
             ))}
           </div>
         )}
@@ -158,23 +188,33 @@ function ProductGridCard({ item, isBest, activeColorFilter }: ProductCardProps) 
           Preço do site oficial · {best?.store ?? "loja parceira"}{" "}
           <span className="text-slate-400">|</span>{" "}
           <span className="font-medium text-green-600">✓ Atualizado diariamente</span>
+          {debugSuspicious && (
+            <span className="ml-1 font-semibold text-red-600">· ⚠ link a verificar</span>
+          )}
         </p>
       </div>
     </article>
   );
 }
 
-function ProductListRow({ item, isBest, activeColorFilter }: ProductCardProps) {
+function ProductListRow({ item, isBest, activeColorFilter, activeStoreSlugs }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
   const clean = getCleanProductData(item, { activeColorFilter });
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
+  const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
+  const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
 
   return (
     <article
       className={`group flex flex-col gap-4 rounded-xl border bg-white p-4 transition-all duration-200 sm:flex-row sm:items-center ${CARD_SHADOW} ${
-        isBest ? "border-emerald-200 ring-1 ring-emerald-100" : "border-slate-200/50"
+        debugSuspicious
+          ? "border-red-500 ring-2 ring-red-200"
+          : isBest
+            ? "border-emerald-200 ring-1 ring-emerald-100"
+            : "border-slate-200/50"
       }`}
+      title={debugSuspicious ? "Link suspeito (debug dev)" : undefined}
     >
       <div className="relative mx-auto shrink-0 sm:mx-0">
         <ProductCardImage
@@ -227,8 +267,18 @@ function ProductListRow({ item, isBest, activeColorFilter }: ProductCardProps) {
             className="max-w-[160px]"
             height={36}
           />
+          {best?.storeSlug ? (
+            <StoreFilterBadge
+              storeSlug={best.storeSlug}
+              storeLabel={best.store}
+              active={storeBadgeActive}
+            />
+          ) : null}
           {storeCount > 1 && (
             <span className="text-xs text-slate-500">{storeCount} lojas comparadas</span>
+          )}
+          {debugSuspicious && (
+            <span className="text-xs font-semibold text-red-600">⚠ link a verificar</span>
           )}
         </div>
       </div>
@@ -260,6 +310,7 @@ export function ProductResultsGrid({
   products,
   minPrice,
   activeColorFilter,
+  activeStoreSlugs,
   viewMode = "grid",
 }: ProductResultsGridProps) {
   const safeProducts = (products ?? []).filter(
@@ -288,6 +339,7 @@ export function ProductResultsGrid({
             item={item}
             isBest={globalMin != null && item.minPrice === globalMin}
             activeColorFilter={activeColorFilter}
+            activeStoreSlugs={activeStoreSlugs}
           />
         ))}
       </div>
@@ -302,6 +354,7 @@ export function ProductResultsGrid({
           item={item}
           isBest={globalMin != null && item.minPrice === globalMin}
           activeColorFilter={activeColorFilter}
+          activeStoreSlugs={activeStoreSlugs}
         />
       ))}
     </div>

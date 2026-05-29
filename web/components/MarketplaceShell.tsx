@@ -135,11 +135,12 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     grade: searchParams?.get("grade") ?? defaultFilters.grade ?? undefined,
     color: searchParams?.get("color") ?? defaultFilters.color ?? undefined,
     q: searchParams?.get("q") ?? defaultFilters.q ?? undefined,
+    stores: searchParams?.get("stores") ?? defaultFilters.stores?.join(",") ?? undefined,
   });
 
   const viewAll = searchParams?.get("view") === "all";
   const catalogMode = isCatalogView(filters, viewAll);
-  const showFilterSidebar = hasActiveTechFilter(filters.tech);
+  const showFilterSidebar = hasActiveTechFilter(filters.tech) || viewAll;
 
   const safeProducts = useMemo(() => filterLaunchProducts(allProducts ?? []), [allProducts]);
   const scopedForOptions = filterAggregatedProducts(safeProducts, {
@@ -176,6 +177,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
         grade: filters.grade,
         color: filters.color,
         q: filters.q,
+        stores: filters.stores,
         viewAll,
         catalogMode,
         sortOrder,
@@ -255,6 +257,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+              activeStoreSlugs={filters.stores}
               viewMode={viewMode}
             />
             <ProductPagination
@@ -285,6 +288,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               products={paginatedProducts}
               minPrice={minPrice}
               activeColorFilter={filters.color}
+              activeStoreSlugs={filters.stores}
               viewMode={viewMode}
             />
             <ProductPagination

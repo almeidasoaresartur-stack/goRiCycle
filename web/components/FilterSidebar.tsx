@@ -12,6 +12,8 @@ import {
   type FilterOptions,
   type MarketplaceFilters,
 } from "@/lib/marketplace";
+import { getStoreInfo } from "@/lib/stores";
+import type { ProductSource } from "@/lib/types";
 
 type FilterSidebarProps = {
   filters: MarketplaceFilters;
@@ -47,6 +49,27 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (value) params.set(key, value);
     else params.delete(key);
+    params.set("view", "all");
+    params.set("section", "comparador");
+    router.push(`/?${params.toString()}#comparador`, { scroll: false });
+  };
+
+  const toggleStore = (slug: ProductSource) => {
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    const current = new Set(filters.stores ?? []);
+
+    if (current.has(slug)) {
+      current.delete(slug);
+    } else {
+      current.add(slug);
+    }
+
+    if (current.size > 0) {
+      params.set("stores", [...current].join(","));
+    } else {
+      params.delete("stores");
+    }
+
     params.set("view", "all");
     params.set("section", "comparador");
     router.push(`/?${params.toString()}#comparador`, { scroll: false });
@@ -105,6 +128,44 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
                 {label}
               </button>
             ))}
+          </div>
+        </FilterGroup>
+
+        <FilterGroup title="Lojas parceiras">
+          <div className="flex flex-col gap-2">
+            {options.stores.map((slug) => {
+              const info = getStoreInfo(slug);
+              const checked = filters.stores?.includes(slug) ?? false;
+              return (
+                <label
+                  key={slug}
+                  className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition ${
+                    checked
+                      ? "border-emerald-500 bg-emerald-50"
+                      : "border-slate-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/40"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => toggleStore(slug)}
+                    className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500/30"
+                  />
+                  {info?.logoSrc ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={info.logoSrc}
+                      alt=""
+                      className="h-5 w-auto object-contain"
+                    />
+                  ) : null}
+                  <span className="font-medium text-slate-800">{info?.label ?? slug}</span>
+                </label>
+              );
+            })}
+            {options.stores.length === 0 && (
+              <p className="text-xs text-slate-500">Nenhuma loja disponível nesta selecção.</p>
+            )}
           </div>
         </FilterGroup>
 
