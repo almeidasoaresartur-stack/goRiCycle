@@ -77,6 +77,14 @@ jobs:
             --mode "${{ steps.mode.outputs.value }}" \
             --sources "$SCRAPE_SOURCES"
 
+      - name: Validar e limpar dados pós-scrape
+        run: |
+          if [ "${{ steps.mode.outputs.value }}" = "full" ]; then
+            python scrapers/validate_and_clean.py
+          else
+            python scrapers/validate_and_clean.py --no-live-check
+          fi
+
       - name: Verificar sumário
         run: |
           python <<'PY'
@@ -109,12 +117,11 @@ jobs:
       - name: Sync data para Next.js (Vercel)
         run: |
           mkdir -p web/data
-          cp data/iservices_produtos.json \
-             data/refurbed_produtos.json \
-             data/swappie_produtos.json \
-             data/certideal_produtos.json \
-             data/last_run_summary.json \
-             web/data/
+          for f in iservices_produtos.json refurbed_produtos.json swappie_produtos.json certideal_produtos.json last_run_summary.json validate_and_clean_report.json; do
+            if [ -f "data/$f" ]; then
+              cp "data/$f" "web/data/$f"
+            fi
+          done
 
       - name: Commit dados actualizados
         run: |
@@ -132,6 +139,10 @@ jobs:
             web/data/swappie_produtos.json \
             web/data/certideal_produtos.json \
             web/data/last_run_summary.json
+
+          if [ -f data/validate_and_clean_report.json ]; then
+            git add data/validate_and_clean_report.json web/data/validate_and_clean_report.json
+          fi
 
           if git diff --staged --quiet; then
             echo "Sem alterações nos JSON — nada a commitar."
