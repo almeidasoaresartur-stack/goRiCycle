@@ -219,6 +219,11 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     router.push(`/?${params.toString()}#comparador`, { scroll: false });
   };
 
+  const backToHighlights = () => {
+    router.push("/#comparador", { scroll: false });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div
       className={
@@ -243,6 +248,16 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
         }`}
       >
         {!showFilterSidebar && <TechCategoryPicker activeTech={filters.tech} />}
+
+        {catalogMode ? (
+          <button
+            type="button"
+            onClick={backToHighlights}
+            className="mb-4 flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-gray-700"
+          >
+            ← Voltar aos destaques
+          </button>
+        ) : null}
 
         {!catalogMode ? (
           <>
