@@ -1,7 +1,7 @@
 {
   "source": "callphone",
   "scraped_at": "2026-05-30T16:51:07.790068+00:00",
-  "total_products": 264,
+  "total_products": 263,
   "products": [
     {
       "source": "callphone",
@@ -4046,26 +4046,6 @@
     {
       "source": "callphone",
       "scraped_at": "2026-05-30T16:51:07.790068+00:00",
-      "product_id": "callphone_44771728949512",
-      "category": "iphones",
-      "brand": "Samsung",
-      "model": "SAMSUNG S10",
-      "storage": "128GB",
-      "color": "Preto",
-      "grade": "Excelente",
-      "price": 199.0,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://callphone.pt/products/samsung-s10?variant=44771728949512",
-      "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/Designsemnome_10_434338ac-794a-43e1-9df0-2bb1faded6a4.png?v=1697130008",
-      "source_page": "https://www.callphone.pt/products.json",
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
       "product_id": "callphone_44696996053256",
       "category": "iphones",
       "brand": "Samsung",
@@ -5285,5 +5265,5 @@
     }
   ],
   "validated_at": "2026-05-30T17:08:07.770302+00:00",
-  "merged_at": "2026-05-30T18:47:53.488853+00:00"
+  "merged_at": "2026-05-30T23:40:48.782496+00:00"
 }

@@ -8,7 +8,7 @@
     "google_phones"
   ],
   "scraped_at": "2026-05-30T18:17:04.816063+00:00",
-  "total_products": 119,
+  "total_products": 116,
   "products": [
     {
       "source": "refurbed",
@@ -2155,46 +2155,6 @@
     {
       "source": "refurbed",
       "scraped_at": "2026-05-30T18:17:04.816063+00:00",
-      "product_id": "refurbed_samsung-galaxy-tab-a7_3gb",
-      "category": "tablets",
-      "brand": "Samsung",
-      "model": "Samsung Galaxy Tab A7 | 10.4\" (2020)",
-      "storage": "3GB",
-      "color": null,
-      "grade": null,
-      "price": 154.99,
-      "original_price": 249.0,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.refurbed.pt/p/samsung-galaxy-tab-a7/",
-      "image_url": "https://files.refurbed.com/ii/samsung-galaxy-tab-a7-1612452150.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-pro-5-12-9-2021/",
-      "affiliate_enabled": true,
-      "affiliate_network": "brandreward"
-    },
-    {
-      "source": "refurbed",
-      "scraped_at": "2026-05-30T18:17:04.816063+00:00",
-      "product_id": "refurbed_samsung-galaxy-tab-s2-9-7",
-      "category": "tablets",
-      "brand": "Samsung",
-      "model": "Samsung Galaxy Tab S2 | 9.7\"",
-      "storage": null,
-      "color": null,
-      "grade": null,
-      "price": 120.99,
-      "original_price": 329.0,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.refurbed.pt/p/samsung-galaxy-tab-s2-9-7/",
-      "image_url": "https://files.refurbed.com/ii/samsung-galaxy-tab-s2-9-7-1582707232.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-mini-6/",
-      "affiliate_enabled": true,
-      "affiliate_network": "brandreward"
-    },
-    {
-      "source": "refurbed",
-      "scraped_at": "2026-05-30T18:17:04.816063+00:00",
       "product_id": "refurbed_ipad-mini-5_64gb_muito_bom_prata",
       "category": "tablets",
       "brand": "Apple",
@@ -2459,29 +2419,8 @@
       "source_page": "https://www.refurbed.pt/c/smartphones/?brand=Google",
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
-    },
-    {
-      "source": "refurbed",
-      "scraped_at": "2026-05-30T18:17:04.816063+00:00",
-      "product_id": "refurbed_google-pixel-6_128gb",
-      "category": "google_phones",
-      "brand": "Google",
-      "model": "Google Pixel 6",
-      "storage": "128GB",
-      "color": null,
-      "grade": null,
-      "price": 180.99,
-      "original_price": 599.0,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.refurbed.pt/p/google-pixel-6/",
-      "image_url": "https://files.refurbed.com/ii/google-pixel-6-1646402539.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/google-pixel-10-pro-fold/",
-      "affiliate_enabled": true,
-      "affiliate_network": "brandreward",
-      "seller_rating": 4.67
     }
   ],
   "validated_at": "2026-05-30T18:32:03.479867+00:00",
-  "merged_at": "2026-05-30T18:47:53.000252+00:00"
+  "merged_at": "2026-05-30T23:40:48.760720+00:00"
 }

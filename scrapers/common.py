@@ -357,6 +357,95 @@ def detect_brand(model: str | None) -> str | None:
     return None
 
 
+CURATION_CUTOFF_YEAR = 2022
+# Tab S8 → 2022, Tab S7 → 2021 (geração N ≈ 2014 + N)
+_TAB_S_BASE_YEAR = 2014
+_GALAXY_S_LEGACY_YEARS: dict[int, int] = {
+    10: 2019,
+    9: 2018,
+    8: 2017,
+    7: 2016,
+    6: 2015,
+    5: 2014,
+}
+
+
+def _extract_explicit_year(text: str) -> int | None:
+    match = re.search(r"\((20\d{2})\)", text)
+    if match:
+        return int(match.group(1))
+    match = re.search(r"(?<![0-9])(20\d{2})(?![0-9])", text)
+    if match:
+        return int(match.group(1))
+    return None
+
+
+def infer_model_year(model_name: str, brand: str | None = None) -> int | None:
+    """Infere o ano de lançamento a partir do nome do modelo (Samsung/Google)."""
+    text = (model_name or "").strip()
+    if not text:
+        return None
+
+    explicit = _extract_explicit_year(text)
+    if explicit is not None:
+        return explicit
+
+    lower = text.lower()
+    brand_lower = (brand or detect_brand(text) or "").lower()
+
+    if brand_lower == "google" or "pixel" in lower:
+        match = re.search(r"pixel\s*(\d+)", lower)
+        if match:
+            return 2015 + int(match.group(1))
+        if re.search(r"\bpixel\b", lower):
+            return 2016
+
+    if brand_lower == "samsung" or "galaxy" in lower or "samsung" in lower:
+        match = re.search(r"tab\s*s(\d+)", lower)
+        if match:
+            return _TAB_S_BASE_YEAR + int(match.group(1))
+
+        match = re.search(r"(?:galaxy\s*)?s(\d{2})\b", lower)
+        if match:
+            generation = int(match.group(1))
+            if generation >= 20:
+                return 2000 + generation
+            return _GALAXY_S_LEGACY_YEARS.get(generation)
+
+        # Galaxy A-series: A53→2022, A55→2024, A56→2025, A17→2025 (GSMArena/Wikipedia)
+        match = re.search(r"(?:galaxy\s*)?a(\d{2})\b", lower)
+        if match:
+            generation = int(match.group(1))
+            if 50 <= generation <= 59:
+                return 2019 + (generation - 50)
+            if 14 <= generation <= 19:
+                return 2008 + generation
+
+        # Z Fold 7→2025, Z Fold6→2024 (espaço opcional: "Z Fold 7")
+        match = re.search(r"(?:z\s*(?:galaxy\s*)?)?(?:fold|flip)\s*(\d+)", lower)
+        if match:
+            return 2018 + int(match.group(1))
+
+    return None
+
+
+def is_model_relevant(model_name: str, brand: str | None) -> bool:
+    """
+    Curadoria por antiguidade: Samsung e Google só a partir de 2022.
+    Apple (e outras marcas) passam sempre.
+    """
+    brand_norm = (brand or detect_brand(model_name) or "").strip()
+    if not brand_norm or brand_norm.lower() == "apple":
+        return True
+    if brand_norm.lower() not in {"samsung", "google"}:
+        return True
+
+    year = infer_model_year(model_name, brand_norm)
+    if year is None:
+        return True
+    return year >= CURATION_CUTOFF_YEAR
+
+
 def slug_from_product_url(url: str) -> str:
     path = urlparse(url).path.strip("/")
     if not path:

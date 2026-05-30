@@ -24,7 +24,7 @@ _SCRAPERS_DIR = Path(__file__).resolve().parent
 if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
-from common import filter_best_price_per_store
+from common import detect_brand, filter_best_price_per_store, is_model_relevant
 from config import DATA_DIR, PROJECT_ROOT
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -54,6 +54,22 @@ def save_json(data: dict | list, path: Path) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def filter_by_model_relevance(products: list[dict]) -> tuple[list[dict], int]:
+    """Remove Samsung/Google anteriores a 2022; Apple passa sempre."""
+    kept: list[dict] = []
+    removed = 0
+
+    for product in products:
+        model = product.get("model") or ""
+        brand = product.get("brand") or detect_brand(model) or ""
+        if is_model_relevant(model, brand):
+            kept.append(product)
+        else:
+            removed += 1
+
+    return kept, removed
+
+
 def clean_source(
     source_name: str,
     path: Path,
@@ -76,13 +92,15 @@ def clean_source(
 
     before = len(products)
     kept, removed = filter_best_price_per_store(products, log=log)
+    kept, relevance_removed = filter_by_model_relevance(kept)
 
     log.info(
-        "[%s] %s → %s produtos (%s duplicados internos removidos)",
+        "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade)",
         source_name,
         before,
         len(kept),
         removed,
+        relevance_removed,
     )
 
     if not dry_run:
@@ -105,10 +123,11 @@ def clean_source(
         "total": before,
         "kept": len(kept),
         "removed": removed,
+        "removed_by_relevance": relevance_removed,
     }
 
 
-def merge_all_sources(sources: dict[str, Path]) -> tuple[list[dict], int]:
+def merge_all_sources(sources: dict[str, Path]) -> tuple[list[dict], int, int]:
     """
     Junta todos os produtos e aplica deduplicação por loja no catálogo combinado.
     Garante que duplicados internos de cada loja são eliminados após a fusão.
@@ -126,13 +145,14 @@ def merge_all_sources(sources: dict[str, Path]) -> tuple[list[dict], int]:
 
     before = len(combined)
     kept, removed = filter_best_price_per_store(combined, log=log)
+    kept, relevance_removed = filter_by_model_relevance(kept)
     log.info(
         "Catálogo combinado: %s → %s produtos (%s duplicados removidos na fusão)",
         before,
         len(kept),
         removed,
     )
-    return kept, removed
+    return kept, removed, relevance_removed
 
 
 def parse_args() -> argparse.Namespace:
@@ -178,7 +198,9 @@ def main() -> None:
         )
         per_source.append(stats)
 
-    merged, merge_removed = merge_all_sources(sources_to_process)
+    merged, merge_removed, merge_relevance_removed = merge_all_sources(sources_to_process)
+    source_relevance_removed = sum(s.get("removed_by_relevance", 0) for s in per_source)
+    total_relevance_removed = source_relevance_removed + merge_relevance_removed
 
     report = {
         "merged_at": datetime.now(timezone.utc).isoformat(),
@@ -187,6 +209,7 @@ def main() -> None:
         "combined": {
             "total_unique": len(merged),
             "removed_on_merge": merge_removed,
+            "removed_by_relevance": total_relevance_removed,
         },
     }
 
@@ -208,6 +231,11 @@ def main() -> None:
     total_removed = sum(s["removed"] for s in per_source)
     log.info("\n%s", "=" * 50)
     log.info("TOTAL: %s duplicados removidos por fonte", total_removed)
+    log.info(
+        "Processando catálogo... | Total de produtos após filtro de antiguidade: %s | Produtos removidos: %s",
+        len(merged),
+        total_relevance_removed,
+    )
     log.info("Catálogo combinado único: %s produtos", len(merged))
 
 
