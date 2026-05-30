@@ -38,7 +38,7 @@ from common import (
     setup_logging,
     validate_listing_card,
 )
-from config import CATEGORY_KEYS, CERTIDEAL_CONFIG
+from config import CATEGORY_KEYS, CERTIDEAL_CONFIG, CERTIDEAL_URLS
 
 CFG = CERTIDEAL_CONFIG
 SEL = CFG["selectors"]
@@ -351,19 +351,43 @@ def get_next_listing_url(page: Page, current_url: str) -> str | None:
     return None
 
 
-def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any]]:
+def open_listing_url(page: Page, url: str) -> int | None:
+    """Abre URL e devolve o status HTTP, ou None se a navegação falhar."""
+    try:
+        response = page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+    except Exception as exc:
+        logger.error("Erro ao abrir %s: %s", url, exc)
+        return None
+    return response.status if response else None
+
+
+def scrape_category_listing(
+    page: Page,
+    category_url: str,
+    *,
+    page_ready: bool = False,
+) -> list[dict[str, Any]]:
     all_cards: list[dict[str, Any]] = []
     seen_urls: set[str] = set()
     url: str | None = category_url
 
     while url:
         logger.info("Listagem: %s", url)
-        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-        human_delay(CFG["delays"], "after_navigation")
-        page_wait_ms(CFG["delays"], "page_load")
-        dismiss_cookie_banner(page)
+        if not page_ready:
+            status = open_listing_url(page, url)
+            if status != 200:
+                logger.warning("URL %s retornou HTTP %s — a saltar.", url, status or "desconhecido")
+                break
 
-        page_cards = collect_listing_cards(page, CFG["base_url"])
+            human_delay(CFG["delays"], "after_navigation")
+            page_wait_ms(CFG["delays"], "page_load")
+            dismiss_cookie_banner(page)
+        else:
+            page_ready = False
+
+        page_cards = collect_listing_cards(
+            page, CFG["base_url"], strict_wait=False
+        )
         new_count = 0
         for card in page_cards:
             card_url = card.get("url")
@@ -383,6 +407,73 @@ def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any
             human_delay(CFG["delays"], "between_pages")
         else:
             url = None
+
+    return all_cards
+
+
+def scrape_family_listing(
+    page: Page,
+    family_url: str,
+    family_model: str,
+    category: str,
+) -> list[dict[str, Any]]:
+    """Scrape uma família (ex. iPhone 16). Se não houver SKUs com preço, tenta sub-páginas hub."""
+    status = open_listing_url(page, family_url)
+    if status != 200:
+        logger.warning(
+            "Família '%s' indisponível (%s) — HTTP %s, a saltar.",
+            family_model,
+            family_url,
+            status or "desconhecido",
+        )
+        return []
+
+    human_delay(CFG["delays"], "after_navigation")
+    page_wait_ms(CFG["delays"], "page_load")
+    dismiss_cookie_banner(page)
+
+    cards = scrape_category_listing(page, family_url, page_ready=True)
+    if cards:
+        for card in cards:
+            card.setdefault("source_page", family_url)
+        return cards
+
+    hub_items = collect_listing_cards(
+        page, CFG["base_url"], require_price=False, strict_wait=False
+    )
+    if not hub_items:
+        detail = fetch_detail_product(page, family_url)
+        if detail:
+            detail["source_page"] = family_url
+            return [detail]
+        logger.info("Família '%s' sem listagem de produtos.", family_model)
+        return []
+
+    logger.info("Hub '%s': %s sub-página(s) a explorar.", family_model, len(hub_items))
+    all_cards: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+
+    for index, hub in enumerate(hub_items, start=1):
+        sub_url = hub.get("url")
+        if not sub_url or sub_url == family_url or sub_url in seen_urls:
+            continue
+        seen_urls.add(sub_url)
+
+        if category == "samsung_phones" and detect_brand(hub.get("model", "")) != "Samsung":
+            continue
+
+        logger.info("  [%s/%s] Sub-página: %s", index, len(hub_items), hub.get("model"))
+        sub_cards = scrape_category_listing(page, sub_url)
+        if sub_cards:
+            for card in sub_cards:
+                card["source_page"] = sub_url
+            all_cards.extend(sub_cards)
+            continue
+
+        detail = fetch_detail_product(page, sub_url)
+        if detail:
+            detail["source_page"] = sub_url
+            all_cards.append(detail)
 
     return all_cards
 
@@ -446,7 +537,7 @@ def save_products(products: list[dict[str, Any]], path: Path, meta: dict[str, An
 
 def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
-    selected = categories or list(CATEGORY_KEYS)
+    selected = categories or [c for c in CATEGORY_KEYS if c in CERTIDEAL_URLS]
     stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
 
     if mode == "full":
@@ -460,37 +551,56 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
         page = browser.new_context(user_agent=CFG["user_agent"], locale="pt-PT").new_page()
 
         for category in selected:
-            category_url = CFG["categories"].get(category)
-            if not category_url:
-                logger.warning("Categoria '%s' indisponível na Certideal.", category)
+            families = CFG.get("product_urls", {}).get(category) or CERTIDEAL_URLS.get(category, [])
+            if not families:
+                logger.warning("Sem famílias configuradas para '%s'.", category)
                 stats["by_category"][category] = 0
                 continue
 
-            logger.info("=== Categoria: %s ===", category)
+            logger.info("=== Categoria: %s (%s famílias) ===", category, len(families))
 
             replace_cats = CFG.get("replace_on_scrape_categories", ())
             if category in replace_cats:
                 products, known_ids = purge_category(products, known_ids, category)
 
-            if is_hub_category(category):
-                cards = scrape_samsung_hub(page, category_url)
-            else:
-                cards = scrape_category_listing(page, category_url)
             cat_count = 0
 
-            for index, card in enumerate(cards, start=1):
-                if index % 20 == 1:
-                    logger.info("[%s/%s] %s", index, len(cards), card.get("model"))
-                result = extract_product(card, category, page.url, scraped_at)
-                if result is None:
-                    stats["errors"] += 1
+            for index, family in enumerate(families, start=1):
+                family_model = family.get("model") or "Modelo"
+                family_url = family.get("url")
+                if not family_url:
                     continue
-                for record in result:
-                    if mode == "incremental" and record["product_id"] in known_ids:
+
+                logger.info(
+                    "[%s/%s] Família: %s — %s",
+                    index,
+                    len(families),
+                    family_model,
+                    family_url,
+                )
+
+                cards = scrape_family_listing(page, family_url, family_model, category)
+                if not cards:
+                    continue
+
+                for card_index, card in enumerate(cards, start=1):
+                    if card_index % 20 == 1:
+                        logger.info("[%s/%s] %s", card_index, len(cards), card.get("model"))
+                    result = extract_product(
+                        card,
+                        category,
+                        card.get("source_page") or family_url,
+                        scraped_at,
+                    )
+                    if result is None:
+                        stats["errors"] += 1
                         continue
-                    products.append(record)
-                    known_ids.add(record["product_id"])
-                    cat_count += 1
+                    for record in result:
+                        if mode == "incremental" and record["product_id"] in known_ids:
+                            continue
+                        products.append(record)
+                        known_ids.add(record["product_id"])
+                        cat_count += 1
 
             stats["by_category"][category] = cat_count
             stats["total"] += cat_count

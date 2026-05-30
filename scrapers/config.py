@@ -428,6 +428,8 @@ SWAPPIE_CONFIG: dict[str, Any] = {
 # Certideal
 # -----------------------------------------------------------------------------
 
+from certideal_urls import CERTIDEAL_URLS
+
 CERTIDEAL_CONFIG: dict[str, Any] = {
     "source": "certideal",
     "base_url": "https://www.certideal.pt",
@@ -453,18 +455,15 @@ CERTIDEAL_CONFIG: dict[str, Any] = {
         "avg_basket_eur": None,
     },
     "categories": {
-        "iphones": "https://www.certideal.pt/iphone-recondicionado-82",
-        "ipads": "https://www.certideal.pt/ipad-recondicionados-118",
-        # "macs": "https://www.certideal.pt/mac-recondicionado-157",
-        # "apple_watch": None,
-        # "tablets": "https://www.certideal.pt/tablets/",  # 404 — iPads via ipads
+        "iphones": None,
+        "ipads": None,
         "tablets": None,
-        "samsung_phones": "https://www.certideal.pt/samsung-recondicionado-90",
+        "samsung_phones": None,
     },
-    # Hub de modelos (sem preço na listagem) — seguir links e recolher SKUs nas subpáginas
-    "hub_categories": ("samsung_phones",),
-    # Ao re-scrape incremental, substituir produtos desta categoria (corrige dados errados)
-    "replace_on_scrape_categories": ("samsung_phones",),
+    # Famílias de produto (URLs verificadas) — ver certideal_urls.py
+    "product_urls": CERTIDEAL_URLS,
+    # Ao re-scrape incremental, substituir produtos destas categorias
+    "replace_on_scrape_categories": ("iphones", "ipads", "samsung_phones"),
     "delays": {
         "between_products": (0.3, 0.8),
         "between_pages": (1.5, 3.0),
