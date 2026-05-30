@@ -152,4 +152,5 @@ jobs:
           fi
 
           git commit -m "chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})"
+          git pull --rebase origin "${{ github.ref_name }}"
           git push
