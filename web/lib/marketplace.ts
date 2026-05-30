@@ -101,7 +101,23 @@ export function filterLaunchProducts(products: AggregatedProduct[]): AggregatedP
   return (products ?? []).filter((p) => p.tech === "smartphones" || p.tech === "tablets");
 }
 
-export const BRAND_OPTIONS = ["Apple", "Samsung", "Google", "Xiaomi", "Lenovo", "Dell"] as const;
+export const BRAND_OPTIONS = ["Apple", "Samsung", "Google"] as const;
+
+const ALLOWED_BRAND_KEYWORDS = [
+  "iphone",
+  "ipad",
+  "macbook",
+  "airpods",
+  "samsung",
+  "galaxy",
+  "google",
+  "pixel",
+] as const;
+
+export function isAllowedBrand(model: string | null | undefined): boolean {
+  const modelLower = (model ?? "").toLowerCase();
+  return ALLOWED_BRAND_KEYWORDS.some((kw) => modelLower.includes(kw));
+}
 
 export const STORAGE_OPTIONS = ["32GB", "64GB", "128GB", "256GB", "512GB"] as const;
 
@@ -116,9 +132,6 @@ const TECH_CATEGORIES: Record<TechType, string[]> = {
     "iphones",
     "samsung_phones",
     "google_phones",
-    "huawei_phones",
-    "xiaomi_phones",
-    "oneplus_phones",
   ],
   tablets: ["ipads", "tablets"],
   laptops: ["macs", "laptops"],
@@ -178,6 +191,7 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
   const category = safeStr(product?.category);
   const tech = categoryToTech(category);
   const model = safeStr(product?.model);
+  if (!isAllowedBrand(model)) return null;
   const storage = safeStr(product?.storage) || null;
   const price = safePrice(product?.price, category, model, storage);
   const source = product?.source as ProductSource | undefined;

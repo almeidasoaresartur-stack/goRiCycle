@@ -180,19 +180,18 @@ def extract_product(
         price = card.get("listing_price")
         if price is None:
             return []
-        return [
-            build_normalized_product(
-                CFG,
-                category=category,
-                url=card["url"],
-                model=card["model"],
-                price=price,
-                image_url=card.get("image_url"),
-                source_page=source_page,
-                scraped_at=scraped_at,
-                original_price=card.get("original_price"),
-            )
-        ]
+        record = build_normalized_product(
+            CFG,
+            category=category,
+            url=card["url"],
+            model=card["model"],
+            price=price,
+            image_url=card.get("image_url"),
+            source_page=source_page,
+            scraped_at=scraped_at,
+            original_price=card.get("original_price"),
+        )
+        return [record] if record else []
     except Exception as exc:
         logger.error("Falha %s: %s", card.get("url"), exc, exc_info=True)
         return None

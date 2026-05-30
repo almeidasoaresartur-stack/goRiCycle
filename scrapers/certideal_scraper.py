@@ -513,7 +513,7 @@ def extract_product(
             grade=card.get("grade"),
             color=card.get("color"),
         )
-        return [record]
+        return [record] if record else []
     except Exception as exc:
         logger.error("Falha %s: %s", card.get("url"), exc, exc_info=True)
         return None

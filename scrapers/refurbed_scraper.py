@@ -57,6 +57,9 @@ def is_url_alive(url: str) -> bool:
     """
     try:
         r = httpx.head(url, timeout=8, follow_redirects=True)
+        # Refurbed (e outros SPAs) respondem 404 a HEAD mas 200 a GET
+        if r.status_code == 404:
+            r = httpx.get(url, timeout=8, follow_redirects=True)
         final_url = str(r.url)
 
         if r.status_code == 404:
@@ -142,7 +145,7 @@ def normalize_record(
     color: str | None = None,
     original_price: float | None = None,
     seller_rating: float | None = None,
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     record = build_normalized_product(
         CFG,
         category=category,
@@ -158,6 +161,8 @@ def normalize_record(
         original_price=original_price,
         extra_grade_keywords=(),
     )
+    if record is None:
+        return None
     if seller_rating is not None:
         record["seller_rating"] = seller_rating
     return record
@@ -405,22 +410,22 @@ def _variants_from_detail_page(
             price = clean_price(parse_refurbed_price_eur(item.get("price")))
             if price is None:
                 continue
-            records.append(
-                normalize_record(
-                    category=category,
-                    url=product_url,
-                    model=model,
-                    price=price,
-                    image_url=image_url,
-                    source_page=source_page,
-                    scraped_at=scraped_at,
-                    storage=extract_storage(item.get("storage") or ""),
-                    grade=normalize_grade_refurbed(item.get("grade")),
-                    color=item.get("color"),
-                    original_price=original_price or card.get("original_price"),
-                    seller_rating=seller_rating,
-                )
+            record = normalize_record(
+                category=category,
+                url=product_url,
+                model=model,
+                price=price,
+                image_url=image_url,
+                source_page=source_page,
+                scraped_at=scraped_at,
+                storage=extract_storage(item.get("storage") or ""),
+                grade=normalize_grade_refurbed(item.get("grade")),
+                color=item.get("color"),
+                original_price=original_price or card.get("original_price"),
+                seller_rating=seller_rating,
             )
+            if record:
+                records.append(record)
         return records
 
     # Fallback: preço único na ficha
@@ -439,20 +444,19 @@ def _variants_from_detail_page(
     except Exception:
         pass
 
-    return [
-        normalize_record(
-            category=category,
-            url=product_url,
-            model=model,
-            price=price,
-            image_url=image_url,
-            source_page=source_page,
-            scraped_at=scraped_at,
-            storage=extract_storage(subtitle),
-            original_price=original_price or card.get("original_price"),
-            seller_rating=seller_rating,
-        )
-    ]
+    record = normalize_record(
+        category=category,
+        url=product_url,
+        model=model,
+        price=price,
+        image_url=image_url,
+        source_page=source_page,
+        scraped_at=scraped_at,
+        storage=extract_storage(subtitle),
+        original_price=original_price or card.get("original_price"),
+        seller_rating=seller_rating,
+    )
+    return [record] if record else []
 
 
 def extract_product(

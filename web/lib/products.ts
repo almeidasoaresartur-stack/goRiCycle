@@ -135,7 +135,7 @@ export function getCatalogStats(): {
 
 export function getAvailableBrands(): string[] {
   const { brandCounts } = getCatalogStats();
-  const priority = ["Apple", "Samsung", "Google", "Xiaomi", "Huawei", "OnePlus", "Lenovo"];
+  const priority = ["Apple", "Samsung", "Google"];
   return priority.filter((b) => (brandCounts[b] ?? 0) > 0);
 }
 

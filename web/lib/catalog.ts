@@ -136,28 +136,10 @@ export const ANDROID_CATEGORIES: QuickCategory[] = [
     icon: "smartphone",
     brand: "Google",
   },
-  {
-    id: "xiaomi",
-    label: "Xiaomi",
-    query: "Xiaomi 13 128GB",
-    icon: "smartphone",
-    brand: "Xiaomi",
-  },
-  {
-    id: "huawei",
-    label: "Huawei",
-    query: "Huawei P30 Pro 128GB",
-    icon: "smartphone",
-    brand: "Huawei",
-  },
 ];
 
 export const BRAND_LABELS: Record<string, string> = {
   Apple: "Apple",
   Samsung: "Samsung",
   Google: "Google Pixel",
-  Xiaomi: "Xiaomi",
-  Huawei: "Huawei",
-  OnePlus: "OnePlus",
-  Lenovo: "Lenovo",
 };

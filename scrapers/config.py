@@ -30,9 +30,9 @@ CATEGORY_KEYS: tuple[str, ...] = (
     # "apple_watch",   # removido temporariamente — wearables
     "samsung_phones",
     "google_phones",
-    "huawei_phones",
-    "xiaomi_phones",
-    "oneplus_phones",
+    # "huawei_phones",   # removido temporariamente — foco Apple/Samsung/Google
+    # "xiaomi_phones",
+    # "oneplus_phones",
     # "laptops",       # removido temporariamente — foco em smartphones/tablets
 )
 
@@ -199,9 +199,10 @@ REFURBED_CONFIG: dict[str, Any] = {
         # "laptops": "https://www.refurbed.pt/c/computadores-portateis/",
         "samsung_phones": "https://www.refurbed.pt/c/smartphones/?brand=Samsung",
         "google_phones": "https://www.refurbed.pt/c/smartphones/?brand=Google",
-        "huawei_phones": "https://www.refurbed.pt/c/smartphones/?brand=Huawei",
-        "xiaomi_phones": "https://www.refurbed.pt/c/smartphones/?brand=Xiaomi",
-        "oneplus_phones": "https://www.refurbed.pt/c/smartphones/?brand=OnePlus",
+        # Removido temporariamente — foco Apple/Samsung/Google
+        # "huawei_phones": "https://www.refurbed.pt/c/smartphones/?brand=Huawei",
+        # "xiaomi_phones": "https://www.refurbed.pt/c/smartphones/?brand=Xiaomi",
+        # "oneplus_phones": "https://www.refurbed.pt/c/smartphones/?brand=OnePlus",
     },
     # Filtra cartões pela marca detectada no título (Refurbed ignora ?brand= em SPA)
     "category_brand_filters": {
@@ -211,16 +212,16 @@ REFURBED_CONFIG: dict[str, Any] = {
         # "apple_watch": ("Apple",),
         "samsung_phones": ("Samsung",),
         "google_phones": ("Google",),
-        "huawei_phones": ("Huawei",),
-        "xiaomi_phones": ("Xiaomi",),
-        "oneplus_phones": ("OnePlus",),
+        # "huawei_phones": ("Huawei",),
+        # "xiaomi_phones": ("Xiaomi",),
+        # "oneplus_phones": ("OnePlus",),
     },
     "replace_on_scrape_categories": (
         "samsung_phones",
         "google_phones",
-        "huawei_phones",
-        "xiaomi_phones",
-        "oneplus_phones",
+        # "huawei_phones",
+        # "xiaomi_phones",
+        # "oneplus_phones",
     ),
     "max_pages": 100,
     "delays": {

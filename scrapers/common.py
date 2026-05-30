@@ -63,6 +63,25 @@ BRAND_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Xiaomi", ("xiaomi", "redmi")),
 )
 
+ALLOWED_BRANDS = {"apple", "samsung", "google"}
+
+ALLOWED_BRAND_KEYWORDS: tuple[str, ...] = (
+    "iphone",
+    "ipad",
+    "macbook",
+    "airpods",
+    "samsung",
+    "galaxy",
+    "google",
+    "pixel",
+)
+
+
+def is_allowed_brand(model: str | None) -> bool:
+    """Verifica se o modelo pertence a uma marca permitida (Apple, Samsung, Google)."""
+    model_lower = (model or "").lower()
+    return any(kw in model_lower for kw in ALLOWED_BRAND_KEYWORDS)
+
 
 def human_delay(delays: dict[str, tuple[float, float]], key: str) -> None:
     low, high = delays[key]
@@ -385,9 +404,12 @@ def build_normalized_product(
     color: str | None = None,
     original_price: float | None = None,
     extra_grade_keywords: tuple[tuple[str, str], ...] = (),
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     """Schema único riCycle com campos de afiliado."""
     model = normalize_model_name(model)
+    if not is_allowed_brand(model):
+        logger.debug("Marca não permitida ignorada: %s", model)
+        return None
     storage_norm = storage or extract_storage(model)
     grade_norm = grade or extract_grade(model, extra_grade_keywords)
 

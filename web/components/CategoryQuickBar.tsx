@@ -63,7 +63,7 @@ function CategoryRow({
 
 export function CategoryQuickBar({ activeQuery, availableBrands = [] }: CategoryQuickBarProps) {
   const hasAndroid = availableBrands.some((b) =>
-    ["Samsung", "Google", "Xiaomi", "Huawei", "OnePlus"].includes(b),
+    ["Samsung", "Google"].includes(b),
   );
 
   return (

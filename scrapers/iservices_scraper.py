@@ -103,7 +103,7 @@ def normalize_record(
     grade: str | None = None,
     color: str | None = None,
     original_price: float | None = None,
-) -> dict[str, Any]:
+) -> dict[str, Any] | None:
     return build_normalized_product(
         CFG,
         category=category,
@@ -257,18 +257,17 @@ def _variants_from_detail_page(
         price = parse_price_eur(price_raw) or card.get("listing_price")
         if price is None:
             return []
-        return [
-            normalize_record(
-                category=category,
-                url=product_url,
-                model=model,
-                price=price,
-                image_url=image_url,
-                source_page=source_page,
-                scraped_at=scraped_at,
-                original_price=card.get("original_price"),
-            )
-        ]
+        record = normalize_record(
+            category=category,
+            url=product_url,
+            model=model,
+            price=price,
+            image_url=image_url,
+            source_page=source_page,
+            scraped_at=scraped_at,
+            original_price=card.get("original_price"),
+        )
+        return [record] if record else []
 
     storage_options = group_storage.locator(SEL["detail_variant_radio"]).evaluate_all(
         """(inputs) => inputs.map((input) => ({
@@ -304,20 +303,20 @@ def _variants_from_detail_page(
 
                 storage_label = storage_opt.get("label") or ""
                 grade_label = grade_opt.get("label") or ""
-                records.append(
-                    normalize_record(
-                        category=category,
-                        url=product_url,
-                        model=model,
-                        price=price,
-                        image_url=image_url,
-                        source_page=source_page,
-                        scraped_at=scraped_at,
-                        storage=extract_storage(storage_label) or extract_storage(model),
-                        grade=extract_grade(grade_label) or extract_grade(model),
-                        original_price=card.get("original_price"),
-                    )
+                record = normalize_record(
+                    category=category,
+                    url=product_url,
+                    model=model,
+                    price=price,
+                    image_url=image_url,
+                    source_page=source_page,
+                    scraped_at=scraped_at,
+                    storage=extract_storage(storage_label) or extract_storage(model),
+                    grade=extract_grade(grade_label) or extract_grade(model),
+                    original_price=card.get("original_price"),
                 )
+                if record:
+                    records.append(record)
             except Exception as exc:
                 logger.warning(
                     "Variante ignorada (%s / %s / %s): %s",

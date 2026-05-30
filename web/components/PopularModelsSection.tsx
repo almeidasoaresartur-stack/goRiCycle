@@ -123,7 +123,7 @@ export function PopularModelsSection({
 
         <div className="space-y-14">
           <ModelGrid title="Apple" models={appleModels} activeQuery={activeQuery} />
-          <ModelGrid title="Samsung, Google, Xiaomi & Huawei" models={androidModels} activeQuery={activeQuery} />
+          <ModelGrid title="Samsung & Google" models={androidModels} activeQuery={activeQuery} />
         </div>
       </div>
     </section>

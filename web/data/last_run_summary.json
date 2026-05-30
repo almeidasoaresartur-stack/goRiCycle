@@ -1,69 +1,74 @@
 {
-  "run_at": "2026-05-30T11:06:01.983865+00:00",
-  "mode": "incremental",
+  "run_at": "2026-05-30T15:35:52.425728+00:00",
+  "mode": "full",
   "categories": [
     "iphones",
     "ipads",
     "tablets",
     "samsung_phones",
-    "google_phones",
-    "huawei_phones",
-    "xiaomi_phones",
-    "oneplus_phones"
+    "google_phones"
   ],
   "sources": {
     "iservices": {
+      "total": 267,
+      "by_category": {
+        "iphones": 198,
+        "ipads": 69,
+        "tablets": 0,
+        "samsung_phones": 0,
+        "google_phones": 0
+      },
+      "errors": 0
+    },
+    "refurbed": {
       "total": 0,
       "by_category": {
         "iphones": 0,
         "ipads": 0,
         "tablets": 0,
         "samsung_phones": 0,
-        "google_phones": 0,
-        "huawei_phones": 0,
-        "xiaomi_phones": 0,
-        "oneplus_phones": 0
+        "google_phones": 0
       },
       "errors": 0
     },
-    "refurbed": {
-      "total": 25,
+    "backmarket": {
+      "total": 0,
       "by_category": {
-        "iphones": 13,
-        "ipads": 3,
+        "iphones": 0,
+        "ipads": 0,
         "tablets": 0,
-        "samsung_phones": 4,
-        "google_phones": 5,
-        "huawei_phones": 0,
-        "xiaomi_phones": 0,
-        "oneplus_phones": 0
+        "samsung_phones": 0,
+        "google_phones": 0
       },
       "errors": 0
     },
     "swappie": {
-      "total": 0,
+      "total": 351,
       "by_category": {
-        "iphones": 0,
-        "ipads": 0
+        "iphones": 268,
+        "ipads": 83
       },
       "errors": 0
     },
     "certideal": {
-      "total": 380,
+      "total": 396,
       "by_category": {
-        "iphones": 372,
-        "ipads": 7,
+        "iphones": 381,
+        "ipads": 14,
         "samsung_phones": 1
       },
       "errors": 0
     },
     "callphone": {
-      "total": 0,
-      "by_category": {},
+      "total": 1521,
+      "by_category": {
+        "iphones": 1520,
+        "ipads": 1
+      },
       "errors": 0
     }
   },
-  "grand_total": 405,
+  "grand_total": 2535,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,

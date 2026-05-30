@@ -295,6 +295,8 @@ def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, An
                 grade=info["grade"],
                 color=info["color"],
             )
+            if record is None:
+                continue
             if info["variant_id"]:
                 record["product_id"] = f"{SOURCE_NAME}_{info['variant_id']}"
             records.append(record)

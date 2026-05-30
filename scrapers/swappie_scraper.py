@@ -226,35 +226,35 @@ def _variants_from_model_page(
             if price is None:
                 continue
 
-            records.append(
-                build_normalized_product(
-                    CFG,
-                    category=category,
-                    url=product_url,
-                    model=model,
-                    price=price,
-                    image_url=image_url,
-                    source_page=source_page,
-                    scraped_at=scraped_at,
-                    storage=extract_storage(storage_key),
-                    grade=normalize_grade_swappie(grade_key),
-                    extra_grade_keywords=(),
-                )
-            )
-
-    if not records and clean_price(card.get("listing_price")):
-        records.append(
-            build_normalized_product(
+            record = build_normalized_product(
                 CFG,
                 category=category,
                 url=product_url,
                 model=model,
-                price=clean_price(card["listing_price"]),
+                price=price,
                 image_url=image_url,
                 source_page=source_page,
                 scraped_at=scraped_at,
+                storage=extract_storage(storage_key),
+                grade=normalize_grade_swappie(grade_key),
+                extra_grade_keywords=(),
             )
+            if record:
+                records.append(record)
+
+    if not records and clean_price(card.get("listing_price")):
+        record = build_normalized_product(
+            CFG,
+            category=category,
+            url=product_url,
+            model=model,
+            price=clean_price(card["listing_price"]),
+            image_url=image_url,
+            source_page=source_page,
+            scraped_at=scraped_at,
         )
+        if record:
+            records.append(record)
 
     return records
 
