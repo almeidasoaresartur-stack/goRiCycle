@@ -51,7 +51,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
           </div>
           <button
             type="submit"
-            className="h-11 shrink-0 rounded-xl bg-emerald-600 px-7 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-500 active:scale-[0.98]"
+            className="h-11 shrink-0 rounded-xl bg-emerald-600 px-7 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.98]"
           >
             Comparar
           </button>
