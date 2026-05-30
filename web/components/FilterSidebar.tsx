@@ -217,6 +217,13 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
 
         <FilterGroup title="Estado estético">
           <div className="flex flex-col gap-1.5">
+            <button
+              type="button"
+              onClick={() => updateFilter("grade", null)}
+              className={`${chipClass(!filters.grade)} text-left`}
+            >
+              Todos os estados
+            </button>
             {GRADE_TIER_OPTIONS.map(({ id, label, emoji }) => (
               <button
                 key={id}

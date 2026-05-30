@@ -514,34 +514,63 @@ export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): bo
   return hasSpecificFilters(filters);
 }
 
+const HIGHLIGHT_STORAGE_BY_TECH: Record<TechType, string[]> = {
+  smartphones: ["128gb", "256gb", "64gb", "512gb"],
+  tablets: ["256gb", "128gb", "64gb", "512gb", "32gb"],
+  laptops: ["256gb", "512gb", "128gb"],
+  wearables: ["32gb", "64gb"],
+};
+
+const HIGHLIGHT_GRADE_PRIORITY: GradeTier[] = ["Premium", "Excelente", "Bom"];
+
+/** Destaques: escolhe a variante representativa de um modelo (capacidade + estado + preço). */
+export function getRepresentativeProduct(
+  products: AggregatedProduct[],
+  tech: TechType,
+): AggregatedProduct | null {
+  if (!products.length) return null;
+
+  const preferredStorage = HIGHLIGHT_STORAGE_BY_TECH[tech] ?? HIGHLIGHT_STORAGE_BY_TECH.smartphones;
+
+  for (const storage of preferredStorage) {
+    for (const grade of HIGHLIGHT_GRADE_PRIORITY) {
+      const match = products.find(
+        (product) =>
+          (product.storage ?? "").toLowerCase().includes(storage) &&
+          product.gradeTier === grade,
+      );
+      if (match) return match;
+    }
+  }
+
+  return [...products].sort((a, b) => a.minPrice - b.minPrice)[0] ?? null;
+}
+
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
   const perTech = 6;
   const maxTotal = 12;
 
-  const pickDiverse = (tech: TechType) => {
-    const pool = (products ?? [])
-      .filter((p) => p?.tech === tech && isRelevantForHighlights(p))
-      .sort((a, b) => a.minPrice - b.minPrice);
+  const pickByModel = (tech: TechType) => {
+    const pool = (products ?? []).filter(
+      (product) => product?.tech === tech && isRelevantForHighlights(product),
+    );
 
-    const seen = new Set<string>();
-    const picks: AggregatedProduct[] = [];
-
+    const byModel = new Map<string, AggregatedProduct[]>();
     for (const product of pool) {
-      const key = [
-        normalizeModel(product.model),
-        product.storage?.toUpperCase() ?? "",
-        product.gradeTier,
-      ].join("|");
-      if (seen.has(key)) continue;
-      seen.add(key);
-      picks.push(product);
-      if (picks.length >= perTech) break;
+      const key = normalizeModel(product.model);
+      const variants = byModel.get(key) ?? [];
+      variants.push(product);
+      byModel.set(key, variants);
     }
 
-    return picks;
+    return [...byModel.values()]
+      .map((variants) => getRepresentativeProduct(variants, tech))
+      .filter((product): product is AggregatedProduct => product != null)
+      .sort((a, b) => a.minPrice - b.minPrice)
+      .slice(0, perTech);
   };
 
-  return [...pickDiverse("smartphones"), ...pickDiverse("tablets")].slice(0, maxTotal);
+  return [...pickByModel("smartphones"), ...pickByModel("tablets")].slice(0, maxTotal);
 }
 
 export function catalogFiltersForView(
