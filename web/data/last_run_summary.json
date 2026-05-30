@@ -1,13 +1,10 @@
 {
-  "run_at": "2026-05-28T21:42:01.298566+00:00",
-  "mode": "full",
+  "run_at": "2026-05-30T08:43:45.184525+00:00",
+  "mode": "incremental",
   "categories": [
     "iphones",
     "ipads",
-    "macs",
-    "apple_watch",
     "tablets",
-    "laptops",
     "samsung_phones",
     "google_phones",
     "huawei_phones",
@@ -16,14 +13,11 @@
   ],
   "sources": {
     "iservices": {
-      "total": 300,
+      "total": 4,
       "by_category": {
-        "iphones": 198,
-        "ipads": 74,
-        "macs": 27,
-        "apple_watch": 1,
+        "iphones": 3,
+        "ipads": 1,
         "tablets": 0,
-        "laptops": 0,
         "samsung_phones": 0,
         "google_phones": 0,
         "huawei_phones": 0,
@@ -33,16 +27,13 @@
       "errors": 0
     },
     "refurbed": {
-      "total": 220,
+      "total": 71,
       "by_category": {
-        "iphones": 95,
-        "ipads": 61,
-        "macs": 0,
-        "apple_watch": 10,
-        "tablets": 50,
-        "laptops": 0,
-        "samsung_phones": 0,
-        "google_phones": 4,
+        "iphones": 37,
+        "ipads": 24,
+        "tablets": 0,
+        "samsung_phones": 5,
+        "google_phones": 5,
         "huawei_phones": 0,
         "xiaomi_phones": 0,
         "oneplus_phones": 0
@@ -50,32 +41,29 @@
       "errors": 0
     },
     "swappie": {
-      "total": 357,
+      "total": 8,
       "by_category": {
-        "iphones": 271,
-        "ipads": 86
+        "iphones": 7,
+        "ipads": 1
       },
       "errors": 0
     },
     "certideal": {
-      "total": 42,
+      "total": 383,
       "by_category": {
-        "iphones": 23,
+        "iphones": 375,
         "ipads": 7,
-        "macs": 12,
-        "apple_watch": 0,
-        "tablets": 0,
-        "laptops": 0,
-        "samsung_phones": 0,
-        "google_phones": 0,
-        "huawei_phones": 0,
-        "xiaomi_phones": 0,
-        "oneplus_phones": 0
+        "samsung_phones": 1
       },
+      "errors": 0
+    },
+    "callphone": {
+      "total": 0,
+      "by_category": {},
       "errors": 0
     }
   },
-  "grand_total": 919,
+  "grand_total": 466,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
@@ -98,6 +86,11 @@
       "est_per_conversion": null
     },
     "certideal": {
+      "commission_pct": null,
+      "avg_basket": null,
+      "est_per_conversion": null
+    },
+    "callphone": {
       "commission_pct": null,
       "avg_basket": null,
       "est_per_conversion": null
