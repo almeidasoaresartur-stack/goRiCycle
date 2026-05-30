@@ -304,19 +304,23 @@ function flattenAggregatedToListings(products: AggregatedProduct[]): ProductList
   return listings;
 }
 
-/** Por modelo + capacidade + estado + loja, mantém apenas o listing mais barato. */
+/**
+ * Para cada combinação modelo+capacidade+estado+loja,
+ * mantém apenas o produto mais barato dessa loja.
+ * Resultado: no máximo 1 produto por loja para cada variante específica.
+ */
 export function deduplicateByBestPricePerStore(
   products: AggregatedProduct[],
 ): AggregatedProduct[] {
   const map = new Map<string, ProductListing>();
 
   for (const listing of flattenAggregatedToListings(products)) {
-    const key = [
-      normalizeModel(listing.model),
-      listing.storage?.toUpperCase() ?? "",
-      listing.grade ?? "",
-      listing.storeSlug ?? "",
-    ].join("|");
+    const model = normalizeModel(listing.model);
+    const storage = (listing.storage ?? "").toUpperCase().trim();
+    const grade = (listing.gradeTier ?? "").toLowerCase().trim();
+    const source = (listing.storeSlug ?? "").toLowerCase().trim();
+
+    const key = `${model}|${storage}|${grade}|${source}`;
 
     const existing = map.get(key);
     if (!existing || listing.price < existing.price) {

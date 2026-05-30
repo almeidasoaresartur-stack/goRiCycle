@@ -154,15 +154,27 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   });
   const options = buildFilterOptionsFromAggregated(scopedForOptions);
 
+  const activeCatalogFilters = useMemo(
+    () => catalogFiltersForView(filters, viewAll),
+    [filters, viewAll],
+  );
+
+  const filteredProducts = useMemo(() => {
+    if (!catalogMode) return safeProducts;
+    return filterAggregatedProducts(safeProducts, activeCatalogFilters);
+  }, [catalogMode, safeProducts, activeCatalogFilters]);
+
+  const deduplicatedProducts = useMemo(
+    () => deduplicateByBestPricePerStore(filteredProducts),
+    [filteredProducts],
+  );
+
   const baseProducts = useMemo(() => {
     if (!catalogMode) {
-      return buildHighlightProducts(deduplicateByBestPricePerStore(safeProducts));
+      return buildHighlightProducts(deduplicatedProducts);
     }
-    const activeFilters = catalogFiltersForView(filters, viewAll);
-    return deduplicateByBestPricePerStore(
-      filterAggregatedProducts(safeProducts, activeFilters),
-    );
-  }, [catalogMode, filters, viewAll, safeProducts]);
+    return deduplicatedProducts;
+  }, [catalogMode, deduplicatedProducts]);
 
   const displayProducts = useMemo(
     () => sortAggregatedProducts(baseProducts, sortOrder),
@@ -197,12 +209,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     [displayProducts, safeCurrentPage],
   );
 
-  const catalogCount = useMemo(() => {
-    const activeFilters = catalogFiltersForView(filters, viewAll);
-    return deduplicateByBestPricePerStore(
-      filterAggregatedProducts(safeProducts, activeFilters),
-    ).length;
-  }, [filters, viewAll, safeProducts]);
+  const catalogCount = deduplicatedProducts.length;
 
   const minPrice = computeMinPrice(displayProducts);
 
