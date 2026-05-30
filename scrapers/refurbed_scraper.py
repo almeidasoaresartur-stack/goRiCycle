@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlparse
 
+import httpx
 from playwright.sync_api import Page, sync_playwright
 
 _SCRAPERS_DIR = Path(__file__).resolve().parent
@@ -47,6 +48,30 @@ from config import CATEGORY_KEYS, REFURBED_CONFIG
 CFG = REFURBED_CONFIG
 SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
+
+
+def is_url_alive(url: str) -> bool:
+    """
+    Verifica se o URL do produto existe e não redireciona para pesquisa.
+    Usa HEAD request — mais rápido que GET, não descarrega o corpo da página.
+    """
+    try:
+        r = httpx.head(url, timeout=8, follow_redirects=True)
+        final_url = str(r.url)
+
+        if r.status_code == 404:
+            return False
+        if r.status_code >= 400:
+            return False
+
+        bad_patterns = ["/search/", "search_query=", "/c/", "?q=", "/procurar"]
+        if any(p in final_url for p in bad_patterns):
+            return False
+
+        return True
+
+    except Exception:
+        return False
 
 
 def clean_price(price: float | None) -> float | None:
@@ -554,6 +579,10 @@ def run_scraper(
 
                 for record in result:
                     pid = record["product_id"]
+                    product_url = record.get("url")
+                    if product_url and not is_url_alive(product_url):
+                        logger.warning("URL morta rejeitada: %s", product_url)
+                        continue
                     if mode == "incremental" and pid in known_ids:
                         continue
                     products.append(record)

@@ -185,7 +185,17 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
         <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
           Preço do site oficial · {best?.store ?? "loja parceira"}{" "}
           <span className="text-slate-400">|</span>{" "}
-          <span className="font-medium text-green-600">✓ Atualizado diariamente</span>
+          {best?.storeSlug === "refurbed" ? (
+            <span className="inline-flex items-center gap-1 text-gray-400">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-gray-300" />
+              A partir de · preços podem variar na loja
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 font-medium text-green-600">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+              Atualizado diariamente
+            </span>
+          )}
           {debugSuspicious && (
             <span className="ml-1 font-semibold text-red-600">· ⚠ link a verificar</span>
           )}
