@@ -30,7 +30,7 @@ export function SiteHeader({
           </Link>
           <a
             href={ctaHref}
-            className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            className="rounded-xl bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-950"
           >
             {ctaLabel}
           </a>

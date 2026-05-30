@@ -13,10 +13,12 @@ const LOGO_HEIGHT = 44;
 
 function storeButtonClass(active: boolean): string {
   return [
-    "group flex min-h-[7.5rem] flex-col items-center justify-center rounded-2xl border p-5 transition-all duration-200",
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500",
+    "group flex min-h-[7.5rem] w-[calc(50%-0.5rem)] max-w-[11rem] flex-col items-center justify-center rounded-2xl border p-5",
+    "cursor-pointer transition-all duration-200 hover:scale-105",
+    "sm:w-40 sm:max-w-none lg:w-44",
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800",
     active
-      ? "border-emerald-500 bg-emerald-50 shadow-md ring-2 ring-emerald-200"
+      ? "border-emerald-800 bg-emerald-50 shadow-md ring-2 ring-emerald-200"
       : "border-gray-100 bg-white hover:border-gray-200 hover:shadow-md",
   ].join(" ");
 }
@@ -81,9 +83,9 @@ export function PartnerStoresSection() {
             <button
               type="button"
               onClick={() => selectStore(null)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:scale-105 ${
                 !selectedStore
-                  ? "bg-emerald-600 text-white shadow-sm"
+                  ? "bg-emerald-900 text-white shadow-sm hover:bg-emerald-950"
                   : "border border-slate-200 bg-white text-slate-700 hover:border-emerald-300 hover:bg-emerald-50"
               }`}
               aria-pressed={!selectedStore}
@@ -94,7 +96,7 @@ export function PartnerStoresSection() {
               <button
                 type="button"
                 onClick={clearAllFilters}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition hover:border-emerald-300 hover:text-emerald-700"
+                className="cursor-pointer rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:scale-105 hover:border-emerald-300 hover:text-emerald-900"
               >
                 Limpar filtros
               </button>
@@ -102,7 +104,7 @@ export function PartnerStoresSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="flex flex-wrap justify-center gap-4">
           {PARTNER_STORE_SLUGS.map((slug) => {
             const info = getStoreInfo(slug);
             const active = selectedStore === slug;
@@ -130,7 +132,7 @@ export function PartnerStoresSection() {
                 </div>
                 <span
                   className={`mt-3 text-[11px] font-medium transition-colors ${
-                    active ? "text-emerald-700" : "text-gray-400 group-hover:text-gray-600"
+                    active ? "text-emerald-900" : "text-gray-400 group-hover:text-gray-600"
                   }`}
                 >
                   {active ? "Selecionada ✓" : "Filtrar produtos"}

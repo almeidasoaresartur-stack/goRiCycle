@@ -88,7 +88,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
           alt={clean.displayName}
         />
         {isBest && (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
             <Crown className="h-3 w-3" />
             Melhor preço
           </span>
@@ -175,7 +175,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
             href={listingHref(best)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"
+            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
           >
             Ver Oferta
             <ExternalLink className="h-4 w-4" />
@@ -233,7 +233,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
           sizes="128px"
         />
         {isBest && (
-          <span className="absolute left-1 top-1 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white shadow-sm">
+          <span className="absolute left-1 top-1 inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white shadow-sm">
             <Crown className="h-2.5 w-2.5" />
             Top
           </span>
@@ -304,7 +304,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
           href={listingHref(best)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"
+          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
         >
           Ver Oferta
           <ExternalLink className="h-4 w-4" />

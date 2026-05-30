@@ -20,7 +20,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
 
         <h1 className="text-xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-2xl lg:text-3xl lg:leading-[1.2]">
           Compara recondicionados em Portugal —{" "}
-          <span className="text-emerald-600">num só sítio</span>
+          <span className="text-emerald-900">num só sítio</span>
         </h1>
 
         <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
@@ -51,7 +51,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
           </div>
           <button
             type="submit"
-            className="h-11 shrink-0 rounded-xl bg-emerald-600 px-7 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 active:scale-[0.98]"
+            className="h-11 shrink-0 rounded-xl bg-emerald-900 px-7 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-950 active:scale-[0.98]"
           >
             Comparar
           </button>

@@ -44,7 +44,7 @@ const VIEW_TOGGLE_CLASS =
 
 function viewToggleClass(active: boolean): string {
   return active
-    ? `${VIEW_TOGGLE_CLASS} border-emerald-600 bg-emerald-600 text-white shadow-sm`
+    ? `${VIEW_TOGGLE_CLASS} border-emerald-900 bg-emerald-900 text-white shadow-sm`
     : `${VIEW_TOGGLE_CLASS} border-slate-200 bg-white text-slate-600 hover:border-emerald-300 hover:bg-emerald-50/50`;
 }
 

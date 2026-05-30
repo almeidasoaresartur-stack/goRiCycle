@@ -40,14 +40,14 @@ function PriceSparkline() {
       <svg viewBox={`0 0 ${w} ${h}`} className="h-20 w-full" preserveAspectRatio="none">
         <defs>
           <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0A7E5A" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#0A7E5A" stopOpacity="0" />
+            <stop offset="0%" stopColor="#064e3b" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#064e3b" stopOpacity="0" />
           </linearGradient>
         </defs>
         <polygon fill="url(#sparkFill)" points={`0,${h} ${points} ${w},${h}`} />
         <polyline
           fill="none"
-          stroke="#0A7E5A"
+          stroke="#064e3b"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -128,7 +128,7 @@ export function RetentionSection({ productLabel, targetPrice }: RetentionSection
               />
               <button
                 type="submit"
-                className="h-12 shrink-0 rounded-xl bg-emerald-600 px-6 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                className="h-12 shrink-0 rounded-xl bg-emerald-900 px-6 text-sm font-semibold text-white transition hover:bg-emerald-950"
               >
                 Criar alerta
               </button>
