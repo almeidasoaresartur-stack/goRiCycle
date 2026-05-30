@@ -32,6 +32,7 @@ from common import (
     detect_brand,
     extract_storage,
     human_delay,
+    is_allowed_brand,
     log_discarded_listing,
     normalize_grade_refurbed,
     page_wait_ms,
@@ -50,23 +51,20 @@ SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
 
 
-def is_url_alive(url: str) -> bool:
+def check_link_status_200(url: str) -> bool:
     """
-    Verifica se o URL do produto existe e não redireciona para pesquisa.
-    Usa HEAD request — mais rápido que GET, não descarrega o corpo da página.
+    Verifica se o URL do produto responde HTTP 200.
+    Refurbed devolve 404 a HEAD mas 200 a GET — fallback automático.
     """
     try:
         r = httpx.head(url, timeout=8, follow_redirects=True)
-        # Refurbed (e outros SPAs) respondem 404 a HEAD mas 200 a GET
-        if r.status_code == 404:
+        if r.status_code != 200:
             r = httpx.get(url, timeout=8, follow_redirects=True)
+
+        if r.status_code != 200:
+            return False
+
         final_url = str(r.url)
-
-        if r.status_code == 404:
-            return False
-        if r.status_code >= 400:
-            return False
-
         bad_patterns = ["/search/", "search_query=", "/c/", "?q=", "/procurar"]
         if any(p in final_url for p in bad_patterns):
             return False
@@ -75,6 +73,38 @@ def is_url_alive(url: str) -> bool:
 
     except Exception:
         return False
+
+
+def filter_best_price(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """
+    Mantém apenas a oferta mais barata por variação técnica
+    (modelo + armazenamento + estado).
+    """
+    best: dict[tuple[str, str, str], dict[str, Any]] = {}
+
+    for product in products:
+        model = (product.get("model") or "").lower().strip()
+        storage = (product.get("storage") or "").lower().strip()
+        grade = (product.get("grade") or "").lower().strip()
+        key = (model, storage, grade)
+
+        price = product.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+
+        existing = best.get(key)
+        if existing is None or price < existing.get("price", float("inf")):
+            best[key] = product
+
+    kept = list(best.values())
+    removed = len(products) - len(kept)
+    if removed:
+        logger.info(
+            "Deduplicação filter_best_price: removidos %s duplicados (%s únicos)",
+            removed,
+            len(kept),
+        )
+    return kept
 
 
 def clean_price(price: float | None) -> float | None:
@@ -232,6 +262,10 @@ def collect_listing_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
                 )
                 continue
 
+            if not is_allowed_brand(name):
+                logger.debug("Marca não permitida ignorada: %s", name)
+                continue
+
             cards.append(
                 {
                     "model": name,
@@ -271,26 +305,29 @@ def _click_load_more(page: Page) -> bool:
 def _filter_cards_by_brand(
     cards: list[dict[str, Any]], category: str
 ) -> list[dict[str, Any]]:
-    """Refurbed: URLs com ?brand= devolvem iPhones na mesma SPA — filtrar pelo título."""
+    """Filtra cartões: apenas Apple, Samsung e Google (via config + guard global)."""
     allowed = CFG.get("category_brand_filters", {}).get(category)
-    if not allowed:
-        return cards
-    allowed_lower = {b.lower() for b in allowed}
     before = len(cards)
-    filtered = [
-        c
-        for c in cards
-        if (detect_brand(c.get("model", "")) or "").lower() in allowed_lower
-    ]
-    if before != len(filtered):
+
+    if allowed:
+        allowed_lower = {b.lower() for b in allowed}
+        cards = [
+            c
+            for c in cards
+            if (detect_brand(c.get("model", "")) or "").lower() in allowed_lower
+        ]
+
+    # Guard global — rejeita qualquer marca fora de Apple/Samsung/Google
+    cards = [c for c in cards if is_allowed_brand(c.get("model", ""))]
+
+    if before != len(cards):
         logger.info(
-            "%s: filtrados %s cartões fora de marca %s (%s restantes)",
+            "%s: filtrados %s cartões fora de marca permitida (%s restantes)",
             category,
-            before - len(filtered),
-            ", ".join(allowed),
-            len(filtered),
+            before - len(cards),
+            len(cards),
         )
-    return filtered
+    return cards
 
 
 def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any]]:
@@ -530,6 +567,10 @@ def run_scraper(
     if mode == "full":
         products: list[dict[str, Any]] = []
         known_ids: set[str] = set()
+        output_path = Path(CFG["output_json"])
+        if output_path.exists():
+            output_path.unlink()
+            logger.info("JSON anterior removido: %s", output_path)
         logger.info("Modo full: recriação completa do JSON")
     elif mode == "incremental":
         products, known_ids = load_existing_products(CFG["output_json"])
@@ -584,8 +625,8 @@ def run_scraper(
                 for record in result:
                     pid = record["product_id"]
                     product_url = record.get("url")
-                    if product_url and not is_url_alive(product_url):
-                        logger.warning("URL morta rejeitada: %s", product_url)
+                    if product_url and not check_link_status_200(product_url):
+                        logger.warning("Link morto removido: %s", product_url)
                         continue
                     if mode == "incremental" and pid in known_ids:
                         continue
@@ -596,9 +637,17 @@ def run_scraper(
                 human_delay(CFG["delays"], "between_products")
 
             stats["by_category"][category] = cat_count
-            stats["total"] += cat_count
 
         browser.close()
+
+    before_dedup = len(products)
+    products = filter_best_price(products)
+    stats["dedup_removed"] = before_dedup - len(products)
+    stats["total"] = len(products)
+    stats["by_category"] = {}
+    for product in products:
+        cat = product.get("category", "unknown")
+        stats["by_category"][cat] = stats["by_category"].get(cat, 0) + 1
 
     meta = {
         "source": CFG["source"],
