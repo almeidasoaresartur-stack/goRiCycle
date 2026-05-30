@@ -44,3 +44,6 @@ export function getStoreInfo(slug: ProductSource | string | null | undefined): S
   if (!slug || !(slug in STORES)) return null;
   return STORES[slug as ProductSource];
 }
+
+/** Ordem de exibição das lojas parceiras na navegação e filtros. */
+export const PARTNER_STORE_SLUGS = Object.keys(STORES) as ProductSource[];

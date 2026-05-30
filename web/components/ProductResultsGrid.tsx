@@ -177,7 +177,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"
           >
-            Ver loja
+            Ver Oferta
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
@@ -306,7 +306,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-600"
         >
-          Ver loja
+          Ver Oferta
           <ExternalLink className="h-4 w-4" />
         </a>
       </div>

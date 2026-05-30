@@ -487,7 +487,16 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
 }
 
 export function parseMarketplaceFilters(params: Record<string, string | undefined>): MarketplaceFilters {
-  const stores = parseStoreSlugs(params.stores);
+  const singleStore = params.store?.trim();
+  const multiStores = parseStoreSlugs(params.stores);
+
+  let stores: ProductSource[] | null = null;
+  if (singleStore && singleStore in STORES) {
+    stores = [singleStore as ProductSource];
+  } else if (multiStores.length) {
+    stores = multiStores;
+  }
+
   return {
     tech: params.tech ?? null,
     brand: params.brand ?? null,
@@ -496,8 +505,14 @@ export function parseMarketplaceFilters(params: Record<string, string | undefine
     grade: params.grade ?? null,
     color: params.color ?? null,
     q: params.q ?? null,
-    stores: stores.length ? stores : null,
+    stores,
   };
+}
+
+/** Loja única seleccionada na navegação superior (`?store=refurbed`). */
+export function getSelectedStore(filters: MarketplaceFilters): ProductSource | null {
+  if (filters.stores?.length === 1) return filters.stores[0];
+  return null;
 }
 
 export function hasActiveTechFilter(tech: string | null | undefined): tech is TechType {

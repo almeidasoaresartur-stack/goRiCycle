@@ -55,6 +55,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
 
   const toggleStore = (slug: ProductSource) => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.delete("store");
     const current = new Set(filters.stores ?? []);
 
     if (current.has(slug)) {

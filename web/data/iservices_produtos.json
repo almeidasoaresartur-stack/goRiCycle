@@ -8,7 +8,7 @@
     "google_phones"
   ],
   "scraped_at": "2026-05-30T15:35:52.429453+00:00",
-  "total_products": 267,
+  "total_products": 265,
   "products": [
     {
       "source": "iservices",
@@ -4753,26 +4753,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-05-30T15:35:52.429453+00:00",
-      "product_id": "iservices_1424-ipad-pro-11-2021-3%C2%AA-gera%C3%A7%C3%A3o_128gb_excelente",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Pro 11\" 2021 (3ª Geração)",
-      "storage": "128GB",
-      "color": null,
-      "grade": "Excelente",
-      "price": 722.88,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/ipad-pro-recondicionados/1424-ipad-pro-11-2021-3%C2%AA-gera%C3%A7%C3%A3o",
-      "image_url": "https://loja.iservices.pt/11125-large_default/ipad-pro-11-2021-3ª-geração.jpg",
-      "source_page": "https://loja.iservices.pt/ipads-base-recondicionados/1423-20163-ipad-102-2020-8%C2%AA-gera%C3%A7%C3%A3o#/226-estado-muito_bom/252-armazenamento-128_gb/393-cor_ipads-cinzento_sideral/400-conectividade-wi_fi_cellular",
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-05-30T15:35:52.429453+00:00",
       "product_id": "iservices_1425-ipad-air-2020-4-geracao_256gb_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -4880,7 +4860,7 @@
       "storage": "64GB",
       "color": null,
       "grade": "Bom",
-      "price": 337.19,
+      "price": 295.75,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -4981,26 +4961,6 @@
       "color": null,
       "grade": "Excelente",
       "price": 381.68,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/ipads-base-recondicionados/1453-ipad-109-2022-10%C2%AA-gera%C3%A7%C3%A3o",
-      "image_url": "https://loja.iservices.pt/11393-large_default/ipad-109-2022-10ª-geração.jpg",
-      "source_page": "https://loja.iservices.pt/ipad-air-recondicionados/1426-17182-ipad-air-2019-3%C2%AA-gera%C3%A7%C3%A3o#/250-estado-bom/393-cor_ipads-cinzento_sideral/396-armazenamento-64_gb/400-conectividade-wi_fi_cellular",
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-05-30T15:35:52.429453+00:00",
-      "product_id": "iservices_1453-ipad-109-2022-10%C2%AA-gera%C3%A7%C3%A3o_64gb_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad 10.9\" 2022 (10ª Geração)",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 295.75,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -5351,5 +5311,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-05-30T17:08:07.707004+00:00"
+  "validated_at": "2026-05-30T17:08:07.707004+00:00",
+  "merged_at": "2026-05-30T18:47:52.914124+00:00"
 }

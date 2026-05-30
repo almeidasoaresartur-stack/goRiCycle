@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { FaqSection } from "@/components/FaqSection";
 import { PartnerStoresSection } from "@/components/PartnerStoresSection";
@@ -34,7 +36,9 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} />
-        <PartnerStoresSection />
+        <Suspense fallback={<div className="h-36 animate-pulse bg-slate-100/50" aria-hidden />}>
+          <PartnerStoresSection />
+        </Suspense>
         <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <BenefitsSection />
         <FaqSection />

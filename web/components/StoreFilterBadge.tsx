@@ -28,6 +28,7 @@ export function StoreFilterBadge({
     event.stopPropagation();
 
     const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.delete("store");
     const current = new Set(
       (params.get("stores") ?? "")
         .split(",")

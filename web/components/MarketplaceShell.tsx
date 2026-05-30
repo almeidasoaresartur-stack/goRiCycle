@@ -135,12 +135,16 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     storage: searchParams?.get("storage") ?? defaultFilters.storage ?? undefined,
     grade: searchParams?.get("grade") ?? defaultFilters.grade ?? undefined,
     q: searchParams?.get("q") ?? defaultFilters.q ?? undefined,
+    store: searchParams?.get("store") ?? undefined,
     stores: searchParams?.get("stores") ?? defaultFilters.stores?.join(",") ?? undefined,
   });
 
   const viewAll = searchParams?.get("view") === "all";
   const catalogMode = isCatalogView(filters, viewAll);
-  const showFilterSidebar = hasActiveTechFilter(filters.tech) || viewAll;
+  const showFilterSidebar =
+    hasActiveTechFilter(filters.tech) ||
+    viewAll ||
+    (filters.stores?.length ?? 0) > 0;
 
   const safeProducts = useMemo(() => filterLaunchProducts(allProducts ?? []), [allProducts]);
   const scopedForOptions = filterAggregatedProducts(safeProducts, {
