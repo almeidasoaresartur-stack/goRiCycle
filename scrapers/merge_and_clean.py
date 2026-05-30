@@ -32,6 +32,7 @@ log = logging.getLogger(__name__)
 
 WEB_DATA_DIR = PROJECT_ROOT / "web" / "data"
 REPORT_PATH = DATA_DIR / "merge_and_clean_report.json"
+ALL_PRODUCTS_JSON = DATA_DIR / "all_products.json"
 
 SOURCES: dict[str, Path] = {
     "iservices": DATA_DIR / "iservices_produtos.json",
@@ -194,6 +195,15 @@ def main() -> None:
         web_report = WEB_DATA_DIR / REPORT_PATH.name
         save_json(report, web_report)
         log.info("📄 Relatório guardado: %s", REPORT_PATH)
+
+        catalog_payload = {
+            "merged_at": report["merged_at"],
+            "total_products": len(merged),
+            "products": merged,
+        }
+        save_json(catalog_payload, ALL_PRODUCTS_JSON)
+        save_json(catalog_payload, WEB_DATA_DIR / ALL_PRODUCTS_JSON.name)
+        log.info("📦 Catálogo combinado: %s (%s produtos)", ALL_PRODUCTS_JSON, len(merged))
 
     total_removed = sum(s["removed"] for s in per_source)
     log.info("\n%s", "=" * 50)
