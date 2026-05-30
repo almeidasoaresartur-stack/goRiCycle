@@ -3,14 +3,14 @@
 :root {
   --background: #fafafa;
   --foreground: #0f172a;
-  /* Verde premium da marca — substitui o emerald-500 néon (#10b981) */
-  --brand: #059669;
-  --brand-hover: #047857;
-  --brand-light: #d1fae5;
-  --brand-muted: #ecfdf5;
-  --mint: #059669;
-  --mint-light: #d1fae5;
-  --mint-muted: #ecfdf5;
+  /* Verde premium da marca */
+  --brand: #0A7E5A;
+  --brand-hover: #086B4C;
+  --brand-light: #d4eee5;
+  --brand-muted: #edf7f3;
+  --mint: #0A7E5A;
+  --mint-light: #d4eee5;
+  --mint-muted: #edf7f3;
 }
 
 @theme inline {
@@ -22,22 +22,22 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Paleta emerald alinhada ao verde premium #059669 */
-  --color-emerald-50: #ecfdf5;
-  --color-emerald-100: #d1fae5;
-  --color-emerald-200: #a7f3d0;
-  --color-emerald-300: #6ee7b7;
-  --color-emerald-400: #34d399;
-  --color-emerald-500: #059669;
-  --color-emerald-600: #059669;
-  --color-emerald-700: #047857;
-  --color-emerald-800: #065f46;
-  --color-emerald-900: #064e3b;
-  --color-emerald-950: #022c22;
+  /* Paleta emerald alinhada ao verde premium #0A7E5A */
+  --color-emerald-50: #edf7f3;
+  --color-emerald-100: #d4eee5;
+  --color-emerald-200: #a9ddcb;
+  --color-emerald-300: #7eccb1;
+  --color-emerald-400: #45b08c;
+  --color-emerald-500: #0A7E5A;
+  --color-emerald-600: #0A7E5A;
+  --color-emerald-700: #086B4C;
+  --color-emerald-800: #06563f;
+  --color-emerald-900: #044832;
+  --color-emerald-950: #032e21;
 
   /* green-* usado em badges pontuais */
-  --color-green-500: #059669;
-  --color-green-600: #059669;
+  --color-green-500: #0A7E5A;
+  --color-green-600: #0A7E5A;
 }
 
 body {
