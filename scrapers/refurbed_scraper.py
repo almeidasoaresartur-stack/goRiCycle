@@ -31,6 +31,7 @@ from common import (
     build_normalized_product,
     detect_brand,
     extract_storage,
+    filter_best_price_per_store,
     human_delay,
     is_allowed_brand,
     log_discarded_listing,
@@ -73,38 +74,6 @@ def check_link_status_200(url: str) -> bool:
 
     except Exception:
         return False
-
-
-def filter_best_price(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """
-    Mantém apenas a oferta mais barata por variação técnica
-    (modelo + armazenamento + estado).
-    """
-    best: dict[tuple[str, str, str], dict[str, Any]] = {}
-
-    for product in products:
-        model = (product.get("model") or "").lower().strip()
-        storage = (product.get("storage") or "").lower().strip()
-        grade = (product.get("grade") or "").lower().strip()
-        key = (model, storage, grade)
-
-        price = product.get("price")
-        if not isinstance(price, (int, float)):
-            continue
-
-        existing = best.get(key)
-        if existing is None or price < existing.get("price", float("inf")):
-            best[key] = product
-
-    kept = list(best.values())
-    removed = len(products) - len(kept)
-    if removed:
-        logger.info(
-            "Deduplicação filter_best_price: removidos %s duplicados (%s únicos)",
-            removed,
-            len(kept),
-        )
-    return kept
 
 
 def clean_price(price: float | None) -> float | None:
@@ -641,8 +610,8 @@ def run_scraper(
         browser.close()
 
     before_dedup = len(products)
-    products = filter_best_price(products)
-    stats["dedup_removed"] = before_dedup - len(products)
+    products, dedup_removed = filter_best_price_per_store(products, log=logger)
+    stats["dedup_removed"] = dedup_removed
     stats["total"] = len(products)
     stats["by_category"] = {}
     for product in products:

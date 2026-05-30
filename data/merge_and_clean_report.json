@@ -1,0 +1,40 @@
+{
+  "merged_at": "2026-05-30T18:47:53.584987+00:00",
+  "dry_run": false,
+  "per_source": [
+    {
+      "source": "iservices",
+      "total": 267,
+      "kept": 265,
+      "removed": 2
+    },
+    {
+      "source": "refurbed",
+      "total": 119,
+      "kept": 119,
+      "removed": 0
+    },
+    {
+      "source": "swappie",
+      "total": 351,
+      "kept": 351,
+      "removed": 0
+    },
+    {
+      "source": "certideal",
+      "total": 396,
+      "kept": 378,
+      "removed": 18
+    },
+    {
+      "source": "callphone",
+      "total": 1521,
+      "kept": 264,
+      "removed": 1257
+    }
+  ],
+  "combined": {
+    "total_unique": 1377,
+    "removed_on_merge": 0
+  }
+}

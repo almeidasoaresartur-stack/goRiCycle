@@ -83,6 +83,50 @@ def is_allowed_brand(model: str | None) -> bool:
     return any(kw in model_lower for kw in ALLOWED_BRAND_KEYWORDS)
 
 
+def product_dedup_key(product: dict[str, Any]) -> str:
+    """
+    Chave de deduplicação por loja: loja-modelo-armazenamento-estado.
+    Usa `source`/`grade` do schema actual (equivalente a loja/condition).
+    """
+    loja = (product.get("loja") or product.get("source") or "").strip()
+    model = (product.get("model") or "").strip()
+    storage = (product.get("storage") or "").strip().upper()
+    condition = (product.get("condition") or product.get("grade") or "").strip()
+    return f"{loja}-{model}-{storage}-{condition}"
+
+
+def filter_best_price_per_store(
+    products: list[dict[str, Any]],
+    *,
+    log: logging.Logger | None = None,
+) -> tuple[list[dict[str, Any]], int]:
+    """
+    Mantém apenas a oferta mais barata por loja + modelo + armazenamento + estado.
+    Ex.: 3 lojas → no máximo 3 entradas para 'iPhone 13 128GB Bom' (uma por loja).
+    """
+    best: dict[str, dict[str, Any]] = {}
+
+    for product in products:
+        key = product_dedup_key(product)
+        price = product.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+
+        existing = best.get(key)
+        if existing is None or price < existing.get("price", float("inf")):
+            best[key] = product
+
+    kept = list(best.values())
+    removed = len(products) - len(kept)
+    if removed and log:
+        log.info(
+            "Deduplicação por loja: removidos %s duplicados (%s únicos)",
+            removed,
+            len(kept),
+        )
+    return kept, removed
+
+
 def human_delay(delays: dict[str, tuple[float, float]], key: str) -> None:
     low, high = delays[key]
     time.sleep(random.uniform(low, high))
