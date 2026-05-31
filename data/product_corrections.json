@@ -1,0 +1,6 @@
+{
+  "_comment": "Chave = url (completa) ou product_id. Valor = nome correcto (campo model).",
+  "corrections": {
+    "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020": "iPhone SE 2022"
+  }
+}

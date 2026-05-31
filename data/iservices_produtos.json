@@ -8,7 +8,7 @@
     "google_phones"
   ],
   "scraped_at": "2026-05-31T10:47:53.360475+00:00",
-  "total_products": 31,
+  "total_products": 30,
   "products": [
     {
       "source": "iservices",
@@ -16,7 +16,7 @@
       "product_id": "iservices_766-iphone-se-2020_64gb_bom",
       "category": "iphones",
       "brand": "Apple",
-      "model": "iPhone SE 2020",
+      "model": "iPhone SE 2022",
       "storage": "64GB",
       "color": null,
       "grade": "Bom",
@@ -307,26 +307,6 @@
       "url": "https://loja.iservices.pt/iphone-14-pro-max/1153-iphone-14-pro-max",
       "image_url": "https://loja.iservices.pt/11822-large_default/iphone-14-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-14-plus/1152-iphone-14-plus",
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-05-31T10:47:53.360475+00:00",
-      "product_id": "iservices_1263-iphone-se-2022_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 158.08,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-se-2022/1263-iphone-se-2022",
-      "image_url": "https://loja.iservices.pt/11572-large_default/iphone-se-2022.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-14-pro-max/1153-iphone-14-pro-max",
       "affiliate_enabled": false,
       "affiliate_network": null
     },
@@ -631,5 +611,5 @@
       "affiliate_network": null
     }
   ],
-  "merged_at": "2026-05-31T11:23:44.503700+00:00"
+  "merged_at": "2026-05-31T11:32:22.265339+00:00"
 }

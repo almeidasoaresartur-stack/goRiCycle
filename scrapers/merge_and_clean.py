@@ -24,7 +24,12 @@ _SCRAPERS_DIR = Path(__file__).resolve().parent
 if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
-from common import detect_brand, filter_best_price_per_store, is_model_relevant
+from common import (
+    detect_brand,
+    filter_best_price_per_store,
+    is_model_relevant,
+    normalize_product_url,
+)
 from config import DATA_DIR, PROJECT_ROOT
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -33,6 +38,7 @@ log = logging.getLogger(__name__)
 WEB_DATA_DIR = PROJECT_ROOT / "web" / "data"
 REPORT_PATH = DATA_DIR / "merge_and_clean_report.json"
 ALL_PRODUCTS_JSON = DATA_DIR / "all_products.json"
+PRODUCT_CORRECTIONS_JSON = DATA_DIR / "product_corrections.json"
 
 SOURCES: dict[str, Path] = {
     "iservices": DATA_DIR / "iservices_produtos.json",
@@ -52,6 +58,68 @@ def load_json(path: Path) -> dict | list | None:
 def save_json(data: dict | list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def load_product_corrections(path: Path = PRODUCT_CORRECTIONS_JSON) -> dict[str, str]:
+    """Carrega mapa url/product_id → nome correcto (model)."""
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        log.warning("Correcções inválidas em %s: %s", path, exc)
+        return {}
+    if isinstance(payload, dict) and "corrections" in payload:
+        raw = payload.get("corrections") or {}
+    elif isinstance(payload, dict):
+        raw = {k: v for k, v in payload.items() if not str(k).startswith("_")}
+    else:
+        return {}
+    return {str(key).strip(): str(value).strip() for key, value in raw.items() if key and value}
+
+
+def apply_product_corrections(
+    products: list[dict],
+    corrections: dict[str, str],
+) -> tuple[list[dict], int]:
+    """
+    Substitui o campo model quando url ou product_id estiver em PRODUCT_CORRECTIONS.
+    Não altera preço, stock ou restantes campos.
+    """
+    if not corrections:
+        return products, 0
+
+    applied = 0
+    for product in products:
+        product_id = (product.get("product_id") or "").strip()
+        url = (product.get("url") or "").strip()
+        url_path = normalize_product_url(url)
+
+        new_model = (
+            corrections.get(product_id)
+            or corrections.get(url)
+            or corrections.get(url_path)
+        )
+        if not new_model:
+            continue
+
+        current = (product.get("model") or "").strip()
+        if current == new_model:
+            continue
+
+        product["model"] = new_model
+        brand = detect_brand(new_model)
+        if brand:
+            product["brand"] = brand
+        applied += 1
+        log.info(
+            "Correcção de modelo: %s → %s (%s)",
+            current or "?",
+            new_model,
+            product_id or url_path or url,
+        )
+
+    return products, applied
 
 
 def filter_by_model_relevance(products: list[dict]) -> tuple[list[dict], int]:
@@ -76,6 +144,7 @@ def clean_source(
     *,
     dry_run: bool = False,
     sync_web: bool = True,
+    corrections: dict[str, str] | None = None,
 ) -> dict:
     """Deduplica produtos de uma fonte (melhor preço por loja) e guarda o JSON."""
     data = load_json(path)
@@ -91,16 +160,18 @@ def clean_source(
         is_list_format = False
 
     before = len(products)
+    products, corrections_applied = apply_product_corrections(products, corrections or {})
     kept, removed = filter_best_price_per_store(products, log=log)
     kept, relevance_removed = filter_by_model_relevance(kept)
 
     log.info(
-        "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade)",
+        "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade, %s correcções)",
         source_name,
         before,
         len(kept),
         removed,
         relevance_removed,
+        corrections_applied,
     )
 
     if not dry_run:
@@ -124,10 +195,15 @@ def clean_source(
         "kept": len(kept),
         "removed": removed,
         "removed_by_relevance": relevance_removed,
+        "corrections_applied": corrections_applied,
     }
 
 
-def merge_all_sources(sources: dict[str, Path]) -> tuple[list[dict], int, int]:
+def merge_all_sources(
+    sources: dict[str, Path],
+    *,
+    corrections: dict[str, str] | None = None,
+) -> tuple[list[dict], int, int, int]:
     """
     Junta todos os produtos e aplica deduplicação por loja no catálogo combinado.
     Garante que duplicados internos de cada loja são eliminados após a fusão.
@@ -144,15 +220,17 @@ def merge_all_sources(sources: dict[str, Path]) -> tuple[list[dict], int, int]:
             combined.extend(data.get("products", []))
 
     before = len(combined)
+    combined, corrections_applied = apply_product_corrections(combined, corrections or {})
     kept, removed = filter_best_price_per_store(combined, log=log)
     kept, relevance_removed = filter_by_model_relevance(kept)
     log.info(
-        "Catálogo combinado: %s → %s produtos (%s duplicados removidos na fusão)",
+        "Catálogo combinado: %s → %s produtos (%s duplicados removidos na fusão, %s correcções)",
         before,
         len(kept),
         removed,
+        corrections_applied,
     )
-    return kept, removed, relevance_removed
+    return kept, removed, relevance_removed, corrections_applied
 
 
 def parse_args() -> argparse.Namespace:
@@ -188,6 +266,10 @@ def main() -> None:
     if args.dry_run:
         log.info("🔍 MODO DRY RUN — nenhum ficheiro será alterado\n")
 
+    corrections = load_product_corrections()
+    if corrections:
+        log.info("Correcções de modelo carregadas: %s entradas", len(corrections))
+
     per_source: list[dict] = []
     for source_name, path in sources_to_process.items():
         stats = clean_source(
@@ -195,12 +277,17 @@ def main() -> None:
             path,
             dry_run=args.dry_run,
             sync_web=sync_web,
+            corrections=corrections,
         )
         per_source.append(stats)
 
-    merged, merge_removed, merge_relevance_removed = merge_all_sources(sources_to_process)
+    merged, merge_removed, merge_relevance_removed, merge_corrections = merge_all_sources(
+        sources_to_process,
+        corrections=corrections,
+    )
     source_relevance_removed = sum(s.get("removed_by_relevance", 0) for s in per_source)
     total_relevance_removed = source_relevance_removed + merge_relevance_removed
+    total_corrections = sum(s.get("corrections_applied", 0) for s in per_source) + merge_corrections
 
     report = {
         "merged_at": datetime.now(timezone.utc).isoformat(),
@@ -210,6 +297,7 @@ def main() -> None:
             "total_unique": len(merged),
             "removed_on_merge": merge_removed,
             "removed_by_relevance": total_relevance_removed,
+            "corrections_applied": total_corrections,
         },
     }
 

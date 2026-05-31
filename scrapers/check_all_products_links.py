@@ -70,7 +70,7 @@ def load_catalog(path: Path) -> list[dict]:
 
 def build_and_save_catalog() -> list[dict]:
     """Gera all_products.json a partir das fontes individuais."""
-    products, _removed, _relevance_removed = merge_all_sources(SOURCES)
+    products, _removed, _relevance_removed, _corrections = merge_all_sources(SOURCES)
     payload = {
         "merged_at": datetime.now(timezone.utc).isoformat(),
         "total_products": len(products),
