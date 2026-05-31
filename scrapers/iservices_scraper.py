@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
-from playwright.sync_api import Locator, Page, sync_playwright
+from playwright.sync_api import Page, sync_playwright
 
 _SCRAPERS_DIR = Path(__file__).resolve().parent
 if str(_SCRAPERS_DIR) not in sys.path:
@@ -31,6 +31,11 @@ from common import (
     extract_grade,
     extract_storage,
     human_delay,
+    normalize_product_url,
+    page_indicates_out_of_stock,
+    parse_embedded_out_of_stock_urls,
+    remove_products_by_url,
+    text_indicates_out_of_stock,
     parse_original_price_eur,
     parse_price_eur,
     resolve_image_url,
@@ -42,6 +47,7 @@ from config import CATEGORY_KEYS, ISERVICES_CONFIG
 CFG = ISERVICES_CONFIG
 SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
+DEFAULT_GRADE = "Bom"
 
 
 def clean_price(price: float | None) -> float | None:
@@ -114,19 +120,20 @@ def normalize_record(
         source_page=source_page,
         scraped_at=scraped_at,
         storage=storage or extract_storage(model),
-        grade=grade or extract_grade(model),
+        grade=grade or extract_grade(model) or DEFAULT_GRADE,
         color=color,
         original_price=original_price,
     )
 
 
-def collect_listing_cards(page: Page) -> list[dict[str, Any]]:
+def collect_listing_cards(page: Page, *, out_of_stock_urls: set[str] | None = None) -> list[dict[str, Any]]:
     page.wait_for_selector(SEL["listing_grid"], timeout=60_000)
     page.wait_for_selector(SEL["product_card"], timeout=60_000)
 
     cards: list[dict[str, Any]] = []
     elements = page.locator(SEL["product_card"])
     total = elements.count()
+    blocked_urls = out_of_stock_urls or set()
 
     for index in range(total):
         try:
@@ -138,6 +145,15 @@ def collect_listing_cards(page: Page) -> list[dict[str, Any]]:
             href = card.get_attribute("href")
 
             if not href or not name:
+                continue
+
+            if normalize_product_url(href) in blocked_urls:
+                logger.info("Cartão ignorado (sem stock na listagem): %s", name)
+                continue
+
+            card_text = card.inner_text(timeout=3000)
+            if text_indicates_out_of_stock(card_text):
+                logger.info("Cartão ignorado (sem stock): %s", name)
                 continue
 
             cards.append(
@@ -177,7 +193,11 @@ def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any
         human_delay(CFG["delays"], "after_navigation")
         dismiss_cookie_banner(page)
 
-        cards = collect_listing_cards(page)
+        out_of_stock_urls = parse_embedded_out_of_stock_urls(page.content())
+        if out_of_stock_urls:
+            logger.info("Página %s: %s produto(s) OutOfStock no schema.org", page_num, len(out_of_stock_urls))
+
+        cards = collect_listing_cards(page, out_of_stock_urls=out_of_stock_urls)
         logger.info("Página %s: %s cartões", page_num, len(cards))
         all_cards.extend(cards)
 
@@ -196,13 +216,28 @@ def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any
     return all_cards
 
 
-def _click_variant_option(group: Locator, value: str, label: str | None) -> None:
-    radio_sel = f"{SEL['detail_variant_radio']}[value='{value}']"
-    if group.locator(radio_sel).count() == 0:
-        raise RuntimeError(f"Opção não encontrada: {label or value}")
-    label_loc = group.locator(f"label:has({radio_sel})")
-    target = label_loc if label_loc.count() else group.locator(radio_sel)
-    target.first.click(force=True, timeout=8_000)
+def _page_is_out_of_stock(page: Page) -> bool:
+    return page_indicates_out_of_stock(
+        page,
+        availability_badge=SEL.get("detail_availability_badge", ".availability-badge"),
+        stock_areas=SEL.get("detail_stock_areas", ".product-add-to-cart, .product-actions, .product-prices"),
+    )
+
+
+def _read_selected_variant_label(page: Page, group_label: str) -> str | None:
+    """Lê a variante pré-selecionada (estado/storage por defeito na ficha)."""
+    group = page.locator(SEL["detail_variant_group"]).filter(has_text=group_label)
+    if group.count() == 0:
+        return None
+    try:
+        return group.first.locator(f"label:has({SEL['detail_variant_radio']}:checked)").first.evaluate(
+            """(label) => {
+                const radioLabel = label.querySelector('.radio-label');
+                return (radioLabel?.innerText || label.innerText || '').trim() || null;
+            }"""
+        )
+    except Exception:
+        return None
 
 
 def _detail_image(page: Page, fallback: str | None) -> str | None:
@@ -223,13 +258,17 @@ def _detail_image(page: Page, fallback: str | None) -> str | None:
     return fallback
 
 
-def _variants_from_detail_page(
+def _default_listing_from_detail_page(
     page: Page,
     card: dict[str, Any],
     category: str,
     source_page: str,
     scraped_at: str,
 ) -> list[dict[str, Any]]:
+    """
+    Extrai um único registo com o preço/estado/storage visíveis por defeito na ficha.
+    Não percorre combinações de variantes — trata o valor como preço de partida.
+    """
     page.goto(card["url"], wait_until="domcontentloaded", timeout=60_000)
     human_delay(CFG["delays"], "after_navigation")
     dismiss_cookie_banner(page)
@@ -242,90 +281,56 @@ def _variants_from_detail_page(
     except Exception:
         pass
 
+    if _page_is_out_of_stock(page):
+        logger.info("Produto sem stock (ficha): %s", model)
+        return []
+
     image_url = _detail_image(page, card.get("image_url"))
     product_url = page.url
 
-    group_storage = page.locator(SEL["detail_variant_group"]).filter(has_text="Armazenamento")
-    group_grade = page.locator(SEL["detail_variant_group"]).filter(has_text="Estado")
+    price_raw = None
+    try:
+        price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
+    except Exception:
+        pass
+    price = clean_price(parse_iservices_price_eur(price_raw)) or clean_price(card.get("listing_price"))
+    if price is None:
+        logger.warning("Sem preço válido: %s", product_url)
+        return []
 
-    if group_storage.count() == 0 or group_grade.count() == 0:
-        price_raw = None
-        try:
-            price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-        except Exception:
-            pass
-        price = parse_price_eur(price_raw) or card.get("listing_price")
-        if price is None:
-            return []
-        record = normalize_record(
-            category=category,
-            url=product_url,
-            model=model,
-            price=price,
-            image_url=image_url,
-            source_page=source_page,
-            scraped_at=scraped_at,
-            original_price=card.get("original_price"),
-        )
-        return [record] if record else []
+    storage_label = _read_selected_variant_label(page, "Armazenamento") or ""
+    grade_label = _read_selected_variant_label(page, "Estado") or ""
+    grade = extract_grade(grade_label) or extract_grade(model) or DEFAULT_GRADE
+    storage = extract_storage(storage_label) or extract_storage(model)
 
-    storage_options = group_storage.locator(SEL["detail_variant_radio"]).evaluate_all(
-        """(inputs) => inputs.map((input) => ({
-            value: input.value,
-            label: input.closest('label')?.querySelector('.radio-label')?.innerText?.trim() || null
-        }))"""
+    if _page_is_out_of_stock(page):
+        logger.info("Produto sem stock após leitura inicial: %s", model)
+        return []
+
+    record = normalize_record(
+        category=category,
+        url=product_url,
+        model=model,
+        price=price,
+        image_url=image_url,
+        source_page=source_page,
+        scraped_at=scraped_at,
+        storage=storage,
+        grade=grade,
+        original_price=card.get("original_price"),
     )
-    grade_options = group_grade.locator(SEL["detail_variant_radio"]).evaluate_all(
-        """(inputs) => inputs.map((input) => ({
-            value: input.value,
-            label: input.closest('label')?.querySelector('.radio-label')?.innerText?.trim() || null
-        }))"""
+    if not record:
+        return []
+
+    logger.info(
+        "%s [%s]: preço de partida %s€ | %s | %s",
+        model,
+        category,
+        price,
+        storage or "?",
+        grade,
     )
-
-    records: list[dict[str, Any]] = []
-    for storage_opt in storage_options:
-        for grade_opt in grade_options:
-            try:
-                group_storage = page.locator(SEL["detail_variant_group"]).filter(
-                    has_text="Armazenamento"
-                )
-                group_grade = page.locator(SEL["detail_variant_group"]).filter(has_text="Estado")
-
-                _click_variant_option(group_storage, storage_opt["value"], storage_opt.get("label"))
-                human_delay(CFG["delays"], "between_variants")
-                _click_variant_option(group_grade, grade_opt["value"], grade_opt.get("label"))
-                human_delay(CFG["delays"], "after_variant_select")
-
-                price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-                price = clean_price(parse_iservices_price_eur(price_raw))
-                if price is None:
-                    continue
-
-                storage_label = storage_opt.get("label") or ""
-                grade_label = grade_opt.get("label") or ""
-                record = normalize_record(
-                    category=category,
-                    url=product_url,
-                    model=model,
-                    price=price,
-                    image_url=image_url,
-                    source_page=source_page,
-                    scraped_at=scraped_at,
-                    storage=extract_storage(storage_label) or extract_storage(model),
-                    grade=extract_grade(grade_label) or extract_grade(model),
-                    original_price=card.get("original_price"),
-                )
-                if record:
-                    records.append(record)
-            except Exception as exc:
-                logger.warning(
-                    "Variante ignorada (%s / %s / %s): %s",
-                    model,
-                    storage_opt.get("label"),
-                    grade_opt.get("label"),
-                    exc,
-                )
-    return records
+    return [record]
 
 
 def extract_product(
@@ -336,11 +341,9 @@ def extract_product(
     scraped_at: str,
 ) -> list[dict[str, Any]] | None:
     try:
-        records = _variants_from_detail_page(page, card, category, source_page, scraped_at)
-        if records:
-            logger.info("%s [%s]: %s registo(s)", card.get("model"), category, len(records))
-        else:
-            logger.warning("Sem registos: %s", card.get("url"))
+        records = _default_listing_from_detail_page(page, card, category, source_page, scraped_at)
+        if not records:
+            logger.warning("Sem registos (stock/preço): %s", card.get("url"))
         return records
     except Exception as exc:
         logger.error(
@@ -377,7 +380,7 @@ def run_scraper(
 ) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or list(CATEGORY_KEYS)
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
+    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -419,6 +422,20 @@ def run_scraper(
                     human_delay(CFG["delays"], "between_products")
                     continue
 
+                if not result:
+                    removed, n_removed = remove_products_by_url(products, card.get("url"))
+                    if n_removed:
+                        products = removed
+                        known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                        stats["removed_out_of_stock"] += n_removed
+                        logger.info(
+                            "Removidos %s registo(s) sem stock: %s",
+                            n_removed,
+                            card.get("model"),
+                        )
+                    human_delay(CFG["delays"], "between_products")
+                    continue
+
                 for record in result:
                     pid = record["product_id"]
                     if mode == "incremental" and pid in known_ids:
@@ -440,7 +457,12 @@ def run_scraper(
         "scraped_at": scraped_at,
     }
     save_products(products, CFG["output_json"], meta)
-    logger.info("Concluído. Total: %s | %s", stats["total"], stats["by_category"])
+    logger.info(
+        "Concluído. Total: %s | Removidos sem stock: %s | %s",
+        stats["total"],
+        stats["removed_out_of_stock"],
+        stats["by_category"],
+    )
     return stats
 
 

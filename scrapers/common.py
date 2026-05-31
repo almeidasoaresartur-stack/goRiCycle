@@ -11,7 +11,7 @@ import time
 from typing import Any
 from urllib.parse import urlparse
 
-from playwright.sync_api import Browser, Locator, Playwright
+from playwright.sync_api import Browser, Locator, Page, Playwright
 
 from config import (
     AFFILIATE_PLACEHOLDER,
@@ -444,6 +444,146 @@ def is_model_relevant(model_name: str, brand: str | None) -> bool:
     if year is None:
         return True
     return year >= CURATION_CUTOFF_YEAR
+
+
+OUT_OF_STOCK_MARKERS: tuple[str, ...] = (
+    "sem stock",
+    "brevemente disponível",
+    "brevemente disponivel",
+    "out of stock",
+    "sold out",
+    "esgotado",
+    "indisponível",
+    "indisponivel",
+    "currently unavailable",
+    "not available",
+    "avisem-me quando",
+    "avise-me quando",
+    "notify me when",
+    "temporarily unavailable",
+)
+
+
+def text_indicates_out_of_stock(text: str | None) -> bool:
+    """Deteta indicadores textuais de produto/variante sem stock."""
+    if not text:
+        return False
+    normalized = re.sub(r"\s+", " ", text.lower()).strip()
+    return any(marker in normalized for marker in OUT_OF_STOCK_MARKERS)
+
+
+def is_schema_availability_out_of_stock(value: str | None) -> bool:
+    if not value:
+        return False
+    return "outofstock" in value.lower().replace("-", "")
+
+
+def normalize_product_url(url: str | None) -> str:
+    """Normaliza URL de produto para comparação (path sem query)."""
+    if not url:
+        return ""
+    parsed = urlparse(url.strip())
+    path = parsed.path.rstrip("/").lower()
+    return path or url.strip().lower().rstrip("/")
+
+
+def parse_embedded_out_of_stock_urls(html: str) -> set[str]:
+    """Extrai URLs de produtos OutOfStock em JSON-LD/schema.org embutido."""
+    oos_urls: set[str] = set()
+    for match in re.finditer(
+        r'"@type"\s*:\s*"Product"[\s\S]{0,2500}?"availability"\s*:\s*"https://schema.org/OutOfStock"',
+        html,
+        flags=re.IGNORECASE,
+    ):
+        chunk = match.group(0)
+        url_match = re.search(r'"url"\s*:\s*"([^"]+)"', chunk)
+        if url_match:
+            oos_urls.add(normalize_product_url(url_match.group(1)))
+    return oos_urls
+
+
+def remove_products_by_url(
+    products: list[dict[str, Any]],
+    url: str | None,
+) -> tuple[list[dict[str, Any]], int]:
+    """Remove ofertas cujo URL base coincide (ex.: produto passou a sem stock)."""
+    base = normalize_product_url(url)
+    if not base:
+        return products, 0
+    kept = [
+        product
+        for product in products
+        if normalize_product_url(product.get("url")) != base
+    ]
+    return kept, len(products) - len(kept)
+
+
+def page_indicates_out_of_stock(
+    page: Page,
+    *,
+    availability_badge: str = ".availability-badge",
+    stock_areas: str = ".product-add-to-cart, .product-actions, .product-prices, .product-information",
+    out_of_stock_selectors: str = (
+        ".out-of-stock, .product-out-of-stock, .unavailable, "
+        "#product-availability .out-of-stock, .availability:has-text('Sem stock')"
+    ),
+) -> bool:
+    """
+    Verifica se a ficha de produto indica indisponibilidade.
+    iServices: '.availability-badge' + 'Sem stock' / 'Brevemente Disponível'.
+    """
+    try:
+        badge = page.locator(availability_badge)
+        if badge.count():
+            text = badge.first.inner_text(timeout=3000).strip()
+            classes = (badge.first.get_attribute("class") or "").lower()
+            if text_indicates_out_of_stock(text):
+                return True
+            if "success" in classes and re.search(r"\bem stock\b", text, re.I):
+                return False
+    except Exception:
+        pass
+
+    for selector in out_of_stock_selectors.split(","):
+        selector = selector.strip()
+        if not selector:
+            continue
+        try:
+            loc = page.locator(selector)
+            if loc.count() and loc.first.is_visible():
+                if text_indicates_out_of_stock(loc.first.inner_text(timeout=2000)):
+                    return True
+        except Exception:
+            continue
+
+    for area_selector in stock_areas.split(","):
+        area_selector = area_selector.strip()
+        if not area_selector:
+            continue
+        try:
+            area = page.locator(area_selector)
+            if area.count() and text_indicates_out_of_stock(area.first.inner_text(timeout=2000)):
+                return True
+        except Exception:
+            continue
+
+    try:
+        cart_btn = page.locator(
+            "button.add-to-cart, [data-button-action='add-to-cart'], #add-to-cart-or-refresh button"
+        )
+        if cart_btn.count():
+            btn = cart_btn.first
+            label = btn.inner_text(timeout=2000).strip()
+            if text_indicates_out_of_stock(label):
+                return True
+            if btn.is_disabled() and text_indicates_out_of_stock(
+                page.locator(".product-add-to-cart, .product-actions").first.inner_text(timeout=2000)
+            ):
+                return True
+    except Exception:
+        pass
+
+    return False
 
 
 def slug_from_product_url(url: str) -> str:

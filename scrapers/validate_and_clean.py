@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -25,6 +26,7 @@ if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
 from config import DATA_DIR
+from common import text_indicates_out_of_stock
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -99,7 +101,21 @@ def page_has_price_hint(html: str) -> bool:
     return False
 
 
-def verify_url_live(url: str, client: httpx.Client) -> tuple[bool, str]:
+def iservices_html_out_of_stock(html: str) -> bool:
+    """Deteta ficha iServices sem stock em HTML estático (SSR)."""
+    lower = html.lower()
+    if re.search(r"\bem stock\b", lower):
+        return False
+    if "brevemente dispon" in lower and "sem stock" in lower:
+        return True
+    if text_indicates_out_of_stock(html) and (
+        "avisem-me quando" in lower or "avise-me quando" in lower or "product-add-to-cart" in lower
+    ):
+        return True
+    return False
+
+
+def verify_url_live(url: str, client: httpx.Client, *, source: str = "") -> tuple[bool, str]:
     """
     Faz GET à URL e verifica:
     - Resposta 200 (não 404, não 500)
@@ -127,6 +143,9 @@ def verify_url_live(url: str, client: httpx.Client) -> tuple[bool, str]:
 
         if not page_has_price_hint(response.text):
             return False, "Página sem indício de preço (possível categoria ou erro)"
+
+        if source == "iservices" and iservices_html_out_of_stock(response.text):
+            return False, "Sem stock (iServices)"
 
         return True, ""
 
@@ -252,7 +271,7 @@ def validate_source(
             if check_live:
                 if (index + 1) % 10 == 0:
                     log.info("  Verificando %s/%s...", index + 1, len(products))
-                live_ok, live_reason = verify_url_live(url, client)
+                live_ok, live_reason = verify_url_live(url, client, source=source_name)
                 if not live_ok:
                     removed.append(product)
                     reasons[live_reason] = reasons.get(live_reason, 0) + 1

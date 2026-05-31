@@ -30,11 +30,14 @@ from common import (
     extract_storage,
     human_delay,
     normalize_grade_swappie,
+    page_indicates_out_of_stock,
     page_wait_ms,
     parse_swappie_price_eur,
+    remove_products_by_url,
     resolve_image_url,
     launch_chromium,
     setup_logging,
+    text_indicates_out_of_stock,
 )
 from config import CATEGORY_KEYS, SWAPPIE_CONFIG
 
@@ -100,6 +103,11 @@ def collect_model_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
             storages = [extract_storage(s) for s in storage_badges if extract_storage(s)]
 
             if not name:
+                continue
+
+            card_text = link.inner_text(timeout=3000)
+            if text_indicates_out_of_stock(card_text):
+                logger.info("Modelo ignorado (sem stock): %s", name)
                 continue
 
             cards.append(
@@ -183,6 +191,10 @@ def _variants_from_model_page(
     dismiss_cookie_banner(page)
     page.locator(SEL["detail_price"]).first.wait_for(state="attached", timeout=60_000)
 
+    if page_indicates_out_of_stock(page, stock_areas="main, [class*='ModelInfo'], [class*='ModelPrice']"):
+        logger.info("Modelo sem stock (Swappie): %s", card.get("model"))
+        return []
+
     model = card["model"]
     try:
         h1 = page.locator(SEL["detail_title"]).first.inner_text(timeout=5000).strip()
@@ -220,6 +232,10 @@ def _variants_from_model_page(
                 continue
             if not _click_list_item(page, grade_key):
                 logger.debug("Condição não clicável: %s (%s)", grade_key, card.get("url"))
+                continue
+
+            if page_indicates_out_of_stock(page, stock_areas="main, [class*='ModelInfo'], [class*='ModelPrice']"):
+                logger.debug("Variante sem stock: %s / %s", storage_key, grade_key)
                 continue
 
             price = clean_price(_read_detail_price(page) or card.get("listing_price"))
@@ -295,7 +311,7 @@ def save_products(products: list[dict[str, Any]], path: Path, meta: dict[str, An
 def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or [c for c in CATEGORY_KEYS if CFG["categories"].get(c)]
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
+    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -328,6 +344,20 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                     stats["errors"] += 1
                     human_delay(CFG["delays"], "between_products")
                     continue
+
+                if not result:
+                    products, n_removed = remove_products_by_url(products, card.get("url"))
+                    if n_removed:
+                        known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                        stats["removed_out_of_stock"] += n_removed
+                        logger.info(
+                            "Removidos %s registo(s) sem stock: %s",
+                            n_removed,
+                            card.get("model"),
+                        )
+                    human_delay(CFG["delays"], "between_products")
+                    continue
+
                 for record in result:
                     if mode == "incremental" and record["product_id"] in known_ids:
                         continue

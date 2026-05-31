@@ -145,6 +145,8 @@ ISERVICES_CONFIG: dict[str, Any] = {
         "detail_variant_group": ".product-variants-item",
         "detail_variant_radio": "input.input-radio",
         "detail_variant_label": ".radio-label",
+        "detail_availability_badge": ".availability-badge",
+        "detail_stock_areas": ".product-add-to-cart, .product-actions, .product-prices",
     },
 }
 

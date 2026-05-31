@@ -36,13 +36,16 @@ from common import (
     is_allowed_brand,
     log_discarded_listing,
     normalize_grade_refurbed,
+    page_indicates_out_of_stock,
     page_wait_ms,
     parse_original_price_eur,
     parse_price_eur,
     parse_rating,
+    remove_products_by_url,
     resolve_image_url,
     launch_chromium,
     setup_logging,
+    text_indicates_out_of_stock,
     validate_listing_card,
 )
 from config import CATEGORY_KEYS, REFURBED_CONFIG
@@ -235,6 +238,11 @@ def collect_listing_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
                 logger.debug("Marca não permitida ignorada: %s", name)
                 continue
 
+            card_text = card.inner_text(timeout=3000)
+            if text_indicates_out_of_stock(card_text):
+                logger.info("Cartão ignorado (sem stock): %s", name)
+                continue
+
             cards.append(
                 {
                     "model": name,
@@ -387,6 +395,10 @@ def _variants_from_detail_page(
     product_url = page.url.rstrip("/") + "/"
     seller_rating = card.get("seller_rating")
 
+    if page_indicates_out_of_stock(page):
+        logger.info("Produto sem stock (Refurbed): %s", model)
+        return []
+
     original_price = None
     try:
         srp = page.locator(SEL["detail_original_price"]).first
@@ -531,7 +543,7 @@ def run_scraper(
 ) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or list(CATEGORY_KEYS)
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
+    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -588,6 +600,19 @@ def run_scraper(
 
                 if result is None:
                     stats["errors"] += 1
+                    human_delay(CFG["delays"], "between_products")
+                    continue
+
+                if not result:
+                    products, n_removed = remove_products_by_url(products, card.get("url"))
+                    if n_removed:
+                        known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                        stats["removed_out_of_stock"] += n_removed
+                        logger.info(
+                            "Removidos %s registo(s) sem stock: %s",
+                            n_removed,
+                            card.get("model"),
+                        )
                     human_delay(CFG["delays"], "between_products")
                     continue
 

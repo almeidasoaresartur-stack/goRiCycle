@@ -32,10 +32,13 @@ from common import (
     extract_storage,
     human_delay,
     log_discarded_listing,
+    page_indicates_out_of_stock,
     page_wait_ms,
     parse_price_eur,
+    remove_products_by_url,
     launch_chromium,
     setup_logging,
+    text_indicates_out_of_stock,
     validate_listing_card,
 )
 from config import CATEGORY_KEYS, CERTIDEAL_CONFIG, CERTIDEAL_URLS
@@ -169,6 +172,10 @@ def collect_listing_cards(
                 )
                 continue
 
+            if text_indicates_out_of_stock(text):
+                logger.info("Cartão ignorado (sem stock): %s", model)
+                continue
+
             cards.append(
                 {
                     "model": model,
@@ -220,6 +227,13 @@ def fetch_detail_product(page: Page, url: str) -> dict[str, Any] | None:
                 break
 
     if price is None:
+        return None
+
+    if page_indicates_out_of_stock(
+        page,
+        stock_areas="#buy_block, .product-information, .box-info-product, .content_prices",
+    ):
+        logger.info("Produto sem stock (Certideal): %s", model)
         return None
 
     image_url = None
@@ -538,7 +552,7 @@ def save_products(products: list[dict[str, Any]], path: Path, meta: dict[str, An
 def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or [c for c in CATEGORY_KEYS if c in CERTIDEAL_URLS]
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
+    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -594,6 +608,17 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                     )
                     if result is None:
                         stats["errors"] += 1
+                        continue
+                    if not result:
+                        products, n_removed = remove_products_by_url(products, card.get("url"))
+                        if n_removed:
+                            known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                            stats["removed_out_of_stock"] += n_removed
+                            logger.info(
+                                "Removidos %s registo(s) sem stock: %s",
+                                n_removed,
+                                card.get("model"),
+                            )
                         continue
                     for record in result:
                         if mode == "incremental" and record["product_id"] in known_ids:

@@ -269,6 +269,9 @@ def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, An
         info = extract_variant_info(variant, title)
         if info["price"] is None:
             continue
+        if not info.get("available", False):
+            logger.debug("Variante sem stock ignorada: %s (%s)", title, info.get("variant_id"))
+            continue
 
         product_url = f"{BASE_URL}/products/{handle}"
         if info["variant_id"]:
