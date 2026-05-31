@@ -1,11 +1,11 @@
 {
   "source": "callphone",
-  "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+  "scraped_at": "2026-05-31T14:03:10.112152+00:00",
   "total_products": 263,
   "products": [
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_57841808376072",
       "category": "iphones",
       "brand": "Apple",
@@ -20,12 +20,14 @@
       "url": "https://callphone.pt/products/iphone-16-256gb?variant=57841808376072",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16rosa_194be4f6-0cba-49e0-a525-de461a4e51a3.jpg?v=1752081464",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_57628996763912",
       "category": "iphones",
       "brand": "Samsung",
@@ -40,12 +42,14 @@
       "url": "https://callphone.pt/products/samsung-s26-ultra-256gb-novo?variant=57628996763912",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s26ultrabranconovo.jpg?v=1773940824",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_57616063889672",
       "category": "iphones",
       "brand": "Apple",
@@ -60,12 +64,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max-1tb?variant=57616063889672",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_55666703040776",
       "category": "iphones",
       "brand": "Samsung",
@@ -80,12 +86,13 @@
       "url": "https://callphone.pt/products/samsung-a17-128gb-novo?variant=55666703040776",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/samsunga17azul.jpg?v=1775143026",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_54168826347784",
       "category": "iphones",
       "brand": "Samsung",
@@ -100,12 +107,14 @@
       "url": "https://callphone.pt/products/samsung-s26-ultra-512gb?variant=54168826347784",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s26ultrabranconovo.jpg?v=1773940824",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_54073333252360",
       "category": "iphones",
       "brand": "Samsung",
@@ -120,12 +129,14 @@
       "url": "https://callphone.pt/products/samsung-z-fold-7?variant=54073333252360",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/fold7azul.jpg?v=1773853098",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53473400553736",
       "category": "iphones",
       "brand": "Apple",
@@ -140,12 +151,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-512gb?variant=53473400553736",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53174874964232",
       "category": "iphones",
       "brand": "Samsung",
@@ -160,12 +173,14 @@
       "url": "https://callphone.pt/products/samsung-a56-5g-256gb?variant=53174874964232",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/a56-5gcinza.jpg?v=1769095870",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53074420728072",
       "category": "iphones",
       "brand": "Samsung",
@@ -180,12 +195,14 @@
       "url": "https://callphone.pt/products/samsung-s23-ultra-512gb?variant=53074420728072",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23ultrapreto.png?v=1759484805",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53074421743880",
       "category": "iphones",
       "brand": "Samsung",
@@ -200,12 +217,14 @@
       "url": "https://callphone.pt/products/samsung-s23-ultra-512gb?variant=53074421743880",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23ultrapreto.png?v=1759484805",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52995695083784",
       "category": "iphones",
       "brand": "Apple",
@@ -220,12 +239,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695083784",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52995695345928",
       "category": "iphones",
       "brand": "Apple",
@@ -240,12 +261,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695345928",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52995695608072",
       "category": "iphones",
       "brand": "Apple",
@@ -260,12 +283,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695608072",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52995695870216",
       "category": "iphones",
       "brand": "Apple",
@@ -280,12 +305,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695870216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52777768878344",
       "category": "iphones",
       "brand": "Apple",
@@ -300,12 +327,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777768878344",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52777769009416",
       "category": "iphones",
       "brand": "Apple",
@@ -320,12 +349,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777769009416",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52777769140488",
       "category": "iphones",
       "brand": "Apple",
@@ -340,12 +371,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777769140488",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52777769271560",
       "category": "iphones",
       "brand": "Apple",
@@ -360,12 +393,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777769271560",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52776923660552",
       "category": "iphones",
       "brand": "Apple",
@@ -380,12 +415,14 @@
       "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=52776923660552",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip17probranco.jpg?v=1762787922",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52776919433480",
       "category": "iphones",
       "brand": "Apple",
@@ -400,12 +437,14 @@
       "url": "https://callphone.pt/products/iphone-17-pro-256gb?variant=52776919433480",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip17proazul.jpg?v=1762787922",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52776918778120",
       "category": "iphones",
       "brand": "Apple",
@@ -420,12 +459,14 @@
       "url": "https://callphone.pt/products/iphone-17-256gb?variant=52776918778120",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip17azul.jpg?v=1762787843",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52776854847752",
       "category": "iphones",
       "brand": "Apple",
@@ -440,12 +481,13 @@
       "url": "https://callphone.pt/products/iphone-16-128?variant=52776854847752",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16rosa_194be4f6-0cba-49e0-a525-de461a4e51a3.jpg?v=1752081464",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_57887922815240",
       "category": "iphones",
       "brand": "Apple",
@@ -460,12 +502,13 @@
       "url": "https://callphone.pt/products/iphone-16-pro-256gb?variant=57887922815240",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53243741372680",
       "category": "iphones",
       "brand": "Apple",
@@ -480,12 +523,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741372680",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16propret_2e63693e-55e9-4cfe-b3f4-1266e23a3140.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53243741470984",
       "category": "iphones",
       "brand": "Apple",
@@ -500,12 +545,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741470984",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16propret_2e63693e-55e9-4cfe-b3f4-1266e23a3140.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53243741667592",
       "category": "iphones",
       "brand": "Apple",
@@ -520,12 +567,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741667592",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16propret_2e63693e-55e9-4cfe-b3f4-1266e23a3140.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53243741864200",
       "category": "iphones",
       "brand": "Apple",
@@ -540,12 +589,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741864200",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16propret_2e63693e-55e9-4cfe-b3f4-1266e23a3140.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52746879828232",
       "category": "iphones",
       "brand": "Apple",
@@ -560,12 +611,13 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=52746879828232",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52558464745736",
       "category": "iphones",
       "brand": "Apple",
@@ -580,12 +632,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558464745736",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52558464909576",
       "category": "iphones",
       "brand": "Apple",
@@ -600,12 +654,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558464909576",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52558465073416",
       "category": "iphones",
       "brand": "Apple",
@@ -620,12 +676,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465073416",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52558465237256",
       "category": "iphones",
       "brand": "Apple",
@@ -640,12 +698,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465237256",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52551818346760",
       "category": "iphones",
       "brand": "Samsung",
@@ -660,12 +720,14 @@
       "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=52551818346760",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23ultrapreto.png?v=1759484805",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53136965665032",
       "category": "iphones",
       "brand": "Samsung",
@@ -680,12 +742,14 @@
       "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=53136965665032",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23ultrapreto.png?v=1759484805",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_53136965763336",
       "category": "iphones",
       "brand": "Samsung",
@@ -700,12 +764,13 @@
       "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=53136965763336",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23ultrapreto.png?v=1759484805",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52551794262280",
       "category": "iphones",
       "brand": "Apple",
@@ -720,12 +785,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-1tb?variant=52551794262280",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52532987560200",
       "category": "iphones",
       "brand": "Samsung",
@@ -740,12 +807,14 @@
       "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987560200",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23preto.png?v=1759485039",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52532987592968",
       "category": "iphones",
       "brand": "Samsung",
@@ -760,12 +829,14 @@
       "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987592968",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23preto.png?v=1759485039",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52532987625736",
       "category": "iphones",
       "brand": "Samsung",
@@ -780,12 +851,14 @@
       "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987625736",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23preto.png?v=1759485039",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52532987658504",
       "category": "iphones",
       "brand": "Samsung",
@@ -800,12 +873,14 @@
       "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987658504",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s23preto.png?v=1759485039",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52489487548680",
       "category": "iphones",
       "brand": "Apple",
@@ -820,12 +895,13 @@
       "url": "https://callphone.pt/products/iphone-17-pro-max-256gb-novo?variant=52489487548680",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/17pmazul_2f1b28d3-15be-40a9-a17d-8402ef0f8ce4.jpg?v=1758641631",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52489981526280",
       "category": "iphones",
       "brand": "Apple",
@@ -840,12 +916,14 @@
       "url": "https://callphone.pt/products/iphone-17-novo?variant=52489981526280",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/17preto.jpg?v=1758639880",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52489479258376",
       "category": "iphones",
       "brand": "Apple",
@@ -860,12 +938,13 @@
       "url": "https://callphone.pt/products/iphone-17-pro-256gb-novo?variant=52489479258376",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/17pmlar.jpg?v=1758640993",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52453287231752",
       "category": "iphones",
       "brand": "Samsung",
@@ -880,12 +959,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287231752",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultraazul.jpg?v=1758189075",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52453287362824",
       "category": "iphones",
       "brand": "Samsung",
@@ -900,12 +981,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287362824",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultraazul.jpg?v=1758189075",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52453287493896",
       "category": "iphones",
       "brand": "Samsung",
@@ -920,12 +1003,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287493896",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultraazul.jpg?v=1758189075",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52453287624968",
       "category": "iphones",
       "brand": "Samsung",
@@ -940,12 +1025,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287624968",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultraazul.jpg?v=1758189075",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52150087778568",
       "category": "iphones",
       "brand": "Apple",
@@ -960,12 +1047,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150087778568",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12probran.jpg?v=1754671766",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52150087909640",
       "category": "iphones",
       "brand": "Apple",
@@ -980,12 +1069,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150087909640",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12probran.jpg?v=1754671766",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52150088073480",
       "category": "iphones",
       "brand": "Apple",
@@ -1000,12 +1091,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088073480",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12probran.jpg?v=1754671766",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52150088237320",
       "category": "iphones",
       "brand": "Apple",
@@ -1020,12 +1113,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088237320",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12probran.jpg?v=1754671766",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52069192368392",
       "category": "iphones",
       "brand": "Samsung",
@@ -1040,12 +1135,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192368392",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultrabranco.jpg?v=1758908377",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52069192499464",
       "category": "iphones",
       "brand": "Samsung",
@@ -1060,12 +1157,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192499464",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultrabranco.jpg?v=1758908377",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52069192630536",
       "category": "iphones",
       "brand": "Samsung",
@@ -1080,12 +1179,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192630536",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultrabranco.jpg?v=1758908377",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52069192761608",
       "category": "iphones",
       "brand": "Samsung",
@@ -1100,12 +1201,14 @@
       "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192761608",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultrabranco.jpg?v=1758908377",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52068828217608",
       "category": "iphones",
       "brand": "Samsung",
@@ -1120,12 +1223,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828217608",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s24ultrapreto.jpg?v=1753810263",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52068828250376",
       "category": "iphones",
       "brand": "Samsung",
@@ -1140,12 +1245,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828250376",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s24ultrapreto.jpg?v=1753810263",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52068828283144",
       "category": "iphones",
       "brand": "Samsung",
@@ -1160,12 +1267,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828283144",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s24ultrapreto.jpg?v=1753810263",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_52068828315912",
       "category": "iphones",
       "brand": "Samsung",
@@ -1180,12 +1289,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828315912",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s24ultrapreto.jpg?v=1753810263",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51879405945096",
       "category": "iphones",
       "brand": "Samsung",
@@ -1200,12 +1311,14 @@
       "url": "https://callphone.pt/products/samsung-s25-256gb?variant=51879405945096",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25cinz_df2fc08a-4427-4be5-9da3-bc4c01803d19.jpg?v=1751472178",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51879310590216",
       "category": "iphones",
       "brand": "Samsung",
@@ -1220,12 +1333,14 @@
       "url": "https://callphone.pt/products/samsung-a55-5g-128gb?variant=51879310590216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/a555gpre_0803ad26-d3d9-42bf-be55-8c5cc7ace769.jpg?v=1751471238",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51878993297672",
       "category": "iphones",
       "brand": "Google",
@@ -1240,12 +1355,14 @@
       "url": "https://callphone.pt/products/google-pixel-9-pro?variant=51878993297672",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/pixel9propret_cae65adb-1529-4ee0-a690-458fcb506fc1.jpg?v=1751469377",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570262966536",
       "category": "iphones",
       "brand": "Apple",
@@ -1260,12 +1377,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570262966536",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15probran.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570263228680",
       "category": "iphones",
       "brand": "Apple",
@@ -1280,12 +1399,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263228680",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15probran.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570263490824",
       "category": "iphones",
       "brand": "Apple",
@@ -1300,12 +1421,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263490824",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15probran.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570263752968",
       "category": "iphones",
       "brand": "Apple",
@@ -1320,12 +1443,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263752968",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15probran.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570195628296",
       "category": "iphones",
       "brand": "Apple",
@@ -1340,12 +1465,13 @@
       "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195628296",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15verd.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570195955976",
       "category": "iphones",
       "brand": "Apple",
@@ -1360,12 +1486,14 @@
       "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195955976",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15verd.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570196283656",
       "category": "iphones",
       "brand": "Apple",
@@ -1380,12 +1508,14 @@
       "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196283656",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15verd.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570196611336",
       "category": "iphones",
       "brand": "Apple",
@@ -1400,12 +1530,14 @@
       "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196611336",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15verd.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570169348360",
       "category": "iphones",
       "brand": "Apple",
@@ -1420,12 +1552,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169348360",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14propret.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570169610504",
       "category": "iphones",
       "brand": "Apple",
@@ -1440,12 +1574,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169610504",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14propret.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570169872648",
       "category": "iphones",
       "brand": "Apple",
@@ -1460,12 +1596,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169872648",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14propret.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570170134792",
       "category": "iphones",
       "brand": "Apple",
@@ -1480,12 +1618,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570170134792",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14propret.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570146607368",
       "category": "iphones",
       "brand": "Apple",
@@ -1500,12 +1640,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146607368",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570146869512",
       "category": "iphones",
       "brand": "Apple",
@@ -1520,12 +1662,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146869512",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570147131656",
       "category": "iphones",
       "brand": "Apple",
@@ -1540,12 +1684,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147131656",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570147393800",
       "category": "iphones",
       "brand": "Apple",
@@ -1560,12 +1706,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147393800",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570068095240",
       "category": "iphones",
       "brand": "Apple",
@@ -1580,12 +1728,14 @@
       "url": "https://callphone.pt/products/iphone-14-256gb?variant=51570068095240",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14rox.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570068488456",
       "category": "iphones",
       "brand": "Apple",
@@ -1600,12 +1750,14 @@
       "url": "https://callphone.pt/products/iphone-14-256gb?variant=51570068488456",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14rox.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570068881672",
       "category": "iphones",
       "brand": "Apple",
@@ -1620,12 +1772,14 @@
       "url": "https://callphone.pt/products/iphone-14-256gb?variant=51570068881672",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14rox.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569983488264",
       "category": "iphones",
       "brand": "Apple",
@@ -1640,12 +1794,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983488264",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569983652104",
       "category": "iphones",
       "brand": "Apple",
@@ -1660,12 +1816,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983652104",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569983815944",
       "category": "iphones",
       "brand": "Apple",
@@ -1680,12 +1838,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983815944",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569983979784",
       "category": "iphones",
       "brand": "Apple",
@@ -1700,12 +1860,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983979784",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569958584584",
       "category": "iphones",
       "brand": "Apple",
@@ -1720,12 +1882,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958584584",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13propret.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569958748424",
       "category": "iphones",
       "brand": "Apple",
@@ -1740,12 +1904,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958748424",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13propret.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569958912264",
       "category": "iphones",
       "brand": "Apple",
@@ -1760,12 +1926,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958912264",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13propret.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569959076104",
       "category": "iphones",
       "brand": "Apple",
@@ -1780,12 +1948,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569959076104",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13propret.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569939513608",
       "category": "iphones",
       "brand": "Apple",
@@ -1800,12 +1970,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939513608",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569939710216",
       "category": "iphones",
       "brand": "Apple",
@@ -1820,12 +1992,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939710216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569939906824",
       "category": "iphones",
       "brand": "Apple",
@@ -1840,12 +2014,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939906824",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569940103432",
       "category": "iphones",
       "brand": "Apple",
@@ -1860,12 +2036,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569940103432",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569928339720",
       "category": "iphones",
       "brand": "Apple",
@@ -1880,12 +2058,14 @@
       "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928339720",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569928536328",
       "category": "iphones",
       "brand": "Apple",
@@ -1900,12 +2080,14 @@
       "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928536328",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569928732936",
       "category": "iphones",
       "brand": "Apple",
@@ -1920,12 +2102,14 @@
       "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928732936",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569928929544",
       "category": "iphones",
       "brand": "Apple",
@@ -1940,12 +2124,14 @@
       "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928929544",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569917821192",
       "category": "iphones",
       "brand": "Apple",
@@ -1960,12 +2146,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569917821192",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569917952264",
       "category": "iphones",
       "brand": "Apple",
@@ -1980,12 +2168,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569917952264",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569918116104",
       "category": "iphones",
       "brand": "Apple",
@@ -2000,12 +2190,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918116104",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569918279944",
       "category": "iphones",
       "brand": "Apple",
@@ -2020,12 +2212,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918279944",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569912643848",
       "category": "iphones",
       "brand": "Apple",
@@ -2040,12 +2234,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912643848",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569912840456",
       "category": "iphones",
       "brand": "Apple",
@@ -2060,12 +2256,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912840456",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569913037064",
       "category": "iphones",
       "brand": "Apple",
@@ -2080,12 +2278,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913037064",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569913233672",
       "category": "iphones",
       "brand": "Apple",
@@ -2100,12 +2300,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913233672",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569888985352",
       "category": "iphones",
       "brand": "Apple",
@@ -2120,12 +2322,13 @@
       "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569888985352",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569889116424",
       "category": "iphones",
       "brand": "Apple",
@@ -2140,12 +2343,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889116424",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569889247496",
       "category": "iphones",
       "brand": "Apple",
@@ -2160,12 +2365,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889247496",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569889378568",
       "category": "iphones",
       "brand": "Apple",
@@ -2180,12 +2387,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889378568",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569772396808",
       "category": "iphones",
       "brand": "Apple",
@@ -2200,12 +2409,13 @@
       "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772396808",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569772593416",
       "category": "iphones",
       "brand": "Apple",
@@ -2220,12 +2430,14 @@
       "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772593416",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569772790024",
       "category": "iphones",
       "brand": "Apple",
@@ -2240,12 +2452,14 @@
       "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772790024",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569772986632",
       "category": "iphones",
       "brand": "Apple",
@@ -2260,12 +2474,14 @@
       "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772986632",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569707122952",
       "category": "iphones",
       "brand": "Apple",
@@ -2280,12 +2496,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707122952",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569707254024",
       "category": "iphones",
       "brand": "Apple",
@@ -2300,12 +2518,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707254024",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569707385096",
       "category": "iphones",
       "brand": "Apple",
@@ -2320,12 +2540,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707385096",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569707516168",
       "category": "iphones",
       "brand": "Apple",
@@ -2340,12 +2562,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707516168",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569695228168",
       "category": "iphones",
       "brand": "Apple",
@@ -2360,12 +2584,13 @@
       "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695228168",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569695359240",
       "category": "iphones",
       "brand": "Apple",
@@ -2380,12 +2605,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695359240",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569695490312",
       "category": "iphones",
       "brand": "Apple",
@@ -2400,12 +2627,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695490312",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569695621384",
       "category": "iphones",
       "brand": "Apple",
@@ -2420,12 +2649,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695621384",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569686315272",
       "category": "iphones",
       "brand": "Apple",
@@ -2440,12 +2671,14 @@
       "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686315272",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11branc.jpg?v=1750270695",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569686511880",
       "category": "iphones",
       "brand": "Apple",
@@ -2460,12 +2693,14 @@
       "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686511880",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11branc.jpg?v=1750270695",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569686708488",
       "category": "iphones",
       "brand": "Apple",
@@ -2480,12 +2715,14 @@
       "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686708488",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11branc.jpg?v=1750270695",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51569686905096",
       "category": "iphones",
       "brand": "Apple",
@@ -2500,12 +2737,14 @@
       "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686905096",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11branc.jpg?v=1750270695",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51220166869256",
       "category": "iphones",
       "brand": "Apple",
@@ -2520,12 +2759,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini?variant=51220166869256",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51220167459080",
       "category": "iphones",
       "brand": "Apple",
@@ -2540,12 +2781,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini?variant=51220167459080",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51220168048904",
       "category": "iphones",
       "brand": "Apple",
@@ -2560,12 +2803,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini?variant=51220168048904",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552224182536",
       "category": "iphones",
       "brand": "Apple",
@@ -2580,12 +2825,14 @@
       "url": "https://callphone.pt/products/iphone-13-mini?variant=51552224182536",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13verm.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138359918856",
       "category": "iphones",
       "brand": "Apple",
@@ -2600,12 +2847,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138359918856",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138360181000",
       "category": "iphones",
       "brand": "Apple",
@@ -2620,12 +2869,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138360181000",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138360312072",
       "category": "iphones",
       "brand": "Apple",
@@ -2640,12 +2891,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138360312072",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138360574216",
       "category": "iphones",
       "brand": "Apple",
@@ -2660,12 +2913,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138360574216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138360705288",
       "category": "iphones",
       "brand": "Apple",
@@ -2680,12 +2935,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138360705288",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138360967432",
       "category": "iphones",
       "brand": "Apple",
@@ -2700,12 +2957,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138360967432",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138361098504",
       "category": "iphones",
       "brand": "Apple",
@@ -2720,12 +2979,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro-max?variant=51138361098504",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16prodeser_1c158775-284a-4137-993f-e1ec356d35f9.jpg?v=1762786311",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138336686344",
       "category": "iphones",
       "brand": "Apple",
@@ -2740,12 +3001,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336686344",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138336817416",
       "category": "iphones",
       "brand": "Apple",
@@ -2760,12 +3023,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336817416",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138336948488",
       "category": "iphones",
       "brand": "Apple",
@@ -2780,12 +3045,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336948488",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337079560",
       "category": "iphones",
       "brand": "Apple",
@@ -2800,12 +3067,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337079560",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337210632",
       "category": "iphones",
       "brand": "Apple",
@@ -2820,12 +3089,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337210632",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337341704",
       "category": "iphones",
       "brand": "Apple",
@@ -2840,12 +3111,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337341704",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337472776",
       "category": "iphones",
       "brand": "Apple",
@@ -2860,12 +3133,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337472776",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337603848",
       "category": "iphones",
       "brand": "Apple",
@@ -2880,12 +3155,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337603848",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337734920",
       "category": "iphones",
       "brand": "Apple",
@@ -2900,12 +3177,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337734920",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337865992",
       "category": "iphones",
       "brand": "Apple",
@@ -2920,12 +3199,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337865992",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138337997064",
       "category": "iphones",
       "brand": "Apple",
@@ -2940,12 +3221,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337997064",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51138338128136",
       "category": "iphones",
       "brand": "Apple",
@@ -2960,12 +3243,14 @@
       "url": "https://callphone.pt/products/iphone-16-pro?variant=51138338128136",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip16pronatur_e46a9e64-151c-4468-bd31-1b3558552894.jpg?v=1762278389",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50764025889032",
       "category": "iphones",
       "brand": "Samsung",
@@ -2980,12 +3265,14 @@
       "url": "https://callphone.pt/products/s25?variant=50764025889032",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/s25ultrabranco2.jpg?v=1758908727",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50733492830472",
       "category": "iphones",
       "brand": "Apple",
@@ -3000,12 +3287,14 @@
       "url": "https://callphone.pt/products/iphone-15-plus?variant=50733492830472",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552286212360",
       "category": "iphones",
       "brand": "Apple",
@@ -3020,12 +3309,14 @@
       "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286212360",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552286540040",
       "category": "iphones",
       "brand": "Apple",
@@ -3040,12 +3331,14 @@
       "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286540040",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552286867720",
       "category": "iphones",
       "brand": "Apple",
@@ -3060,12 +3353,14 @@
       "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286867720",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50732966478088",
       "category": "iphones",
       "brand": "Samsung",
@@ -3080,12 +3375,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra?variant=50732966478088",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/pt-galaxy-s24-s928-sm-s928bzkgeub-539354000.png?v=1738854059",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50732966609160",
       "category": "iphones",
       "brand": "Samsung",
@@ -3100,12 +3397,14 @@
       "url": "https://callphone.pt/products/samsung-s24-ultra?variant=50732966609160",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/pt-galaxy-s24-s928-sm-s928bzkgeub-539354000.png?v=1738854059",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50856169111816",
       "category": "iphones",
       "brand": "Apple",
@@ -3120,12 +3419,13 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max?variant=50856169111816",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552130007304",
       "category": "iphones",
       "brand": "Apple",
@@ -3140,12 +3440,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552130007304",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552130138376",
       "category": "iphones",
       "brand": "Apple",
@@ -3160,12 +3462,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552130138376",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552345882888",
       "category": "iphones",
       "brand": "Apple",
@@ -3180,12 +3484,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552345882888",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15proazu.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51311219310856",
       "category": "iphones",
       "brand": "Apple",
@@ -3200,12 +3506,13 @@
       "url": "https://callphone.pt/products/iphone-15?variant=51311219310856",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552279232776",
       "category": "iphones",
       "brand": "Apple",
@@ -3220,12 +3527,14 @@
       "url": "https://callphone.pt/products/iphone-15?variant=51552279232776",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552279560456",
       "category": "iphones",
       "brand": "Apple",
@@ -3240,12 +3549,14 @@
       "url": "https://callphone.pt/products/iphone-15?variant=51552279560456",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552279888136",
       "category": "iphones",
       "brand": "Apple",
@@ -3260,12 +3571,14 @@
       "url": "https://callphone.pt/products/iphone-15?variant=51552279888136",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15azul.jpg?v=1750269901",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51570248712456",
       "category": "iphones",
       "brand": "Apple",
@@ -3280,12 +3593,13 @@
       "url": "https://callphone.pt/products/iphone-15-pro?variant=51570248712456",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15pronatur.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50754818343176",
       "category": "iphones",
       "brand": "Apple",
@@ -3300,12 +3614,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro?variant=50754818343176",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15pronatur.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552248725768",
       "category": "iphones",
       "brand": "Apple",
@@ -3320,12 +3636,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro?variant=51552248725768",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15pronatur.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552248987912",
       "category": "iphones",
       "brand": "Apple",
@@ -3340,12 +3658,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro?variant=51552248987912",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip15pronatur.jpg?v=1750269896",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50014691655944",
       "category": "iphones",
       "brand": "Apple",
@@ -3360,12 +3680,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50014691655944",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphone_15_pro_white_titanium_pdp_image_position-1__wwen_3_55b1e48a-f178-4370-8bb4-27d42d5d1c07.jpg?v=1748630177",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50217730081032",
       "category": "iphones",
       "brand": "Apple",
@@ -3380,12 +3702,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50217730081032",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphone_15_pro_white_titanium_pdp_image_position-1__wwen_3_55b1e48a-f178-4370-8bb4-27d42d5d1c07.jpg?v=1748630177",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50005924413704",
       "category": "iphones",
       "brand": "Apple",
@@ -3400,12 +3724,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-256gb-novo?variant=50005924413704",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphone_15_pro_black_titanium_pdp_image_position-1__wwen_adb49006-36a3-4603-b25b-00c938396b83.jpg?v=1738856743",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_50441468313864",
       "category": "iphones",
       "brand": "Apple",
@@ -3420,12 +3746,14 @@
       "url": "https://callphone.pt/products/iphone-15-pro-max-256gb-novo?variant=50441468313864",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphone_15_pro_black_titanium_pdp_image_position-1__wwen_adb49006-36a3-4603-b25b-00c938396b83.jpg?v=1738856743",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_49992877146376",
       "category": "iphones",
       "brand": "Apple",
@@ -3440,12 +3768,14 @@
       "url": "https://callphone.pt/products/iphone-15-128gb-novo?variant=49992877146376",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphone_15_blue_pdp_image_position-1__wwen_2.jpg?v=1750159243",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_49865210626312",
       "category": "ipads",
       "brand": "Apple",
@@ -3460,12 +3790,14 @@
       "url": "https://callphone.pt/products/ipas-pro-256gb-12-9?variant=49865210626312",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipad-pro-129-2018-3a-geracao.jpg?v=1724430737",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45152053035272",
       "category": "iphones",
       "brand": "Apple",
@@ -3480,12 +3812,13 @@
       "url": "https://callphone.pt/products/iphone-14?variant=45152053035272",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14azu.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45152053625096",
       "category": "iphones",
       "brand": "Apple",
@@ -3500,12 +3833,14 @@
       "url": "https://callphone.pt/products/iphone-14?variant=45152053625096",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14azu.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45152054214920",
       "category": "iphones",
       "brand": "Apple",
@@ -3520,12 +3855,14 @@
       "url": "https://callphone.pt/products/iphone-14?variant=45152054214920",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14azu.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45209154650376",
       "category": "iphones",
       "brand": "Apple",
@@ -3540,12 +3877,14 @@
       "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154650376",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipse2020pre.jpg?v=1750269648",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45209154748680",
       "category": "iphones",
       "brand": "Apple",
@@ -3560,12 +3899,14 @@
       "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154748680",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipse2020pre.jpg?v=1750269648",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45209154846984",
       "category": "iphones",
       "brand": "Apple",
@@ -3580,12 +3921,14 @@
       "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154846984",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipse2020pre.jpg?v=1750269648",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45209154945288",
       "category": "iphones",
       "brand": "Apple",
@@ -3600,12 +3943,14 @@
       "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154945288",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipse2020pre.jpg?v=1750269648",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45023369527560",
       "category": "iphones",
       "brand": "Apple",
@@ -3620,12 +3965,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini?variant=45023369527560",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45023370150152",
       "category": "iphones",
       "brand": "Apple",
@@ -3640,12 +3987,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini?variant=45023370150152",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45023370739976",
       "category": "iphones",
       "brand": "Apple",
@@ -3660,12 +4009,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini?variant=45023370739976",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45023371362568",
       "category": "iphones",
       "brand": "Apple",
@@ -3680,12 +4031,14 @@
       "url": "https://callphone.pt/products/iphone-12-mini?variant=45023371362568",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12verd.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45008920674568",
       "category": "iphones",
       "brand": "Apple",
@@ -3700,12 +4053,14 @@
       "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920674568",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14bran.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45008920707336",
       "category": "iphones",
       "brand": "Apple",
@@ -3720,12 +4075,14 @@
       "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920707336",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14bran.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45008920740104",
       "category": "iphones",
       "brand": "Apple",
@@ -3740,12 +4097,14 @@
       "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920740104",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14bran.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552274907400",
       "category": "iphones",
       "brand": "Apple",
@@ -3760,12 +4119,14 @@
       "url": "https://callphone.pt/products/iphone-14-plus?variant=51552274907400",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14bran.jpg?v=1770898314",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45006295400712",
       "category": "iphones",
       "brand": "Apple",
@@ -3780,12 +4141,13 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max?variant=45006295400712",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552334610696",
       "category": "iphones",
       "brand": "Apple",
@@ -3800,12 +4162,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552334610696",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45006295925000",
       "category": "iphones",
       "brand": "Apple",
@@ -3820,12 +4184,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max?variant=45006295925000",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552274219272",
       "category": "iphones",
       "brand": "Apple",
@@ -3840,12 +4206,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552274219272",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prorox.jpg?v=1754990892",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45006218101000",
       "category": "iphones",
       "brand": "Apple",
@@ -3860,12 +4228,13 @@
       "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218101000",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prodour.jpg?v=1750270011",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45006218166536",
       "category": "iphones",
       "brand": "Apple",
@@ -3880,12 +4249,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218166536",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prodour.jpg?v=1750270011",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45006218232072",
       "category": "iphones",
       "brand": "Apple",
@@ -3900,12 +4271,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218232072",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prodour.jpg?v=1750270011",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552267534600",
       "category": "iphones",
       "brand": "Apple",
@@ -3920,12 +4293,14 @@
       "url": "https://callphone.pt/products/iphone-14-pro?variant=51552267534600",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip14prodour.jpg?v=1750270011",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_45004458885384",
       "category": "iphones",
       "brand": "Apple",
@@ -3940,12 +4315,14 @@
       "url": "https://callphone.pt/products/iphone-se-2022?variant=45004458885384",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipse2020pre.jpg?v=1750269648",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44802950627592",
       "category": "iphones",
       "brand": "Apple",
@@ -3960,12 +4337,14 @@
       "url": "https://callphone.pt/products/iphone-xs-max?variant=44802950627592",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552198295816",
       "category": "iphones",
       "brand": "Apple",
@@ -3980,12 +4359,14 @@
       "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198295816",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552198394120",
       "category": "iphones",
       "brand": "Apple",
@@ -4000,12 +4381,14 @@
       "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198394120",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552198492424",
       "category": "iphones",
       "brand": "Apple",
@@ -4020,12 +4403,14 @@
       "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198492424",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44771751133448",
       "category": "iphones",
       "brand": "Samsung",
@@ -4040,12 +4425,14 @@
       "url": "https://callphone.pt/products/samsung-s22?variant=44771751133448",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/Designsemnome_13_061e949e-c527-4984-9583-7487a3d2b57f.png?v=1697131021",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44696996053256",
       "category": "iphones",
       "brand": "Samsung",
@@ -4060,12 +4447,14 @@
       "url": "https://callphone.pt/products/samsung-a53-5g?variant=44696996053256",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/Designsemnome_14_494f7605-d503-43a2-8cba-e29819760e7f.png?v=1697131079",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441246269704",
       "category": "iphones",
       "brand": "Apple",
@@ -4080,12 +4469,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44441246269704",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13probran.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634871595272",
       "category": "iphones",
       "brand": "Apple",
@@ -4100,12 +4491,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871595272",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13probran.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634871628040",
       "category": "iphones",
       "brand": "Apple",
@@ -4120,12 +4513,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871628040",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13probran.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552234307848",
       "category": "iphones",
       "brand": "Apple",
@@ -4140,12 +4535,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro-max?variant=51552234307848",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13probran.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44489667346696",
       "category": "iphones",
       "brand": "Apple",
@@ -4160,12 +4557,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44489667346696",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634867859720",
       "category": "iphones",
       "brand": "Apple",
@@ -4180,12 +4579,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634867859720",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634867892488",
       "category": "iphones",
       "brand": "Apple",
@@ -4200,12 +4601,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634867892488",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552205897992",
       "category": "iphones",
       "brand": "Apple",
@@ -4220,12 +4623,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro-max?variant=51552205897992",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44489675211016",
       "category": "iphones",
       "brand": "Apple",
@@ -4240,12 +4645,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro?variant=44489675211016",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634870907144",
       "category": "iphones",
       "brand": "Apple",
@@ -4260,12 +4667,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro?variant=44634870907144",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634871234824",
       "category": "iphones",
       "brand": "Apple",
@@ -4280,12 +4689,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro?variant=44634871234824",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552221266184",
       "category": "iphones",
       "brand": "Apple",
@@ -4300,12 +4711,14 @@
       "url": "https://callphone.pt/products/iphone-13-pro?variant=51552221266184",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13proazu.jpg?v=1750270180",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441228411144",
       "category": "iphones",
       "brand": "Apple",
@@ -4320,12 +4733,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44441228411144",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441228542216",
       "category": "iphones",
       "brand": "Apple",
@@ -4340,12 +4755,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44441228542216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634872316168",
       "category": "iphones",
       "brand": "Apple",
@@ -4360,12 +4777,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44634872316168",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634872578312",
       "category": "iphones",
       "brand": "Apple",
@@ -4380,12 +4799,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44634872578312",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634872414472",
       "category": "iphones",
       "brand": "Apple",
@@ -4400,12 +4821,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44634872414472",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634872611080",
       "category": "iphones",
       "brand": "Apple",
@@ -4420,12 +4843,14 @@
       "url": "https://callphone.pt/products/iphone-8?variant=44634872611080",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8ros.jpg?v=1750269699",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44612133224712",
       "category": "iphones",
       "brand": "Apple",
@@ -4440,12 +4865,14 @@
       "url": "https://callphone.pt/products/iphone-x-1?variant=44612133224712",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexbran.jpg?v=1750269607",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634873954568",
       "category": "iphones",
       "brand": "Apple",
@@ -4460,12 +4887,14 @@
       "url": "https://callphone.pt/products/iphone-x-1?variant=44634873954568",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexbran.jpg?v=1750269607",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634874085640",
       "category": "iphones",
       "brand": "Apple",
@@ -4480,12 +4909,14 @@
       "url": "https://callphone.pt/products/iphone-x-1?variant=44634874085640",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexbran.jpg?v=1750269607",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552195838216",
       "category": "iphones",
       "brand": "Apple",
@@ -4500,12 +4931,14 @@
       "url": "https://callphone.pt/products/iphone-x-1?variant=51552195838216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexbran.jpg?v=1750269607",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441238274312",
       "category": "iphones",
       "brand": "Apple",
@@ -4520,12 +4953,14 @@
       "url": "https://callphone.pt/products/iphone-xr?variant=44441238274312",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipxrverm.jpg?v=1750269590",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634874216712",
       "category": "iphones",
       "brand": "Apple",
@@ -4540,12 +4975,14 @@
       "url": "https://callphone.pt/products/iphone-xr?variant=44634874216712",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipxrverm.jpg?v=1750269590",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634874249480",
       "category": "iphones",
       "brand": "Apple",
@@ -4560,12 +4997,14 @@
       "url": "https://callphone.pt/products/iphone-xr?variant=44634874249480",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipxrverm.jpg?v=1750269590",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552196657416",
       "category": "iphones",
       "brand": "Apple",
@@ -4580,12 +5019,14 @@
       "url": "https://callphone.pt/products/iphone-xr?variant=51552196657416",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ipxrverm.jpg?v=1750269590",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44606926487816",
       "category": "iphones",
       "brand": "Apple",
@@ -4600,12 +5041,14 @@
       "url": "https://callphone.pt/products/iphone-x?variant=44606926487816",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634876215560",
       "category": "iphones",
       "brand": "Apple",
@@ -4620,12 +5063,14 @@
       "url": "https://callphone.pt/products/iphone-x?variant=44634876215560",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634876248328",
       "category": "iphones",
       "brand": "Apple",
@@ -4640,12 +5085,14 @@
       "url": "https://callphone.pt/products/iphone-x?variant=44634876248328",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552197869832",
       "category": "iphones",
       "brand": "Apple",
@@ -4660,12 +5107,14 @@
       "url": "https://callphone.pt/products/iphone-x?variant=51552197869832",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/iphonexsdou.jpg?v=1750269539",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441206849800",
       "category": "iphones",
       "brand": "Apple",
@@ -4680,12 +5129,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro?variant=44441206849800",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634867237128",
       "category": "iphones",
       "brand": "Apple",
@@ -4700,12 +5151,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro?variant=44634867237128",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634867269896",
       "category": "iphones",
       "brand": "Apple",
@@ -4720,12 +5173,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro?variant=44634867269896",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552199409928",
       "category": "iphones",
       "brand": "Apple",
@@ -4740,12 +5195,14 @@
       "url": "https://callphone.pt/products/iphone-11-pro?variant=51552199409928",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11propret.jpg?v=1750270608",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44440939659528",
       "category": "iphones",
       "brand": "Apple",
@@ -4760,12 +5217,14 @@
       "url": "https://callphone.pt/products/iphone-11?variant=44440939659528",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11verm.jpg?v=1750270651",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634866417928",
       "category": "iphones",
       "brand": "Apple",
@@ -4780,12 +5239,14 @@
       "url": "https://callphone.pt/products/iphone-11?variant=44634866417928",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11verm.jpg?v=1750270651",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634866811144",
       "category": "iphones",
       "brand": "Apple",
@@ -4800,12 +5261,14 @@
       "url": "https://callphone.pt/products/iphone-11?variant=44634866811144",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11verm.jpg?v=1750270651",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552198820104",
       "category": "iphones",
       "brand": "Apple",
@@ -4820,12 +5283,14 @@
       "url": "https://callphone.pt/products/iphone-11?variant=51552198820104",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip11verm.jpg?v=1750270651",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44489671934216",
       "category": "iphones",
       "brand": "Apple",
@@ -4840,12 +5305,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44489671934216",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634869498120",
       "category": "iphones",
       "brand": "Apple",
@@ -4860,12 +5327,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869498120",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634869530888",
       "category": "iphones",
       "brand": "Apple",
@@ -4880,12 +5349,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869530888",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552216285448",
       "category": "iphones",
       "brand": "Apple",
@@ -4900,12 +5371,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro-max?variant=51552216285448",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12propre.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441212780808",
       "category": "iphones",
       "brand": "Apple",
@@ -4920,12 +5393,14 @@
       "url": "https://callphone.pt/products/iphone-13?variant=44441212780808",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13bran.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51551508758792",
       "category": "iphones",
       "brand": "Apple",
@@ -4940,12 +5415,14 @@
       "url": "https://callphone.pt/products/iphone-13?variant=51551508758792",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13bran.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51551509152008",
       "category": "iphones",
       "brand": "Apple",
@@ -4960,12 +5437,14 @@
       "url": "https://callphone.pt/products/iphone-13?variant=51551509152008",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13bran.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552218579208",
       "category": "iphones",
       "brand": "Apple",
@@ -4980,12 +5459,14 @@
       "url": "https://callphone.pt/products/iphone-13?variant=51552218579208",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip13bran.jpg?v=1750270290",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44489670164744",
       "category": "iphones",
       "brand": "Apple",
@@ -5000,12 +5481,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro?variant=44489670164744",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12prodour.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634865729800",
       "category": "iphones",
       "brand": "Apple",
@@ -5020,12 +5503,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro?variant=44634865729800",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12prodour.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634865926408",
       "category": "iphones",
       "brand": "Apple",
@@ -5040,12 +5525,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro?variant=44634865926408",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12prodour.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_51552211206408",
       "category": "iphones",
       "brand": "Apple",
@@ -5060,12 +5547,14 @@
       "url": "https://callphone.pt/products/iphone-12-pro?variant=51552211206408",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12prodour.jpg?v=1776176262",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441241813256",
       "category": "iphones",
       "brand": "Apple",
@@ -5080,12 +5569,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44441241813256",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441241944328",
       "category": "iphones",
       "brand": "Apple",
@@ -5100,12 +5591,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44441241944328",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634873397512",
       "category": "iphones",
       "brand": "Apple",
@@ -5120,12 +5613,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873397512",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634873528584",
       "category": "iphones",
       "brand": "Apple",
@@ -5140,12 +5635,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873528584",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634873659656",
       "category": "iphones",
       "brand": "Apple",
@@ -5160,12 +5657,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873659656",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634873790728",
       "category": "iphones",
       "brand": "Apple",
@@ -5180,12 +5679,14 @@
       "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873790728",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip8plusbran.jpg?v=1750269679",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44441237225736",
       "category": "iphones",
       "brand": "Apple",
@@ -5200,12 +5701,13 @@
       "url": "https://callphone.pt/products/ipphone-12?variant=44441237225736",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12rox.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634868646152",
       "category": "iphones",
       "brand": "Apple",
@@ -5220,12 +5722,14 @@
       "url": "https://callphone.pt/products/ipphone-12?variant=44634868646152",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12rox.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44634868678920",
       "category": "iphones",
       "brand": "Apple",
@@ -5240,12 +5744,14 @@
       "url": "https://callphone.pt/products/ipphone-12?variant=44634868678920",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12rox.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-05-30T16:51:07.790068+00:00",
+      "scraped_at": "2026-05-31T14:03:10.112152+00:00",
       "product_id": "callphone_44680596553992",
       "category": "iphones",
       "brand": "Apple",
@@ -5260,10 +5766,11 @@
       "url": "https://callphone.pt/products/ipphone-12?variant=44680596553992",
       "image_url": "https://cdn.shopify.com/s/files/1/0698/3509/6328/files/ip12rox.jpg?v=1750270673",
       "source_page": "https://www.callphone.pt/products.json",
+      "is_available": false,
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "availability": "Esgotado"
     }
   ],
-  "validated_at": "2026-05-30T17:08:07.770302+00:00",
-  "merged_at": "2026-05-31T11:32:22.292666+00:00"
+  "merged_at": "2026-05-31T14:03:33.635481+00:00"
 }

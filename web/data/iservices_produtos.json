@@ -28,7 +28,8 @@
       "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
       "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -48,7 +49,8 @@
       "image_url": "https://loja.iservices.pt/11447-large_default/iphone-11-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-xr/745-iphone-xr",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -68,7 +70,8 @@
       "image_url": "https://loja.iservices.pt/11635-large_default/iphone-xs-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-11-pro-max/757-iphone-11-pro-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -88,7 +91,8 @@
       "image_url": "https://loja.iservices.pt/11397-large_default/iphone-11.jpg",
       "source_page": "https://loja.iservices.pt/iphone-xs-max/770-iphone-xs-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -108,7 +112,8 @@
       "image_url": "https://loja.iservices.pt/11446-large_default/iphone-12.jpg",
       "source_page": "https://loja.iservices.pt/iphone-12-mini-/773-iphone-12-mini",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -128,7 +133,8 @@
       "image_url": "https://loja.iservices.pt/11741-large_default/iphone-12-pro.jpg",
       "source_page": "https://loja.iservices.pt/iphone-12/774-iphone-12",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -148,7 +154,8 @@
       "image_url": "https://loja.iservices.pt/11740-large_default/iphone-12-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-12-pro/775-iphone-12-pro",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -168,7 +175,8 @@
       "image_url": "https://loja.iservices.pt/11696-large_default/iphone-13-pro.jpg",
       "source_page": "https://loja.iservices.pt/iphone-12-pro-max/776-iphone-12-pro-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -188,7 +196,8 @@
       "image_url": "https://loja.iservices.pt/11660-large_default/iphone-13.jpg",
       "source_page": "https://loja.iservices.pt/iphone-13-pro/1005-iphone-13-pro",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -208,7 +217,8 @@
       "image_url": "https://loja.iservices.pt/11679-large_default/iphone-13-mini.jpg",
       "source_page": "https://loja.iservices.pt/iphone-13/1022-iphone-13",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -228,7 +238,8 @@
       "image_url": "https://loja.iservices.pt/11697-large_default/iphone-13-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-13-mini/1077-iphone-13-mini",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -248,7 +259,8 @@
       "image_url": "https://loja.iservices.pt/11758-large_default/iphone-14.jpg",
       "source_page": "https://loja.iservices.pt/iphone-13-pro-max/1094-iphone-13-pro-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -268,7 +280,8 @@
       "image_url": "https://loja.iservices.pt/11804-large_default/iphone-14-pro.jpg",
       "source_page": "https://loja.iservices.pt/iphone-14/1117-iphone-14",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -288,7 +301,8 @@
       "image_url": "https://loja.iservices.pt/11779-large_default/iphone-14-plus.jpg",
       "source_page": "https://loja.iservices.pt/iphone-14-pro/1137-iphone-14-pro",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -308,7 +322,8 @@
       "image_url": "https://loja.iservices.pt/11822-large_default/iphone-14-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-14-plus/1152-iphone-14-plus",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -328,7 +343,8 @@
       "image_url": "https://loja.iservices.pt/11491-large_default/iphone-15.jpg",
       "source_page": "https://loja.iservices.pt/iphone-se-2022/1263-iphone-se-2022",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -348,7 +364,8 @@
       "image_url": "https://loja.iservices.pt/11590-large_default/iphone-15-pro.jpg",
       "source_page": "https://loja.iservices.pt/iphone-15/1330-iphone-15",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -368,7 +385,8 @@
       "image_url": "https://loja.iservices.pt/11607-large_default/iphone-15-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-15-pro/1331-iphone-15-pro",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -388,7 +406,8 @@
       "image_url": "https://loja.iservices.pt/11449-large_default/iphone-15-plus.jpg",
       "source_page": "https://loja.iservices.pt/iphone-15-pro-max/1355-iphone-15-pro-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -408,7 +427,8 @@
       "image_url": "https://loja.iservices.pt/14072-large_default/iphone-16-pro.jpg",
       "source_page": "https://loja.iservices.pt/iphone-15-plus/1356-iphone-15-plus",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -428,7 +448,8 @@
       "image_url": "https://loja.iservices.pt/14350-large_default/iphone-16.jpg",
       "source_page": "https://loja.iservices.pt/iphone-16-pro/1618-iphone-16-pro",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -448,7 +469,8 @@
       "image_url": "https://loja.iservices.pt/14566-large_default/iphone-16-pro-max.jpg",
       "source_page": "https://loja.iservices.pt/iphone-16/1636-iphone-16",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -468,7 +490,8 @@
       "image_url": "https://loja.iservices.pt/15297-large_default/iphone-16e.jpg",
       "source_page": "https://loja.iservices.pt/iphone-16-pro-max/1666-iphone-16-pro-max",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -488,7 +511,8 @@
       "image_url": "https://loja.iservices.pt/10951-large_default/ipad-102-2021-9ª-geração.jpg",
       "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -508,7 +532,8 @@
       "image_url": "https://loja.iservices.pt/10956-large_default/ipad-air-2022-5ª-geração.jpg",
       "source_page": "https://loja.iservices.pt/ipads-base-recondicionados/1407-ipad-102-2021-9%C2%AA-gera%C3%A7%C3%A3o",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -528,7 +553,8 @@
       "image_url": "https://loja.iservices.pt/10990-large_default/ipad-pro-129-2020-4ª-geração.jpg",
       "source_page": "https://loja.iservices.pt/ipad-pro-recondicionados/1410-ipad-pro-129-2021-5%C2%AA-gera%C3%A7%C3%A3o",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -548,7 +574,8 @@
       "image_url": "https://loja.iservices.pt/11125-large_default/ipad-pro-11-2021-3ª-geração.jpg",
       "source_page": "https://loja.iservices.pt/ipads-base-recondicionados/1423-ipad-102-2020-8%C2%AA-gera%C3%A7%C3%A3o",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -568,7 +595,8 @@
       "image_url": "https://loja.iservices.pt/11393-large_default/ipad-109-2022-10ª-geração.jpg",
       "source_page": "https://loja.iservices.pt/ipad-air-recondicionados/1426-ipad-air-2019-3%C2%AA-gera%C3%A7%C3%A3o",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -588,7 +616,8 @@
       "image_url": "https://loja.iservices.pt/12575-large_default/ipad-pro-129-2018-3ª-geração.jpg",
       "source_page": "https://loja.iservices.pt/ipads-base-recondicionados/1453-ipad-109-2022-10%C2%AA-gera%C3%A7%C3%A3o",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     },
     {
       "source": "iservices",
@@ -608,8 +637,9 @@
       "image_url": "https://loja.iservices.pt/14438-large_default/ipad-pro-129-2022.jpg",
       "source_page": "https://loja.iservices.pt/ipad-pro-recondicionados/1614-ipad-pro-11-2020",
       "affiliate_enabled": false,
-      "affiliate_network": null
+      "affiliate_network": null,
+      "is_available": true
     }
   ],
-  "merged_at": "2026-05-31T11:32:22.265339+00:00"
+  "merged_at": "2026-05-31T14:03:33.598707+00:00"
 }

@@ -23,6 +23,8 @@ export type ScrapedProduct = {
   affiliate_network: string | null;
   /** Por omissão true; produtos esgotados ficam com false. */
   is_available?: boolean;
+  availability?: string | null;
+  status?: string | null;
 };
 
 export type ProductsFile = {

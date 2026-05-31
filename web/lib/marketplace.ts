@@ -5,11 +5,12 @@ import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import { cleanBaseModel } from "./product-display";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
+import { isRelevantForHighlights, modelMatches, productMatchesSearchText } from "./model-matching";
 import {
-  isRelevantForHighlights,
-  modelMatches,
-  productMatchesSearchText,
-} from "./model-matching";
+  aggregatedProductIsAvailable,
+  resolveScrapedAvailability,
+  scrapedProductIsAvailable,
+} from "./product-availability";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
@@ -35,6 +36,8 @@ export type ProductListing = {
   warrantyMonths: number;
   scrapedAt: string | null;
   color: string | null;
+  /** false = esgotado; omitido ou true = disponível. */
+  isAvailable?: boolean;
 };
 
 /** Produto agregado: menor preço real entre lojas para o mesmo modelo/capacidade/estado. */
@@ -52,6 +55,7 @@ export type AggregatedProduct = {
   imageUrl: string | null;
   storeCount: number;
   color: string | null;
+  isAvailable?: boolean;
 };
 
 export type MarketplaceFilters = {
@@ -200,7 +204,7 @@ function normalizeModel(text: string): string {
 }
 
 export function scraperProductToListing(product: ScrapedProduct): ProductListing | null {
-  if (product?.is_available === false) return null;
+  if (!scrapedProductIsAvailable(product)) return null;
 
   const category = safeStr(product?.category);
   const tech = categoryToTech(category);
@@ -244,6 +248,7 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
         : 12,
     scrapedAt: safeStr(product?.scraped_at) || null,
     color: safeStr(product?.color) || null,
+    isAvailable: resolveScrapedAvailability(product),
   };
 }
 
@@ -264,7 +269,8 @@ export function narrowProductToStores(
 ): AggregatedProduct | null {
   if (!stores.length) return item;
 
-  const offers = (item.offers ?? []).filter((offer) => stores.includes(offer.storeSlug));
+  const offers = (item.offers ?? [])
+    .filter((offer) => stores.includes(offer.storeSlug) && offer.isAvailable !== false);
   if (!offers.length) return null;
 
   const sorted = [...offers].sort((a, b) => a.price - b.price);
@@ -277,6 +283,7 @@ export function narrowProductToStores(
     bestListing: best,
     minPrice: best.price,
     storeCount: sorted.length,
+    isAvailable: best.isAvailable !== false,
   };
 }
 
@@ -285,6 +292,7 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
 
   for (const item of listings ?? []) {
     if (!item?.id || typeof item.price !== "number" || !Number.isFinite(item.price)) continue;
+    if (item.isAvailable === false) continue;
     const key = listingGroupKey(item);
     const group = groups.get(key) ?? [];
     group.push(item);
@@ -294,7 +302,10 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
   const aggregated: AggregatedProduct[] = [];
 
   for (const [key, offers] of groups) {
-    const sorted = [...offers].sort((a, b) => a.price - b.price);
+    const availableOffers = offers.filter((offer) => offer.isAvailable !== false);
+    if (!availableOffers.length) continue;
+
+    const sorted = [...availableOffers].sort((a, b) => a.price - b.price);
     const best = sorted[0];
     if (!best) continue;
 
@@ -312,6 +323,7 @@ export function aggregateListings(listings: ProductListing[]): AggregatedProduct
       imageUrl: best.imageUrl,
       storeCount: sorted.length,
       color: best.color,
+      isAvailable: true,
     });
   }
 
@@ -343,6 +355,7 @@ export function deduplicateByBestPricePerStore(
   const map = new Map<string, ProductListing>();
 
   for (const listing of flattenAggregatedToListings(products)) {
+    if (listing.isAvailable === false) continue;
     const model = normalizeModel(listing.model);
     const storage = (listing.storage ?? "").toUpperCase().trim();
     const grade = (listing.gradeTier ?? "").toLowerCase().trim();
@@ -408,6 +421,7 @@ export function filterAggregatedProducts(
 
   const filtered = (products ?? []).filter((item) => {
     if (!item?.id || typeof item.minPrice !== "number") return false;
+    if (!aggregatedProductIsAvailable(item)) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
     if (model && !modelMatches(item.model, model)) return false;
@@ -470,6 +484,7 @@ export function filterListings(
 
   return listings.filter((item) => {
     if (!item?.id || !item?.price) return false;
+    if (item.isAvailable === false) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
     if (model && !modelMatches(item.model, model)) return false;

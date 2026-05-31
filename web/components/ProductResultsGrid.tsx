@@ -5,6 +5,7 @@ import { StoreFilterBadge } from "@/components/StoreFilterBadge";
 import { StoreLogo } from "@/components/StoreLogo";
 import type { AggregatedProduct, ProductListing } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
+import { aggregatedProductIsAvailable } from "@/lib/product-availability";
 import { isDevDebugMode, isSuspiciousListing } from "@/lib/listing-url-debug";
 import { getCleanProductData } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
@@ -321,7 +322,11 @@ export function ProductResultsGrid({
   viewMode = "grid",
 }: ProductResultsGridProps) {
   const safeProducts = (products ?? []).filter(
-    (item) => item?.id && typeof item.minPrice === "number" && item.bestListing,
+    (item) =>
+      item?.id &&
+      typeof item.minPrice === "number" &&
+      item.bestListing &&
+      aggregatedProductIsAvailable(item),
   );
   const globalMin = minPrice ?? safeProducts[0]?.minPrice ?? null;
 

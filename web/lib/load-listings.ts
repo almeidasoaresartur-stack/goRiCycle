@@ -7,6 +7,7 @@ import {
   type MarketplaceFilters,
   type ProductListing,
 } from "./marketplace";
+import { filterAvailableAggregatedProducts } from "./product-availability";
 import { ACTIVE_SOURCES, loadAllScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
 
 export { ACTIVE_SOURCES, getScraperCatalogMeta };
@@ -27,7 +28,7 @@ export function getAllListings(): ProductListing[] {
 }
 
 export function getAllAggregatedProducts(): AggregatedProduct[] {
-  return aggregateListings(loadAllListings());
+  return filterAvailableAggregatedProducts(aggregateListings(loadAllListings()));
 }
 
 export function getMarketplaceResults(filters: MarketplaceFilters): {
