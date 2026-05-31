@@ -4,6 +4,7 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { LayoutGrid, LayoutList } from "lucide-react";
 
+import { BrandPicker } from "@/components/BrandPicker";
 import { FilterSidebar } from "@/components/FilterSidebar";
 import {
   getTotalPages,
@@ -157,6 +158,16 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     [safeProducts, filters.tech, filters.brand, filters.stores],
   );
 
+  const availableBrands = useMemo(
+    () =>
+      buildFilterOptionsForScope(safeProducts, {
+        tech: filters.tech,
+        brand: null,
+        stores: filters.stores,
+      }).brands,
+    [safeProducts, filters.tech, filters.stores],
+  );
+
   const activeCatalogFilters = useMemo(
     () => catalogFiltersForView(filters, viewAll),
     [filters, viewAll],
@@ -260,7 +271,18 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
           showFilterSidebar ? "" : "mx-auto w-full max-w-5xl"
         }`}
       >
-        {!showFilterSidebar && <TechCategoryPicker activeTech={filters.tech} />}
+        {!showFilterSidebar && (
+          <div className="mb-5 space-y-4">
+            <TechCategoryPicker activeTech={filters.tech} />
+            <BrandPicker activeBrand={filters.brand} availableBrands={availableBrands} />
+          </div>
+        )}
+
+        {showFilterSidebar ? (
+          <div className="mb-5">
+            <BrandPicker activeBrand={filters.brand} availableBrands={availableBrands} />
+          </div>
+        ) : null}
 
         {catalogMode ? (
           <button
