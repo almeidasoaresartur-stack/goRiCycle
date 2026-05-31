@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { LayoutGrid, LayoutList } from "lucide-react";
 
@@ -13,6 +13,7 @@ import {
 } from "@/components/ProductPagination";
 import { ProductResultsGrid, type ProductViewMode } from "@/components/ProductResultsGrid";
 import { TechCategoryPicker } from "@/components/TechCategoryPicker";
+import { trackSearch, trackSearchNoResults } from "@/lib/analytics";
 import {
   buildFilterOptionsForScope,
   buildHighlightProducts,
@@ -225,6 +226,23 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
 
   const catalogCount = deduplicatedProducts.length;
 
+  const searchQuery = filters.q?.trim() ?? "";
+  const lastSearchTracked = useRef("");
+
+  useEffect(() => {
+    if (!searchQuery || !catalogMode) return;
+
+    const key = `${searchQuery}:${catalogCount}`;
+    if (lastSearchTracked.current === key) return;
+    lastSearchTracked.current = key;
+
+    if (catalogCount === 0) {
+      trackSearchNoResults(searchQuery);
+    } else {
+      trackSearch(searchQuery, catalogCount);
+    }
+  }, [searchQuery, catalogCount, catalogMode]);
+
   const minPrice = computeMinPrice(displayProducts);
 
   const handleSortChange = (value: ProductSortOption) => {
@@ -308,6 +326,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               minPrice={minPrice}
               activeStoreSlugs={filters.stores}
               viewMode={viewMode}
+              variant="highlights"
             />
             <ProductPagination
               currentPage={safeCurrentPage}
@@ -338,6 +357,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               minPrice={minPrice}
               activeStoreSlugs={filters.stores}
               viewMode={viewMode}
+              variant="catalog"
             />
             <ProductPagination
               currentPage={safeCurrentPage}

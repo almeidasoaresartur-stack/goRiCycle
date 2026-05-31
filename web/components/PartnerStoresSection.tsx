@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
 import { getSelectedStore, parseMarketplaceFilters } from "@/lib/marketplace";
+import { trackPartnerLogoClick } from "@/lib/analytics";
 import { getStoreInfo, PARTNER_STORE_SLUGS } from "@/lib/stores";
 import type { ProductSource } from "@/lib/types";
 
@@ -50,6 +51,10 @@ export function PartnerStoresSection() {
   );
 
   const selectStore = (slug: ProductSource | null) => {
+    if (slug) {
+      const label = getStoreInfo(slug)?.label ?? slug;
+      trackPartnerLogoClick(label);
+    }
     navigateCatalog((params) => {
       params.delete("stores");
       if (slug) {

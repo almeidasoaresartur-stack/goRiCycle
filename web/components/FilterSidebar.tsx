@@ -17,6 +17,7 @@ import {
   sortFilterModelNames,
 } from "@/lib/product-display";
 import { getStoreInfo } from "@/lib/stores";
+import { trackFilterApplied } from "@/lib/analytics";
 import type { ProductSource } from "@/lib/types";
 
 type FilterSidebarProps = {
@@ -74,6 +75,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
   );
 
   const updateFilter = (key: string, value: string | null) => {
+    if (value) trackFilterApplied(key, value);
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (value) params.set(key, value);
     else params.delete(key);
@@ -108,6 +110,7 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
       current.delete(slug);
     } else {
       current.add(slug);
+      trackFilterApplied("store", slug);
     }
 
     if (current.size > 0) {

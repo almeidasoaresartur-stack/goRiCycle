@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { TECH_TYPES, type TechType } from "@/lib/marketplace";
+import { trackFilterApplied } from "@/lib/analytics";
 
 type TechCategoryPickerProps = {
   activeTech?: string | null;
@@ -13,6 +14,7 @@ export function TechCategoryPicker({ activeTech }: TechCategoryPickerProps) {
   const searchParams = useSearchParams();
 
   const selectTech = (tech: TechType) => {
+    trackFilterApplied("tech", tech);
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     params.set("tech", tech);
     params.set("view", "all");

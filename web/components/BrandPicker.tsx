@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { BRAND_OPTIONS } from "@/lib/marketplace";
+import { trackFilterApplied } from "@/lib/analytics";
 
 const BRAND_META: Record<(typeof BRAND_OPTIONS)[number], { label: string; icon: string }> = {
   Apple: { label: "Apple", icon: "🍎" },
@@ -26,6 +27,7 @@ export function BrandPicker({ activeBrand, availableBrands = [] }: BrandPickerPr
   if (brands.length === 0) return null;
 
   const selectBrand = (brand: string | null) => {
+    if (brand) trackFilterApplied("brand", brand);
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (brand) params.set("brand", brand);
     else params.delete("brand");

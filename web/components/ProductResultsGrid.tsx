@@ -1,8 +1,11 @@
+"use client";
+
 import { Crown, ExternalLink } from "lucide-react";
 
 import { ProductCardImage } from "@/components/ProductCardImage";
 import { StoreFilterBadge } from "@/components/StoreFilterBadge";
 import { StoreLogo } from "@/components/StoreLogo";
+import { trackHighlightClick, trackStoreClick } from "@/lib/analytics";
 import type { AggregatedProduct, ProductListing } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
 import { aggregatedProductIsAvailable } from "@/lib/product-availability";
@@ -43,12 +46,15 @@ type ProductResultsGridProps = {
   minPrice?: number | null;
   activeStoreSlugs?: ProductSource[] | null;
   viewMode?: ProductViewMode;
+  variant?: "highlights" | "catalog";
 };
 
 type ProductCardProps = {
   item: AggregatedProduct;
   isBest: boolean;
   activeStoreSlugs?: ProductSource[] | null;
+  index: number;
+  variant: "highlights" | "catalog";
 };
 
 function listingHref(listing: ProductListing | null | undefined): string {
@@ -63,7 +69,29 @@ function listingHref(listing: ProductListing | null | undefined): string {
   });
 }
 
-function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
+function handleVerOfertaClick(
+  item: AggregatedProduct,
+  index: number,
+  variant: "highlights" | "catalog",
+) {
+  const best = item.bestListing;
+  if (!best) return;
+
+  trackStoreClick({
+    model: item.model,
+    store: best.store,
+    price: best.price,
+    category: best.category,
+    grade: item.gradeTier,
+    storage: item.storage ?? undefined,
+  });
+
+  if (variant === "highlights") {
+    trackHighlightClick(item.model, index);
+  }
+}
+
+function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
   const clean = getCleanProductData(item);
@@ -176,6 +204,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
             href={listingHref(best)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => handleVerOfertaClick(item, index, variant)}
             className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
           >
             Ver Oferta
@@ -206,7 +235,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs }: ProductCardProps) {
   );
 }
 
-function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
+function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
   const clean = getCleanProductData(item);
@@ -305,6 +334,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs }: ProductCardProps) {
           href={listingHref(best)}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleVerOfertaClick(item, index, variant)}
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
         >
           Ver Oferta
@@ -320,6 +350,7 @@ export function ProductResultsGrid({
   minPrice,
   activeStoreSlugs,
   viewMode = "grid",
+  variant = "catalog",
 }: ProductResultsGridProps) {
   const safeProducts = (products ?? []).filter(
     (item) =>
@@ -345,12 +376,14 @@ export function ProductResultsGrid({
   if (viewMode === "list") {
     return (
       <div className="flex flex-col gap-3">
-        {safeProducts.map((item) => (
+        {safeProducts.map((item, index) => (
           <ProductListRow
             key={item.id}
             item={item}
             isBest={globalMin != null && item.minPrice === globalMin}
             activeStoreSlugs={activeStoreSlugs}
+            index={index}
+            variant={variant}
           />
         ))}
       </div>
@@ -359,12 +392,14 @@ export function ProductResultsGrid({
 
   return (
     <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
-      {safeProducts.map((item) => (
+      {safeProducts.map((item, index) => (
         <ProductGridCard
           key={item.id}
           item={item}
           isBest={globalMin != null && item.minPrice === globalMin}
           activeStoreSlugs={activeStoreSlugs}
+          index={index}
+          variant={variant}
         />
       ))}
     </div>
