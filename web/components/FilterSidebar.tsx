@@ -77,7 +77,10 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (value) params.set(key, value);
     else params.delete(key);
-    if (key === "brand" || key === "tech") params.delete("model");
+    if (key === "brand" || key === "tech") {
+      params.delete("model");
+      if (key === "brand") setModelSearch("");
+    }
     pushParams(params);
   };
 

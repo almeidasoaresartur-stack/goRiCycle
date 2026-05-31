@@ -13,7 +13,7 @@ import {
 import { ProductResultsGrid, type ProductViewMode } from "@/components/ProductResultsGrid";
 import { TechCategoryPicker } from "@/components/TechCategoryPicker";
 import {
-  buildFilterOptionsFromAggregated,
+  buildFilterOptionsForScope,
   buildHighlightProducts,
   catalogFiltersForView,
   computeMinPrice,
@@ -147,17 +147,15 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
     (filters.stores?.length ?? 0) > 0;
 
   const safeProducts = useMemo(() => filterLaunchProducts(allProducts ?? []), [allProducts]);
-  const scopedForOptions = filterAggregatedProducts(safeProducts, {
-    tech: filters.tech,
-    brand: filters.brand,
-    model: null,
-    storage: null,
-    grade: null,
-    color: null,
-    q: null,
-    stores: filters.stores,
-  });
-  const options = buildFilterOptionsFromAggregated(scopedForOptions);
+  const options = useMemo(
+    () =>
+      buildFilterOptionsForScope(safeProducts, {
+        tech: filters.tech,
+        brand: filters.brand ?? null,
+        stores: filters.stores,
+      }),
+    [safeProducts, filters.tech, filters.brand, filters.stores],
+  );
 
   const activeCatalogFilters = useMemo(
     () => catalogFiltersForView(filters, viewAll),

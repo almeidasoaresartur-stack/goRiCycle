@@ -453,21 +453,58 @@ export function filterAggregatedProducts(
 }
 
 export function buildFilterOptionsFromAggregated(products: AggregatedProduct[]): FilterOptions {
+  return buildFilterOptionsForScope(products, {});
+}
+
+function extractListingsFromAggregated(products: AggregatedProduct[]): ProductListing[] {
   const listings: ProductListing[] = [];
-  const storeSlugs = new Set<ProductSource>();
+  const seen = new Set<string>();
 
   for (const product of products ?? []) {
     for (const offer of product.offers ?? []) {
+      if (!offer?.id || seen.has(offer.id)) continue;
+      seen.add(offer.id);
       listings.push(offer);
+    }
+    if (product.bestListing?.id && !seen.has(product.bestListing.id)) {
+      seen.add(product.bestListing.id);
+      listings.push(product.bestListing);
+    }
+  }
+
+  return listings;
+}
+
+/** Opções de filtro dinâmicas — modelos reagem a tech/marca/lojas seleccionadas. */
+export function buildFilterOptionsForScope(
+  products: AggregatedProduct[],
+  scope: Pick<MarketplaceFilters, "tech" | "brand" | "stores">,
+): FilterOptions {
+  const scopeFilters: MarketplaceFilters = {
+    tech: scope.tech ?? null,
+    brand: scope.brand ?? null,
+    model: null,
+    storage: null,
+    grade: null,
+    color: null,
+    q: null,
+    stores: scope.stores ?? null,
+  };
+
+  const scopedProducts = filterAggregatedProducts(products ?? [], scopeFilters);
+  const listings = extractListingsFromAggregated(scopedProducts);
+  const base = buildFilterOptions(listings);
+
+  const storeSlugs = new Set<ProductSource>();
+  for (const product of scopedProducts) {
+    for (const offer of product.offers ?? []) {
       storeSlugs.add(offer.storeSlug);
     }
-    if (!product.offers?.length && product.bestListing) {
-      listings.push(product.bestListing);
+    if (product.bestListing) {
       storeSlugs.add(product.bestListing.storeSlug);
     }
   }
 
-  const base = buildFilterOptions(listings);
   return {
     ...base,
     stores: PARTNER_STORE_ORDER.filter((slug) => storeSlugs.has(slug)),

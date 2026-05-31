@@ -171,11 +171,45 @@ export function cleanBaseModel(raw: string): string {
       .replace(/^iphone/i, "iPhone");
   }
 
-  const galaxy = name.match(/galaxy\s*s\d+(?:\s*ultra|\s*plus|\s*fe|\+)?/i);
-  if (galaxy) return galaxy[0].replace(/\s{2,}/g, " ");
+  // Normalizar "SAMSUNG S23" / "Samsung S24 Ultra" sem prefixo Galaxy
+  if (/samsung\s+(?:galaxy\s*)?s\d/i.test(name) && !/galaxy\s*s/i.test(name)) {
+    name = name.replace(/^samsung\s+/i, "Samsung Galaxy ");
+  }
 
-  const pixel = name.match(/pixel\s*\d+(?:\s*pro|\s*a)?/i);
-  if (pixel) return pixel[0].replace(/^pixel/i, "Pixel");
+  const galaxyFold = name.match(/(?:samsung\s+)?galaxy\s*z\s*fold\s*\d+/i);
+  if (galaxyFold) {
+    return galaxyFold[0]
+      .replace(/^samsung\s+/i, "")
+      .replace(/\s{2,}/g, " ")
+      .replace(/^galaxy/i, "Galaxy")
+      .trim();
+  }
+
+  const galaxyTab = name.match(/(?:samsung\s+)?galaxy\s*tab\s*[a-z0-9\s]*/i);
+  if (galaxyTab) {
+    return galaxyTab[0]
+      .replace(/^samsung\s+/i, "Samsung ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  const galaxy = name.match(/(?:samsung\s+)?galaxy\s*s\d+(?:\s*ultra|\s*plus|\s*fe|\+)?/i);
+  if (galaxy) {
+    return galaxy[0]
+      .replace(/^samsung\s+/i, "")
+      .replace(/\s{2,}/g, " ")
+      .replace(/^galaxy/i, "Galaxy")
+      .trim();
+  }
+
+  const pixel = name.match(/(?:google\s+)?pixel\s*\d+(?:\s*pro\s*fold|\s*pro|\s*a|\s*fold)?/i);
+  if (pixel) {
+    return pixel[0]
+      .replace(/^google\s+/i, "")
+      .replace(/^pixel/i, "Pixel")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
 
   const ipad = formatIpadDisplayName(name);
   if (ipad) return ipad;
