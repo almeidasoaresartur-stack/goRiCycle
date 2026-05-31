@@ -3,6 +3,7 @@ import { generateExactProductUrl } from "./product-urls";
 import { inferBrand } from "./inference";
 import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
+import { cleanBaseModel } from "./product-display";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
 import { isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
 
@@ -552,7 +553,11 @@ const HIGHLIGHT_STORAGE_BY_TECH: Record<TechType, string[]> = {
 
 const HIGHLIGHT_GRADE_PRIORITY: GradeTier[] = ["Premium", "Excelente", "Bom"];
 
-/** Destaques: escolhe a variante representativa de um modelo (capacidade + estado + preço). */
+function highlightModelKey(model: string): string {
+  return normalizeModel(cleanBaseModel(model));
+}
+
+/** Destaques: escolhe a variante mais barata entre capacidades/estados preferidos. */
 export function getRepresentativeProduct(
   products: AggregatedProduct[],
   tech: TechType,
@@ -560,6 +565,7 @@ export function getRepresentativeProduct(
   if (!products.length) return null;
 
   const preferredStorage = HIGHLIGHT_STORAGE_BY_TECH[tech] ?? HIGHLIGHT_STORAGE_BY_TECH.smartphones;
+  const candidates: AggregatedProduct[] = [];
 
   for (const storage of preferredStorage) {
     for (const grade of HIGHLIGHT_GRADE_PRIORITY) {
@@ -568,11 +574,12 @@ export function getRepresentativeProduct(
           (product.storage ?? "").toLowerCase().includes(storage) &&
           product.gradeTier === grade,
       );
-      if (match) return match;
+      if (match) candidates.push(match);
     }
   }
 
-  return [...products].sort((a, b) => a.minPrice - b.minPrice)[0] ?? null;
+  const pool = candidates.length ? candidates : products;
+  return [...pool].sort((a, b) => a.minPrice - b.minPrice)[0] ?? null;
 }
 
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
@@ -586,7 +593,7 @@ export function buildHighlightProducts(products: AggregatedProduct[]): Aggregate
 
     const byModel = new Map<string, AggregatedProduct[]>();
     for (const product of pool) {
-      const key = normalizeModel(product.model);
+      const key = highlightModelKey(product.model);
       const variants = byModel.get(key) ?? [];
       variants.push(product);
       byModel.set(key, variants);

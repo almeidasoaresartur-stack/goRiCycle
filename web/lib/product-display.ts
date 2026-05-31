@@ -67,8 +67,9 @@ export function cleanBaseModel(raw: string): string {
   name = name.replace(/\(\s*\)/g, "").replace(/\s{2,}/g, " ").trim();
 
   if (/iphone\s*se/i.test(name)) {
-    if (/2020|se\s*2|2nd|2ª/i.test(raw)) return "iPhone SE (2020)";
-    if (/2022|se\s*3|3rd|3ª/i.test(raw)) return "iPhone SE (2022)";
+    // 2022 antes de 2020 — "SE 2022" contém "SE 2" e não deve cair no bucket de 2020
+    if (/2022|se\s*3\b|3rd|3ª/i.test(raw)) return "iPhone SE (2022)";
+    if (/2020|se\s*2\b|2nd|2ª/i.test(raw)) return "iPhone SE (2020)";
     return "iPhone SE";
   }
 
