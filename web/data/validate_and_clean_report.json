@@ -1,19 +1,47 @@
 {
-  "validated_at": "2026-05-30T18:32:03.415952+00:00",
+  "validated_at": "2026-05-31T22:30:00.260802+00:00",
   "dry_run": false,
   "check_live": false,
   "sources": {
+    "iservices": {
+      "total": 31,
+      "kept": 31,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": []
+    },
     "refurbed": {
-      "total": 119,
-      "kept": 119,
+      "total": 141,
+      "kept": 141,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": []
+    },
+    "swappie": {
+      "total": 1,
+      "kept": 1,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": []
+    },
+    "certideal": {
+      "total": 389,
+      "kept": 389,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": []
+    },
+    "callphone": {
+      "total": 1521,
+      "kept": 1521,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     }
   },
   "summary": {
-    "total": 119,
-    "kept": 119,
+    "total": 2083,
+    "kept": 2083,
     "removed": 0
   }
 }

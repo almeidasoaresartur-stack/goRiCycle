@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-05-30T15:35:52.425728+00:00",
-  "mode": "full",
+  "run_at": "2026-05-31T21:33:56.833440+00:00",
+  "mode": "incremental",
   "categories": [
     "iphones",
     "ipads",
@@ -10,54 +10,48 @@
   ],
   "sources": {
     "iservices": {
-      "total": 267,
+      "total": 1,
       "by_category": {
-        "iphones": 198,
-        "ipads": 69,
+        "iphones": 1,
+        "ipads": 0,
         "tablets": 0,
         "samsung_phones": 0,
         "google_phones": 0
       },
-      "errors": 0
+      "errors": 0,
+      "removed_out_of_stock": 0
     },
     "refurbed": {
-      "total": 0,
+      "total": 141,
       "by_category": {
-        "iphones": 0,
-        "ipads": 0,
-        "tablets": 0,
-        "samsung_phones": 0,
-        "google_phones": 0
+        "iphones": 71,
+        "ipads": 53,
+        "tablets": 8,
+        "samsung_phones": 4,
+        "google_phones": 5
       },
-      "errors": 0
-    },
-    "backmarket": {
-      "total": 0,
-      "by_category": {
-        "iphones": 0,
-        "ipads": 0,
-        "tablets": 0,
-        "samsung_phones": 0,
-        "google_phones": 0
-      },
-      "errors": 0
+      "errors": 0,
+      "removed_out_of_stock": 0,
+      "dedup_removed": 49
     },
     "swappie": {
-      "total": 351,
+      "total": 0,
       "by_category": {
-        "iphones": 268,
-        "ipads": 83
+        "iphones": 0,
+        "ipads": 0
       },
-      "errors": 0
+      "errors": 0,
+      "removed_out_of_stock": 350
     },
     "certideal": {
-      "total": 396,
+      "total": 389,
       "by_category": {
         "iphones": 381,
-        "ipads": 14,
+        "ipads": 7,
         "samsung_phones": 1
       },
-      "errors": 0
+      "errors": 0,
+      "removed_out_of_stock": 0
     },
     "callphone": {
       "total": 1521,
@@ -65,10 +59,11 @@
         "iphones": 1520,
         "ipads": 1
       },
-      "errors": 0
+      "errors": 0,
+      "unavailable": 1439
     }
   },
-  "grand_total": 2535,
+  "grand_total": 2052,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
