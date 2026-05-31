@@ -40,8 +40,12 @@ function isRecognizableSmartphone(model: string): boolean {
   );
 }
 
+function storeMatches(listing: ProductListing, storeName: ProductSource): boolean {
+  return (listing.storeSlug ?? "").toLowerCase() === storeName.toLowerCase();
+}
+
 function baseEligibility(listing: ProductListing, storeName: ProductSource): boolean {
-  if (listing.storeSlug !== storeName) return false;
+  if (!storeMatches(listing, storeName)) return false;
   if (listing.tech !== "smartphones") return false;
   if (listing.isAvailable === false) return false;
   if (listing.price == null || listing.price < 80 || listing.price > 1200) return false;
@@ -63,11 +67,16 @@ export function getStoreHighlight(
     .filter((listing) => premiumEligibility(listing, storeName))
     .sort((a, b) => b.price - a.price);
 
-  if (premiumCandidates.length === 0) return null;
+  const baseCandidates = listings
+    .filter((listing) => baseEligibility(listing, storeName))
+    .sort((a, b) => b.price - a.price);
 
-  const indexBase = listings.filter((listing) => baseEligibility(listing, storeName)).length;
-  const pickIndex = Math.min(Math.floor(indexBase * 0.25), premiumCandidates.length - 1);
-  const picked = premiumCandidates[pickIndex];
+  const candidates = premiumCandidates.length > 0 ? premiumCandidates : baseCandidates;
+  if (candidates.length === 0) return null;
+
+  const indexBase = baseCandidates.length;
+  const pickIndex = Math.min(Math.floor(indexBase * 0.25), candidates.length - 1);
+  const picked = candidates[pickIndex];
   if (!picked) return null;
 
   const storeLabel = getStoreInfo(picked.storeSlug)?.label ?? picked.store;
