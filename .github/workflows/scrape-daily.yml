@@ -170,5 +170,28 @@ jobs:
           fi
 
           git commit -m "chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})"
-          git pull --rebase origin "${{ github.ref_name }}"
-          git push
+
+          # O scrape demora ~2h; entretanto podem entrar commits no main (ex.: código).
+          # Rebase falha frequentemente — merge + retry é mais robusto.
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            if ! git merge "origin/${{ github.ref_name }}" --no-edit; then
+              echo "⚠️ Conflito no merge (tentativa ${attempt}) — priorizar dados do scrape."
+              git checkout --ours -- data/ web/data/ || true
+              git add data/ web/data/
+              git commit --no-edit || git commit -m "chore(data): scrape automático $(date -u +%Y-%m-%d) (${{ steps.mode.outputs.value }})"
+            fi
+            if git push origin "HEAD:${{ github.ref_name }}"; then
+              pushed=1
+              echo "✓ Dados publicados (tentativa ${attempt})."
+              break
+            fi
+            sleep "$((attempt * 5))"
+          done
+
+          if [ "$pushed" -ne 1 ]; then
+            echo "❌ Falha ao publicar dados após 5 tentativas."
+            git status
+            exit 1
+          fi
