@@ -1,0 +1,97 @@
+# goRiCycle — limpeza automática semanal do repositório
+#
+# Apaga logs/temporários com mais de 7 dias e remove artefactos Back Market órfãos.
+# Corre ao domingo às 05:00 UTC (após o scrape full das 03:00).
+#
+# Requisitos: Settings → Actions → General → Read and write permissions
+
+name: Limpeza semanal
+
+on:
+  schedule:
+    - cron: "0 5 * * 0"
+  workflow_dispatch:
+    inputs:
+      apply_logs:
+        description: "Apagar logs/temporários com mais de 7 dias"
+        required: true
+        default: true
+        type: boolean
+      prune_backmarket:
+        description: "Remover JSONs Back Market órfãos do repo"
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: cleanup-weekly
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Determinar opções
+        id: opts
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "apply_logs=${{ inputs.apply_logs }}" >> "$GITHUB_OUTPUT"
+            echo "prune_backmarket=${{ inputs.prune_backmarket }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "apply_logs=true" >> "$GITHUB_OUTPUT"
+            echo "prune_backmarket=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Limpar logs e temporários antigos
+        if: steps.opts.outputs.apply_logs == 'true'
+        run: python scripts/cleanup.py --apply
+
+      - name: Remover Back Market órfão (data/)
+        if: steps.opts.outputs.prune_backmarket == 'true'
+        run: python scripts/cleanup.py --prune-backmarket --apply
+
+      - name: Remover Back Market órfão (web/data/)
+        if: steps.opts.outputs.prune_backmarket == 'true'
+        run: |
+          shopt -s nullglob
+          for f in web/data/backmarket_*.json; do
+            git rm -f "$f"
+          done
+
+      - name: Auditoria JSONs órfãos
+        run: |
+          {
+            echo "## Auditoria de JSONs órfãos"
+            echo '```'
+            python scripts/cleanup.py --json-only
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit limpeza
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -u data/ web/data/
+
+          if git diff --staged --quiet; then
+            echo "Sem alterações após limpeza — nada a commitar."
+            exit 0
+          fi
+
+          git commit -m "chore: limpeza automática semanal $(date -u +%Y-%m-%d)"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push

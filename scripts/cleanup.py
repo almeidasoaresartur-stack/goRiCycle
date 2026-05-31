@@ -12,31 +12,34 @@ Uso:
     python scripts/cleanup.py              # dry-run (predefinição)
     python scripts/cleanup.py --apply      # apaga temporários/logs > 7 dias
     python scripts/cleanup.py --json-only  # só auditoria de JSONs órfãos
+    python scripts/cleanup.py --prune-backmarket --apply  # remove JSON Back Market órfãos em data/
 """
 
 from __future__ import annotations
 
 import argparse
-import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-SCRAPERS_DIR = PROJECT_ROOT / "scrapers"
 DATA_DIR = PROJECT_ROOT / "data"
 WEB_DATA_DIR = PROJECT_ROOT / "web" / "data"
 
-if str(SCRAPERS_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRAPERS_DIR))
-
-from merge_and_clean import (  # noqa: E402
-    ALL_PRODUCTS_JSON,
-    PRODUCT_CORRECTIONS_JSON,
-    REPORT_PATH,
-    SOURCES,
-)
-
 DEFAULT_MAX_AGE_DAYS = 7
+
+# Sincronizado com scrapers/merge_and_clean.py (SOURCES + outputs).
+MERGE_USED_JSON_NAMES: frozenset[str] = frozenset(
+    {
+        "iservices_produtos.json",
+        "refurbed_produtos.json",
+        "swappie_produtos.json",
+        "certideal_produtos.json",
+        "callphone_produtos.json",
+        "product_corrections.json",
+        "all_products.json",
+        "merge_and_clean_report.json",
+    }
+)
 
 # Pastas onde ficheiros antigos podem ser removidos com segurança.
 TEMP_DIR_CANDIDATES: tuple[Path, ...] = (
@@ -53,21 +56,15 @@ TEMP_FILE_GLOBS: tuple[str, ...] = (
     "logs/**/*",
 )
 
-PROTECTED_BASENAMES: frozenset[str] = frozenset(
-    {
-        ALL_PRODUCTS_JSON.name,
-        "all_products.json",
-    }
-)
+PROTECTED_BASENAMES: frozenset[str] = frozenset({"all_products.json"})
+
+# Scraper Back Market inactivo — órfãos seguros para --prune-backmarket (só data/).
+BACKMARKET_ORPHAN_PREFIX = "backmarket_"
 
 
 def merge_used_json_names() -> frozenset[str]:
     """Nomes de JSON referenciados directamente pelo merge_and_clean.py."""
-    names = {path.name for path in SOURCES.values()}
-    names.add(PRODUCT_CORRECTIONS_JSON.name)
-    names.add(ALL_PRODUCTS_JSON.name)
-    names.add(REPORT_PATH.name)
-    return frozenset(names)
+    return MERGE_USED_JSON_NAMES
 
 
 def is_protected(path: Path) -> bool:
@@ -81,11 +78,7 @@ def is_protected(path: Path) -> bool:
     if path.name in PROTECTED_BASENAMES:
         return True
 
-    resolved = path.resolve()
-    if resolved == ALL_PRODUCTS_JSON.resolve():
-        return True
-
-    return False
+    return path.resolve() == (DATA_DIR / "all_products.json").resolve()
 
 
 def file_age(path: Path) -> timedelta:
@@ -99,6 +92,23 @@ def format_size(num_bytes: int) -> str:
     if num_bytes < 1024 * 1024:
         return f"{num_bytes / 1024:.1f} KB"
     return f"{num_bytes / (1024 * 1024):.1f} MB"
+
+
+def collect_unused_json_files() -> list[Path]:
+    """JSONs em data/ não referenciados pelo merge_and_clean.py."""
+    used = merge_used_json_names()
+    unused: list[Path] = []
+
+    for path in sorted(DATA_DIR.glob("*.json")):
+        if path.name.startswith("."):
+            continue
+        if is_protected(path):
+            continue
+        if path.name in used:
+            continue
+        unused.append(path)
+
+    return unused
 
 
 def collect_temp_files(max_age: timedelta) -> list[Path]:
@@ -150,6 +160,25 @@ def delete_temp_files(paths: list[Path], *, apply: bool) -> tuple[int, int]:
     return deleted, freed
 
 
+def prune_backmarket_orphans(*, apply: bool) -> list[Path]:
+    """Remove JSONs órfãos do Back Market em data/ (scraper inactivo)."""
+    targets = [
+        path
+        for path in collect_unused_json_files()
+        if path.name.startswith(BACKMARKET_ORPHAN_PREFIX)
+    ]
+
+    for path in targets:
+        label = path.relative_to(PROJECT_ROOT)
+        if apply:
+            path.unlink(missing_ok=True)
+            print(f"  ✓ órfão Back Market removido: {label}")
+        else:
+            print(f"  · candidato Back Market: {label}")
+
+    return targets
+
+
 def list_unused_json_files() -> None:
     """Lista JSONs em data/ que o merge_and_clean não utiliza."""
     used = merge_used_json_names()
@@ -157,16 +186,7 @@ def list_unused_json_files() -> None:
     for name in sorted(used):
         print(f"  · data/{name}")
 
-    unused: list[Path] = []
-    for path in sorted(DATA_DIR.glob("*.json")):
-        if path.name.startswith("."):
-            continue
-        if is_protected(path):
-            continue
-        if path.name in used:
-            continue
-        unused.append(path)
-
+    unused = collect_unused_json_files()
     print("\nJSONs em data/ não referenciados pelo merge_and_clean.py:")
     if not unused:
         print("  (nenhum — catálogo limpo)")
@@ -203,6 +223,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Só listar JSONs em data/ não usados pelo merge_and_clean.py",
     )
+    parser.add_argument(
+        "--prune-backmarket",
+        action="store_true",
+        help="Remover JSONs órfãos backmarket_* em data/ (scraper inactivo)",
+    )
     return parser.parse_args()
 
 
@@ -217,6 +242,12 @@ def main() -> int:
     mode = "APLICAR" if args.apply else "DRY-RUN"
     print(f"goRiCycle cleanup — {mode} (ficheiros > {args.days} dias)\n")
     print("Protegidos: all_products.json, web/data/**")
+
+    if args.prune_backmarket:
+        print("\nBack Market órfão (data/ apenas):")
+        pruned = prune_backmarket_orphans(apply=args.apply)
+        if not pruned:
+            print("  (nenhum)")
 
     temp_files = collect_temp_files(max_age)
     print(f"\nTemporários / logs antigos ({len(temp_files)}):")
