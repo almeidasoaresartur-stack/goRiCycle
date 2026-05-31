@@ -200,6 +200,8 @@ function normalizeModel(text: string): string {
 }
 
 export function scraperProductToListing(product: ScrapedProduct): ProductListing | null {
+  if (product?.is_available === false) return null;
+
   const category = safeStr(product?.category);
   const tech = categoryToTech(category);
   const model = safeStr(product?.model);

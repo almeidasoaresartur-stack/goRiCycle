@@ -28,7 +28,13 @@ _SCRAPERS_DIR = Path(__file__).resolve().parent
 if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
-from common import build_normalized_product, extract_storage, setup_logging
+from common import (
+    build_normalized_product,
+    extract_storage,
+    html_indicates_callphone_out_of_stock,
+    parse_shopify_variants_availability,
+    setup_logging,
+)
 from config import CALLPHONE_CONFIG
 
 CFG = CALLPHONE_CONFIG
@@ -241,7 +247,50 @@ def fetch_all_products(client: httpx.Client) -> list[dict]:
     return all_products
 
 
-def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, Any]]:
+def resolve_variant_availability(
+    client: httpx.Client | None,
+    variant: dict,
+    handle: str,
+    html_cache: dict[str, str],
+) -> tuple[bool, str | None]:
+    """
+    Determina disponibilidade da variante.
+    Prioridade: JSON embutido na página Shopify → etiqueta DOM 'Esgotado' → API products.json.
+    """
+    variant_id = str(variant.get("id", "")).strip()
+    api_available = bool(variant.get("available", False))
+    available = api_available
+    availability_label: str | None = None
+
+    if client and handle:
+        if handle not in html_cache:
+            page_url = f"{BASE_URL}/products/{handle}"
+            try:
+                response = client.get(page_url, timeout=25)
+                html_cache[handle] = response.text if response.status_code == 200 else ""
+            except Exception as exc:
+                logger.debug("Falha ao carregar página %s: %s", page_url, exc)
+                html_cache[handle] = ""
+
+        html = html_cache.get(handle, "")
+        if html:
+            dom_variants = parse_shopify_variants_availability(html)
+            if variant_id and variant_id in dom_variants:
+                available = dom_variants[variant_id]
+            elif html_indicates_callphone_out_of_stock(html):
+                available = False
+
+    if not available:
+        availability_label = "Esgotado"
+    return available, availability_label
+
+
+def process_product(
+    shopify_product: dict,
+    scraped_at: str,
+    client: httpx.Client | None = None,
+    html_cache: dict[str, str] | None = None,
+) -> list[dict[str, Any]]:
     title = shopify_product.get("title", "")
     title_lower = title.lower()
 
@@ -264,14 +313,19 @@ def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, An
 
     records: list[dict[str, Any]] = []
     seen_combos: set[str] = set()
+    page_cache = html_cache if html_cache is not None else {}
 
     for variant in variants:
         info = extract_variant_info(variant, title)
         if info["price"] is None:
             continue
-        if not info.get("available", False):
-            logger.debug("Variante sem stock ignorada: %s (%s)", title, info.get("variant_id"))
-            continue
+
+        available, availability_label = resolve_variant_availability(
+            client,
+            variant,
+            handle,
+            page_cache,
+        )
 
         product_url = f"{BASE_URL}/products/{handle}"
         if info["variant_id"]:
@@ -297,11 +351,19 @@ def process_product(shopify_product: dict, scraped_at: str) -> list[dict[str, An
                 storage=info["storage"],
                 grade=info["grade"],
                 color=info["color"],
+                is_available=available,
+                availability=availability_label,
             )
             if record is None:
                 continue
             if info["variant_id"]:
                 record["product_id"] = f"{SOURCE_NAME}_{info['variant_id']}"
+            if not available:
+                logger.debug(
+                    "Variante esgotada registada: %s (%s)",
+                    title,
+                    info.get("variant_id"),
+                )
             records.append(record)
         except Exception as exc:
             logger.error("Erro ao processar variante '%s': %s", title, exc)
@@ -338,28 +400,31 @@ def save(products: list[dict[str, Any]], path: Path, scraped_at: str) -> None:
 def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict[str, Any]:
     del categories  # Callphone usa catálogo Shopify completo
     scraped_at = datetime.now(timezone.utc).isoformat()
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0}
+    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "unavailable": 0}
 
+    by_id: dict[str, dict[str, Any]] = {}
     if mode == "incremental":
-        products, known_ids = load_existing(OUTPUT_JSON)
-    else:
-        products, known_ids = [], set()
+        existing, _ = load_existing(OUTPUT_JSON)
+        by_id = {p["product_id"]: p for p in existing if p.get("product_id")}
+
+    html_cache: dict[str, str] = {}
 
     with httpx.Client(headers=HEADERS, follow_redirects=True) as client:
         shopify_products = fetch_all_products(client)
 
-    logger.info("Total produtos Shopify: %s", len(shopify_products))
+        logger.info("Total produtos Shopify: %s", len(shopify_products))
 
-    for shopify_product in shopify_products:
-        records = process_product(shopify_product, scraped_at)
-        for record in records:
-            if mode == "incremental" and record["product_id"] in known_ids:
-                continue
-            products.append(record)
-            known_ids.add(record["product_id"])
-            category = record.get("category", "iphones")
-            stats["by_category"][category] = stats["by_category"].get(category, 0) + 1
-            stats["total"] += 1
+        for shopify_product in shopify_products:
+            records = process_product(shopify_product, scraped_at, client, html_cache)
+            for record in records:
+                by_id[record["product_id"]] = record
+                category = record.get("category", "iphones")
+                stats["by_category"][category] = stats["by_category"].get(category, 0) + 1
+                if record.get("is_available") is False:
+                    stats["unavailable"] += 1
+
+    products = list(by_id.values())
+    stats["total"] = len(products)
 
     save(products, OUTPUT_JSON, scraped_at)
     logger.info("Stats: %s", stats)

@@ -21,6 +21,8 @@ export type ScrapedProduct = {
   source_page: string;
   affiliate_enabled: boolean;
   affiliate_network: string | null;
+  /** Por omissão true; produtos esgotados ficam com false. */
+  is_available?: boolean;
 };
 
 export type ProductsFile = {

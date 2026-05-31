@@ -4,6 +4,7 @@ Utilitários partilhados pelos scrapers riCycle.
 
 from __future__ import annotations
 
+import json
 import logging
 import random
 import re
@@ -523,6 +524,101 @@ def text_indicates_out_of_stock(text: str | None) -> bool:
     return any(marker in normalized for marker in OUT_OF_STOCK_MARKERS)
 
 
+def product_indicates_unavailable(product: dict[str, Any]) -> bool:
+    """True se o produto deve ser marcado como indisponível."""
+    if product.get("is_available") is False:
+        return True
+
+    for field in ("status", "availability", "stock_status"):
+        value = product.get(field)
+        if value is not None and text_indicates_out_of_stock(str(value)):
+            return True
+
+    return False
+
+
+def apply_availability_flags(products: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    """
+    Normaliza is_available em cada produto com base em status/availability.
+    Por omissão is_available=True; produtos esgotados ficam com is_available=False.
+    """
+    marked_unavailable = 0
+
+    for product in products:
+        unavailable = product_indicates_unavailable(product)
+        if unavailable:
+            if product.get("is_available") is not False:
+                marked_unavailable += 1
+            product["is_available"] = False
+        elif "is_available" not in product:
+            product["is_available"] = True
+        else:
+            product["is_available"] = bool(product["is_available"])
+
+    return products, marked_unavailable
+
+
+def filter_unavailable_products(products: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    """Remove produtos com is_available=False."""
+    kept = [product for product in products if product.get("is_available", True)]
+    return kept, len(products) - len(kept)
+
+
+def parse_shopify_variants_availability(html: str) -> dict[str, bool]:
+    """Extrai disponibilidade por variant_id do JSON embutido numa página Shopify."""
+    variant_map: dict[str, bool] = {}
+
+    for match in re.finditer(
+        r'<script[^>]*type="application/json"[^>]*>(\{.*?"variants"\s*:\s*\[.*?\].*?\})</script>',
+        html,
+        re.DOTALL | re.IGNORECASE,
+    ):
+        try:
+            data = json.loads(match.group(1))
+        except json.JSONDecodeError:
+            continue
+        for variant in data.get("variants", []):
+            variant_id = str(variant.get("id", "")).strip()
+            if variant_id:
+                variant_map[variant_id] = bool(variant.get("available", True))
+
+    return variant_map
+
+
+def html_indicates_callphone_out_of_stock(html: str) -> bool:
+    """
+    Deteta etiqueta 'Esgotado' / sold-out no DOM Shopify da Callphone.
+    Complementa variant.available da API JSON.
+    """
+    if not html:
+        return False
+
+    html_lower = html.lower()
+
+    if re.search(
+        r'class="[^"]*\b(sold-out|product-sold-out|badge--sold-out|product-form__sold-out)\b[^"]*"',
+        html,
+        re.IGNORECASE,
+    ):
+        if "esgotado" in html_lower or "sold out" in html_lower or "out of stock" in html_lower:
+            return True
+
+    if re.search(r">\s*esgotado\s*<", html, re.IGNORECASE):
+        return True
+
+    if 'data-product-available="false"' in html_lower:
+        return True
+
+    if re.search(
+        r'"availability"\s*:\s*"https://schema\.org/OutOfStock"',
+        html,
+        re.IGNORECASE,
+    ):
+        return True
+
+    return False
+
+
 def is_schema_availability_out_of_stock(value: str | None) -> bool:
     if not value:
         return False
@@ -728,6 +824,9 @@ def build_normalized_product(
     color: str | None = None,
     original_price: float | None = None,
     extra_grade_keywords: tuple[tuple[str, str], ...] = (),
+    is_available: bool = True,
+    availability: str | None = None,
+    status: str | None = None,
 ) -> dict[str, Any] | None:
     """Schema único riCycle com campos de afiliado."""
     model = normalize_model_name(model)
@@ -736,6 +835,12 @@ def build_normalized_product(
         return None
     storage_norm = storage or extract_storage(model)
     grade_norm = grade or extract_grade(model, extra_grade_keywords)
+
+    available = is_available
+    if availability and text_indicates_out_of_stock(availability):
+        available = False
+    if status and text_indicates_out_of_stock(status):
+        available = False
 
     record: dict[str, Any] = {
         "source": cfg["source"],
@@ -754,8 +859,13 @@ def build_normalized_product(
         "url": url,
         "image_url": image_url,
         "source_page": source_page,
+        "is_available": available,
         **affiliate_fields_from_config(cfg),
     }
+    if availability:
+        record["availability"] = availability
+    if status:
+        record["status"] = status
     return record
 
 

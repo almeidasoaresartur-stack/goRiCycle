@@ -4,8 +4,9 @@ goRiCycle — fusão e deduplicação por loja dos JSONs de produtos.
 
 Pipeline (ordem fixa — nunca inverter):
   1. PRODUCT_CORRECTIONS → corrige o campo model (dedup usa o nome corrigido)
-  2. Deduplicação por loja-modelo-armazenamento-estado
-  3. Filtro de antiguidade Samsung/Google
+  2. Disponibilidade → normaliza is_available (status/availability 'Esgotado', etc.)
+  3. Deduplicação por loja-modelo-armazenamento-estado
+  4. Filtro de antiguidade Samsung/Google
 
 Para cada fonte, mantém apenas a oferta mais barata por chave:
   loja-modelo-armazenamento-estado  (source-grade no schema actual)
@@ -30,8 +31,10 @@ if str(_SCRAPERS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRAPERS_DIR))
 
 from common import (
+    apply_availability_flags,
     detect_brand,
     filter_best_price_per_store,
+    filter_unavailable_products,
     is_model_relevant,
     normalize_product_url,
     product_dedup_key,
@@ -221,11 +224,12 @@ def process_product_list(
     corrections: dict[str, str],
     *,
     apply_relevance_filter: bool = True,
+    drop_unavailable: bool = False,
     debug_match: str | None = None,
     debug_label: str = "",
 ) -> tuple[list[dict], dict[str, int]]:
     """
-    Pipeline único: correcções → deduplicação (model corrigido) → filtro de antiguidade.
+    Pipeline único: correcções → disponibilidade → deduplicação → filtro de antiguidade.
     """
     prefix = f"[{debug_label}] " if debug_label else ""
     if debug_match:
@@ -244,6 +248,24 @@ def process_product_list(
         debug_match=debug_match,
         debug_label=debug_label,
     )
+    products, marked_unavailable = apply_availability_flags(products)
+    if debug_match and marked_unavailable:
+        log.info(
+            "%sDISPONIBILIDADE: %s produtos marcados is_available=False",
+            prefix,
+            marked_unavailable,
+        )
+
+    dropped_unavailable = 0
+    if drop_unavailable:
+        products, dropped_unavailable = filter_unavailable_products(products)
+        if debug_match and dropped_unavailable:
+            log.info(
+                "%sDISPONIBILIDADE: %s produtos esgotados removidos do catálogo",
+                prefix,
+                dropped_unavailable,
+            )
+
     kept, removed = filter_best_price_per_store(
         products,
         log=log,
@@ -290,6 +312,8 @@ def process_product_list(
 
     return kept, {
         "corrections_applied": corrections_applied,
+        "marked_unavailable": marked_unavailable,
+        "dropped_unavailable": dropped_unavailable,
         "removed": removed,
         "removed_by_relevance": relevance_removed,
     }
@@ -330,6 +354,7 @@ def clean_source(
     dry_run: bool = False,
     sync_web: bool = True,
     corrections: dict[str, str] | None = None,
+    drop_unavailable: bool = False,
     debug_match: str | None = None,
 ) -> dict:
     """Deduplica produtos de uma fonte (melhor preço por loja) e guarda o JSON."""
@@ -356,21 +381,26 @@ def clean_source(
     kept, stats = process_product_list(
         products,
         corrections or {},
+        drop_unavailable=drop_unavailable,
         debug_match=debug_match,
         debug_label=source_name,
     )
     removed = stats["removed"]
     relevance_removed = stats["removed_by_relevance"]
     corrections_applied = stats["corrections_applied"]
+    marked_unavailable = stats["marked_unavailable"]
+    dropped_unavailable = stats["dropped_unavailable"]
 
     log.info(
-        "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade, %s correcções)",
+        "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade, %s correcções, %s esgotados marcados%s)",
         source_name,
         before,
         len(kept),
         removed,
         relevance_removed,
         corrections_applied,
+        marked_unavailable,
+        f", {dropped_unavailable} esgotados removidos" if dropped_unavailable else "",
     )
 
     if not dry_run:
@@ -395,6 +425,8 @@ def clean_source(
         "removed": removed,
         "removed_by_relevance": relevance_removed,
         "corrections_applied": corrections_applied,
+        "marked_unavailable": marked_unavailable,
+        "dropped_unavailable": dropped_unavailable,
     }
 
 
@@ -402,6 +434,7 @@ def merge_all_sources(
     sources: dict[str, Path],
     *,
     corrections: dict[str, str] | None = None,
+    drop_unavailable: bool = False,
     debug_match: str | None = None,
 ) -> tuple[list[dict], int, int, int]:
     """
@@ -436,6 +469,7 @@ def merge_all_sources(
     kept, stats = process_product_list(
         combined,
         corrections or {},
+        drop_unavailable=drop_unavailable,
         debug_match=debug_match,
         debug_label="merge",
     )
@@ -468,6 +502,11 @@ def parse_args() -> argparse.Namespace:
         "--no-sync-web",
         action="store_true",
         help="Não copiar JSONs para web/data/",
+    )
+    parser.add_argument(
+        "--drop-unavailable",
+        action="store_true",
+        help="Remove produtos com is_available=False do JSON (por omissão mantém com flag)",
     )
     parser.add_argument(
         "--debug",
@@ -516,6 +555,7 @@ def main() -> None:
             dry_run=args.dry_run,
             sync_web=sync_web,
             corrections=corrections,
+            drop_unavailable=args.drop_unavailable,
             debug_match=debug_match,
         )
         per_source.append(stats)
@@ -523,11 +563,14 @@ def main() -> None:
     merged, merge_removed, merge_relevance_removed, merge_corrections = merge_all_sources(
         sources_to_process,
         corrections=corrections,
+        drop_unavailable=args.drop_unavailable,
         debug_match=debug_match,
     )
     source_relevance_removed = sum(s.get("removed_by_relevance", 0) for s in per_source)
     total_relevance_removed = source_relevance_removed + merge_relevance_removed
     total_corrections = sum(s.get("corrections_applied", 0) for s in per_source) + merge_corrections
+    total_marked_unavailable = sum(s.get("marked_unavailable", 0) for s in per_source)
+    total_dropped_unavailable = sum(s.get("dropped_unavailable", 0) for s in per_source)
 
     report = {
         "merged_at": datetime.now(timezone.utc).isoformat(),
@@ -538,6 +581,8 @@ def main() -> None:
             "removed_on_merge": merge_removed,
             "removed_by_relevance": total_relevance_removed,
             "corrections_applied": total_corrections,
+            "marked_unavailable": total_marked_unavailable,
+            "dropped_unavailable": total_dropped_unavailable,
         },
     }
 
