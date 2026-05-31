@@ -95,24 +95,74 @@ def product_dedup_key(product: dict[str, Any]) -> str:
     return f"{loja}-{model}-{storage}-{condition}"
 
 
+def _product_debug_blob(product: dict[str, Any]) -> str:
+    return " ".join(
+        str(product.get(field) or "")
+        for field in ("model", "url", "product_id", "source")
+    ).lower()
+
+
 def filter_best_price_per_store(
     products: list[dict[str, Any]],
     *,
     log: logging.Logger | None = None,
+    debug_match: str | None = None,
+    debug_label: str = "",
 ) -> tuple[list[dict[str, Any]], int]:
     """
     Mantém apenas a oferta mais barata por loja + modelo + armazenamento + estado.
     Ex.: 3 lojas → no máximo 3 entradas para 'iPhone 13 128GB Bom' (uma por loja).
     """
     best: dict[str, dict[str, Any]] = {}
+    prefix = f"[{debug_label}] " if debug_label else ""
+
+    def _matches_debug(product: dict[str, Any]) -> bool:
+        return bool(debug_match) and debug_match.lower() in _product_debug_blob(product)
 
     for product in products:
         key = product_dedup_key(product)
         price = product.get("price")
         if not isinstance(price, (int, float)):
+            if _matches_debug(product) and log:
+                log.warning(
+                    "%sDEDUP skip (preço inválido): chave=%s | %s",
+                    prefix,
+                    key,
+                    product.get("url", "?")[:80],
+                )
             continue
 
         existing = best.get(key)
+        if _matches_debug(product) and log:
+            if existing is None:
+                log.info(
+                    "%sDEDUP candidato inicial: chave=%s | €%s | %s",
+                    prefix,
+                    key,
+                    price,
+                    product.get("url", "?")[:80],
+                )
+            elif price < existing.get("price", float("inf")):
+                log.info(
+                    "%sDEDUP substitui vencedor: chave=%s | novo €%s vence €%s",
+                    prefix,
+                    key,
+                    price,
+                    existing.get("price"),
+                )
+                log.info("         perdedor: %s", existing.get("url", "?")[:80])
+                log.info("         vencedor: %s", product.get("url", "?")[:80])
+            else:
+                log.info(
+                    "%sDEDUP descartado (mais caro): chave=%s | €%s perde para €%s",
+                    prefix,
+                    key,
+                    price,
+                    existing.get("price"),
+                )
+                log.info("         descartado: %s", product.get("url", "?")[:80])
+                log.info("         vencedor:   %s", existing.get("url", "?")[:80])
+
         if existing is None or price < existing.get("price", float("inf")):
             best[key] = product
 
@@ -120,7 +170,8 @@ def filter_best_price_per_store(
     removed = len(products) - len(kept)
     if removed and log:
         log.info(
-            "Deduplicação por loja: removidos %s duplicados (%s únicos)",
+            "%sDeduplicação por loja: removidos %s duplicados (%s únicos)",
+            prefix,
             removed,
             len(kept),
         )

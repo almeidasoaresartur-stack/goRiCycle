@@ -34,6 +34,7 @@ from common import (
     filter_best_price_per_store,
     is_model_relevant,
     normalize_product_url,
+    product_dedup_key,
 )
 from config import DATA_DIR, PROJECT_ROOT
 
@@ -52,6 +53,26 @@ SOURCES: dict[str, Path] = {
     "certideal": DATA_DIR / "certideal_produtos.json",
     "callphone": DATA_DIR / "callphone_produtos.json",
 }
+
+DEBUG_MATCH_DEFAULT = "iphone se"
+
+
+def _debug_matches(product: dict, pattern: str | None) -> bool:
+    if not pattern:
+        return False
+    blob = " ".join(
+        str(product.get(field) or "")
+        for field in ("model", "url", "product_id", "source")
+    ).lower()
+    return pattern.lower() in blob
+
+
+def _product_summary(product: dict) -> str:
+    return (
+        f"{product.get('source', '?')}|model={product.get('model')}|"
+        f"{product.get('storage')}|{product.get('grade')}|€{product.get('price')}|"
+        f"url={normalize_product_url(product.get('url', ''))}"
+    )
 
 
 def load_json(path: Path) -> dict | list | None:
@@ -137,6 +158,9 @@ def lookup_product_correction(product: dict, corrections: dict[str, str]) -> str
 def apply_product_corrections(
     products: list[dict],
     corrections: dict[str, str],
+    *,
+    debug_match: str | None = None,
+    debug_label: str = "",
 ) -> tuple[list[dict], int]:
     """
     Substitui o campo model quando url ou product_id estiver em PRODUCT_CORRECTIONS.
@@ -144,17 +168,29 @@ def apply_product_corrections(
 
     Deve correr sempre antes da deduplicação — a chave usa o model já corrigido.
     """
+    prefix = f"[{debug_label}] " if debug_label else ""
     if not corrections:
         return products, 0
 
     applied = 0
     for product in products:
+        if debug_match and _debug_matches(product, debug_match):
+            log.info("%sLIDO: %s", prefix, _product_summary(product))
+
         new_model = lookup_product_correction(product, corrections)
         if not new_model:
+            if debug_match and _debug_matches(product, debug_match):
+                log.info("%sCORRECÇÃO: nenhuma regra aplicável", prefix)
             continue
 
         current = (product.get("model") or "").strip()
         if current == new_model:
+            if debug_match and _debug_matches(product, debug_match):
+                log.info(
+                    "%sCORRECÇÃO: model já correcto (%s)",
+                    prefix,
+                    new_model,
+                )
             continue
 
         product["model"] = new_model
@@ -164,11 +200,18 @@ def apply_product_corrections(
         applied += 1
         lookup_keys = _correction_lookup_keys(product)
         log.info(
-            "Correcção de modelo: %s → %s (%s)",
+            "%sCorrecção de modelo: %s → %s (%s)",
+            prefix,
             current or "?",
             new_model,
             lookup_keys[0] if lookup_keys else "?",
         )
+        if debug_match and _debug_matches(product, debug_match):
+            log.info(
+                "%sCORRECÇÃO aplicada: dedup_key passará a ser %s",
+                prefix,
+                product_dedup_key(product),
+            )
 
     return products, applied
 
@@ -178,15 +221,73 @@ def process_product_list(
     corrections: dict[str, str],
     *,
     apply_relevance_filter: bool = True,
+    debug_match: str | None = None,
+    debug_label: str = "",
 ) -> tuple[list[dict], dict[str, int]]:
     """
     Pipeline único: correcções → deduplicação (model corrigido) → filtro de antiguidade.
     """
-    products, corrections_applied = apply_product_corrections(products, corrections)
-    kept, removed = filter_best_price_per_store(products, log=log)
+    prefix = f"[{debug_label}] " if debug_label else ""
+    if debug_match:
+        se_before = [p for p in products if _debug_matches(p, debug_match)]
+        log.info(
+            "%sPIPELINE início: %s produtos totais, %s correspondem a debug '%s'",
+            prefix,
+            len(products),
+            len(se_before),
+            debug_match,
+        )
+
+    products, corrections_applied = apply_product_corrections(
+        products,
+        corrections,
+        debug_match=debug_match,
+        debug_label=debug_label,
+    )
+    kept, removed = filter_best_price_per_store(
+        products,
+        log=log,
+        debug_match=debug_match,
+        debug_label=debug_label,
+    )
+
+    if debug_match:
+        se_after_dedup = [p for p in kept if _debug_matches(p, debug_match)]
+        log.info(
+            "%sPIPELINE pós-dedup: %s produtos debug restantes (removidos %s no total)",
+            prefix,
+            len(se_after_dedup),
+            removed,
+        )
+        for product in se_after_dedup:
+            log.info("%s  SOBREVIVEU dedup: %s", prefix, _product_summary(product))
+
     relevance_removed = 0
     if apply_relevance_filter:
-        kept, relevance_removed = filter_by_model_relevance(kept)
+        before_relevance = kept
+        kept, relevance_removed = filter_by_model_relevance(
+            kept,
+            debug_match=debug_match,
+            debug_label=debug_label,
+        )
+        if debug_match and relevance_removed:
+            survived = {id(p) for p in kept}
+            for product in before_relevance:
+                if _debug_matches(product, debug_match) and id(product) not in survived:
+                    log.warning(
+                        "%sRELEVÂNCIA removeu: %s",
+                        prefix,
+                        _product_summary(product),
+                    )
+
+    if debug_match:
+        se_final = [p for p in kept if _debug_matches(p, debug_match)]
+        log.info(
+            "%sPIPELINE fim: %s produtos debug no resultado final",
+            prefix,
+            len(se_final),
+        )
+
     return kept, {
         "corrections_applied": corrections_applied,
         "removed": removed,
@@ -194,8 +295,14 @@ def process_product_list(
     }
 
 
-def filter_by_model_relevance(products: list[dict]) -> tuple[list[dict], int]:
+def filter_by_model_relevance(
+    products: list[dict],
+    *,
+    debug_match: str | None = None,
+    debug_label: str = "",
+) -> tuple[list[dict], int]:
     """Remove Samsung/Google anteriores a 2022; Apple passa sempre."""
+    prefix = f"[{debug_label}] " if debug_label else ""
     kept: list[dict] = []
     removed = 0
 
@@ -206,6 +313,12 @@ def filter_by_model_relevance(products: list[dict]) -> tuple[list[dict], int]:
             kept.append(product)
         else:
             removed += 1
+            if debug_match and _debug_matches(product, debug_match):
+                log.warning(
+                    "%sRELEVÂNCIA removeu (antiguidade): %s",
+                    prefix,
+                    _product_summary(product),
+                )
 
     return kept, removed
 
@@ -217,6 +330,7 @@ def clean_source(
     dry_run: bool = False,
     sync_web: bool = True,
     corrections: dict[str, str] | None = None,
+    debug_match: str | None = None,
 ) -> dict:
     """Deduplica produtos de uma fonte (melhor preço por loja) e guarda o JSON."""
     data = load_json(path)
@@ -231,8 +345,20 @@ def clean_source(
         products = data.get("products", [])
         is_list_format = False
 
+    if debug_match:
+        log.info("\n%s", "=" * 60)
+        log.info("DEBUG fonte: %s (%s produtos lidos de %s)", source_name, len(products), path.name)
+        for product in products:
+            if _debug_matches(product, debug_match):
+                log.info("[ %s ] LIDO do JSON: %s", source_name, _product_summary(product))
+
     before = len(products)
-    kept, stats = process_product_list(products, corrections or {})
+    kept, stats = process_product_list(
+        products,
+        corrections or {},
+        debug_match=debug_match,
+        debug_label=source_name,
+    )
     removed = stats["removed"]
     relevance_removed = stats["removed_by_relevance"]
     corrections_applied = stats["corrections_applied"]
@@ -276,6 +402,7 @@ def merge_all_sources(
     sources: dict[str, Path],
     *,
     corrections: dict[str, str] | None = None,
+    debug_match: str | None = None,
 ) -> tuple[list[dict], int, int, int]:
     """
     Junta todos os produtos e aplica deduplicação por loja no catálogo combinado.
@@ -283,17 +410,35 @@ def merge_all_sources(
     """
     combined: list[dict] = []
 
-    for path in sources.values():
+    for source_name, path in sources.items():
         data = load_json(path)
         if not data:
             continue
-        if isinstance(data, list):
-            combined.extend(data)
-        else:
-            combined.extend(data.get("products", []))
+        batch = data if isinstance(data, list) else data.get("products", [])
+        if debug_match:
+            for product in batch:
+                if _debug_matches(product, debug_match):
+                    log.info(
+                        "[ merge ] LIDO de %s (pós clean_source): %s",
+                        source_name,
+                        _product_summary(product),
+                    )
+        combined.extend(batch)
+
+    if debug_match:
+        log.info("\n%s", "=" * 60)
+        log.info(
+            "DEBUG merge combinado: %s produtos SE antes do pipeline final",
+            sum(1 for p in combined if _debug_matches(p, debug_match)),
+        )
 
     before = len(combined)
-    kept, stats = process_product_list(combined, corrections or {})
+    kept, stats = process_product_list(
+        combined,
+        corrections or {},
+        debug_match=debug_match,
+        debug_label="merge",
+    )
     removed = stats["removed"]
     relevance_removed = stats["removed_by_relevance"]
     corrections_applied = stats["corrections_applied"]
@@ -324,6 +469,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Não copiar JSONs para web/data/",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Logs detalhados de diagnóstico (correcções, dedup, filtros)",
+    )
+    parser.add_argument(
+        "--debug-match",
+        default=DEBUG_MATCH_DEFAULT,
+        metavar="TEXT",
+        help=f"Filtrar logs debug a produtos que contenham este texto (default: {DEBUG_MATCH_DEFAULT!r})",
+    )
     return parser.parse_args()
 
 
@@ -340,9 +496,17 @@ def main() -> None:
     if args.dry_run:
         log.info("🔍 MODO DRY RUN — nenhum ficheiro será alterado\n")
 
+    debug_match = args.debug_match if args.debug else None
+    if debug_match:
+        log.info("🔬 DEBUG activo — filtro: %r\n", debug_match)
+
     corrections = load_product_corrections()
     if corrections:
         log.info("Correcções de modelo carregadas: %s entradas", len(corrections))
+        if debug_match:
+            for key, value in sorted(corrections.items()):
+                if "se" in key.lower() or "se" in value.lower():
+                    log.info("  regra: %s → %s", key[:80], value)
 
     per_source: list[dict] = []
     for source_name, path in sources_to_process.items():
@@ -352,12 +516,14 @@ def main() -> None:
             dry_run=args.dry_run,
             sync_web=sync_web,
             corrections=corrections,
+            debug_match=debug_match,
         )
         per_source.append(stats)
 
     merged, merge_removed, merge_relevance_removed, merge_corrections = merge_all_sources(
         sources_to_process,
         corrections=corrections,
+        debug_match=debug_match,
     )
     source_relevance_removed = sum(s.get("removed_by_relevance", 0) for s in per_source)
     total_relevance_removed = source_relevance_removed + merge_relevance_removed
@@ -399,6 +565,19 @@ def main() -> None:
         total_relevance_removed,
     )
     log.info("Catálogo combinado único: %s produtos", len(merged))
+
+    if debug_match:
+        se_in_final = [p for p in merged if _debug_matches(p, debug_match)]
+        log.info("\n%s", "=" * 60)
+        log.info("DEBUG all_products final: %s entradas '%s'", len(se_in_final), debug_match)
+        models = {}
+        for p in se_in_final:
+            m = p.get("model", "?")
+            models[m] = models.get(m, 0) + 1
+        for model, count in sorted(models.items()):
+            log.info("  model=%r → %s ofertas", model, count)
+        for p in se_in_final:
+            log.info("  FINAL: %s", _product_summary(p))
 
 
 if __name__ == "__main__":

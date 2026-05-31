@@ -85,6 +85,9 @@ jobs:
             python scrapers/validate_and_clean.py --no-live-check
           fi
 
+      - name: Merge, correcções e deduplicação
+        run: python scrapers/merge_and_clean.py
+
       - name: Verificar sumário
         run: |
           python <<'PY'
@@ -101,7 +104,7 @@ jobs:
           total = summary.get("grand_total", 0)
           sources = summary.get("sources", {})
 
-          print(f"Modo: {summary.get('mode')} | Total: {total}")
+          print(f"Modo: {summary.get('mode')} | Total scrape: {total}")
           for name, stats in sources.items():
               errors = stats.get("errors", 0)
               count = stats.get("total", 0)
@@ -112,12 +115,23 @@ jobs:
 
           if total < 400:
               print(f"⚠️ grand_total ({total}) abaixo do esperado (~900+)")
+
+          catalog_path = Path("data/all_products.json")
+          if not catalog_path.exists():
+              print("❌ all_products.json em falta após merge_and_clean")
+              sys.exit(1)
+
+          catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+          catalog_total = catalog.get("total_products", len(catalog.get("products", [])))
+          print(f"Catálogo merge: {catalog_total} produtos únicos")
+          if catalog_total < 400:
+              print(f"⚠️ all_products ({catalog_total}) abaixo do esperado (~900+)")
           PY
 
-      - name: Sync data para Next.js (Vercel)
+      - name: Sync relatórios para Next.js (Vercel)
         run: |
           mkdir -p web/data
-          for f in iservices_produtos.json refurbed_produtos.json swappie_produtos.json certideal_produtos.json callphone_produtos.json last_run_summary.json validate_and_clean_report.json; do
+          for f in last_run_summary.json validate_and_clean_report.json; do
             if [ -f "data/$f" ]; then
               cp "data/$f" "web/data/$f"
             fi
@@ -134,13 +148,17 @@ jobs:
             data/swappie_produtos.json \
             data/certideal_produtos.json \
             data/callphone_produtos.json \
+            data/all_products.json \
             data/last_run_summary.json \
+            data/merge_and_clean_report.json \
             web/data/iservices_produtos.json \
             web/data/refurbed_produtos.json \
             web/data/swappie_produtos.json \
             web/data/certideal_produtos.json \
             web/data/callphone_produtos.json \
-            web/data/last_run_summary.json
+            web/data/all_products.json \
+            web/data/last_run_summary.json \
+            web/data/merge_and_clean_report.json
 
           if [ -f data/validate_and_clean_report.json ]; then
             git add data/validate_and_clean_report.json web/data/validate_and_clean_report.json
