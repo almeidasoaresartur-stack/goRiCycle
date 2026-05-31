@@ -16,6 +16,80 @@ const NOISE_PATTERNS = [
   /\b(refurbished|renewed)\b/gi,
 ];
 
+/** Cores e termos removidos ao normalizar opções do dropdown de modelos. */
+const FILTER_MODEL_COLOR_TERMS = [
+  "cor surpresa",
+  "verde meia-noite",
+  "verde meia noite",
+  "azul pacífico",
+  "azul pacifico",
+  "cinzento sideral",
+  "cinzentos sideral",
+  "space gray",
+  "space grey",
+  "midnight green",
+  "pacific blue",
+  "grafite",
+  "branco",
+  "preto",
+  "azul",
+  "roxo",
+  "verde",
+  "vermelho",
+  "dourado",
+  "prateado",
+  "amarelo",
+  "coral",
+  "rosa",
+  "black",
+  "white",
+  "purple",
+  "red",
+  "gold",
+  "silver",
+  "esim",
+] as const;
+
+function stripFilterModelNoise(raw: string): string {
+  let name = (raw ?? "").trim();
+  if (!name) return "";
+
+  name = name.replace(/\b\d+\s*gb\b/gi, " ").replace(/\b\d+gb\b/gi, " ");
+  name = name.replace(/\([^)]*\)/g, " ");
+
+  const terms = [...FILTER_MODEL_COLOR_TERMS].sort((a, b) => b.length - a.length);
+  for (const term of terms) {
+    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    name = name.replace(new RegExp(`\\b${escaped}\\b`, "gi"), " ");
+  }
+
+  return name.replace(/\s{2,}/g, " ").trim();
+}
+
+/** Nome base único para o dropdown de modelos (sem capacidade/cor). */
+export function normalizeModelForFilter(raw: string): string {
+  const stripped = stripFilterModelNoise(raw);
+  const base = cleanBaseModel(stripped || raw);
+  return base.replace(/\s{2,}/g, " ").trim();
+}
+
+/** Pesquisa rápida no dropdown de modelos (substring case-insensitive). */
+export function modelMatchesFilterSearch(model: string, query: string): boolean {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  return model.toLowerCase().includes(q);
+}
+
+function compareFilterModelNames(a: string, b: string): number {
+  return a.localeCompare(b, "pt", { numeric: true, sensitivity: "base" });
+}
+
+export function sortFilterModelNames(models: Iterable<string>): string[] {
+  return [...new Set([...models].map((m) => m.trim()).filter(Boolean))].sort(
+    compareFilterModelNames,
+  );
+}
+
 function formatIpadDisplayName(name: string): string | null {
   const match = name.match(
     /ipad(?:\s+(?:pro|air|mini))?(?:\s*\(\d{4}\))?(?:\s*[\d.]+\s*(?:["″'']|pol|mm)?)?/i,
@@ -71,6 +145,19 @@ export function cleanBaseModel(raw: string): string {
     if (/2022|se\s*3\b|3rd|3ª/i.test(raw)) return "iPhone SE (2022)";
     if (/2020|se\s*2\b|2nd|2ª/i.test(raw)) return "iPhone SE (2020)";
     return "iPhone SE";
+  }
+
+  const iphoneLegacy = name.match(/iphone\s*(?:xs\s*max|xs|xr|x|air)\b/i);
+  if (iphoneLegacy) {
+    return iphoneLegacy[0]
+      .replace(/\s{2,}/g, " ")
+      .replace(/^iphone/i, "iPhone")
+      .replace(/\bxs\s*max/i, "XS Max")
+      .replace(/\bxs/i, "XS")
+      .replace(/\bxr/i, "XR")
+      .replace(/\bair\b/i, "Air")
+      .replace(/\bx\b/i, "X")
+      .trim();
   }
 
   const iphone = name.match(/iphone\s*\d+\s*(?:pro\s*max|pro|plus|mini)?/i);

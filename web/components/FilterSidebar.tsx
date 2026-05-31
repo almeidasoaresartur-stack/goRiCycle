@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal } from "lucide-react";
 
@@ -12,6 +12,10 @@ import {
   type FilterOptions,
   type MarketplaceFilters,
 } from "@/lib/marketplace";
+import {
+  modelMatchesFilterSearch,
+  sortFilterModelNames,
+} from "@/lib/product-display";
 import { getStoreInfo } from "@/lib/stores";
 import type { ProductSource } from "@/lib/types";
 
@@ -45,10 +49,20 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchText, setSearchText] = useState(filters.q ?? "");
+  const [modelSearch, setModelSearch] = useState("");
 
   useEffect(() => {
     setSearchText(filters.q ?? "");
   }, [filters.q]);
+
+  const displayModels = useMemo(() => {
+    const base = options.models.length ? options.models : [];
+    const filtered = base.filter((model) => modelMatchesFilterSearch(model, modelSearch));
+    if (filters.model && !filtered.includes(filters.model)) {
+      return sortFilterModelNames([filters.model, ...filtered]);
+    }
+    return filtered;
+  }, [options.models, modelSearch, filters.model]);
 
   const pushParams = useCallback(
     (params: URLSearchParams) => {
@@ -224,18 +238,31 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
         </FilterGroup>
 
         <FilterGroup title="Modelo">
+          <input
+            type="text"
+            value={modelSearch}
+            onChange={(e) => setModelSearch(e.target.value)}
+            placeholder="Filtrar modelos (ex: 13, Pro, SE...)"
+            className={`${selectClass} mb-2`}
+            aria-label="Filtrar lista de modelos"
+          />
           <select
             value={filters.model ?? ""}
             onChange={(e) => updateFilter("model", e.target.value || null)}
             className={selectClass}
           >
             <option value="">Todos os modelos</option>
-            {(options.models.length ? options.models : []).map((model) => (
+            {displayModels.map((model) => (
               <option key={model} value={model}>
                 {model}
               </option>
             ))}
           </select>
+          {modelSearch.trim() && displayModels.length === 0 ? (
+            <p className="mt-2 text-xs text-slate-500">
+              Nenhum modelo corresponde a &ldquo;{modelSearch.trim()}&rdquo;.
+            </p>
+          ) : null}
         </FilterGroup>
 
         <FilterGroup title="Capacidade">

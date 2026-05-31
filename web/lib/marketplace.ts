@@ -3,7 +3,11 @@ import { generateExactProductUrl } from "./product-urls";
 import { inferBrand } from "./inference";
 import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
-import { cleanBaseModel } from "./product-display";
+import {
+  cleanBaseModel,
+  normalizeModelForFilter,
+  sortFilterModelNames,
+} from "./product-display";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
 import { isRelevantForHighlights, modelMatches, productMatchesSearchText } from "./model-matching";
 import {
@@ -424,7 +428,13 @@ export function filterAggregatedProducts(
     if (!aggregatedProductIsAvailable(item)) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (model && !modelMatches(item.model, model)) return false;
+    if (
+      model &&
+      normalizeModelForFilter(item.model) !== model &&
+      !modelMatches(item.model, model)
+    ) {
+      return false;
+    }
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
     if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
@@ -487,7 +497,13 @@ export function filterListings(
     if (item.isAvailable === false) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (model && !modelMatches(item.model, model)) return false;
+    if (
+      model &&
+      normalizeModelForFilter(item.model) !== model &&
+      !modelMatches(item.model, model)
+    ) {
+      return false;
+    }
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
     if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
@@ -503,13 +519,18 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
   for (const item of listings ?? []) {
     const resolvedBrand = item ? resolveProductBrand(item) : null;
     if (resolvedBrand) brands.add(resolvedBrand);
-    if (item?.model) models.add(item.model);
+    if (item?.model) {
+      const baseModel = normalizeModelForFilter(item.model);
+      if (baseModel && baseModel !== "Modelo desconhecido") {
+        models.add(baseModel);
+      }
+    }
     if (item?.storage) storages.add(item.storage.toUpperCase());
   }
 
   return {
     brands: [...brands].sort((a, b) => a.localeCompare(b, "pt")),
-    models: [...models].sort((a, b) => a.localeCompare(b, "pt")).slice(0, 40),
+    models: sortFilterModelNames(models),
     storages: STORAGE_OPTIONS.filter((s) => storages.has(s) || storages.size === 0),
     colors: [],
     stores: [],
