@@ -109,6 +109,20 @@ export function queryMatchesModel(productModel: string, query: string): boolean 
   return modelMatches(productModel, q);
 }
 
+/** Pesquisa simples (case-insensitive) em model ou title. */
+export function productMatchesSearchText(
+  product: { model?: string | null; title?: string | null },
+  query: string,
+): boolean {
+  const term = query.trim().toLowerCase();
+  if (!term) return true;
+
+  const model = (product.model ?? "").toLowerCase();
+  const title = (product.title ?? "").toLowerCase();
+
+  return model.includes(term) || (title.length > 0 && title.includes(term));
+}
+
 export function isRelevantForHighlights(product: HighlightProduct): boolean {
   const model = normalizeModel(product.model ?? "");
   const { tech } = product;

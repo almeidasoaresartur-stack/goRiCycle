@@ -1,7 +1,8 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { SlidersHorizontal } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 
 import {
   BRAND_OPTIONS,
@@ -43,15 +44,43 @@ const selectClass =
 export function FilterSidebar({ filters, options, resultCount }: FilterSidebarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [searchText, setSearchText] = useState(filters.q ?? "");
+
+  useEffect(() => {
+    setSearchText(filters.q ?? "");
+  }, [filters.q]);
+
+  const pushParams = useCallback(
+    (params: URLSearchParams) => {
+      params.set("view", "all");
+      params.set("section", "comparador");
+      router.push(`/?${params.toString()}#comparador`, { scroll: false });
+    },
+    [router],
+  );
 
   const updateFilter = (key: string, value: string | null) => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     if (value) params.set(key, value);
     else params.delete(key);
-    params.set("view", "all");
-    params.set("section", "comparador");
-    router.push(`/?${params.toString()}#comparador`, { scroll: false });
+    if (key === "brand" || key === "tech") params.delete("model");
+    pushParams(params);
   };
+
+  useEffect(() => {
+    const trimmed = searchText.trim();
+    const current = filters.q?.trim() ?? "";
+    if (trimmed === current) return;
+
+    const timer = window.setTimeout(() => {
+      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      if (trimmed) params.set("q", trimmed);
+      else params.delete("q");
+      pushParams(params);
+    }, 300);
+
+    return () => window.clearTimeout(timer);
+  }, [searchText, filters.q, searchParams, pushParams]);
 
   const toggleStore = (slug: ProductSource) => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
@@ -70,15 +99,11 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
       params.delete("stores");
     }
 
-    params.set("view", "all");
-    params.set("section", "comparador");
-    router.push(`/?${params.toString()}#comparador`, { scroll: false });
+    pushParams(params);
   };
 
   const clearFilters = () => {
     const params = new URLSearchParams();
-    const q = searchParams?.get("q");
-    if (q) params.set("q", q);
     params.set("section", "comparador");
     router.push(`/?${params.toString()}#comparador`, { scroll: false });
   };
@@ -115,6 +140,20 @@ export function FilterSidebar({ filters, options, resultCount }: FilterSidebarPr
       </p>
 
       <div className="space-y-4">
+        <FilterGroup title="Pesquisar">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Ex: iPhone SE, Galaxy S23..."
+              className={`${selectClass} pl-9`}
+              aria-label="Pesquisar produtos"
+            />
+          </div>
+        </FilterGroup>
+
         <FilterGroup title="Tipo de tecnologia">
           <div className="flex flex-col gap-1.5">
             {TECH_TYPES.map(({ id, label, icon }) => (

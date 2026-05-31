@@ -5,7 +5,11 @@ import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import { cleanBaseModel } from "./product-display";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
-import { isRelevantForHighlights, modelMatches, queryMatchesModel } from "./model-matching";
+import {
+  isRelevantForHighlights,
+  modelMatches,
+  productMatchesSearchText,
+} from "./model-matching";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
@@ -148,6 +152,13 @@ const PLACEHOLDER_IMAGES: Record<TechType, string> = {
 
 function safeStr(value: string | null | undefined): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+export function resolveProductBrand(product: {
+  brand?: string | null;
+  model: string;
+}): string | null {
+  return safeStr(product.brand) || inferBrand(product.model) || null;
 }
 
 function safePrice(
@@ -396,11 +407,11 @@ export function filterAggregatedProducts(
   const filtered = (products ?? []).filter((item) => {
     if (!item?.id || typeof item.minPrice !== "number") return false;
     if (tech && item.tech !== tech) return false;
-    if (brand && item.brand?.toLowerCase() !== brand.toLowerCase()) return false;
+    if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
     if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (q && !queryMatchesModel(item.model, q)) return false;
+    if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
     if (storeFilter.length > 0) {
       const hasStore = (item.offers ?? []).some((offer) => storeFilter.includes(offer.storeSlug));
       if (!hasStore) return false;
@@ -458,11 +469,11 @@ export function filterListings(
   return listings.filter((item) => {
     if (!item?.id || !item?.price) return false;
     if (tech && item.tech !== tech) return false;
-    if (brand && item.brand?.toLowerCase() !== brand.toLowerCase()) return false;
+    if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
     if (model && !modelMatches(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
-    if (q && !queryMatchesModel(item.model, q)) return false;
+    if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
     return true;
   });
 }
@@ -473,7 +484,8 @@ export function buildFilterOptions(listings: ProductListing[]): FilterOptions {
   const storages = new Set<string>();
 
   for (const item of listings ?? []) {
-    if (item?.brand) brands.add(item.brand);
+    const resolvedBrand = item ? resolveProductBrand(item) : null;
+    if (resolvedBrand) brands.add(resolvedBrand);
     if (item?.model) models.add(item.model);
     if (item?.storage) storages.add(item.storage.toUpperCase());
   }

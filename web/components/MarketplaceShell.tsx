@@ -149,12 +149,13 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   const safeProducts = useMemo(() => filterLaunchProducts(allProducts ?? []), [allProducts]);
   const scopedForOptions = filterAggregatedProducts(safeProducts, {
     tech: filters.tech,
-    brand: null,
+    brand: filters.brand,
     model: null,
     storage: null,
     grade: null,
     color: null,
-    q: filters.q,
+    q: null,
+    stores: filters.stores,
   });
   const options = buildFilterOptionsFromAggregated(scopedForOptions);
 
