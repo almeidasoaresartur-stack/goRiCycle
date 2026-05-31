@@ -4,12 +4,11 @@ import { inferBrand } from "./inference";
 import { getStoreInfo, STORES } from "./stores";
 import { normalizeScrapedPrice } from "./parse-price";
 import {
-  cleanBaseModel,
   normalizeModelForFilter,
   sortFilterModelNames,
 } from "./product-display";
 import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
-import { isRelevantForHighlights, modelMatches, productMatchesSearchText } from "./model-matching";
+import { modelMatches, productMatchesSearchText } from "./model-matching";
 import {
   aggregatedProductIsAvailable,
   resolveScrapedAvailability,
@@ -631,69 +630,52 @@ export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): bo
   return hasSpecificFilters(filters);
 }
 
-const HIGHLIGHT_STORAGE_BY_TECH: Record<TechType, string[]> = {
-  smartphones: ["128gb", "256gb", "64gb", "512gb"],
-  tablets: ["256gb", "128gb", "64gb", "512gb", "32gb"],
-  laptops: ["256gb", "512gb", "128gb"],
-  wearables: ["32gb", "64gb"],
-};
+const DESTAQUE_STORES: ProductSource[] = [
+  "iservices",
+  "swappie",
+  "certideal",
+  "refurbed",
+  "callphone",
+];
 
-const HIGHLIGHT_GRADE_PRIORITY: GradeTier[] = ["Premium", "Excelente", "Bom"];
-
-function highlightModelKey(model: string): string {
-  return normalizeModel(cleanBaseModel(model));
-}
-
-/** Destaques: escolhe a variante mais barata entre capacidades/estados preferidos. */
-export function getRepresentativeProduct(
-  products: AggregatedProduct[],
-  tech: TechType,
-): AggregatedProduct | null {
-  if (!products.length) return null;
-
-  const preferredStorage = HIGHLIGHT_STORAGE_BY_TECH[tech] ?? HIGHLIGHT_STORAGE_BY_TECH.smartphones;
-  const candidates: AggregatedProduct[] = [];
-
-  for (const storage of preferredStorage) {
-    for (const grade of HIGHLIGHT_GRADE_PRIORITY) {
-      const match = products.find(
-        (product) =>
-          (product.storage ?? "").toLowerCase().includes(storage) &&
-          product.gradeTier === grade,
-      );
-      if (match) candidates.push(match);
-    }
-  }
-
-  const pool = candidates.length ? candidates : products;
-  return [...pool].sort((a, b) => a.minPrice - b.minPrice)[0] ?? null;
-}
-
-export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
-  const perTech = 6;
-  const maxTotal = 12;
-
-  const pickByModel = (tech: TechType) => {
-    const pool = (products ?? []).filter(
-      (product) => product?.tech === tech && isRelevantForHighlights(product),
-    );
-
-    const byModel = new Map<string, AggregatedProduct[]>();
-    for (const product of pool) {
-      const key = highlightModelKey(product.model);
-      const variants = byModel.get(key) ?? [];
-      variants.push(product);
-      byModel.set(key, variants);
-    }
-
-    return [...byModel.values()]
-      .map((variants) => getRepresentativeProduct(variants, tech))
-      .filter((product): product is AggregatedProduct => product != null)
-      .sort((a, b) => a.minPrice - b.minPrice)
-      .slice(0, perTech);
+function listingToAggregatedHighlight(offer: ProductListing): AggregatedProduct {
+  return {
+    id: `destaque-${offer.storeSlug}-${offer.id}`,
+    model: offer.model,
+    brand: offer.brand,
+    tech: offer.tech,
+    storage: offer.storage,
+    grade: offer.grade,
+    gradeTier: offer.gradeTier,
+    minPrice: offer.price,
+    bestListing: offer,
+    offers: [offer],
+    imageUrl: offer.imageUrl,
+    storeCount: 1,
+    color: offer.color,
+    isAvailable: offer.isAvailable !== false,
   };
+}
 
-  return [...pickByModel("smartphones"), ...pickByModel("tablets")].slice(0, maxTotal);
+/** Destaques goRiCycle: 1 smartphone mais acessível por loja parceira. */
+export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
+  const offers = flattenAggregatedToListings(products ?? []).filter(
+    (offer) => offer.isAvailable !== false,
+  );
+
+  return DESTAQUE_STORES.map((store) => {
+    const cheapest = offers
+      .filter(
+        (offer) =>
+          offer.tech === "smartphones" &&
+          offer.storeSlug === store &&
+          offer.price >= 80 &&
+          offer.price <= 1200,
+      )
+      .sort((a, b) => a.price - b.price)[0];
+
+    return cheapest ? listingToAggregatedHighlight(cheapest) : null;
+  }).filter((product): product is AggregatedProduct => product != null);
 }
 
 export function catalogFiltersForView(

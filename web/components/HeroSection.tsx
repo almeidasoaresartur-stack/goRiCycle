@@ -3,12 +3,15 @@
 import { Search } from "lucide-react";
 
 import { SLOGAN } from "@/components/Logo";
+import { HeroHighlights } from "@/components/HeroHighlights";
+import type { HeroHighlight } from "@/lib/hero-highlights";
 
 type HeroSectionProps = {
   defaultQuery?: string;
+  highlights?: HeroHighlight[];
 };
 
-export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
+export function HeroSection({ defaultQuery = "", highlights = [] }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden bg-[#F8FAFC] px-4 pb-4 pt-2 sm:px-6 sm:pb-5 sm:pt-3 lg:px-8">
       <div className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full bg-emerald-400/10 blur-3xl" />
@@ -57,9 +60,7 @@ export function HeroSection({ defaultQuery = "" }: HeroSectionProps) {
           </button>
         </form>
 
-        <p className="mt-2 text-xs text-slate-500">
-          iServices · Refurbed · Swappie · Certideal · Callphone
-        </p>
+        <HeroHighlights highlights={highlights} />
       </div>
     </section>
   );

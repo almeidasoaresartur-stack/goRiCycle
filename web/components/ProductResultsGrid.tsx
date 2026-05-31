@@ -191,7 +191,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
           </div>
         )}
 
-        <div className="mt-auto flex items-end justify-between pt-5">
+        <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
               A partir de
@@ -205,7 +205,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => handleVerOfertaClick(item, index, variant)}
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
+            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
           >
             Ver Oferta
             <ExternalLink className="h-4 w-4" />
@@ -335,7 +335,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => handleVerOfertaClick(item, index, variant)}
-          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-900"
+          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
         >
           Ver Oferta
           <ExternalLink className="h-4 w-4" />
@@ -391,7 +391,13 @@ export function ProductResultsGrid({
   }
 
   return (
-    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
+    <div
+      className={
+        variant === "highlights"
+          ? "grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
+          : "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 xl:grid-cols-2 2xl:grid-cols-3"
+      }
+    >
       {safeProducts.map((item, index) => (
         <ProductGridCard
           key={item.id}

@@ -1,11 +1,14 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { LayoutGrid, LayoutList } from "lucide-react";
 
 import { BrandPicker } from "@/components/BrandPicker";
+import { FilterDrawer } from "@/components/FilterDrawer";
 import { FilterSidebar } from "@/components/FilterSidebar";
+import { MobileActiveFiltersBar } from "@/components/MobileActiveFiltersBar";
+import { MobileFilterFab } from "@/components/MobileFilterFab";
 import {
   getTotalPages,
   paginateItems,
@@ -14,6 +17,10 @@ import {
 import { ProductResultsGrid, type ProductViewMode } from "@/components/ProductResultsGrid";
 import { TechCategoryPicker } from "@/components/TechCategoryPicker";
 import { trackSearch, trackSearchNoResults } from "@/lib/analytics";
+import {
+  buildActiveFilterChips,
+  countActiveFilters,
+} from "@/lib/marketplace-active-filters";
 import {
   buildFilterOptionsForScope,
   buildHighlightProducts,
@@ -30,6 +37,7 @@ import {
   type MarketplaceFilters,
   type ProductSortOption,
 } from "@/lib/marketplace";
+import type { ProductSource } from "@/lib/types";
 
 const SORT_OPTIONS: { value: ProductSortOption; label: string }[] = [
   { value: "relevance", label: "Relevância" },
@@ -82,7 +90,7 @@ function ProductSortBar({
           <button
             type="button"
             onClick={() => onViewModeChange("grid")}
-            className={viewToggleClass(viewMode === "grid")}
+            className={`${viewToggleClass(viewMode === "grid")} min-h-[44px]`}
             aria-label="Ver em grelha"
             aria-pressed={viewMode === "grid"}
           >
@@ -92,7 +100,7 @@ function ProductSortBar({
           <button
             type="button"
             onClick={() => onViewModeChange("list")}
-            className={viewToggleClass(viewMode === "list")}
+            className={`${viewToggleClass(viewMode === "list")} min-h-[44px]`}
             aria-label="Ver em lista"
             aria-pressed={viewMode === "list"}
           >
@@ -104,7 +112,7 @@ function ProductSortBar({
         <select
           value={sortOrder}
           onChange={(e) => onSortChange(e.target.value as ProductSortOption)}
-          className={SORT_SELECT_CLASS}
+          className={`${SORT_SELECT_CLASS} min-h-[44px]`}
           aria-label="Ordenar produtos"
         >
           {SORT_OPTIONS.map(({ value, label }) => (
@@ -129,6 +137,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
   const [currentPage, setCurrentPage] = useState(1);
   const [viewMode, setViewMode] = useState<ProductViewMode>("grid");
+  const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
   const filters = parseMarketplaceFilters({
     tech: searchParams?.get("tech") ?? defaultFilters.tech ?? undefined,
@@ -225,6 +234,55 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
   );
 
   const catalogCount = deduplicatedProducts.length;
+  const activeFilterCount = countActiveFilters(filters);
+  const activeFilters = useMemo(() => buildActiveFilterChips(filters), [filters]);
+  const isStateBActive = catalogMode && activeFilterCount > 0;
+  const sidebarResultCount = catalogMode ? catalogCount : safeProducts.length;
+
+  const handleFilterApply = useCallback(() => {
+    setFilterDrawerOpen(false);
+    window.setTimeout(() => {
+      document.getElementById("product-grid")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 300);
+  }, []);
+
+  const openFilterDrawer = useCallback(() => {
+    setFilterDrawerOpen(true);
+  }, []);
+
+  const removeFilter = useCallback(
+    (chipKey: string) => {
+      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      params.delete("store");
+
+      if (chipKey.startsWith("store:")) {
+        const slug = chipKey.slice("store:".length) as ProductSource;
+        const remaining = (filters.stores ?? []).filter((s) => s !== slug);
+        if (remaining.length > 0) {
+          params.set("stores", remaining.join(","));
+        } else {
+          params.delete("stores");
+        }
+      } else {
+        params.delete(chipKey);
+        if (chipKey === "brand") params.delete("model");
+      }
+
+      params.set("view", "all");
+      params.set("section", "comparador");
+      router.push(`/?${params.toString()}#comparador`, { scroll: false });
+    },
+    [filters.stores, router, searchParams],
+  );
+
+  const clearAllFilters = useCallback(() => {
+    const params = new URLSearchParams();
+    params.set("section", "comparador");
+    router.push(`/?${params.toString()}#comparador`, { scroll: false });
+  }, [router]);
 
   const searchQuery = filters.q?.trim() ?? "";
   const lastSearchTracked = useRef("");
@@ -275,20 +333,46 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
       }
     >
       {showFilterSidebar ? (
-        <div className="sticky top-28 z-10 self-start max-h-[calc(100vh-8rem)] w-full overflow-y-auto overscroll-y-contain md:w-[280px]">
+        <div className="sticky top-28 z-10 hidden max-h-[calc(100vh-8rem)] w-full self-start overflow-y-auto overscroll-y-contain md:block md:w-[280px]">
           <FilterSidebar
             filters={filters}
             options={options}
-            resultCount={catalogMode ? catalogCount : safeProducts.length}
+            resultCount={sidebarResultCount}
           />
         </div>
       ) : null}
 
+      {showFilterSidebar ? (
+        <FilterDrawer
+          isOpen={filterDrawerOpen}
+          onClose={handleFilterApply}
+          activeFilterCount={activeFilterCount}
+          resultCount={sidebarResultCount}
+        >
+          <FilterSidebar
+            embedded
+            filters={filters}
+            options={options}
+            resultCount={sidebarResultCount}
+            onFilterApplied={handleFilterApply}
+          />
+        </FilterDrawer>
+      ) : null}
+
       <div
-        className={`min-w-0 ${
+        className={`min-w-0 pb-20 md:pb-0 ${
           showFilterSidebar ? "" : "mx-auto w-full max-w-5xl"
         }`}
       >
+        {isStateBActive ? (
+          <MobileActiveFiltersBar
+            activeFilterCount={activeFilterCount}
+            activeFilters={activeFilters}
+            onOpenFilters={openFilterDrawer}
+            onRemoveFilter={removeFilter}
+            onClearAll={clearAllFilters}
+          />
+        ) : null}
         {!showFilterSidebar && (
           <div className="mb-5 space-y-4">
             <TechCategoryPicker activeTech={filters.tech} />
@@ -313,7 +397,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
         ) : null}
 
         {!catalogMode ? (
-          <>
+          <div id="product-grid">
             <ProductSortBar
               sortOrder={sortOrder}
               onSortChange={handleSortChange}
@@ -337,14 +421,14 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               <button
                 type="button"
                 onClick={showAllCatalog}
-                className="text-sm font-medium text-slate-600 transition hover:text-emerald-600"
+                className="min-h-[44px] text-sm font-medium text-slate-600 transition hover:text-emerald-600"
               >
                 Ver todos os {safeProducts.length.toLocaleString("pt-PT")} produtos →
               </button>
             </div>
-          </>
+          </div>
         ) : (
-          <>
+          <div id="product-grid">
             <ProductSortBar
               sortOrder={sortOrder}
               onSortChange={handleSortChange}
@@ -364,9 +448,13 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
-          </>
+          </div>
         )}
       </div>
+
+      {showFilterSidebar ? (
+        <MobileFilterFab activeFilterCount={activeFilterCount} onOpen={openFilterDrawer} />
+      ) : null}
     </div>
   );
 }

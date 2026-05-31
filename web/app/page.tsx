@@ -7,8 +7,10 @@ import { HeroSection } from "@/components/HeroSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { SiteFooter } from "@/components/SiteFooter";
-import { getAllAggregatedProducts } from "@/lib/load-listings";
-import { parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
+import { buildHeroHighlights } from "@/lib/hero-highlights";
+import { getAllListings } from "@/lib/load-listings";
+import { aggregateListings, parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
+import { filterAvailableAggregatedProducts } from "@/lib/product-availability";
 import { getCatalogStats, inferBrand, parseSearchQuery } from "@/lib/products";
 
 type PageProps = {
@@ -28,18 +30,20 @@ export default async function HomePage({ searchParams }: PageProps) {
     q: query || undefined,
   });
 
-  const allProducts = getAllAggregatedProducts();
+  const listings = getAllListings();
+  const allProducts = filterAvailableAggregatedProducts(aggregateListings(listings));
+  const heroHighlights = buildHeroHighlights(listings);
   const stats = getCatalogStats();
   return (
     <>
       <ScrollToHash trigger={`${query}-${params.tech ?? ""}`} />
 
       <main className="bg-[#F8FAFC]">
-        <HeroSection defaultQuery={query} />
+        <HeroSection defaultQuery={query} highlights={heroHighlights} />
+        <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <Suspense fallback={<div className="h-36 animate-pulse bg-slate-100/50" aria-hidden />}>
           <PartnerStoresSection />
         </Suspense>
-        <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
         <BenefitsSection />
         <FaqSection />
       </main>
