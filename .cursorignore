@@ -1,0 +1,62 @@
+# =============================================================================
+# goRiCycle — .cursorignore
+# Reduz ruído no índice do Cursor: dados volumosos, caches e artefactos de scrape.
+# Código-fonte (scrapers/, web/components/, web/lib/, scripts/) permanece indexado.
+# =============================================================================
+
+# --- Dependências e builds ---
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+**/out/
+.venv/
+.playwright-browsers/
+__pycache__/
+**/__pycache__/
+*.pyc
+.cache/
+**/.cache/
+*.tsbuildinfo
+
+# --- Git ---
+.git/
+
+# --- Segredos ---
+.env
+.env.*
+!.env.example
+
+# --- Catálogos JSON (grandes; regenerados pelo pipeline) ---
+# Mantém visível: data/product_corrections.json (config pequena do merge)
+web/data/
+data/all_products.json
+data/*_produtos.json
+data/merge_and_clean_report.json
+data/validate_and_clean_report.json
+data/last_run_summary.json
+
+# --- Logs e temporários ---
+logs/
+**/logs/
+data/temp/
+data/cache/
+data/**/*.log
+data/*.log
+data/log_erros.txt
+tmp/
+
+# --- Back Market (scraper inactivo / artefactos de sessão) ---
+data/backmarket_browser_profile/
+data/backmarket_*
+web/data/backmarket_*
+
+# --- Imagens de produto descarregadas (147+ ficheiros) ---
+web/public/images/products/
+
+# --- Assets soltos / relatórios locais ---
+goricycle_logo_final.png
+
+# --- Lockfiles grandes (opcional; descomenta se quiseres indexar dependências) ---
+web/package-lock.json
