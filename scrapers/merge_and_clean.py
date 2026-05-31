@@ -2,6 +2,11 @@
 """
 goRiCycle — fusão e deduplicação por loja dos JSONs de produtos.
 
+Pipeline (ordem fixa — nunca inverter):
+  1. PRODUCT_CORRECTIONS → corrige o campo model (dedup usa o nome corrigido)
+  2. Deduplicação por loja-modelo-armazenamento-estado
+  3. Filtro de antiguidade Samsung/Google
+
 Para cada fonte, mantém apenas a oferta mais barata por chave:
   loja-modelo-armazenamento-estado  (source-grade no schema actual)
 
@@ -60,8 +65,29 @@ def save_json(data: dict | list, path: Path) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def _expand_correction_keys(raw: dict[str, str]) -> dict[str, str]:
+    """Gera variantes de lookup: URL completa, path normalizado e slug PrestaShop."""
+    expanded: dict[str, str] = {}
+    for key, value in raw.items():
+        cleaned_key = str(key).strip()
+        cleaned_value = str(value).strip()
+        if not cleaned_key or not cleaned_value:
+            continue
+        expanded[cleaned_key] = cleaned_value
+        if cleaned_key.startswith("http"):
+            path = normalize_product_url(cleaned_key)
+            if path:
+                expanded[path] = cleaned_value
+                slug = path.rsplit("/", 1)[-1]
+                if slug:
+                    expanded[slug] = cleaned_value
+        else:
+            expanded[cleaned_key.lower()] = cleaned_value
+    return expanded
+
+
 def load_product_corrections(path: Path = PRODUCT_CORRECTIONS_JSON) -> dict[str, str]:
-    """Carrega mapa url/product_id → nome correcto (model)."""
+    """Carrega mapa url/product_id/slug → nome correcto (model)."""
     if not path.exists():
         return {}
     try:
@@ -75,7 +101,37 @@ def load_product_corrections(path: Path = PRODUCT_CORRECTIONS_JSON) -> dict[str,
         raw = {k: v for k, v in payload.items() if not str(k).startswith("_")}
     else:
         return {}
-    return {str(key).strip(): str(value).strip() for key, value in raw.items() if key and value}
+    cleaned = {
+        str(key).strip(): str(value).strip()
+        for key, value in raw.items()
+        if key and value
+    }
+    return _expand_correction_keys(cleaned)
+
+
+def _correction_lookup_keys(product: dict) -> tuple[str, ...]:
+    """Chaves possíveis para encontrar override no dicionário de correcções."""
+    product_id = (product.get("product_id") or "").strip()
+    url = (product.get("url") or "").strip()
+    url_path = normalize_product_url(url)
+    keys: list[str] = []
+    for candidate in (product_id, url, url_path):
+        if candidate and candidate not in keys:
+            keys.append(candidate)
+    if url_path:
+        slug = url_path.rsplit("/", 1)[-1]
+        if slug and slug not in keys:
+            keys.append(slug)
+    return tuple(keys)
+
+
+def lookup_product_correction(product: dict, corrections: dict[str, str]) -> str | None:
+    """Devolve model corrigido se existir entrada no dicionário."""
+    for key in _correction_lookup_keys(product):
+        new_model = corrections.get(key)
+        if new_model:
+            return new_model
+    return None
 
 
 def apply_product_corrections(
@@ -85,21 +141,15 @@ def apply_product_corrections(
     """
     Substitui o campo model quando url ou product_id estiver em PRODUCT_CORRECTIONS.
     Não altera preço, stock ou restantes campos.
+
+    Deve correr sempre antes da deduplicação — a chave usa o model já corrigido.
     """
     if not corrections:
         return products, 0
 
     applied = 0
     for product in products:
-        product_id = (product.get("product_id") or "").strip()
-        url = (product.get("url") or "").strip()
-        url_path = normalize_product_url(url)
-
-        new_model = (
-            corrections.get(product_id)
-            or corrections.get(url)
-            or corrections.get(url_path)
-        )
+        new_model = lookup_product_correction(product, corrections)
         if not new_model:
             continue
 
@@ -112,14 +162,36 @@ def apply_product_corrections(
         if brand:
             product["brand"] = brand
         applied += 1
+        lookup_keys = _correction_lookup_keys(product)
         log.info(
             "Correcção de modelo: %s → %s (%s)",
             current or "?",
             new_model,
-            product_id or url_path or url,
+            lookup_keys[0] if lookup_keys else "?",
         )
 
     return products, applied
+
+
+def process_product_list(
+    products: list[dict],
+    corrections: dict[str, str],
+    *,
+    apply_relevance_filter: bool = True,
+) -> tuple[list[dict], dict[str, int]]:
+    """
+    Pipeline único: correcções → deduplicação (model corrigido) → filtro de antiguidade.
+    """
+    products, corrections_applied = apply_product_corrections(products, corrections)
+    kept, removed = filter_best_price_per_store(products, log=log)
+    relevance_removed = 0
+    if apply_relevance_filter:
+        kept, relevance_removed = filter_by_model_relevance(kept)
+    return kept, {
+        "corrections_applied": corrections_applied,
+        "removed": removed,
+        "removed_by_relevance": relevance_removed,
+    }
 
 
 def filter_by_model_relevance(products: list[dict]) -> tuple[list[dict], int]:
@@ -160,9 +232,10 @@ def clean_source(
         is_list_format = False
 
     before = len(products)
-    products, corrections_applied = apply_product_corrections(products, corrections or {})
-    kept, removed = filter_best_price_per_store(products, log=log)
-    kept, relevance_removed = filter_by_model_relevance(kept)
+    kept, stats = process_product_list(products, corrections or {})
+    removed = stats["removed"]
+    relevance_removed = stats["removed_by_relevance"]
+    corrections_applied = stats["corrections_applied"]
 
     log.info(
         "[%s] %s → %s produtos (%s duplicados internos removidos, %s por antiguidade, %s correcções)",
@@ -220,9 +293,10 @@ def merge_all_sources(
             combined.extend(data.get("products", []))
 
     before = len(combined)
-    combined, corrections_applied = apply_product_corrections(combined, corrections or {})
-    kept, removed = filter_best_price_per_store(combined, log=log)
-    kept, relevance_removed = filter_by_model_relevance(kept)
+    kept, stats = process_product_list(combined, corrections or {})
+    removed = stats["removed"]
+    relevance_removed = stats["removed_by_relevance"]
+    corrections_applied = stats["corrections_applied"]
     log.info(
         "Catálogo combinado: %s → %s produtos (%s duplicados removidos na fusão, %s correcções)",
         before,
