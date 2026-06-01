@@ -47,6 +47,7 @@ export function HeroHighlights({ highlights }: HeroHighlightsProps) {
               </p>
               <p className="truncate text-[10px] leading-tight text-gray-400">
                 {product.storeLabel}
+                {product.priceFrom ? " · a partir de" : ""}
               </p>
               <p className="text-[12px] font-bold leading-tight text-green-600">
                 {product.price.toLocaleString("pt-PT", {

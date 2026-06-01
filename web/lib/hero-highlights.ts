@@ -1,5 +1,6 @@
 import type { ProductListing } from "@/lib/marketplace";
-import { isGenericListingUrl } from "@/lib/product-urls";
+import { cleanBaseModel } from "@/lib/product-display";
+import { generateExactProductUrl, isGenericListingUrl } from "@/lib/product-urls";
 import { getStoreInfo } from "@/lib/stores";
 import type { ProductSource } from "@/lib/types";
 
@@ -19,6 +20,8 @@ export type HeroHighlight = {
   price: number;
   url: string;
   imageUrl: string | null;
+  /** Preço mínimo confirmado no catálogo para este modelo+loja (nunca variante cara isolada). */
+  priceFrom: boolean;
 };
 
 const INVALID_URL_MARKERS = ["/search", "search_query", "/procurar"];
@@ -59,6 +62,30 @@ function premiumEligibility(listing: ProductListing, storeName: ProductSource): 
   return baseEligibility(listing, storeName) && isRecognizableSmartphone(listing.model);
 }
 
+function sameBaseModel(a: string, b: string): boolean {
+  return cleanBaseModel(a).toLowerCase() === cleanBaseModel(b).toLowerCase();
+}
+
+/** Ofertas do mesmo modelo base na mesma loja — preço/link reflectem o mínimo real. */
+function bestOfferForModel(
+  listings: ProductListing[],
+  storeName: ProductSource,
+  model: string,
+): ProductListing | null {
+  const matches = listings
+    .filter((listing) => baseEligibility(listing, storeName) && sameBaseModel(listing.model, model))
+    .sort((a, b) => a.price - b.price);
+
+  return matches[0] ?? null;
+}
+
+const PRICE_FROM_STORES: ReadonlySet<ProductSource> = new Set([
+  "swappie",
+  "refurbed",
+  "certideal",
+  "iservices",
+]);
+
 export function getStoreHighlight(
   listings: ProductListing[],
   storeName: ProductSource,
@@ -79,16 +106,25 @@ export function getStoreHighlight(
   const picked = candidates[pickIndex];
   if (!picked) return null;
 
-  const storeLabel = getStoreInfo(picked.storeSlug)?.label ?? picked.store;
+  const best = bestOfferForModel(listings, storeName, picked.model) ?? picked;
+  const storeLabel = getStoreInfo(best.storeSlug)?.label ?? best.store;
+  const displayModel = cleanBaseModel(best.model);
 
   return {
-    productId: picked.id,
-    model: picked.model,
-    storeSlug: picked.storeSlug,
+    productId: best.id,
+    model: displayModel,
+    storeSlug: best.storeSlug,
     storeLabel,
-    price: picked.price,
-    url: picked.url,
-    imageUrl: picked.imageUrl,
+    price: best.price,
+    url: generateExactProductUrl({
+      store: best.storeSlug,
+      model: best.model,
+      storage: best.storage,
+      url: best.url,
+      affiliateEnabled: best.storeSlug === "swappie" || best.storeSlug === "refurbed",
+    }),
+    imageUrl: best.imageUrl,
+    priceFrom: PRICE_FROM_STORES.has(best.storeSlug),
   };
 }
 
