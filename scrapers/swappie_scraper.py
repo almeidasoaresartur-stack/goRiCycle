@@ -32,6 +32,7 @@ from common import (
     normalize_grade_swappie,
     page_wait_ms,
     parse_swappie_price_eur,
+    remove_products_by_url,
     resolve_image_url,
     launch_chromium,
     setup_logging,
@@ -67,6 +68,29 @@ def dedupe_swappie_products(products: list[dict[str, Any]]) -> list[dict[str, An
         if existing is None or price < (existing.get("price") or 9999):
             best[key] = product
     return list(best.values())
+
+
+def swappie_product_page_missing(page: Page, response: Any | None = None) -> bool:
+    """Deteta páginas 404 ou modelo removido (listagem ainda pode mostrar o cartão)."""
+    if response is not None and response.status >= 400:
+        return True
+
+    try:
+        title = (page.title() or "").lower()
+        if any(marker in title for marker in ("não encontrada", "nao encontrada", "not found", "404")):
+            return True
+    except Exception:
+        pass
+
+    try:
+        has_price = page.locator(SEL["detail_price"]).count() > 0
+        has_title = page.locator(SEL["detail_title"]).count() > 0
+        if not has_price and not has_title:
+            return True
+    except Exception:
+        pass
+
+    return False
 
 
 def page_indicates_out_of_stock(page: Page, stock_areas: str | None = None) -> bool:
@@ -277,16 +301,27 @@ def _variants_from_model_page(
     category: str,
     source_page: str,
     scraped_at: str,
-) -> list[dict[str, Any]]:
-    page.goto(card["url"], wait_until="domcontentloaded", timeout=60_000)
+) -> tuple[list[dict[str, Any]], bool]:
+    response = page.goto(card["url"], wait_until="domcontentloaded", timeout=60_000)
     human_delay(CFG["delays"], "after_navigation")
     page_wait_ms(CFG["delays"], "page_load")
     dismiss_cookie_banner(page)
-    page.locator(SEL["detail_price"]).first.wait_for(state="attached", timeout=60_000)
+
+    if swappie_product_page_missing(page, response):
+        logger.info("Página inválida/404 (Swappie): %s", card.get("url"))
+        return [], True
+
+    try:
+        page.locator(SEL["detail_price"]).first.wait_for(state="attached", timeout=60_000)
+    except Exception:
+        if swappie_product_page_missing(page):
+            logger.info("Página inválida/404 (Swappie): %s", card.get("url"))
+            return [], True
+        raise
 
     if page_indicates_out_of_stock(page):
         logger.info("Modelo sem stock (Swappie): %s", card.get("model"))
-        return []
+        return [], False
 
     model = card["model"]
     try:
@@ -351,20 +386,6 @@ def _variants_from_model_page(
             if record:
                 records.append(record)
 
-    if not records and clean_price(card.get("listing_price")):
-        record = build_normalized_product(
-            CFG,
-            category=category,
-            url=product_url,
-            model=model,
-            price=clean_price(card["listing_price"]),
-            image_url=image_url,
-            source_page=source_page,
-            scraped_at=scraped_at,
-        )
-        if record:
-            records.append(record)
-
     deduped = dedupe_swappie_products(records)
     if len(deduped) < len(records):
         logger.debug(
@@ -373,7 +394,7 @@ def _variants_from_model_page(
             len(records),
             len(deduped),
         )
-    return deduped
+    return deduped, False
 
 
 def extract_product(
@@ -382,14 +403,21 @@ def extract_product(
     category: str,
     source_page: str,
     scraped_at: str,
-) -> list[dict[str, Any]] | None:
+) -> tuple[list[dict[str, Any]], bool] | None:
     try:
-        records = _variants_from_model_page(page, card, category, source_page, scraped_at)
+        records, remove_stale = _variants_from_model_page(
+            page, card, category, source_page, scraped_at
+        )
         if records:
             logger.info("%s [%s]: %s registo(s)", card.get("model"), category, len(records))
-        return records
+        return records, remove_stale
     except Exception as exc:
         logger.error("Falha %s: %s", card.get("url"), exc, exc_info=True)
+        try:
+            if swappie_product_page_missing(page):
+                return [], True
+        except Exception:
+            pass
         return None
 
 
@@ -452,18 +480,29 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
 
             for index, card in enumerate(cards, start=1):
                 logger.info("[%s/%s] %s", index, len(cards), card.get("model"))
-                result = extract_product(page, card, category, category_url, scraped_at)
-                if result is None:
+                outcome = extract_product(page, card, category, category_url, scraped_at)
+                if outcome is None:
                     stats["errors"] += 1
                     human_delay(CFG["delays"], "between_products")
                     continue
 
+                result, remove_stale = outcome
                 if not result:
-                    logger.info(
-                        "Sem resultados para %s — mantendo dados anteriores (possível falso positivo de stock)",
-                        card.get("model"),
-                    )
-                    # Não remove produtos existentes — pode ser falso positivo
+                    if remove_stale:
+                        products, n_removed = remove_products_by_url(products, card.get("url"))
+                        if n_removed:
+                            known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                            stats["removed_out_of_stock"] += n_removed
+                            logger.info(
+                                "Removidos %s registo(s) — página 404/inexistente: %s",
+                                n_removed,
+                                card.get("model"),
+                            )
+                    else:
+                        logger.info(
+                            "Sem resultados para %s — mantendo dados anteriores (possível falso positivo de stock)",
+                            card.get("model"),
+                        )
                     human_delay(CFG["delays"], "between_products")
                     continue
 

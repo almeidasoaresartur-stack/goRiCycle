@@ -83,7 +83,10 @@ function toSwappieSlug(model: string): string {
     .replace(/\s*\|\s*/g, " ")
     .replace(/\((\d{4})\)/g, " $1 ")
     .replace(/\b\d+\s*(gb|tb)\b/gi, "")
+    // Preserva polegadas decimais (10.2, 12.9) — Swappie usa ponto no slug
+    .replace(/(\d)\.(\d)/g, "$1dot$2")
     .replace(/[^a-z0-9]+/g, "-")
+    .replace(/dot/g, ".")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 }
@@ -263,6 +266,15 @@ export function generateExactProductUrl(input: ProductUrlInput): string {
   }
 
   let resolved = cleaned;
+
+  // URL do scraper (/modelo/...) é autoritativo — não reconstruir slug
+  if (
+    store === "swappie" &&
+    resolved &&
+    pathnameOf(resolved).toLowerCase().includes("/modelo/")
+  ) {
+    return applyAffiliateToUrl(resolved, store, input.affiliateEnabled);
+  }
 
   if (!resolved || isGenericListingUrl(store, resolved)) {
     resolved =
