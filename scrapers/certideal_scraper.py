@@ -32,6 +32,7 @@ from common import (
     extract_storage,
     human_delay,
     log_discarded_listing,
+    normalize_model_name,
     page_indicates_out_of_stock,
     page_wait_ms,
     parse_price_eur,
@@ -64,6 +65,79 @@ COLOR_WORDS = (
     "correto",
     "premium",
 )
+
+MODEL_COLORS = (
+    "preto",
+    "branco",
+    "azul",
+    "vermelho",
+    "verde",
+    "roxo",
+    "dourado",
+    "prateado",
+    "rosa",
+    "amarelo",
+    "grafite",
+    "ouro",
+    "meia-noite",
+    "estelar",
+    "luz das estrelas",
+    "starlight",
+    "midnight",
+    "purple",
+    "blue",
+    "red",
+    "black",
+    "white",
+    "gold",
+    "silver",
+    "pink",
+    "azul pacífico",
+    "pacific blue",
+    "cor surpresa",
+    "surprise",
+    "product red",
+    "alpine green",
+    "sierra blue",
+    "deep purple",
+    "space grey",
+    "space gray",
+    "titan",
+    "natural",
+    "desert",
+    "correto",
+    "cinzento",
+    "coral",
+    "lavanda",
+    "lavender",
+)
+
+
+def clean_model(model: str) -> str:
+    """Remove capacidade e cores do nome do modelo (chave de deduplicação)."""
+    if not model:
+        return model
+    result = model.lower()
+    result = re.sub(r"\b\d+\s*(gb|tb)\b", "", result)
+    for color in sorted(MODEL_COLORS, key=len, reverse=True):
+        result = result.replace(color, "")
+    return re.sub(r"\s+", " ", result).strip()
+
+
+def display_clean_model(model: str) -> str:
+    """Modelo limpo para guardar no JSON (sem cor/capacidade no nome)."""
+    cleaned = clean_model(model)
+    if not cleaned:
+        return model.strip()
+    normalized = normalize_model_name(cleaned)
+    lower = normalized.lower()
+    if lower.startswith("iphone"):
+        return "iPhone" + normalized[len("iphone") :]
+    if lower.startswith("ipad"):
+        return "iPad" + normalized[len("ipad") :]
+    if lower.startswith("samsung"):
+        return "Samsung" + normalized[len("samsung") :]
+    return normalized
 
 
 def dismiss_cookie_banner(page: Page) -> None:
@@ -493,8 +567,8 @@ def scrape_family_listing(
 
 
 def certideal_variant_key(model: str | None, storage: str | None) -> str:
-    """Chave de deduplicação: modelo + capacidade (ignora estado/grade)."""
-    model_norm = (model or "").strip().lower()
+    """Chave de deduplicação: modelo limpo + capacidade (ignora cor/estado)."""
+    model_norm = clean_model(model or "")
     storage_norm = (storage or "").strip().lower()
     return f"{model_norm}|{storage_norm}"
 
@@ -509,7 +583,8 @@ def extract_product(
 ) -> list[dict[str, Any]] | None:
     try:
         price = card.get("listing_price")
-        model = card.get("model")
+        raw_model = card.get("model")
+        model = display_clean_model(raw_model or "")
         url = card.get("url")
 
         ok, reason = validate_listing_card(
@@ -520,7 +595,7 @@ def extract_product(
             require_price=True,
         )
         if not ok:
-            log_discarded_listing(logger, reason, model=model, url=url, price=price)
+            log_discarded_listing(logger, reason, model=raw_model, url=url, price=price)
             return []
 
         record = build_normalized_product(
