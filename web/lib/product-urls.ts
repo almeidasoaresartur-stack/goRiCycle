@@ -91,12 +91,43 @@ function toSwappieSlug(model: string): string {
     .replace(/^-|-$/g, "");
 }
 
+function refurbedModelForSlug(model: string): string {
+  // Refurbed inclui polegadas após "|" — não entram no slug (ex: "iPad 6 (2018) | 9.7"")
+  return model.split("|")[0]?.trim() ?? model;
+}
+
 function toRefurbedSlug(model: string): string {
-  const lower = stripDiacritics(model).toLowerCase();
+  const normalized = refurbedModelForSlug(model);
+  const lower = stripDiacritics(normalized).toLowerCase();
 
   const ipadPro2024 = lower.match(/ipad\s*pro.*?2024.*?(13|11)/);
   if (ipadPro2024) {
     return `ipad-pro-7-2024-${ipadPro2024[1]}`;
+  }
+
+  const ipadAir2024 = lower.match(/ipad\s*air.*?2024.*?(13|11)/);
+  if (ipadAir2024) {
+    return `ipad-air-6-2024-${ipadAir2024[1]}`;
+  }
+
+  const ipadAir2025 = lower.match(/ipad\s*air.*?2025.*?(13|11)/);
+  if (ipadAir2025) {
+    return `ipad-air-7-2025-${ipadAir2025[1]}`;
+  }
+
+  const ipadMini6 = lower.match(/ipad\s*mini.*2021/);
+  if (ipadMini6) {
+    return "ipad-mini-6";
+  }
+
+  const ipadMini5 = lower.match(/ipad\s*mini.*2019/);
+  if (ipadMini5) {
+    return "ipad-mini-5";
+  }
+
+  const ipadWithYear = lower.match(/ipad\s*(\d+).*?\((20\d{2})\)/);
+  if (ipadWithYear) {
+    return `ipad-${ipadWithYear[1]}-${ipadWithYear[2]}`;
   }
 
   const macbookAir152023 = lower.match(/macbook\s*air\s*15.*2023/);
@@ -109,7 +140,7 @@ function toRefurbedSlug(model: string): string {
     return "macbook-air-13-inch-2022-m2";
   }
 
-  return slugify(model);
+  return slugify(normalized);
 }
 
 function pathnameOf(url: string): string {
@@ -267,12 +298,12 @@ export function generateExactProductUrl(input: ProductUrlInput): string {
 
   let resolved = cleaned;
 
-  // URL do scraper (/modelo/...) é autoritativo — não reconstruir slug
-  if (
-    store === "swappie" &&
-    resolved &&
-    pathnameOf(resolved).toLowerCase().includes("/modelo/")
-  ) {
+  // URL do scraper é autoritativo — não reconstruir slug
+  if (store === "swappie" && resolved && pathnameOf(resolved).toLowerCase().includes("/modelo/")) {
+    return applyAffiliateToUrl(resolved, store, input.affiliateEnabled);
+  }
+
+  if (store === "refurbed" && resolved && pathnameOf(resolved).toLowerCase().includes("/p/")) {
     return applyAffiliateToUrl(resolved, store, input.affiliateEnabled);
   }
 
