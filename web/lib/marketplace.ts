@@ -255,13 +255,20 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
   };
 }
 
+/** Lojas cujo URL não fixa variante — agrupar por modelo+capacidade (ignorar grau). */
+const VARIANT_AGNOSTIC_STORES: ReadonlySet<ProductSource> = new Set(["refurbed"]);
+
+function storeGroupsByStorageOnly(storeSlug: ProductSource): boolean {
+  return VARIANT_AGNOSTIC_STORES.has(storeSlug);
+}
+
 function listingGroupKey(item: ProductListing): string {
   return [
     item.tech,
     item.brand?.toLowerCase() ?? "",
     normalizeModel(item.model),
     item.storage?.toUpperCase() ?? "",
-    item.gradeTier,
+    storeGroupsByStorageOnly(item.storeSlug) ? "" : item.gradeTier,
   ].join("|");
 }
 
@@ -364,7 +371,9 @@ export function deduplicateByBestPricePerStore(
     const grade = (listing.gradeTier ?? "").toLowerCase().trim();
     const source = (listing.storeSlug ?? "").toLowerCase().trim();
 
-    const key = `${model}|${storage}|${grade}|${source}`;
+    const key = storeGroupsByStorageOnly(listing.storeSlug)
+      ? `${model}|${storage}|${source}`
+      : `${model}|${storage}|${grade}|${source}`;
 
     const existing = map.get(key);
     if (!existing || listing.price < existing.price) {

@@ -32,6 +32,7 @@ from common import (
     detect_brand,
     extract_storage,
     filter_best_price_per_store,
+    filter_refurbed_min_per_storage,
     human_delay,
     is_allowed_brand,
     log_discarded_listing,
@@ -371,6 +372,61 @@ def _detail_image(page: Page, fallback: str | None) -> str | None:
     return fallback
 
 
+def _parse_detail_title(title: str) -> tuple[str | None, str | None]:
+    """Extrai armazenamento e cor do título da ficha (ex. 'iPhone 12 128 GB | … | preto')."""
+    storage = extract_storage(title)
+    color = None
+    parts = [part.strip() for part in title.split("|") if part.strip()]
+    if len(parts) >= 2:
+        color = parts[-1].lower()
+    return storage, color
+
+
+def _active_grade_from_page(page: Page) -> str | None:
+    """Estado/cosmetic grade seleccionado no configurador principal."""
+    try:
+        grade = page.evaluate(
+            """() => {
+                const selectors = [
+                    '[data-test*="appearance"] [aria-checked="true"]',
+                    '[data-test*="appearance"] button[aria-pressed="true"]',
+                    '[data-test*="grade"] [aria-selected="true"]',
+                    '[data-test*="grade"] button[aria-pressed="true"]',
+                ];
+                for (const sel of selectors) {
+                    const el = document.querySelector(sel);
+                    const text = el?.textContent?.trim();
+                    if (text) return text;
+                }
+                return null;
+            }"""
+        )
+        return normalize_grade_refurbed(grade) if grade else None
+    except Exception:
+        return None
+
+
+def _default_variant_from_detail_page(page: Page) -> dict[str, Any] | None:
+    """Preço da configuração activa (cabeçalho) — frequentemente o mínimo real."""
+    try:
+        title = page.locator(SEL["detail_title"]).first.inner_text(timeout=5000).strip()
+        price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
+        price = clean_price(parse_refurbed_price_eur(price_raw))
+        if price is None or not title:
+            return None
+
+        storage, color = _parse_detail_title(title)
+        grade = _active_grade_from_page(page)
+        return {
+            "storage": storage,
+            "grade": grade,
+            "price": price,
+            "color": color,
+        }
+    except Exception:
+        return None
+
+
 def _variants_from_detail_page(
     page: Page,
     card: dict[str, Any],
@@ -423,6 +479,26 @@ def _variants_from_detail_page(
     )
 
     records: list[dict[str, Any]] = []
+
+    default_variant = _default_variant_from_detail_page(page)
+    if default_variant:
+        record = normalize_record(
+            category=category,
+            url=product_url,
+            model=model,
+            price=default_variant["price"],
+            image_url=image_url,
+            source_page=source_page,
+            scraped_at=scraped_at,
+            storage=default_variant.get("storage"),
+            grade=default_variant.get("grade"),
+            color=default_variant.get("color"),
+            original_price=original_price or card.get("original_price"),
+            seller_rating=seller_rating,
+        )
+        if record:
+            records.append(record)
+
     if items:
         for item in items:
             price = clean_price(parse_refurbed_price_eur(item.get("price")))
@@ -444,6 +520,9 @@ def _variants_from_detail_page(
             )
             if record:
                 records.append(record)
+        return records
+
+    if records:
         return records
 
     # Fallback: preço único na ficha
@@ -616,13 +695,20 @@ def run_scraper(
                     human_delay(CFG["delays"], "between_products")
                     continue
 
+                products, n_replaced = remove_products_by_url(products, card.get("url"))
+                if n_replaced:
+                    known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                    logger.debug(
+                        "Actualizados %s registo(s) anteriores: %s",
+                        n_replaced,
+                        card.get("model"),
+                    )
+
                 for record in result:
                     pid = record["product_id"]
                     product_url = record.get("url")
                     if product_url and not check_link_status_200(product_url):
                         logger.warning("Link morto removido: %s", product_url)
-                        continue
-                    if mode == "incremental" and pid in known_ids:
                         continue
                     products.append(record)
                     known_ids.add(pid)
@@ -636,7 +722,8 @@ def run_scraper(
 
     before_dedup = len(products)
     products, dedup_removed = filter_best_price_per_store(products, log=logger)
-    stats["dedup_removed"] = dedup_removed
+    products, refurbed_dedup_removed = filter_refurbed_min_per_storage(products, log=logger)
+    stats["dedup_removed"] = dedup_removed + refurbed_dedup_removed
     stats["total"] = len(products)
     stats["by_category"] = {}
     for product in products:

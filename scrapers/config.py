@@ -219,6 +219,9 @@ REFURBED_CONFIG: dict[str, Any] = {
         # "oneplus_phones": ("OnePlus",),
     },
     "replace_on_scrape_categories": (
+        "iphones",
+        "ipads",
+        "tablets",
         "samsung_phones",
         "google_phones",
         # "huawei_phones",

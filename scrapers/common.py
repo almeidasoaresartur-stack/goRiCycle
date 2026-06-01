@@ -103,6 +103,46 @@ def _product_debug_blob(product: dict[str, Any]) -> str:
     ).lower()
 
 
+def filter_refurbed_min_per_storage(
+    products: list[dict[str, Any]],
+    *,
+    log: logging.Logger | None = None,
+) -> tuple[list[dict[str, Any]], int]:
+    """
+    Refurbed: uma entrada por modelo + armazenamento (preço mínimo entre graus/cores).
+    O URL /p/slug/ não fixa variante — o comparador deve reflectir o mínimo real.
+    """
+    refurbed_best: dict[str, dict[str, Any]] = {}
+    others: list[dict[str, Any]] = []
+
+    for product in products:
+        if (product.get("source") or "").strip() != "refurbed":
+            others.append(product)
+            continue
+
+        model = (product.get("model") or "").strip()
+        storage = (product.get("storage") or "").strip().upper()
+        key = f"{model}|{storage}"
+        price = product.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+
+        existing = refurbed_best.get(key)
+        if existing is None or price < existing.get("price", float("inf")):
+            refurbed_best[key] = product
+
+    refurbed_kept = list(refurbed_best.values())
+    before = sum(1 for product in products if (product.get("source") or "").strip() == "refurbed")
+    removed = before - len(refurbed_kept)
+    if removed and log:
+        log.info(
+            "Refurbed min/armazenamento: removidos %s duplicados (%s únicos)",
+            removed,
+            len(refurbed_kept),
+        )
+    return others + refurbed_kept, removed
+
+
 def filter_best_price_per_store(
     products: list[dict[str, Any]],
     *,
