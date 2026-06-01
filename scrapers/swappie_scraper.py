@@ -402,6 +402,18 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                 continue
 
             logger.info("=== Categoria: %s ===", category)
+
+            if category in CFG.get("replace_on_scrape_categories", ()):
+                before = len(products)
+                products = [p for p in products if p.get("category") != category]
+                known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                logger.info(
+                    "%s: removidos %s produtos antigos da categoria (restam %s no total)",
+                    category,
+                    before - len(products),
+                    len(products),
+                )
+
             page.goto(category_url, wait_until="domcontentloaded", timeout=60_000)
             human_delay(CFG["delays"], "after_navigation")
             dismiss_cookie_banner(page)

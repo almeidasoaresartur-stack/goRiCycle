@@ -425,6 +425,7 @@ SWAPPIE_CONFIG: dict[str, Any] = {
         "detail_image": "[class*='ModelInfo'] img, picture img",
         "detail_og_image": "meta[property='og:image']",
     },
+    "replace_on_scrape_categories": ("iphones", "ipads"),
 }
 
 # -----------------------------------------------------------------------------
