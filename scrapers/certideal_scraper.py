@@ -492,11 +492,20 @@ def scrape_family_listing(
     return all_cards
 
 
+def certideal_variant_key(model: str | None, storage: str | None) -> str:
+    """Chave de deduplicação: modelo + capacidade (ignora estado/grade)."""
+    model_norm = (model or "").strip().lower()
+    storage_norm = (storage or "").strip().lower()
+    return f"{model_norm}|{storage_norm}"
+
+
 def extract_product(
     card: dict[str, Any],
     category: str,
     source_page: str,
     scraped_at: str,
+    variant_registry: dict[str, dict[str, Any]] | None = None,
+    removed_product_ids: set[str] | None = None,
 ) -> list[dict[str, Any]] | None:
     try:
         price = card.get("listing_price")
@@ -527,7 +536,26 @@ def extract_product(
             grade=card.get("grade"),
             color=card.get("color"),
         )
-        return [record] if record else []
+        if not record:
+            return []
+
+        if variant_registry is not None:
+            key = certideal_variant_key(record.get("model"), record.get("storage"))
+            price_val = record.get("price")
+            if not isinstance(price_val, (int, float)):
+                return []
+
+            existing = variant_registry.get(key)
+            if existing is not None:
+                existing_price = existing.get("price")
+                if isinstance(existing_price, (int, float)) and price_val >= existing_price:
+                    return []
+                old_id = existing.get("product_id")
+                if old_id and removed_product_ids is not None:
+                    removed_product_ids.add(old_id)
+            variant_registry[key] = record
+
+        return [record]
     except Exception as exc:
         logger.error("Falha %s: %s", card.get("url"), exc, exc_info=True)
         return None
@@ -549,6 +577,20 @@ def save_products(products: list[dict[str, Any]], path: Path, meta: dict[str, An
     logger.info("JSON guardado: %s (%s produtos)", path, len(products))
 
 
+def init_variant_registry(products: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """Registo inicial: 1 entrada por modelo+capacidade (mais barata)."""
+    registry: dict[str, dict[str, Any]] = {}
+    for product in products:
+        key = certideal_variant_key(product.get("model"), product.get("storage"))
+        price = product.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+        existing = registry.get(key)
+        if existing is None or price < (existing.get("price") or 9999):
+            registry[key] = product
+    return registry
+
+
 def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or [c for c in CATEGORY_KEYS if c in CERTIDEAL_URLS]
@@ -559,6 +601,9 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
         known_ids: set[str] = set()
     else:
         products, known_ids = load_existing_products(CFG["output_json"])
+
+    variant_registry = init_variant_registry(products)
+    removed_product_ids: set[str] = set()
 
     with sync_playwright() as playwright:
         browser = launch_chromium(playwright, headless=CFG["headless"])
@@ -576,6 +621,7 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
             replace_cats = CFG.get("replace_on_scrape_categories", ())
             if category in replace_cats:
                 products, known_ids = purge_category(products, known_ids, category)
+                variant_registry = init_variant_registry(products)
 
             cat_count = 0
 
@@ -605,10 +651,18 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                         category,
                         card.get("source_page") or family_url,
                         scraped_at,
+                        variant_registry,
+                        removed_product_ids,
                     )
                     if result is None:
                         stats["errors"] += 1
                         continue
+                    if removed_product_ids:
+                        products = [
+                            p for p in products if p.get("product_id") not in removed_product_ids
+                        ]
+                        known_ids -= removed_product_ids
+                        removed_product_ids.clear()
                     if not result:
                         products, n_removed = remove_products_by_url(products, card.get("url"))
                         if n_removed:
@@ -631,6 +685,8 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
             stats["total"] += cat_count
 
         browser.close()
+
+    products = list(variant_registry.values())
 
     save_products(
         products,
