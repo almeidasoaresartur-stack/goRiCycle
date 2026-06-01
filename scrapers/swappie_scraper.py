@@ -48,6 +48,27 @@ _GRADE_LINE_RE = re.compile(r"^(Satisfatório|Satisfatorio|Muito Bom|Excelente|P
 _STORAGE_LINE_RE = re.compile(r"^\d+\s*GB$", re.I)
 
 
+def swappie_variant_key(model: str | None, storage: str | None) -> str:
+    """Chave de deduplicação: modelo + capacidade (ignora estado/grade)."""
+    model_norm = (model or "").strip().lower()
+    storage_norm = (storage or "").strip().upper()
+    return f"{model_norm}|{storage_norm}"
+
+
+def dedupe_swappie_products(products: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Mantém só o mais barato por modelo + capacidade."""
+    best: dict[str, dict[str, Any]] = {}
+    for product in products:
+        key = swappie_variant_key(product.get("model"), product.get("storage"))
+        price = product.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+        existing = best.get(key)
+        if existing is None or price < (existing.get("price") or 9999):
+            best[key] = product
+    return list(best.values())
+
+
 def page_indicates_out_of_stock(page: Page, stock_areas: str | None = None) -> bool:
     """
     Verifica se O MODELO INTEIRO está sem stock.
@@ -344,7 +365,15 @@ def _variants_from_model_page(
         if record:
             records.append(record)
 
-    return records
+    deduped = dedupe_swappie_products(records)
+    if len(deduped) < len(records):
+        logger.debug(
+            "%s: %s → %s registo(s) após dedup modelo+capacidade",
+            card.get("model"),
+            len(records),
+            len(deduped),
+        )
+    return deduped
 
 
 def extract_product(
@@ -450,6 +479,8 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
             stats["total"] += cat_count
 
         browser.close()
+
+    products = dedupe_swappie_products(products)
 
     save_products(
         products,
