@@ -30,10 +30,8 @@ from common import (
     extract_storage,
     human_delay,
     normalize_grade_swappie,
-    page_indicates_out_of_stock,
     page_wait_ms,
     parse_swappie_price_eur,
-    remove_products_by_url,
     resolve_image_url,
     launch_chromium,
     setup_logging,
@@ -48,6 +46,80 @@ logger = logging.getLogger(__name__)
 _VARIANT_BUTTON = SEL.get("variant_button", "button[class*='ListItem']")
 _GRADE_LINE_RE = re.compile(r"^(Satisfatório|Satisfatorio|Muito Bom|Excelente|Premium|Bom)$", re.I)
 _STORAGE_LINE_RE = re.compile(r"^\d+\s*GB$", re.I)
+
+
+def page_indicates_out_of_stock(page: Page, stock_areas: str | None = None) -> bool:
+    """
+    Verifica se O MODELO INTEIRO está sem stock.
+    Não marca como esgotado se apenas ALGUMAS variantes estiverem esgotadas.
+    """
+    # Verifica se existe pelo menos 1 botão de compra activo
+    # Se existir, o modelo tem stock em alguma configuração
+    buy_button_selectors = [
+        "[class*='AddToCart']:not([disabled])",
+        "[class*='BuyButton']:not([disabled])",
+        "button[class*='add-to-cart']:not([disabled])",
+        "[class*='purchase']:not([disabled])",
+        "[class*='Order']:not([disabled])",
+    ]
+    for sel in buy_button_selectors:
+        try:
+            if page.locator(sel).count() > 0:
+                return False  # Tem pelo menos 1 botão activo — há stock
+        except Exception:
+            pass
+
+    # Verifica se existe preço visível na zona principal
+    price_selectors = [
+        "[class*='ModelPrice']",
+        "[class*='PriceTag']",
+        "[class*='product-price']",
+        "[class*='Price__']",
+    ]
+    has_price = False
+    for sel in price_selectors:
+        try:
+            loc = page.locator(sel)
+            if loc.count() > 0:
+                price_text = loc.first.inner_text(timeout=3000)
+                # Verifica se tem um número real (preço)
+                if re.search(r"\d+[,.]?\d*\s*€", price_text):
+                    has_price = True
+                    break
+        except Exception:
+            pass
+
+    if not has_price:
+        return True  # Sem preço visível = sem stock
+
+    # Verifica marcadores de esgotado APENAS na zona de compra
+    # (não no main inteiro — evita falsos positivos de variantes esgotadas)
+    out_of_stock_markers = [
+        "avisem-me quando",
+        "avise-me quando",
+        "notify me when",
+        "esgotado",
+        "out of stock",
+        "indisponível",
+        "unavailable",
+        "sem stock",
+    ]
+    try:
+        # Usa zona específica em vez do main inteiro
+        zone = page.locator(
+            "[class*='ModelInfo'], [class*='ModelPrice'], "
+            "[class*='PurchaseBox'], [class*='BuyBox']"
+        )
+        if zone.count() > 0:
+            zone_text = zone.first.inner_text(timeout=3000).lower()
+            if any(marker in zone_text for marker in out_of_stock_markers):
+                # Só marca esgotado se não tiver preço real na zona
+                if not re.search(r"\d+[,.]?\d*\s*€", zone_text):
+                    return True
+    except Exception:
+        pass
+
+    return False  # Por defeito assume que tem stock
 
 
 def clean_price(price: float | None) -> float | None:
@@ -191,7 +263,7 @@ def _variants_from_model_page(
     dismiss_cookie_banner(page)
     page.locator(SEL["detail_price"]).first.wait_for(state="attached", timeout=60_000)
 
-    if page_indicates_out_of_stock(page, stock_areas="main, [class*='ModelInfo'], [class*='ModelPrice']"):
+    if page_indicates_out_of_stock(page):
         logger.info("Modelo sem stock (Swappie): %s", card.get("model"))
         return []
 
@@ -234,7 +306,7 @@ def _variants_from_model_page(
                 logger.debug("Condição não clicável: %s (%s)", grade_key, card.get("url"))
                 continue
 
-            if page_indicates_out_of_stock(page, stock_areas="main, [class*='ModelInfo'], [class*='ModelPrice']"):
+            if page_indicates_out_of_stock(page):
                 logger.debug("Variante sem stock: %s / %s", storage_key, grade_key)
                 continue
 
@@ -346,15 +418,11 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                     continue
 
                 if not result:
-                    products, n_removed = remove_products_by_url(products, card.get("url"))
-                    if n_removed:
-                        known_ids = {p["product_id"] for p in products if p.get("product_id")}
-                        stats["removed_out_of_stock"] += n_removed
-                        logger.info(
-                            "Removidos %s registo(s) sem stock: %s",
-                            n_removed,
-                            card.get("model"),
-                        )
+                    logger.info(
+                        "Sem resultados para %s — mantendo dados anteriores (possível falso positivo de stock)",
+                        card.get("model"),
+                    )
+                    # Não remove produtos existentes — pode ser falso positivo
                     human_delay(CFG["delays"], "between_products")
                     continue
 
