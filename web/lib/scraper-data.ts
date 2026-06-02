@@ -78,6 +78,18 @@ export function getScraperCatalogMeta(): ScraperCatalogMeta {
   let lastScraped: string | null = null;
   const brandCounts: Record<string, number> = {};
 
+  const summaryPath = path.join(getScraperDataDir(), "last_run_summary.json");
+  if (fs.existsSync(summaryPath)) {
+    try {
+      const summary = JSON.parse(fs.readFileSync(summaryPath, "utf-8")) as {
+        run_at?: string;
+      };
+      if (summary.run_at) lastScraped = summary.run_at;
+    } catch {
+      // ignore corrupt summary
+    }
+  }
+
   for (const source of ACTIVE_SOURCES) {
     const file = loadProductsFile(source);
     if (!file) continue;

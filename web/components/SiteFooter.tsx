@@ -4,6 +4,7 @@ import { Mail } from "lucide-react";
 import { Logo, SLOGAN } from "@/components/Logo";
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
 import { NFPM_FOOTNOTE } from "@/lib/legal";
+import { ACTIVE_SOURCES } from "@/lib/scraper-data";
 
 type SiteFooterProps = {
   totalProducts?: number;
@@ -15,7 +16,7 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
   const scrapedLabel = lastScraped
     ? new Date(lastScraped).toLocaleDateString("pt-PT", {
         day: "numeric",
-        month: "short",
+        month: "numeric",
         year: "numeric",
       })
     : null;
@@ -55,7 +56,7 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
             <p>
               {totalProducts ? `${totalProducts.toLocaleString("pt-PT")} produtos` : "MVP"}
               {scrapedLabel ? ` · actualizado ${scrapedLabel}` : ""}
-              {" · 4 fontes activas"}
+              {` · ${ACTIVE_SOURCES.length} fontes activas`}
             </p>
             {topBrands && <p className="mt-1">{topBrands}</p>}
             <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-end">
@@ -83,17 +84,6 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
               >
                 <Mail className="h-3.5 w-3.5" aria-hidden />
                 contact@goricycle.com
-              </a>
-              <span className="hidden text-slate-300 sm:inline" aria-hidden>
-                ·
-              </span>
-              <a
-                href="mailto:alerta@goricycle.com"
-                className="inline-flex items-center gap-1.5 font-medium text-slate-600 transition hover:text-emerald-600"
-                title="Alertas de preço"
-              >
-                <Mail className="h-3.5 w-3.5" aria-hidden />
-                alerta@goricycle.com
               </a>
             </nav>
             <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-400 sm:text-right">
