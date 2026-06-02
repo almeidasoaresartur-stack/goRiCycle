@@ -84,6 +84,17 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
                 <Mail className="h-3.5 w-3.5" aria-hidden />
                 contact@goricycle.com
               </a>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <a
+                href="mailto:alerta@goricycle.com"
+                className="inline-flex items-center gap-1.5 font-medium text-slate-600 transition hover:text-emerald-600"
+                title="Alertas de preço"
+              >
+                <Mail className="h-3.5 w-3.5" aria-hidden />
+                alerta@goricycle.com
+              </a>
             </nav>
             <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-400 sm:text-right">
               {NFPM_FOOTNOTE}

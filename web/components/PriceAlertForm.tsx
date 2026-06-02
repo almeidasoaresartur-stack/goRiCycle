@@ -6,6 +6,9 @@ import { Bell } from "lucide-react";
 const FORMSPREE_FORM_ID =
   process.env.NEXT_PUBLIC_FORMSPREE_PRICE_ALERT_ID ?? "meewjjrv";
 
+/** Destino das submissões Formspree (configurado em formspree.io → alerta@goricycle.com). */
+export const PRICE_ALERT_EMAIL = "alerta@goricycle.com";
+
 type PriceAlertFormProps = {
   model: string;
   storage?: string | null;
