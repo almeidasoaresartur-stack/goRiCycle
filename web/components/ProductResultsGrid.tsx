@@ -3,6 +3,7 @@
 import { Crown, ExternalLink } from "lucide-react";
 
 import { ProductCardImage } from "@/components/ProductCardImage";
+import { PriceAlertForm } from "@/components/PriceAlertForm";
 import { StoreFilterBadge } from "@/components/StoreFilterBadge";
 import { StoreLogo } from "@/components/StoreLogo";
 import { trackHighlightClick, trackStoreClick } from "@/lib/analytics";
@@ -212,6 +213,15 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
           </a>
         </div>
 
+        <PriceAlertForm
+          model={clean.displayName}
+          storage={item.storage}
+          price={item.minPrice}
+          grade={item.gradeTier}
+          compact={variant === "highlights"}
+          className="mt-4"
+        />
+
         <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
           Preço do site oficial · {best?.store ?? "loja parceira"}{" "}
           <span className="text-slate-400">|</span>{" "}
@@ -248,7 +258,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
 
   return (
     <article
-      className={`group flex flex-col gap-4 rounded-xl border bg-white p-4 transition-all duration-200 sm:flex-row sm:items-center ${CARD_SHADOW} ${
+      className={`group grid grid-cols-1 gap-4 rounded-xl border bg-white p-4 transition-all duration-200 sm:grid-cols-[auto_1fr_auto] sm:items-center ${CARD_SHADOW} ${
         debugSuspicious
           ? "border-red-500 ring-2 ring-red-200"
           : isBest
@@ -344,6 +354,14 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
           <ExternalLink className="h-4 w-4" />
         </a>
       </div>
+
+      <PriceAlertForm
+        model={clean.displayName}
+        storage={item.storage}
+        price={item.minPrice}
+        grade={item.gradeTier}
+        className="sm:col-span-3"
+      />
     </article>
   );
 }
