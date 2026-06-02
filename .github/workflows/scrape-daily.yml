@@ -10,10 +10,15 @@ name: Scrape diário
 
 on:
   schedule:
-    # 06:00 UTC ≈ 07:00 Lisboa (inverno) — incremental
-    - cron: "0 6 * * 1-6"
-    # 03:00 UTC domingo — full semanal
-    - cron: "0 3 * * 0"
+    # IMPORTANTE: GitHub Actions usa sempre UTC (não Lisboa/GMT).
+    # 06:17 UTC ≈ 07:17 Lisboa (verão WEST) / 06:17 Lisboa (inverno WET).
+    # Evitar :00/:30 — pico de carga; atrasos de horas ou skips são comuns (best-effort).
+    # Backups às 09:17 e 12:17 UTC ignoram-se se o scrape do dia já correu.
+    - cron: "17 6 * * 1-6"
+    - cron: "17 9 * * 1-6"
+    - cron: "17 12 * * 1-6"
+    # Full semanal: domingo 03:17 UTC ≈ 04:17 Lisboa (verão)
+    - cron: "17 3 * * 0"
   workflow_dispatch:
     inputs:
       mode:
@@ -37,7 +42,40 @@ env:
   SCRAPE_SOURCES: iservices,refurbed,swappie,certideal,callphone
 
 jobs:
+  should-run:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Skip se scrape agendado já correu hoje
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Trigger manual/push — a correr."
+            exit 0
+          fi
+
+          TODAY=$(date -u +%Y-%m-%d)
+          ALREADY=""
+          if [ -f data/last_run_summary.json ]; then
+            ALREADY=$(python3 -c "import json; print(json.load(open('data/last_run_summary.json')).get('run_at','')[:10])")
+          fi
+
+          if [ "$ALREADY" = "$TODAY" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Scrape já actualizado hoje ($TODAY) — run de backup ignorado."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Último scrape: ${ALREADY:-nunca} — a correr (slot ${{ github.event.schedule }})."
+          fi
+
   scrape:
+    needs: should-run
+    if: needs.should-run.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 180
 
