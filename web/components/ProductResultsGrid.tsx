@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Crown, ExternalLink } from "lucide-react";
 
 import { ProductCardImage } from "@/components/ProductCardImage";
@@ -14,6 +15,7 @@ import { isDevDebugMode, isSuspiciousListing } from "@/lib/listing-url-debug";
 import { getCleanProductData } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
 import { resolveListingUrl } from "@/lib/product-urls";
+import { slugify } from "@/lib/slugify";
 import type { ProductSource } from "@/lib/types";
 
 export type ProductViewMode = "grid" | "list";
@@ -92,6 +94,10 @@ function handleVerOfertaClick(
   }
 }
 
+function productPageHref(item: AggregatedProduct): string {
+  return `/produto/${slugify(item.model, item.storage)}`;
+}
+
 function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: ProductCardProps) {
   const best = item.bestListing;
   const gradeStyle = GRADE_STYLES[item.grade] ?? GRADE_STYLES.Bom;
@@ -99,10 +105,11 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
   const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
   const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
+  const productHref = productPageHref(item);
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
+      className={`relative group flex flex-col overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:-translate-y-0.5 ${CARD_SHADOW} ${
         debugSuspicious
           ? "border-red-500 ring-2 ring-red-200"
           : isBest
@@ -111,6 +118,11 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
       }`}
       title={debugSuspicious ? "Link suspeito (debug dev)" : undefined}
     >
+      <Link
+        href={productHref}
+        className="absolute inset-0 z-[1] rounded-xl"
+        aria-label={`Ver comparação: ${clean.displayName}`}
+      />
       <div className="relative w-full overflow-hidden rounded-t-xl bg-white">
         <ProductCardImage
           src={clean.imageUrl}
@@ -206,7 +218,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => handleVerOfertaClick(item, index, variant)}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
+            className="relative z-10 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
           >
             Ver Oferta
             <ExternalLink className="h-4 w-4" />
@@ -219,7 +231,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
           price={item.minPrice}
           grade={item.gradeTier}
           compact={variant === "highlights"}
-          className="mt-4"
+          className="relative z-10 mt-4"
         />
 
         <p className="mt-3 text-[10px] leading-relaxed text-slate-400">
@@ -255,10 +267,11 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
   const storeCount = item.storeCount ?? item.offers?.length ?? 1;
   const debugSuspicious = isDevDebugMode() && isSuspiciousListing(best);
   const storeBadgeActive = Boolean(best?.storeSlug && activeStoreSlugs?.includes(best.storeSlug));
+  const productHref = productPageHref(item);
 
   return (
     <article
-      className={`group grid grid-cols-1 gap-4 rounded-xl border bg-white p-4 transition-all duration-200 sm:grid-cols-[auto_1fr_auto] sm:items-center ${CARD_SHADOW} ${
+      className={`relative group grid grid-cols-1 gap-4 rounded-xl border bg-white p-4 transition-all duration-200 sm:grid-cols-[auto_1fr_auto] sm:items-center ${CARD_SHADOW} ${
         debugSuspicious
           ? "border-red-500 ring-2 ring-red-200"
           : isBest
@@ -267,6 +280,11 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
       }`}
       title={debugSuspicious ? "Link suspeito (debug dev)" : undefined}
     >
+      <Link
+        href={productHref}
+        className="absolute inset-0 z-[1] rounded-xl"
+        aria-label={`Ver comparação: ${clean.displayName}`}
+      />
       <div className="relative mx-auto shrink-0 sm:mx-0">
         <ProductCardImage
           src={clean.imageUrl}
@@ -348,7 +366,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => handleVerOfertaClick(item, index, variant)}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
+          className="relative z-10 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-emerald-900 sm:w-auto"
         >
           Ver Oferta
           <ExternalLink className="h-4 w-4" />
@@ -360,7 +378,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
         storage={item.storage}
         price={item.minPrice}
         grade={item.gradeTier}
-        className="sm:col-span-3"
+        className="relative z-10 sm:col-span-3"
       />
     </article>
   );

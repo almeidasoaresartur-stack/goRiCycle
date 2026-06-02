@@ -1,7 +1,17 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+import { getAllProductSlugs } from "@/lib/product-pages";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://goricycle.com";
+  const slugs = getAllProductSlugs();
+
+  const productPages: MetadataRoute.Sitemap = slugs.map((slug) => ({
+    url: `${baseUrl}/produto/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "daily",
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -22,5 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    ...productPages,
   ];
 }
