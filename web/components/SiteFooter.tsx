@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail } from "lucide-react";
 
 import { Logo, SLOGAN } from "@/components/Logo";
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
@@ -73,6 +74,16 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
               >
                 Termos e responsabilidade
               </Link>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <a
+                href="mailto:contact@goricycle.com"
+                className="inline-flex items-center gap-1.5 font-medium text-slate-600 transition hover:text-emerald-600"
+              >
+                <Mail className="h-3.5 w-3.5" aria-hidden />
+                contact@goricycle.com
+              </a>
             </nav>
             <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-400 sm:text-right">
               {NFPM_FOOTNOTE}
