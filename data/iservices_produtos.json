@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-02T22:10:15.690843+00:00",
-  "total_products": 30,
+  "scraped_at": "2026-06-03T20:03:02.091885+00:00",
+  "total_products": 31,
   "products": [
     {
       "source": "iservices",
@@ -639,8 +639,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-03T20:03:02.091885+00:00",
+      "product_id": "iservices_773-iphone-12-mini_64gb_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 12 Mini",
+      "storage": "64GB",
+      "color": null,
+      "grade": "Bom",
+      "price": 154.0,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/iphone-12-mini-/773-iphone-12-mini",
+      "image_url": "https://loja.iservices.pt/11557-large_default/iphone-12-mini.jpg",
+      "source_page": "https://loja.iservices.pt/iphone-11-pro/772-iphone-11-pro",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-02T22:39:50.392678+00:00",
-  "merged_at": "2026-06-02T22:39:50.659529+00:00"
+  "validated_at": "2026-06-03T21:05:05.076574+00:00",
+  "merged_at": "2026-06-03T21:05:05.368341+00:00"
 }
