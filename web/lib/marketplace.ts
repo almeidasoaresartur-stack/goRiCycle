@@ -658,53 +658,148 @@ function listingToAggregatedHighlight(offer: ProductListing): AggregatedProduct 
   };
 }
 
-function iphoneGeneration(model: string): number | null {
-  const match = model.match(/\d+/);
+function highlightSelectionKey(listing: ProductListing): string {
+  return `${listing.model}-${listing.storeSlug}`;
+}
+
+function iphoneGenerationForHighlights(model: string): number | null {
+  const normalized = model.toLowerCase();
+  if (normalized.includes("se")) return null;
+  const match = normalized.match(/iphone\s*(\d{1,2})/);
   if (!match) return null;
-  const generation = parseInt(match[0], 10);
+  const generation = parseInt(match[1], 10);
   return Number.isFinite(generation) ? generation : null;
 }
 
+function isHighlightIphone(model: string): boolean {
+  const normalized = model.toLowerCase();
+  if (!normalized.includes("iphone")) return false;
+  if (normalized.includes("mini") || normalized.includes("se")) return false;
+  const generation = iphoneGenerationForHighlights(model);
+  return generation !== null && generation >= 11;
+}
+
+function isHighlightIpad(model: string): boolean {
+  const normalized = model.toLowerCase();
+  if (!normalized.includes("ipad")) return false;
+  if (normalized.includes("ipad pro") || normalized.includes("ipad mini")) return false;
+  if (normalized.includes("ipad air")) return true;
+
+  const generationMatch = normalized.match(/ipad\s*(\d+)/);
+  if (generationMatch) {
+    return parseInt(generationMatch[1], 10) >= 9;
+  }
+
+  const namedGenerationMatch = normalized.match(/(\d+)(?:ª|th)?\s*gera/);
+  if (namedGenerationMatch) {
+    return parseInt(namedGenerationMatch[1], 10) >= 9;
+  }
+
+  return false;
+}
+
 function selectHighlightListings(offers: ProductListing[]): ProductListing[] {
+  const usedSources: ProductSource[] = [];
+  const usedModelSource = new Set<string>();
+  const tabletSourcesUsed = new Set<ProductSource>();
+
+  const pick = (
+    candidates: ProductListing[],
+    options?: { preferUnusedTabletStore?: boolean },
+  ): ProductListing | null => {
+    const ordered = options?.preferUnusedTabletStore
+      ? [...candidates].sort((a, b) => {
+          const aUnused = tabletSourcesUsed.has(a.storeSlug) ? 1 : 0;
+          const bUnused = tabletSourcesUsed.has(b.storeSlug) ? 1 : 0;
+          if (aUnused !== bUnused) return aUnused - bUnused;
+          return a.price - b.price;
+        })
+      : [...candidates].sort((a, b) => a.price - b.price);
+
+    for (const product of ordered) {
+      const key = highlightSelectionKey(product);
+      const sourceCount = usedSources.filter((source) => source === product.storeSlug).length;
+      if (!usedModelSource.has(key) && sourceCount < 2) {
+        usedModelSource.add(key);
+        usedSources.push(product.storeSlug);
+        return product;
+      }
+    }
+    return null;
+  };
+
+  const pickTablet = (
+    candidates: ProductListing[],
+    preferUnusedStore = false,
+  ): ProductListing | null => {
+    const selected = pick(candidates, preferUnusedStore ? { preferUnusedTabletStore: true } : undefined);
+    if (selected) tabletSourcesUsed.add(selected.storeSlug);
+    return selected;
+  };
+
   const smartphones = offers.filter((product) => product.tech === "smartphones");
   const tablets = offers.filter((product) => product.tech === "tablets");
 
   const iphones = smartphones
-    .filter((product) => product.brand === "Apple" && (iphoneGeneration(product.model) ?? 0) >= 13)
+    .filter(
+      (product) =>
+        isHighlightIphone(product.model) && product.price >= 100 && product.price <= 600,
+    )
     .sort((a, b) => a.price - b.price);
 
   const samsungPhones = smartphones
-    .filter((product) => product.brand === "Samsung")
+    .filter(
+      (product) =>
+        product.brand === "Samsung" && product.price >= 100 && product.price <= 600,
+    )
     .sort((a, b) => a.price - b.price);
 
   const googlePhones = smartphones
-    .filter((product) => product.brand === "Google")
+    .filter(
+      (product) =>
+        product.brand === "Google" && product.price >= 100 && product.price <= 600,
+    )
     .sort((a, b) => a.price - b.price);
 
   const ipads = tablets
-    .filter((product) => product.brand === "Apple")
+    .filter(
+      (product) =>
+        product.brand === "Apple" &&
+        isHighlightIpad(product.model) &&
+        product.price >= 80 &&
+        product.price <= 500,
+    )
     .sort((a, b) => a.price - b.price);
 
   const samsungTablets = tablets
-    .filter((product) => product.brand === "Samsung")
+    .filter(
+      (product) =>
+        product.brand === "Samsung" && product.price >= 80 && product.price <= 500,
+    )
     .sort((a, b) => a.price - b.price);
 
-  const smartphoneHighlights = [
-    ...iphones.slice(0, 2),
-    ...samsungPhones.slice(0, 1),
-    ...(googlePhones.length > 0 ? googlePhones.slice(0, 1) : samsungPhones.slice(1, 2)),
-  ];
+  const allTablets = tablets
+    .filter((product) => product.price >= 80 && product.price <= 500)
+    .sort((a, b) => a.price - b.price);
 
-  const tabletHighlights = [
-    ...ipads.slice(0, 2),
-    ...samsungTablets.slice(0, 1),
-    ...(samsungTablets.length > 1 ? samsungTablets.slice(1, 2) : ipads.slice(2, 3)),
-  ];
+  const fourthSmartphonePool =
+    googlePhones.length > 0
+      ? googlePhones
+      : [...iphones, ...samsungPhones].sort((a, b) => a.price - b.price);
 
-  return [...smartphoneHighlights, ...tabletHighlights].slice(0, 8);
+  return [
+    pick(iphones),
+    pick(iphones),
+    pick(samsungPhones),
+    pick(fourthSmartphonePool),
+    pickTablet(ipads),
+    pickTablet(ipads),
+    pickTablet(samsungTablets),
+    pickTablet(allTablets, true),
+  ].filter((product): product is ProductListing => product != null);
 }
 
-/** Destaques goRiCycle: 4 smartphones + 4 tablets por preço mínimo e marca. */
+/** Destaques goRiCycle: 4 smartphones + 4 tablets com preço, marca e diversidade de lojas. */
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
   const offers = flattenAggregatedToListings(products ?? []).filter(
     (offer) => offer.isAvailable !== false,
