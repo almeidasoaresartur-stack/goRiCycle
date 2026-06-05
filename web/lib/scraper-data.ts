@@ -95,7 +95,7 @@ export function getScraperCatalogMeta(): ScraperCatalogMeta {
     if (!file) continue;
 
     const products = file.products ?? [];
-    totalProducts += file.total_products ?? products.length;
+    totalProducts += products.length;
 
     for (const product of products) {
       const brand = product?.brand ?? "Outros";

@@ -40,7 +40,11 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} highlights={heroHighlights} />
-        <MarketplaceShell allProducts={allProducts} defaultFilters={defaultFilters} />
+        <MarketplaceShell
+          allProducts={allProducts}
+          defaultFilters={defaultFilters}
+          totalProducts={stats.totalProducts}
+        />
         <Suspense fallback={<div className="h-36 animate-pulse bg-slate-100/50" aria-hidden />}>
           <PartnerStoresSection />
         </Suspense>

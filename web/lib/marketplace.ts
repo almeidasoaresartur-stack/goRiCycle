@@ -639,14 +639,6 @@ export function isCatalogView(filters: MarketplaceFilters, viewAll: boolean): bo
   return hasSpecificFilters(filters);
 }
 
-const DESTAQUE_STORES: ProductSource[] = [
-  "iservices",
-  "swappie",
-  "certideal",
-  "refurbed",
-  "callphone",
-];
-
 function listingToAggregatedHighlight(offer: ProductListing): AggregatedProduct {
   return {
     id: `destaque-${offer.storeSlug}-${offer.id}`,
@@ -666,25 +658,59 @@ function listingToAggregatedHighlight(offer: ProductListing): AggregatedProduct 
   };
 }
 
-/** Destaques goRiCycle: 1 smartphone mais acessível por loja parceira. */
+function iphoneGeneration(model: string): number | null {
+  const match = model.match(/\d+/);
+  if (!match) return null;
+  const generation = parseInt(match[0], 10);
+  return Number.isFinite(generation) ? generation : null;
+}
+
+function selectHighlightListings(offers: ProductListing[]): ProductListing[] {
+  const smartphones = offers.filter((product) => product.tech === "smartphones");
+  const tablets = offers.filter((product) => product.tech === "tablets");
+
+  const iphones = smartphones
+    .filter((product) => product.brand === "Apple" && (iphoneGeneration(product.model) ?? 0) >= 13)
+    .sort((a, b) => a.price - b.price);
+
+  const samsungPhones = smartphones
+    .filter((product) => product.brand === "Samsung")
+    .sort((a, b) => a.price - b.price);
+
+  const googlePhones = smartphones
+    .filter((product) => product.brand === "Google")
+    .sort((a, b) => a.price - b.price);
+
+  const ipads = tablets
+    .filter((product) => product.brand === "Apple")
+    .sort((a, b) => a.price - b.price);
+
+  const samsungTablets = tablets
+    .filter((product) => product.brand === "Samsung")
+    .sort((a, b) => a.price - b.price);
+
+  const smartphoneHighlights = [
+    ...iphones.slice(0, 2),
+    ...samsungPhones.slice(0, 1),
+    ...(googlePhones.length > 0 ? googlePhones.slice(0, 1) : samsungPhones.slice(1, 2)),
+  ];
+
+  const tabletHighlights = [
+    ...ipads.slice(0, 2),
+    ...samsungTablets.slice(0, 1),
+    ...(samsungTablets.length > 1 ? samsungTablets.slice(1, 2) : ipads.slice(2, 3)),
+  ];
+
+  return [...smartphoneHighlights, ...tabletHighlights].slice(0, 8);
+}
+
+/** Destaques goRiCycle: 4 smartphones + 4 tablets por preço mínimo e marca. */
 export function buildHighlightProducts(products: AggregatedProduct[]): AggregatedProduct[] {
   const offers = flattenAggregatedToListings(products ?? []).filter(
     (offer) => offer.isAvailable !== false,
   );
 
-  return DESTAQUE_STORES.map((store) => {
-    const cheapest = offers
-      .filter(
-        (offer) =>
-          offer.tech === "smartphones" &&
-          offer.storeSlug === store &&
-          offer.price >= 80 &&
-          offer.price <= 1200,
-      )
-      .sort((a, b) => a.price - b.price)[0];
-
-    return cheapest ? listingToAggregatedHighlight(cheapest) : null;
-  }).filter((product): product is AggregatedProduct => product != null);
+  return selectHighlightListings(offers).map(listingToAggregatedHighlight);
 }
 
 export function catalogFiltersForView(

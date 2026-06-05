@@ -129,9 +129,10 @@ function ProductSortBar({
 type MarketplaceShellProps = {
   allProducts: AggregatedProduct[];
   defaultFilters: MarketplaceFilters;
+  totalProducts: number;
 };
 
-function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellProps) {
+function MarketplaceContent({ allProducts, defaultFilters, totalProducts }: MarketplaceShellProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [sortOrder, setSortOrder] = useState<ProductSortOption>("relevance");
@@ -423,7 +424,7 @@ function MarketplaceContent({ allProducts, defaultFilters }: MarketplaceShellPro
                 onClick={showAllCatalog}
                 className="min-h-[44px] text-sm font-medium text-slate-600 transition hover:text-emerald-600"
               >
-                Ver todos os {safeProducts.length.toLocaleString("pt-PT")} produtos →
+                Ver todos os {totalProducts.toLocaleString("pt-PT")} produtos →
               </button>
             </div>
           </div>
