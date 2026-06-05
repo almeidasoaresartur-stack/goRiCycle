@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-04T18:39:35.368752+00:00",
+  "scraped_at": "2026-06-05T16:18:34.821120+00:00",
   "total_products": 31,
   "products": [
     {
@@ -621,21 +621,21 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-06-01T21:04:16.653238+00:00",
-      "product_id": "iservices_1263-iphone-se-2022_64gb_bom",
+      "scraped_at": "2026-06-05T16:18:34.821120+00:00",
+      "product_id": "iservices_766-iphone-se-2020_64gb_bom",
       "category": "iphones",
       "brand": "Apple",
       "model": "iPhone SE 2022",
       "storage": "64GB",
       "color": null,
       "grade": "Bom",
-      "price": 158.08,
+      "price": 106.24,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-se-2022/1263-iphone-se-2022",
-      "image_url": "https://loja.iservices.pt/11572-large_default/iphone-se-2022.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-14-pro-max/1153-iphone-14-pro-max",
+      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
+      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
+      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
@@ -662,6 +662,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-04T19:42:54.299420+00:00",
-  "merged_at": "2026-06-05T15:32:44.749333+00:00"
+  "validated_at": "2026-06-05T17:22:16.596371+00:00",
+  "merged_at": "2026-06-05T17:22:16.890366+00:00"
 }
