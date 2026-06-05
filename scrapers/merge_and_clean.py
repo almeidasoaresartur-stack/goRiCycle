@@ -59,6 +59,30 @@ SOURCES: dict[str, Path] = {
 
 DEBUG_MATCH_DEFAULT = "iphone se"
 
+CATEGORY_MAP = {
+    "iphones": "smartphone",
+    "samsung_phones": "smartphone",
+    "google_phones": "smartphone",
+    "ipads": "tablet",
+    "tablets": "tablet",
+}
+
+
+def normalize_product_categories(products: list[dict]) -> list[dict]:
+    """Normaliza categorias granulares do scraper para smartphone/tablet."""
+    for product in products:
+        raw_cat = product.get("category", "")
+        product["category"] = CATEGORY_MAP.get(raw_cat, raw_cat)
+    return products
+
+
+def print_category_counts(products: list[dict]) -> None:
+    from collections import Counter
+
+    counts = Counter(product.get("category", "VAZIO") for product in products)
+    print(f"Categorias normalizadas: {dict(counts)}")
+    print(f"  smartphone: {counts.get('smartphone', 0)} | tablet: {counts.get('tablet', 0)}")
+
 
 def _debug_matches(product: dict, pattern: str | None) -> bool:
     if not pattern:
@@ -566,6 +590,8 @@ def main() -> None:
         drop_unavailable=args.drop_unavailable,
         debug_match=debug_match,
     )
+    merged = normalize_product_categories(merged)
+    print_category_counts(merged)
     source_relevance_removed = sum(s.get("removed_by_relevance", 0) for s in per_source)
     total_relevance_removed = source_relevance_removed + merge_relevance_removed
     total_corrections = sum(s.get("corrections_applied", 0) for s in per_source) + merge_corrections
