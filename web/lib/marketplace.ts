@@ -144,8 +144,9 @@ const TECH_CATEGORIES: Record<TechType, string[]> = {
     "iphones",
     "samsung_phones",
     "google_phones",
+    "smartphone",
   ],
-  tablets: ["ipads", "tablets"],
+  tablets: ["ipads", "tablets", "tablet"],
   laptops: ["macs", "laptops"],
   wearables: ["apple_watch"],
 };

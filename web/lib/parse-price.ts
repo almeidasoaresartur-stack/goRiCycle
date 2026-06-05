@@ -9,6 +9,8 @@ const MIN_PRICE: Record<string, number> = {
   macs: 200,
   apple_watch: 80,
   tablets: 80,
+  tablet: 80,
+  smartphone: 80,
   laptops: 150,
   samsung_phones: 80,
   google_phones: 80,

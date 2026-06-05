@@ -3,7 +3,7 @@ import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { inferBrand, inferCategory, parseSearchQuery, inferTechFromQuery } from "./inference";
 import { modelMatches } from "./model-matching";
 import { generateExactProductUrl } from "./product-urls";
-import { ACTIVE_SOURCES, loadScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
+import { ACTIVE_SOURCES, loadAllScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
 import { getStoreInfo } from "./stores";
 
 const GRADE_MAP: Record<string, NormalizedGrade> = {
@@ -92,10 +92,7 @@ export function getComparisonOffers(
   if (!model?.trim()) return [];
 
   const cat = category ?? inferCategory(model);
-  const all: ScrapedProduct[] = [];
-  for (const source of ACTIVE_SOURCES) {
-    all.push(...loadScrapedProducts(source));
-  }
+  const all = loadAllScrapedProducts();
 
   const matched = all.filter(
     (p) =>

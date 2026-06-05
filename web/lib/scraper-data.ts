@@ -1,14 +1,15 @@
 import fs from "fs";
 import path from "path";
 
-import type { ProductSource, ProductsFile, ScrapedProduct } from "./types";
+import { resolveScrapedAvailability } from "./product-availability";
+import type { ProductSource, ScrapedProduct } from "./types";
 
 /**
  * Fontes activas alimentadas pelos scrapers Python.
- * Cada fonte corresponde a `data/{source}_produtos.json` na raiz do monorepo.
+ * O catálogo centralizado vive em `data/all_products.json` (chave `products`).
  *
  * Para adicionar uma loja:
- * 1. Correr o scraper → gera o JSON em ../data/
+ * 1. Correr o scraper → merge_and_clean gera all_products.json
  * 2. Adicionar o slug em ACTIVE_SOURCES
  * 3. Registar label + logo em lib/stores.ts
  */
@@ -28,6 +29,14 @@ export type ScraperCatalogMeta = {
   loadedAt: string;
 };
 
+type AllProductsFile = {
+  merged_at?: string;
+  total_products?: number;
+  products?: ScrapedProduct[];
+};
+
+let cachedAllProducts: AllProductsFile | null | undefined;
+
 export function getScraperDataDir(): string {
   const candidates = [
     path.join(process.cwd(), "data"),
@@ -41,75 +50,69 @@ export function getScraperDataDir(): string {
   return candidates[0];
 }
 
-export function getProductsFilePath(source: ProductSource): string {
-  return path.join(getScraperDataDir(), `${source}_produtos.json`);
+function getAllProductsFilePath(): string {
+  return path.join(getScraperDataDir(), "all_products.json");
 }
 
-export function loadProductsFile(source: ProductSource): ProductsFile | null {
-  const filePath = getProductsFilePath(source);
-  if (!fs.existsSync(filePath)) return null;
+function loadAllProductsPayload(): AllProductsFile | null {
+  if (cachedAllProducts !== undefined) return cachedAllProducts;
 
-  try {
-    const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as ProductsFile;
-    if (!raw || !Array.isArray(raw.products)) return null;
-    return raw;
-  } catch {
+  const filePath = getAllProductsFilePath();
+  if (!fs.existsSync(filePath)) {
+    cachedAllProducts = null;
     return null;
   }
-}
 
-export function loadScrapedProducts(source: ProductSource): ScrapedProduct[] {
-  const file = loadProductsFile(source);
-  return file?.products ?? [];
+  try {
+    cachedAllProducts = JSON.parse(fs.readFileSync(filePath, "utf-8")) as AllProductsFile;
+    if (!cachedAllProducts || !Array.isArray(cachedAllProducts.products)) {
+      cachedAllProducts = null;
+    }
+  } catch {
+    cachedAllProducts = null;
+  }
+
+  return cachedAllProducts;
 }
 
 export function loadAllScrapedProducts(): ScrapedProduct[] {
-  const all: ScrapedProduct[] = [];
+  const payload = loadAllProductsPayload();
+  return payload?.products ?? [];
+}
 
-  for (const source of ACTIVE_SOURCES) {
-    all.push(...loadScrapedProducts(source));
-  }
-
-  return all;
+export function loadScrapedProducts(source: ProductSource): ScrapedProduct[] {
+  return loadAllScrapedProducts().filter((product) => product.source === source);
 }
 
 export function getScraperCatalogMeta(): ScraperCatalogMeta {
-  let totalProducts = 0;
-  let lastScraped: string | null = null;
-  const brandCounts: Record<string, number> = {};
+  const payload = loadAllProductsPayload();
+  const products = payload?.products ?? [];
+  const availableProducts = products.filter((product) => resolveScrapedAvailability(product));
 
+  const brandCounts: Record<string, number> = {};
+  for (const product of availableProducts) {
+    const brand = product?.brand ?? "Outros";
+    brandCounts[brand] = (brandCounts[brand] ?? 0) + 1;
+  }
+
+  let lastScraped = payload?.merged_at ?? null;
   const summaryPath = path.join(getScraperDataDir(), "last_run_summary.json");
   if (fs.existsSync(summaryPath)) {
     try {
       const summary = JSON.parse(fs.readFileSync(summaryPath, "utf-8")) as {
         run_at?: string;
       };
-      if (summary.run_at) lastScraped = summary.run_at;
+      if (summary.run_at && (!lastScraped || summary.run_at > lastScraped)) {
+        lastScraped = summary.run_at;
+      }
     } catch {
       // ignore corrupt summary
     }
   }
 
-  for (const source of ACTIVE_SOURCES) {
-    const file = loadProductsFile(source);
-    if (!file) continue;
-
-    const products = file.products ?? [];
-    totalProducts += products.length;
-
-    for (const product of products) {
-      const brand = product?.brand ?? "Outros";
-      brandCounts[brand] = (brandCounts[brand] ?? 0) + 1;
-    }
-
-    if (file.scraped_at && (!lastScraped || file.scraped_at > lastScraped)) {
-      lastScraped = file.scraped_at;
-    }
-  }
-
   return {
     sources: ACTIVE_SOURCES,
-    totalProducts,
+    totalProducts: availableProducts.length,
     lastScraped,
     brandCounts,
     loadedAt: new Date().toISOString(),
