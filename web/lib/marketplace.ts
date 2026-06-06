@@ -706,21 +706,25 @@ function selectHighlightListings(offers: ProductListing[]): ProductListing[] {
 
   const pick = (
     candidates: ProductListing[],
-    options?: { preferUnusedTabletStore?: boolean },
+    options?: { preferUnusedTabletStore?: boolean; maxPerSource?: number },
   ): ProductListing | null => {
-    const ordered = options?.preferUnusedTabletStore
-      ? [...candidates].sort((a, b) => {
-          const aUnused = tabletSourcesUsed.has(a.storeSlug) ? 1 : 0;
-          const bUnused = tabletSourcesUsed.has(b.storeSlug) ? 1 : 0;
-          if (aUnused !== bUnused) return aUnused - bUnused;
-          return a.price - b.price;
-        })
-      : [...candidates].sort((a, b) => a.price - b.price);
+    const maxPerSource = options?.maxPerSource ?? 2;
+    const ordered = [...candidates].sort((a, b) => {
+      const aUsed = usedSources.includes(a.storeSlug) ? 1 : 0;
+      const bUsed = usedSources.includes(b.storeSlug) ? 1 : 0;
+      if (aUsed !== bUsed) return aUsed - bUsed;
+      if (options?.preferUnusedTabletStore) {
+        const aTabletUsed = tabletSourcesUsed.has(a.storeSlug) ? 1 : 0;
+        const bTabletUsed = tabletSourcesUsed.has(b.storeSlug) ? 1 : 0;
+        if (aTabletUsed !== bTabletUsed) return aTabletUsed - bTabletUsed;
+      }
+      return a.price - b.price;
+    });
 
     for (const product of ordered) {
       const key = highlightSelectionKey(product);
       const sourceCount = usedSources.filter((source) => source === product.storeSlug).length;
-      if (!usedModelSource.has(key) && sourceCount < 2) {
+      if (!usedModelSource.has(key) && sourceCount < maxPerSource) {
         usedModelSource.add(key);
         usedSources.push(product.storeSlug);
         return product;
@@ -732,8 +736,14 @@ function selectHighlightListings(offers: ProductListing[]): ProductListing[] {
   const pickTablet = (
     candidates: ProductListing[],
     preferUnusedStore = false,
+    maxPerSource = 2,
   ): ProductListing | null => {
-    const selected = pick(candidates, preferUnusedStore ? { preferUnusedTabletStore: true } : undefined);
+    const selected = pick(
+      candidates,
+      preferUnusedStore
+        ? { preferUnusedTabletStore: true, maxPerSource }
+        : { maxPerSource },
+    );
     if (selected) tabletSourcesUsed.add(selected.storeSlug);
     return selected;
   };
@@ -788,16 +798,62 @@ function selectHighlightListings(offers: ProductListing[]): ProductListing[] {
       ? googlePhones
       : [...iphones, ...samsungPhones].sort((a, b) => a.price - b.price);
 
-  return [
-    pick(iphones),
-    pick(iphones),
-    pick(samsungPhones),
-    pick(fourthSmartphonePool),
-    pickTablet(ipads),
-    pickTablet(ipads),
-    pickTablet(samsungTablets),
-    pickTablet(allTablets, true),
-  ].filter((product): product is ProductListing => product != null);
+  const slot1 = pick(iphones);
+  const slot2 = pick(iphones);
+  const slot3 = pick(samsungPhones) ?? pick(fourthSmartphonePool);
+  const slot4 = pick(fourthSmartphonePool);
+  const slot5 = pickTablet(ipads);
+  const slot6 = pickTablet(ipads);
+  const slot7 = pickTablet(samsungTablets);
+  const slot8 = pickTablet(allTablets, true);
+
+  const results: (ProductListing | null)[] = [
+    slot1,
+    slot2,
+    slot3,
+    slot4,
+    slot5,
+    slot6,
+    slot7,
+    slot8,
+  ];
+
+  const fallbackPicks: (() => ProductListing | null)[] = [
+    () => pick(iphones, { maxPerSource: 3 }),
+    () => pick(iphones, { maxPerSource: 3 }),
+    () => pick(samsungPhones, { maxPerSource: 3 }) ?? pick(fourthSmartphonePool, { maxPerSource: 3 }),
+    () => pick(fourthSmartphonePool, { maxPerSource: 3 }),
+    () => pickTablet(ipads, false, 3),
+    () => pickTablet(ipads, false, 3),
+    () => pickTablet(samsungTablets, false, 3),
+    () => pickTablet(allTablets, true, 3),
+  ];
+
+  for (let i = 0; i < results.length; i++) {
+    if (results[i] === null) {
+      results[i] = fallbackPicks[i]();
+    }
+  }
+
+  if (!usedSources.includes("callphone")) {
+    const callphoneCandidates = offers
+      .filter((offer) => offer.storeSlug === "callphone")
+      .sort((a, b) => a.price - b.price);
+
+    for (const candidate of callphoneCandidates) {
+      const key = highlightSelectionKey(candidate);
+      if (!usedModelSource.has(key)) {
+        results[7] = candidate;
+        break;
+      }
+    }
+  }
+
+  console.log(
+    "Highlight slots:",
+    results.map((r, i) => `${i}: ${r ? r.model + " " + r.storeSlug : "NULL"}`),
+  );
+  return results.filter((product): product is ProductListing => product != null);
 }
 
 /** Destaques goRiCycle: 4 smartphones + 4 tablets com preço, marca e diversidade de lojas. */
