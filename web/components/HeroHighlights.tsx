@@ -14,10 +14,6 @@ export function HeroHighlights({ highlights }: HeroHighlightsProps) {
 
   return (
     <div className="mx-auto mb-2 mt-3 w-full max-w-5xl px-1">
-      <p className="mb-2 text-center text-[10px] uppercase tracking-widest text-gray-400">
-        Em destaque hoje
-      </p>
-
       <div className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:overflow-visible md:snap-none">
         {highlights.map((product) => (
           <a
