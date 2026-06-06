@@ -406,6 +406,36 @@ def _active_grade_from_page(page: Page) -> str | None:
         return None
 
 
+def _is_generic_refurbed_product_url(url: str) -> bool:
+    """URL genérico de modelo (/p/iphone-14/) sem ID de variante."""
+    parts = [p for p in urlparse(url).path.split("/") if p]
+    return len(parts) == 2 and parts[0] == "p"
+
+
+def _variant_url_from_page(page: Page, fallback_url: str) -> str:
+    url = page.url.rstrip("/") + "/"
+    if _is_generic_refurbed_product_url(url):
+        return fallback_url.rstrip("/") + "/"
+    return url
+
+
+def _click_recommended_variant(page: Page, index: int) -> str | None:
+    """Clica numa variante sugerida; devolve href relativo/absoluto ou None."""
+    item = page.locator(SEL["detail_variant_item"]).nth(index)
+    link = item.locator("a").first
+    try:
+        if link.count():
+            href = link.get_attribute("href")
+            link.scroll_into_view_if_needed()
+            link.click(force=True, timeout=5000)
+            return href
+        item.scroll_into_view_if_needed()
+        item.click(force=True, timeout=5000)
+        return None
+    except Exception:
+        return None
+
+
 def _default_variant_from_detail_page(page: Page) -> dict[str, Any] | None:
     """Preço da configuração activa (cabeçalho) — frequentemente o mínimo real."""
     try:
@@ -484,7 +514,7 @@ def _variants_from_detail_page(
     if default_variant:
         record = normalize_record(
             category=category,
-            url=product_url,
+            url=_variant_url_from_page(page, product_url),
             model=model,
             price=default_variant["price"],
             image_url=image_url,
@@ -500,13 +530,34 @@ def _variants_from_detail_page(
             records.append(record)
 
     if items:
-        for item in items:
+        listing_url = product_url
+        for index, item in enumerate(items):
+            if index > 0:
+                page.goto(listing_url, wait_until="domcontentloaded", timeout=60_000)
+                human_delay(CFG["delays"], "after_navigation")
+                page_wait_ms(CFG["delays"], "page_load")
+                dismiss_cookie_banner(page)
+
+            clicked_href = _click_recommended_variant(page, index)
+            if clicked_href:
+                variant_token = clicked_href.rstrip("/").split("/")[-1]
+                try:
+                    page.wait_for_url(
+                        lambda url: variant_token in url,
+                        timeout=5000,
+                    )
+                except Exception:
+                    pass
+                page_wait_ms(CFG["delays"], "page_load")
+
+            variant_url = _variant_url_from_page(page, product_url)
+
             price = clean_price(parse_refurbed_price_eur(item.get("price")))
             if price is None:
                 continue
             record = normalize_record(
                 category=category,
-                url=product_url,
+                url=variant_url,
                 model=model,
                 price=price,
                 image_url=image_url,
@@ -543,7 +594,7 @@ def _variants_from_detail_page(
 
     record = normalize_record(
         category=category,
-        url=product_url,
+        url=_variant_url_from_page(page, product_url),
         model=model,
         price=price,
         image_url=image_url,
