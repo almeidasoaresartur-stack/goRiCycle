@@ -295,6 +295,35 @@ def _read_detail_price(page: Page) -> float | None:
     return clean_price(parse_swappie_price_eur(price_raw))
 
 
+def _extract_variant_url(page: Page, product_url: str, base_url: str) -> str:
+    variant_url: str | None = None
+
+    try:
+        canonical = page.locator("link[rel='canonical']").first
+        if canonical.count():
+            variant_url = canonical.get_attribute("href")
+    except Exception:
+        pass
+
+    if not variant_url:
+        try:
+            buy_link = page.locator(
+                "a[href*='/iphone/'], a[href*='/android/'], a[href*='/ipad/']"
+            ).first
+            if buy_link.count():
+                variant_url = buy_link.get_attribute("href")
+        except Exception:
+            pass
+
+    if not variant_url or "/modelo/" in variant_url:
+        variant_url = product_url
+
+    if variant_url and not variant_url.startswith("http"):
+        variant_url = urljoin(base_url, variant_url)
+
+    return variant_url.rstrip("/") + "/"
+
+
 def _variants_from_model_page(
     page: Page,
     card: dict[str, Any],
@@ -354,6 +383,19 @@ def _variants_from_model_page(
             logger.debug("Capacidade não clicável: %s (%s)", storage_key, card.get("url"))
             continue
 
+        try:
+            page.wait_for_url(
+                lambda url: storage_key.lower().replace(" ", "") in url.lower(),
+                timeout=3000,
+            )
+        except Exception:
+            pass
+
+        variant_url = page.url.rstrip("/") + "/"
+
+        if "/modelo/" in variant_url:
+            variant_url = product_url
+
         for grade_lbl in grade_labels[:4]:
             grade_key = grade_lbl.split("\n")[0].strip()
             if not _GRADE_LINE_RE.match(grade_key):
@@ -373,7 +415,7 @@ def _variants_from_model_page(
             record = build_normalized_product(
                 CFG,
                 category=category,
-                url=product_url,
+                url=variant_url,
                 model=model,
                 price=price,
                 image_url=image_url,
