@@ -7,30 +7,9 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-07T11:16:38.369880+00:00",
+  "scraped_at": "2026-06-08T16:15:10.872584+00:00",
   "total_products": 30,
   "products": [
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-07T11:16:38.369880+00:00",
-      "product_id": "iservices_766-iphone-se-2020_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 106.24,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
-      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
-      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
     {
       "source": "iservices",
       "scraped_at": "2026-06-07T11:16:38.369880+00:00",
@@ -639,8 +618,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-08T16:15:10.872584+00:00",
+      "product_id": "iservices_1263-iphone-se-2022_64gb_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone SE 2022",
+      "storage": "64GB",
+      "color": null,
+      "grade": "Bom",
+      "price": 155.23,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/iphone-se-2022/1263-iphone-se-2022",
+      "image_url": "https://loja.iservices.pt/11572-large_default/iphone-se-2022.jpg",
+      "source_page": "https://loja.iservices.pt/iphone-14-pro-max/1153-iphone-14-pro-max",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-07T12:55:57.295225+00:00",
-  "merged_at": "2026-06-07T13:18:37.350518+00:00"
+  "validated_at": "2026-06-08T17:57:02.240391+00:00",
+  "merged_at": "2026-06-08T17:57:02.511925+00:00"
 }
