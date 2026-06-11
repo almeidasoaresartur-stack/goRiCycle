@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-10T19:32:16.287019+00:00",
-  "total_products": 34,
+  "scraped_at": "2026-06-11T20:14:37.524587+00:00",
+  "total_products": 31,
   "products": [
     {
       "source": "iservices",
@@ -622,69 +622,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-06-09T18:01:12.649854+00:00",
-      "product_id": "iservices_766-iphone-se-2020_64gb_excelente",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Excelente",
-      "price": 117.66,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
-      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
-      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-09T18:01:12.649854+00:00",
-      "product_id": "iservices_745-iphone-xr_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone XR",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 147.88,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-xr/745-iphone-xr",
-      "image_url": "https://loja.iservices.pt/11426-large_default/iphone-xr.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-09T18:01:12.649854+00:00",
-      "product_id": "iservices_772-iphone-11-pro_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 11 Pro",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 189.95,
-      "original_price": 248.91,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-11-pro/772-iphone-11-pro",
-      "image_url": "https://loja.iservices.pt/11448-large_default/iphone-11-pro.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-11/771-iphone-11",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-09T18:01:12.649854+00:00",
       "product_id": "iservices_1425-ipad-air-2020-4-geracao_64gb_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -725,6 +662,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-10T20:43:23.259068+00:00",
-  "merged_at": "2026-06-10T20:43:23.519523+00:00"
+  "validated_at": "2026-06-11T21:28:14.424399+00:00",
+  "merged_at": "2026-06-11T21:28:14.691941+00:00"
 }
