@@ -1,11 +1,11 @@
 {
-  "merged_at": "2026-06-11T21:28:14.765715+00:00",
+  "merged_at": "2026-06-12T20:58:57.727132+00:00",
   "dry_run": false,
   "per_source": [
     {
       "source": "iservices",
-      "total": 31,
-      "kept": 31,
+      "total": 34,
+      "kept": 34,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 97,
-      "kept": 95,
+      "total": 98,
+      "kept": 96,
       "removed": 0,
       "removed_by_relevance": 2,
       "corrections_applied": 0,
@@ -24,8 +24,8 @@
     },
     {
       "source": "swappie",
-      "total": 115,
-      "kept": 115,
+      "total": 116,
+      "kept": 116,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -34,8 +34,8 @@
     },
     {
       "source": "certideal",
-      "total": 0,
-      "kept": 0,
+      "total": 95,
+      "kept": 95,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -54,7 +54,7 @@
     }
   ],
   "combined": {
-    "total_unique": 504,
+    "total_unique": 604,
     "removed_on_merge": 0,
     "removed_by_relevance": 3,
     "corrections_applied": 0,
