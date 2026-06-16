@@ -1,11 +1,11 @@
 {
-  "merged_at": "2026-06-15T23:06:23.917673+00:00",
+  "merged_at": "2026-06-16T20:59:34.244788+00:00",
   "dry_run": false,
   "per_source": [
     {
       "source": "iservices",
-      "total": 34,
-      "kept": 34,
+      "total": 33,
+      "kept": 33,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 91,
-      "kept": 88,
+      "total": 99,
+      "kept": 96,
       "removed": 0,
       "removed_by_relevance": 3,
       "corrections_applied": 0,
@@ -34,8 +34,8 @@
     },
     {
       "source": "certideal",
-      "total": 93,
-      "kept": 93,
+      "total": 0,
+      "kept": 0,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -54,7 +54,7 @@
     }
   ],
   "combined": {
-    "total_unique": 594,
+    "total_unique": 508,
     "removed_on_merge": 0,
     "removed_by_relevance": 4,
     "corrections_applied": 0,
