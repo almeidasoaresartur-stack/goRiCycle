@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-16T21:00:27.479591+00:00",
-  "total_products": 33,
+  "scraped_at": "2026-06-17T19:15:15.901907+00:00",
+  "total_products": 32,
   "products": [
     {
       "source": "iservices",
@@ -622,27 +622,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-06-14T11:39:40.676910+00:00",
-      "product_id": "iservices_1425-ipad-air-2020-4-geracao_64gb_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Air 2020 (4ª Geração)",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 310.63,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/ipad-air-recondicionados/1425-ipad-air-2020-4-geracao",
-      "image_url": "https://loja.iservices.pt/11128-large_default/ipad-air-2020-4-geracao.jpg",
-      "source_page": "https://loja.iservices.pt/ipad-pro-recondicionados/1424-ipad-pro-11-2021-3%C2%AA-gera%C3%A7%C3%A3o",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-14T11:39:40.676910+00:00",
       "product_id": "iservices_1453-ipad-109-2022-10%C2%AA-gera%C3%A7%C3%A3o_64gb_excelente",
       "category": "ipads",
       "brand": "Apple",
@@ -704,6 +683,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-16T22:32:52.147002+00:00",
-  "merged_at": "2026-06-16T22:32:52.429576+00:00"
+  "validated_at": "2026-06-17T20:52:34.468200+00:00",
+  "merged_at": "2026-06-17T20:52:34.741200+00:00"
 }
