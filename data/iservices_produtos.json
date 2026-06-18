@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-17T19:15:15.901907+00:00",
-  "total_products": 32,
+  "scraped_at": "2026-06-18T19:39:58.236156+00:00",
+  "total_products": 33,
   "products": [
     {
       "source": "iservices",
@@ -681,8 +681,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-18T19:39:58.236156+00:00",
+      "product_id": "iservices_766-iphone-se-2020_64gb_excelente",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone SE 2022",
+      "storage": "64GB",
+      "color": null,
+      "grade": "Excelente",
+      "price": 117.66,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
+      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
+      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-17T20:52:34.468200+00:00",
-  "merged_at": "2026-06-17T20:52:34.741200+00:00"
+  "validated_at": "2026-06-18T21:25:48.299409+00:00",
+  "merged_at": "2026-06-18T21:25:48.580388+00:00"
 }
