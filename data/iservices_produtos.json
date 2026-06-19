@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-18T19:39:58.236156+00:00",
-  "total_products": 33,
+  "scraped_at": "2026-06-19T18:01:26.047369+00:00",
+  "total_products": 30,
   "products": [
     {
       "source": "iservices",
@@ -27,27 +27,6 @@
       "url": "https://loja.iservices.pt/iphone-xr/745-iphone-xr",
       "image_url": "https://loja.iservices.pt/11426-large_default/iphone-xr.jpg",
       "source_page": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-14T11:39:40.676910+00:00",
-      "product_id": "iservices_757-iphone-11-pro-max_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 11 Pro Max",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 219.95,
-      "original_price": 299.95,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-11-pro-max/757-iphone-11-pro-max",
-      "image_url": "https://loja.iservices.pt/11447-large_default/iphone-11-pro-max.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-xr/745-iphone-xr",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
@@ -90,27 +69,6 @@
       "url": "https://loja.iservices.pt/iphone-11/771-iphone-11",
       "image_url": "https://loja.iservices.pt/11397-large_default/iphone-11.jpg",
       "source_page": "https://loja.iservices.pt/iphone-xs-max/770-iphone-xs-max",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-14T11:39:40.676910+00:00",
-      "product_id": "iservices_772-iphone-11-pro_64gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 11 Pro",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 189.95,
-      "original_price": 238.36,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-11-pro/772-iphone-11-pro",
-      "image_url": "https://loja.iservices.pt/11448-large_default/iphone-11-pro.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-11/771-iphone-11",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
@@ -681,29 +639,8 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-18T19:39:58.236156+00:00",
-      "product_id": "iservices_766-iphone-se-2020_64gb_excelente",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": "64GB",
-      "color": null,
-      "grade": "Excelente",
-      "price": 117.66,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
-      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
-      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-18T21:25:48.299409+00:00",
-  "merged_at": "2026-06-18T21:25:48.580388+00:00"
+  "validated_at": "2026-06-19T19:43:07.594178+00:00",
+  "merged_at": "2026-06-19T19:43:07.864566+00:00"
 }

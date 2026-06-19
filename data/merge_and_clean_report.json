@@ -1,21 +1,21 @@
 {
-  "merged_at": "2026-06-18T21:25:48.636386+00:00",
+  "merged_at": "2026-06-19T19:43:07.922131+00:00",
   "dry_run": false,
   "per_source": [
     {
       "source": "iservices",
-      "total": 33,
-      "kept": 33,
+      "total": 30,
+      "kept": 30,
       "removed": 0,
       "removed_by_relevance": 0,
-      "corrections_applied": 1,
+      "corrections_applied": 0,
       "marked_unavailable": 0,
       "dropped_unavailable": 0
     },
     {
       "source": "refurbed",
-      "total": 102,
-      "kept": 99,
+      "total": 95,
+      "kept": 92,
       "removed": 0,
       "removed_by_relevance": 3,
       "corrections_applied": 0,
@@ -24,8 +24,8 @@
     },
     {
       "source": "swappie",
-      "total": 120,
-      "kept": 120,
+      "total": 124,
+      "kept": 124,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -34,8 +34,8 @@
     },
     {
       "source": "certideal",
-      "total": 97,
-      "kept": 97,
+      "total": 102,
+      "kept": 102,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -54,10 +54,10 @@
     }
   ],
   "combined": {
-    "total_unique": 612,
+    "total_unique": 611,
     "removed_on_merge": 0,
     "removed_by_relevance": 4,
-    "corrections_applied": 1,
+    "corrections_applied": 0,
     "marked_unavailable": 0,
     "dropped_unavailable": 0
   }
