@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-18T19:39:58.236156+00:00",
-  "total_products": 33,
+  "scraped_at": "2026-06-19T16:23:04.370395+00:00",
+  "total_products": 34,
   "products": [
     {
       "source": "iservices",
@@ -702,8 +702,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-19T16:23:04.370395+00:00",
+      "product_id": "iservices_1407-ipad-102-2021-9%C2%AA-gera%C3%A7%C3%A3o_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad 10.2\" 2021 (9ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 304.23,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/ipads-base-recondicionados/1407-ipad-102-2021-9%C2%AA-gera%C3%A7%C3%A3o",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-102-2021-9e-generatie.png",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-18T21:25:48.299409+00:00",
-  "merged_at": "2026-06-18T21:25:48.580388+00:00"
+  "validated_at": "2026-06-19T18:00:45.814951+00:00",
+  "merged_at": "2026-06-19T18:00:46.057957+00:00"
 }
