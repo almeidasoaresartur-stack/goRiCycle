@@ -2,6 +2,7 @@ import { Suspense } from "react";
 
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { FaqSection } from "@/components/FaqSection";
+import { JsonLd } from "@/components/JsonLd";
 import { PartnerStoresSection } from "@/components/PartnerStoresSection";
 import { HeroSection } from "@/components/HeroSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
@@ -12,6 +13,7 @@ import { getAllListings } from "@/lib/load-listings";
 import { aggregateListings, parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
 import { filterAvailableAggregatedProducts } from "@/lib/product-availability";
 import { getCatalogStats, inferBrand, parseSearchQuery } from "@/lib/products";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/structured-data";
 
 type PageProps = {
   searchParams: Promise<Record<string, string | undefined>>;
@@ -36,6 +38,8 @@ export default async function HomePage({ searchParams }: PageProps) {
   const stats = getCatalogStats();
   return (
     <>
+      <JsonLd data={buildOrganizationJsonLd()} />
+      <JsonLd data={buildWebSiteJsonLd()} />
       <ScrollToHash trigger={`${query}-${params.tech ?? ""}`} />
 
       <main className="bg-[#F8FAFC]">

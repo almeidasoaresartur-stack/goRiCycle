@@ -12,7 +12,7 @@ import type { AggregatedProduct, ProductListing } from "@/lib/marketplace";
 import { GRADE_TIER_OPTIONS } from "@/lib/marketplace";
 import { aggregatedProductIsAvailable } from "@/lib/product-availability";
 import { isDevDebugMode, isSuspiciousListing } from "@/lib/listing-url-debug";
-import { getCleanProductData } from "@/lib/product-display";
+import { getCleanProductData, productImageAlt } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
 import { resolveListingUrl } from "@/lib/product-urls";
 import { slugify } from "@/lib/slugify";
@@ -127,7 +127,7 @@ function ProductGridCard({ item, isBest, activeStoreSlugs, index, variant }: Pro
         <ProductCardImage
           src={clean.imageUrl}
           fallbackSrc={getProductImage("", techToImageCategory(item.tech))}
-          alt={clean.displayName}
+          alt={productImageAlt(item.model, item.storage, best?.store ?? "loja parceira")}
         />
         {isBest && (
           <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
@@ -289,7 +289,7 @@ function ProductListRow({ item, isBest, activeStoreSlugs, index, variant }: Prod
         <ProductCardImage
           src={clean.imageUrl}
           fallbackSrc={getProductImage("", techToImageCategory(item.tech))}
-          alt={clean.displayName}
+          alt={productImageAlt(item.model, item.storage, best?.store ?? "loja parceira")}
           containerClassName="relative h-28 w-28 overflow-hidden rounded-lg border border-slate-100 bg-white sm:h-32 sm:w-32"
           sizes="128px"
         />

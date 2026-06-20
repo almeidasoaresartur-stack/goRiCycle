@@ -12,6 +12,8 @@ type LogoProps = {
 };
 
 const LOGO_SRC = "/images/goricycle-logo.png";
+const LOGO_ALT =
+  "goRiCycle - comparador de preços de smartphones e tablets recondicionados em Portugal";
 const LOGO_WIDTH = 1024;
 const LOGO_HEIGHT = 239;
 
@@ -40,7 +42,7 @@ export function Logo({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={LOGO_SRC}
-      alt="goRiCycle"
+      alt={LOGO_ALT}
       width={LOGO_WIDTH}
       height={LOGO_HEIGHT}
       className={`block object-contain object-left ${SIZE_CLASS.header} ${className}`}
@@ -50,7 +52,7 @@ export function Logo({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={isFull ? LOGO_SRC : "/logo-icon.png"}
-      alt="goRiCycle"
+      alt={LOGO_ALT}
       width={isFull ? LOGO_WIDTH : 256}
       height={isFull ? LOGO_HEIGHT : 256}
       className={`block object-contain ${isFull ? `${SIZE_CLASS[size]} max-w-[min(280px,70vw)]` : "h-8 w-auto sm:h-9"} ${themeClass} ${className}`}

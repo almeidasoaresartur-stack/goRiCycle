@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
 import { PriceAlertForm } from "@/components/PriceAlertForm";
+import { JsonLd } from "@/components/JsonLd";
 import { ProductCardImage } from "@/components/ProductCardImage";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StoreLogo } from "@/components/StoreLogo";
@@ -12,9 +13,18 @@ import {
   getAllProductSlugs,
   getListingsForProductSlug,
 } from "@/lib/product-pages";
+import { productImageAlt } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
 import { getCatalogStats } from "@/lib/products";
 import { resolveListingUrl } from "@/lib/product-urls";
+import {
+  absoluteMediaUrl,
+  buildProductJsonLd,
+  formatOgPrice,
+  productSchemaName,
+  resolveProductBrand,
+  SITE_URL,
+} from "@/lib/structured-data";
 import type { TechType } from "@/lib/marketplace";
 
 type PageProps = {
@@ -53,18 +63,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const best = group[0];
   const modelName = formatProductPageName(best.model, best.storage);
-  const title = `${modelName} — Melhor Preço em Portugal`;
+  const ogPrice = formatOgPrice(best.price);
+  const pageUrl = `${SITE_URL}/produto/${slug}`;
+  const imageUrl =
+    best.imageUrl ?? getProductImage(best.model, techToImageCategory(best.tech));
+  const absoluteImageUrl = absoluteMediaUrl(imageUrl);
 
   return {
-    title: `${title} | goRiCycle`,
-    description: `Compara preços do ${modelName} nas melhores lojas portuguesas. A partir de ${formatPrice(best.price)}. iServices, Refurbed, Swappie, Certideal e Callphone.`,
+    title: `${modelName} Recondicionado — a partir de ${ogPrice}€ | goRiCycle`,
+    description: `Compara o preço de ${modelName} recondicionado em várias lojas portuguesas. A partir de ${ogPrice}€.`,
     openGraph: {
-      title,
-      description: `Encontra o melhor preço do ${modelName} em Portugal.`,
-      url: `https://goricycle.com/produto/${slug}`,
-      siteName: "goRiCycle",
-      locale: "pt_PT",
       type: "website",
+      siteName: "goRiCycle",
+      title: `${modelName} Recondicionado — a partir de ${ogPrice}€ | goRiCycle`,
+      description: `Compara o preço de ${modelName} recondicionado em várias lojas portuguesas. A partir de ${ogPrice}€.`,
+      url: pageUrl,
+      locale: "pt_PT",
+      images: [
+        {
+          url: absoluteImageUrl,
+          alt: productImageAlt(best.model, best.storage, best.store),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${modelName} Recondicionado — a partir de ${ogPrice}€`,
+      description: `Compara o preço de ${modelName} recondicionado em várias lojas portuguesas. A partir de ${ogPrice}€.`,
+      images: [absoluteImageUrl],
+    },
+    other: {
+      "og:type": "product",
+      "product:price:amount": best.price.toFixed(2),
+      "product:price:currency": "EUR",
     },
   };
 }
@@ -96,6 +127,14 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd
+        data={buildProductJsonLd({
+          listings: group,
+          imageUrl,
+          productName: productSchemaName(best.model, best.storage),
+          brand: resolveProductBrand(best),
+        })}
+      />
       <main className="flex-1 bg-[#F8FAFC]">
         <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
           <nav className="mb-6 text-sm text-slate-400">
@@ -116,7 +155,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <ProductCardImage
                   src={imageUrl}
                   fallbackSrc={getProductImage("", techToImageCategory(best.tech))}
-                  alt={modelName}
+                  alt={productImageAlt(best.model, best.storage, best.store)}
                   containerClassName="relative aspect-square w-full overflow-hidden rounded-xl border border-slate-100 bg-white"
                   sizes="220px"
                 />

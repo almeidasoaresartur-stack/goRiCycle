@@ -15,6 +15,7 @@ export const HERO_HIGHLIGHT_STORES: ProductSource[] = [
 export type HeroHighlight = {
   productId: string;
   model: string;
+  storage: string | null;
   storeSlug: ProductSource;
   storeLabel: string;
   price: number;
@@ -113,6 +114,7 @@ export function getStoreHighlight(
   return {
     productId: best.id,
     model: displayModel,
+    storage: best.storage ?? null,
     storeSlug: best.storeSlug,
     storeLabel,
     price: best.price,

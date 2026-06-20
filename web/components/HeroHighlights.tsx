@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { cleanBaseModel } from "@/lib/product-display";
+import { cleanBaseModel, productImageAlt } from "@/lib/product-display";
 import type { HeroHighlight } from "@/lib/hero-highlights";
 
 type HeroHighlightsProps = {
@@ -27,7 +27,7 @@ export function HeroHighlights({ highlights }: HeroHighlightsProps) {
               {product.imageUrl ? (
                 <Image
                   src={product.imageUrl}
-                  alt={product.model}
+                  alt={productImageAlt(product.model, product.storage, product.storeLabel)}
                   fill
                   className="object-contain p-0.5"
                   sizes="36px"

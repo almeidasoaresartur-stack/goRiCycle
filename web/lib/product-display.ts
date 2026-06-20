@@ -230,6 +230,20 @@ export function cleanBaseModel(raw: string): string {
   return name.replace(/\s{2,}/g, " ").trim() || "Modelo desconhecido";
 }
 
+/** Alt text padrão para imagens de produto (modelo + armazenamento + loja). */
+export function productImageAlt(
+  model: string,
+  storage: string | null | undefined,
+  store: string,
+): string {
+  const modelPart = cleanBaseModel(model);
+  const storageLabel = formatStorageLabel(storage);
+  if (storageLabel && storageLabel !== "NFPM*") {
+    return `${modelPart} ${storageLabel} recondicionado - ${store}`;
+  }
+  return `${modelPart} recondicionado - ${store}`;
+}
+
 export function formatStorageLabel(storage: string | null | undefined): string {
   const value = (storage ?? "").trim();
   if (!value) return "NFPM*";

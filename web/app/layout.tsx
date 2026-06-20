@@ -17,17 +17,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://goricycle.com"),
   title: "goRiCycle — Compara recondicionados em Portugal",
   description:
     "Compara preços de smartphones e tablets recondicionados nas melhores lojas portuguesas. iServices, Refurbed, Swappie, Certideal e Callphone num só sítio.",
   openGraph: {
-    title: "goRiCycle — Compara recondicionados em Portugal",
-    description:
-      "Encontra o melhor preço em smartphones e tablets recondicionados em Portugal.",
-    url: "https://goricycle.com",
-    siteName: "goRiCycle",
-    locale: "pt_PT",
     type: "website",
+    siteName: "goRiCycle",
+    title: "goRiCycle — Comparador de smartphones e tablets recondicionados",
+    description:
+      "Descobre em primeira mão a melhor opção em segunda mão. Compara preços de iPhone, Samsung e Google recondicionados nas principais lojas portuguesas.",
+    url: "https://goricycle.com",
+    locale: "pt_PT",
+    images: [
+      {
+        url: "/images/goricycle-logo.png",
+        alt: "goRiCycle — comparador de preços de smartphones e tablets recondicionados em Portugal",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "goRiCycle — Comparador de smartphones e tablets recondicionados",
+    description: "Descobre em primeira mão a melhor opção em segunda mão.",
+    images: ["/images/goricycle-logo.png"],
   },
   icons: {
     icon: "/logo-icon.png",
