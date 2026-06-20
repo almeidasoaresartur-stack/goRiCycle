@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Clock, Search, ShieldCheck, Tag } from "lucide-react";
 
 import { SLOGAN } from "@/components/Logo";
 import { HeroHighlights } from "@/components/HeroHighlights";
@@ -17,18 +17,12 @@ export function HeroSection({ defaultQuery = "", highlights = [] }: HeroSectionP
       <div className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full bg-emerald-400/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-4xl text-center animate-fade-up">
-        <p className="mb-2 inline-flex max-w-2xl items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium leading-relaxed tracking-wide text-emerald-700 sm:text-sm">
-          {SLOGAN}
-        </p>
+        <p className="mb-2 text-xs font-medium text-emerald-700 sm:text-sm">{SLOGAN}</p>
 
         <h1 className="text-xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-2xl lg:text-3xl lg:leading-[1.2]">
           Compara recondicionados em Portugal —{" "}
           <span className="text-emerald-900">num só sítio</span>
         </h1>
-
-        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-          Smartphones e tablets premium — preços claros de 5 lojas parceiras.
-        </p>
 
         <form
           className="mx-auto mt-4 flex max-w-2xl flex-col gap-2.5 sm:flex-row"
@@ -59,6 +53,36 @@ export function HeroSection({ defaultQuery = "", highlights = [] }: HeroSectionP
             Comparar
           </button>
         </form>
+
+        <section className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-4 px-4 py-6 text-left text-sm sm:grid-cols-3">
+          <div className="flex items-start gap-2">
+            <Clock className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+            <div>
+              <p className="font-semibold text-slate-900">Poupa tempo</p>
+              <p className="text-slate-600">
+                Compara várias lojas sem abrir um separador para cada uma.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+            <div>
+              <p className="font-semibold text-slate-900">Só lojas de confiança</p>
+              <p className="text-slate-600">
+                Trabalhamos apenas com lojas com reputação reconhecida em Portugal.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Tag className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+            <div>
+              <p className="font-semibold text-slate-900">Preços claros</p>
+              <p className="text-slate-600">
+                Sabes sempre a que loja corresponde cada oferta, sem letra pequena.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <HeroHighlights highlights={highlights} />
       </div>
