@@ -54,30 +54,30 @@ export function HeroSection({ defaultQuery = "", highlights = [] }: HeroSectionP
           </button>
         </form>
 
-        <section className="mx-auto mt-6 grid max-w-5xl grid-cols-1 gap-4 px-4 py-6 text-left text-sm sm:grid-cols-3">
-          <div className="flex items-start gap-2">
-            <Clock className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+        <section className="mx-auto mt-6 grid max-w-5xl grid-cols-3 gap-2 px-4 py-4 text-sm sm:gap-4 sm:py-6">
+          <div className="flex flex-col items-center gap-1 text-center sm:flex-row sm:items-start sm:gap-2 sm:text-left">
+            <Clock className="h-5 w-5 shrink-0 text-emerald-600" />
             <div>
-              <p className="font-semibold text-slate-900">Poupa tempo</p>
-              <p className="text-slate-600">
+              <p className="text-xs font-semibold text-slate-900 sm:text-sm">Poupa tempo</p>
+              <p className="hidden text-slate-600 sm:block">
                 Compara várias lojas sem abrir um separador para cada uma.
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2">
-            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+          <div className="flex flex-col items-center gap-1 text-center sm:flex-row sm:items-start sm:gap-2 sm:text-left">
+            <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-600" />
             <div>
-              <p className="font-semibold text-slate-900">Só lojas de confiança</p>
-              <p className="text-slate-600">
+              <p className="text-xs font-semibold text-slate-900 sm:text-sm">Só lojas de confiança</p>
+              <p className="hidden text-slate-600 sm:block">
                 Trabalhamos apenas com lojas com reputação reconhecida em Portugal.
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-2">
-            <Tag className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+          <div className="flex flex-col items-center gap-1 text-center sm:flex-row sm:items-start sm:gap-2 sm:text-left">
+            <Tag className="h-5 w-5 shrink-0 text-emerald-600" />
             <div>
-              <p className="font-semibold text-slate-900">Preços claros</p>
-              <p className="text-slate-600">
+              <p className="text-xs font-semibold text-slate-900 sm:text-sm">Preços claros</p>
+              <p className="hidden text-slate-600 sm:block">
                 Sabes sempre a que loja corresponde cada oferta, sem letra pequena.
               </p>
             </div>
