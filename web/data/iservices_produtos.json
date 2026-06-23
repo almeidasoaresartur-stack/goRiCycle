@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-22T20:52:38.119585+00:00",
-  "total_products": 31,
+  "scraped_at": "2026-06-23T16:14:01.349369+00:00",
+  "total_products": 33,
   "products": [
     {
       "source": "iservices",
@@ -660,8 +660,50 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-23T16:14:01.349369+00:00",
+      "product_id": "iservices_766-iphone-se-2020_64gb_excelente",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone SE 2022",
+      "storage": "64GB",
+      "color": null,
+      "grade": "Excelente",
+      "price": 117.66,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/iphone-se-2020/766-iphone-se-2020",
+      "image_url": "https://loja.iservices.pt/11558-large_default/iphone-se-2020.jpg",
+      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-06-23T16:14:01.349369+00:00",
+      "product_id": "iservices_1355-iphone-15-pro-max_256gb_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro Max",
+      "storage": "256GB",
+      "color": null,
+      "grade": "Bom",
+      "price": 673.72,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://loja.iservices.pt/iphone-15-pro-max/1355-iphone-15-pro-max",
+      "image_url": "https://loja.iservices.pt/11607-large_default/iphone-15-pro-max.jpg",
+      "source_page": "https://loja.iservices.pt/iphone-15-pro/1331-iphone-15-pro",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-22T22:47:23.620991+00:00",
-  "merged_at": "2026-06-22T22:47:23.899895+00:00"
+  "validated_at": "2026-06-23T18:10:23.565860+00:00",
+  "merged_at": "2026-06-23T18:10:23.831595+00:00"
 }
