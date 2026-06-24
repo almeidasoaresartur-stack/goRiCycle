@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-06-23T18:11:31.314175+00:00",
-  "total_products": 32,
+  "scraped_at": "2026-06-24T17:35:24.262493+00:00",
+  "total_products": 31,
   "products": [
     {
       "source": "iservices",
@@ -660,29 +660,8 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-06-23T18:11:31.314175+00:00",
-      "product_id": "iservices_1355-iphone-15-pro-max_256gb_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 15 Pro Max",
-      "storage": "256GB",
-      "color": null,
-      "grade": "Bom",
-      "price": 673.72,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://loja.iservices.pt/iphone-15-pro-max/1355-iphone-15-pro-max",
-      "image_url": "https://loja.iservices.pt/11607-large_default/iphone-15-pro-max.jpg",
-      "source_page": "https://loja.iservices.pt/iphone-15-pro/1331-iphone-15-pro",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-06-23T20:09:37.873020+00:00",
-  "merged_at": "2026-06-23T20:09:38.143667+00:00"
+  "validated_at": "2026-06-24T19:32:06.013801+00:00",
+  "merged_at": "2026-06-24T19:32:06.242378+00:00"
 }
