@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -58,6 +59,46 @@ SOURCES: dict[str, Path] = {
 }
 
 DEBUG_MATCH_DEFAULT = "iphone se"
+
+
+def normalizar_nome_callphone(model: str, storage: str) -> str:
+    """
+    Remove artefactos do título Shopify da Callphone:
+    - "NOVO" (maiúsculas ou minúsculas)
+    - Storage duplicado no nome (ex: "256GB NOVO 256GB" → "")
+    - Capitalização excessiva (ex: "IPHONE" → "iPhone")
+    Devolve o nome limpo.
+    """
+    if not model:
+        return model
+
+    if storage:
+        model = re.sub(
+            rf"\s*{re.escape(storage)}\s+NOVO\s+{re.escape(storage)}",
+            "",
+            model,
+            flags=re.IGNORECASE,
+        )
+        model = re.sub(
+            rf"\s+NOVO\s+{re.escape(storage)}",
+            "",
+            model,
+            flags=re.IGNORECASE,
+        )
+
+    model = re.sub(r"\s+NOVO\b", "", model, flags=re.IGNORECASE).strip()
+
+    replacements = {
+        "IPHONE": "iPhone",
+        "SAMSUNG": "Samsung",
+        "GOOGLE": "Google",
+        "IPAD": "iPad",
+    }
+    for errado, correcto in replacements.items():
+        model = re.sub(rf"\b{errado}\b", correcto, model)
+
+    return model.strip()
+
 
 CATEGORY_MAP = {
     "iphones": "smartphone",
@@ -394,6 +435,13 @@ def clean_source(
         products = data.get("products", [])
         is_list_format = False
 
+    for product in products:
+        if product.get("source") == "callphone":
+            product["model"] = normalizar_nome_callphone(
+                product.get("model", ""),
+                product.get("storage", ""),
+            )
+
     if debug_match:
         log.info("\n%s", "=" * 60)
         log.info("DEBUG fonte: %s (%s produtos lidos de %s)", source_name, len(products), path.name)
@@ -472,6 +520,13 @@ def merge_all_sources(
         if not data:
             continue
         batch = data if isinstance(data, list) else data.get("products", [])
+        if source_name == "callphone":
+            for product in batch:
+                if product.get("source") == "callphone":
+                    product["model"] = normalizar_nome_callphone(
+                        product.get("model", ""),
+                        product.get("storage", ""),
+                    )
         if debug_match:
             for product in batch:
                 if _debug_matches(product, debug_match):
