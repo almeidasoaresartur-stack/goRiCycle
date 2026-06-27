@@ -9,6 +9,7 @@ data/backmarket_cookies.json
 data/backmarket_browser_profile/
 data/*.log
 data/backmarket_probe_results.json
+data/posts_semana.json
 
 # Next.js (web/)
 web/node_modules/
