@@ -16,7 +16,7 @@ import json
 import re
 import unicodedata
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from anthropic import Anthropic
@@ -68,6 +68,33 @@ HASHTAG_INSTRUCTION = (
     "c minúsculo, l minúsculo, e minúsculo). Nunca uses #Goricycle, #GoriCycle, "
     "#GoRicycle ou qualquer outra variação."
 )
+
+BLOG_ARTICLES = [
+    {
+        "slug": "iphone-13-vale-a-pena-2026",
+        "title": "Ainda faz sentido comprar um iPhone 13 em 2026?",
+        "modelo_imagem": "iPhone 13",
+        "url": "https://goricycle.com/blog/iphone-13-vale-a-pena-2026",
+    },
+    {
+        "slug": "iphone-15-vs-iphone-16-recondicionado",
+        "title": "iPhone 15 ou iPhone 16 recondicionado — qual vale mais a pena em 2026?",
+        "modelo_imagem": "iPhone 15",
+        "url": "https://goricycle.com/blog/iphone-15-vs-iphone-16-recondicionado",
+    },
+    {
+        "slug": "google-pixel-vs-iphone-pro-recondicionado",
+        "title": "Google Pixel ou iPhone Pro recondicionado — dois mundos, duas filosofias",
+        "modelo_imagem": "iPhone 15 Pro",
+        "url": "https://goricycle.com/blog/google-pixel-vs-iphone-pro-recondicionado",
+    },
+    {
+        "slug": "iphone-se-2022-recondicionado-2026",
+        "title": "iPhone SE (2022) recondicionado — pequeno no tamanho, inteligente na escolha",
+        "modelo_imagem": "iPhone SE",
+        "url": "https://goricycle.com/blog/iphone-se-2022-recondicionado-2026",
+    },
+]
 
 
 def store_label(source: str) -> str:
@@ -235,6 +262,52 @@ def select_highlights(
     return highlights
 
 
+def select_blog_article() -> dict:
+    """Selecciona o artigo da semana com base no número da semana do ano."""
+    week_number = date.today().isocalendar()[1]
+    index = week_number % len(BLOG_ARTICLES)
+    return BLOG_ARTICLES[index]
+
+
+def get_image_for_model(products: list[dict], modelo: str) -> str | None:
+    """Busca a image_url do primeiro produto disponível que corresponda ao modelo."""
+    for product in products:
+        if (
+            product.get("model", "").startswith(modelo)
+            and product.get("image_url")
+            and product.get("is_available")
+        ):
+            return product["image_url"]
+    return None
+
+
+def load_catalog_products() -> list[dict]:
+    with open(DATA_FILE, encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get("products", [])
+
+
+def schedule_weekly_posts(
+    comparisons: list[dict],
+    highlights: list[dict],
+    editorial: dict,
+) -> list[tuple[str, dict]]:
+    """Ordena os 5 posts: A → C → A → B → A."""
+    scheduled: list[tuple[str, dict]] = []
+
+    if comparisons:
+        scheduled.append(("comparacao", comparisons[0]))
+    scheduled.append(("editorial", editorial))
+    if len(comparisons) > 1:
+        scheduled.append(("comparacao", comparisons[1]))
+    if highlights:
+        scheduled.append(("destaque", highlights[0]))
+    if len(comparisons) > 2:
+        scheduled.append(("comparacao", comparisons[2]))
+
+    return scheduled
+
+
 def interleave_posts(
     comparisons: list[dict], highlights: list[dict]
 ) -> list[tuple[str, dict]]:
@@ -309,6 +382,41 @@ Responde APENAS com o post, sem introdução nem explicação.
 {HASHTAG_INSTRUCTION}"""
 
 
+def generate_tipo_c_post(article: dict, image_url: str | None, client: Anthropic) -> dict:
+    """Gera um post editorial de blog para redes sociais."""
+    prompt = f"""Escreve um post para Instagram/Facebook a promover um artigo de blog sobre smartphones recondicionados.
+
+Dados do artigo:
+- Título: {article['title']}
+- URL: {article['url']}
+
+Formato obrigatório:
+1. Abre com uma pergunta ou afirmação que crie curiosidade (1 frase)
+2. Corpo do post (2-3 frases que resumem o valor do artigo sem dar tudo — o utilizador deve querer clicar para saber mais)
+3. CTA: termina com "Lê o artigo completo → {article['url']}"
+4. Hashtags: exactamente 8 hashtags relevantes em português
+
+Tom: informal, honesto, sem exageros. Não uses "incrível", "fantástico", "imperdível".
+IMPORTANTE: A hashtag da marca é sempre #goRiCycle (g minúsculo, R maiúsculo, C maiúsculo, resto minúsculo).
+Verifica que todas as hashtags estão correctamente escritas em português, sem erros tipográficos.
+Responde APENAS com o post, sem introdução nem explicação."""
+
+    response = client.messages.create(
+        model=HAIKU_MODEL,
+        max_tokens=400,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    return {
+        "dia": 2,
+        "tipo": "editorial",
+        "titulo_artigo": article["title"],
+        "url_artigo": article["url"],
+        "image_url": image_url,
+        "post": response.content[0].text.strip(),
+    }
+
+
 def generate_post_text(client: Anthropic, prompt: str) -> str:
     response = client.messages.create(
         model=HAIKU_MODEL,
@@ -367,6 +475,12 @@ def print_progress_line(index: int, total: int, tipo: str, item: dict) -> None:
         )
         return
 
+    if tipo == "editorial":
+        print(
+            f'[{index}/{total}] Editorial: "{item["titulo_artigo"]}" → {item["url_artigo"]}'
+        )
+        return
+
     product = item
     storage = product.get("storage") or ""
     loja = store_label(product["source"])
@@ -376,10 +490,19 @@ def print_progress_line(index: int, total: int, tipo: str, item: dict) -> None:
 
 def main() -> None:
     products, total_loaded = load_filtered_products()
+    catalog_products = load_catalog_products()
     comparisons = select_comparisons(products)
     comparison_keys = {item["key"] for item in comparisons}
     highlights = select_highlights(products, comparison_keys)
-    scheduled = interleave_posts(comparisons, highlights)
+    article = select_blog_article()
+    image_url = get_image_for_model(catalog_products, article["modelo_imagem"])
+    editorial_item = {
+        "article": article,
+        "image_url": image_url,
+        "titulo_artigo": article["title"],
+        "url_artigo": article["url"],
+    }
+    scheduled = schedule_weekly_posts(comparisons, highlights, editorial_item)
     total_posts = len(scheduled)
 
     print("goRiCycle Content Creator")
@@ -392,6 +515,13 @@ def main() -> None:
     posts: list[dict] = []
 
     for day, (tipo, item) in enumerate(scheduled, start=1):
+        if tipo == "editorial":
+            print_progress_line(day, total_posts, tipo, item)
+            post_record = generate_tipo_c_post(item["article"], item["image_url"], client)
+            post_record["dia"] = day
+            posts.append(post_record)
+            continue
+
         print_progress_line(day, total_posts, tipo, item)
         prompt = (
             build_comparacao_prompt(item)
