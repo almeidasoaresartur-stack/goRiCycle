@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-06-28T11:16:07.376368+00:00",
-  "mode": "full",
+  "run_at": "2026-06-29T11:26:03.636794+00:00",
+  "mode": "incremental",
   "categories": [
     "iphones",
     "ipads",
@@ -10,45 +10,39 @@
   ],
   "sources": {
     "iservices": {
-      "total": 36,
-      "by_category": {
-        "iphones": 27,
-        "ipads": 9,
-        "tablets": 0,
-        "samsung_phones": 0,
-        "google_phones": 0
-      },
-      "errors": 0,
-      "removed_out_of_stock": 0
+      "total": 0,
+      "by_category": {},
+      "errors": 1,
+      "fatal_error": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://loja.iservices.pt/iphones-recondicionados-90?lang=pt\", waiting until \"domcontentloaded\"\n"
     },
     "refurbed": {
-      "total": 96,
+      "total": 92,
       "by_category": {
-        "iphones": 39,
-        "ipads": 35,
-        "tablets": 17,
-        "samsung_phones": 1,
+        "iphones": 44,
+        "ipads": 27,
+        "tablets": 14,
+        "samsung_phones": 3,
         "google_phones": 4
       },
       "errors": 0,
       "removed_out_of_stock": 0,
-      "dedup_removed": 144
+      "dedup_removed": 118
     },
     "swappie": {
-      "total": 104,
+      "total": 98,
       "by_category": {
-        "iphones": 71,
-        "ipads": 33
+        "iphones": 69,
+        "ipads": 29
       },
       "errors": 0,
       "removed_out_of_stock": 0
     },
     "certideal": {
-      "total": 126,
+      "total": 123,
       "by_category": {
-        "iphones": 95,
+        "iphones": 96,
         "ipads": 8,
-        "samsung_phones": 23
+        "samsung_phones": 19
       },
       "errors": 0,
       "removed_out_of_stock": 5
@@ -60,10 +54,10 @@
         "ipads": 1
       },
       "errors": 0,
-      "unavailable": 1459
+      "unavailable": 1460
     }
   },
-  "grand_total": 1883,
+  "grand_total": 1834,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
