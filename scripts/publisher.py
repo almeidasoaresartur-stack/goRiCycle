@@ -16,6 +16,7 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -27,6 +28,13 @@ ALL_PRODUCTS_FILE = ROOT / "data" / "all_products.json"
 
 SITE_URL = "https://goricycle.com"
 DEFAULT_IMAGE_URL = f"{SITE_URL}/images/goricycle-logo.png"
+
+
+def build_proxy_image_url(image_url: str) -> str:
+    """Serve a imagem através do nosso próprio domínio em vez de fazer
+    hotlink directo à loja parceira — evita bloqueios de anti-bot/anti-hotlink
+    quando o Buffer tenta descarregar a imagem para publicar no FB/IG."""
+    return f"{SITE_URL}/api/product-image?url={quote(image_url, safe='')}"
 
 load_dotenv(ROOT / ".env")
 
@@ -157,7 +165,7 @@ def resolve_image_url(post: dict) -> str:
 
     for image_url in candidates:
         if image_url_is_accessible(image_url):
-            return image_url
+            return build_proxy_image_url(image_url)
 
     return DEFAULT_IMAGE_URL
 
