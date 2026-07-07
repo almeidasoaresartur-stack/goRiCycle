@@ -109,10 +109,42 @@ def proximos_dias_uteis(n: int, hora: int = 9) -> list[datetime]:
     return dias
 
 
-def load_posts() -> list[dict]:
+def load_posts_file() -> dict:
     with open(POSTS_FILE, encoding="utf-8") as f:
-        data = json.load(f)
-    return data["posts"]
+        return json.load(f)
+
+
+def load_posts() -> list[dict]:
+    return load_posts_file()["posts"]
+
+
+def save_posts_file(data: dict) -> None:
+    POSTS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(POSTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+def post_is_scheduled(post: dict) -> bool:
+    return bool(post.get("agendado"))
+
+
+def channel_already_scheduled(post: dict, channel: str) -> bool:
+    return bool((post.get("buffer_ids") or {}).get(channel))
+
+
+def mark_channel_scheduled(post: dict, channel: str, post_id: str) -> None:
+    buffer_ids = post.setdefault("buffer_ids", {})
+    buffer_ids[channel] = post_id
+    if buffer_ids.get("instagram") and buffer_ids.get("facebook"):
+        post["agendado"] = True
+
+
+def format_scheduled_ids(post: dict) -> str:
+    buffer_ids = post.get("buffer_ids") or {}
+    ig = buffer_ids.get("instagram", "?")
+    fb = buffer_ids.get("facebook", "?")
+    return f"Instagram: {ig}, Facebook: {fb}"
 
 
 _model_image_urls: dict[str, str] | None = None
@@ -145,6 +177,12 @@ def load_model_image_urls() -> dict[str, str]:
 
 def resolve_image_url(post: dict) -> str:
     """URL pública para assets.image — requerida no Instagram (ver docs Buffer)."""
+    direct_image = (post.get("image_url") or "").strip()
+    if direct_image:
+        if image_url_is_accessible(direct_image):
+            return build_proxy_image_url(direct_image)
+        return build_proxy_image_url(direct_image)
+
     modelo = (post.get("modelo") or "").strip()
     if not modelo:
         return DEFAULT_IMAGE_URL
@@ -249,10 +287,16 @@ def enviar_post(
 
 
 def post_label(post: dict) -> str:
-    storage = (post.get("storage") or "").strip()
-    if storage:
-        return f"{post['modelo']} {storage}"
-    return post["modelo"]
+    for key in ("titulo_artigo", "modelo", "titulo", "topico", "nome"):
+        value = (post.get(key) or "").strip()
+        if not value:
+            continue
+        if key == "modelo":
+            storage = (post.get("storage") or "").strip()
+            if storage:
+                return f"{value} {storage}"
+        return value
+    return "Post"
 
 
 def mutation_failed(resultado: dict) -> bool:
@@ -283,10 +327,12 @@ def main() -> None:
         print(f"Erro: ficheiro não encontrado: {POSTS_FILE}", file=sys.stderr)
         sys.exit(1)
 
-    posts = load_posts()
+    posts_data = load_posts_file()
+    posts = posts_data["posts"]
     datas = proximos_dias_uteis(len(posts))
     total = len(posts)
     agendados = 0
+    saltados = 0
 
     print("goRiCycle Publisher")
     print("─────────────────────────")
@@ -298,27 +344,47 @@ def main() -> None:
         texto = post["post"]
         dia_semana = data_pub.strftime("%A %d/%m")
 
+        if post_is_scheduled(post):
+            saltados += 1
+            print(
+                f"\n[{i}/{total}] SALTADO — já agendado anteriormente "
+                f"(ID: {format_scheduled_ids(post)})"
+            )
+            continue
+
         print(f"\n[{i}/{total}] {post_label(post)} — {dia_semana}")
 
-        resultado_ig = enviar_post(
-            texto, INSTAGRAM_ID, data_pub, channel="instagram", post=post
-        )
-        if mutation_failed(resultado_ig):
-            print(f"  ❌ Instagram: {resultado_ig}")
+        if not channel_already_scheduled(post, "instagram"):
+            resultado_ig = enviar_post(
+                texto, INSTAGRAM_ID, data_pub, channel="instagram", post=post
+            )
+            if mutation_failed(resultado_ig):
+                print(f"  ❌ Instagram: {resultado_ig}")
+            else:
+                post_id = extract_post_id(resultado_ig)
+                mark_channel_scheduled(post, "instagram", post_id)
+                save_posts_file(posts_data)
+                print(f"  ✅ Instagram agendado — ID: {post_id}")
+                agendados += 1
         else:
-            post_id = extract_post_id(resultado_ig)
-            print(f"  ✅ Instagram agendado — ID: {post_id}")
-            agendados += 1
+            post_id = post["buffer_ids"]["instagram"]
+            print(f"  ⏭ Instagram já agendado — ID: {post_id}")
 
-        resultado_fb = enviar_post(
-            texto, FACEBOOK_ID, data_pub, channel="facebook", post=post
-        )
-        if mutation_failed(resultado_fb):
-            print(f"  ❌ Facebook: {resultado_fb}")
+        if not channel_already_scheduled(post, "facebook"):
+            resultado_fb = enviar_post(
+                texto, FACEBOOK_ID, data_pub, channel="facebook", post=post
+            )
+            if mutation_failed(resultado_fb):
+                print(f"  ❌ Facebook: {resultado_fb}")
+            else:
+                post_id = extract_post_id(resultado_fb)
+                mark_channel_scheduled(post, "facebook", post_id)
+                save_posts_file(posts_data)
+                print(f"  ✅ Facebook agendado — ID: {post_id}")
+                agendados += 1
         else:
-            post_id = extract_post_id(resultado_fb)
-            print(f"  ✅ Facebook agendado — ID: {post_id}")
-            agendados += 1
+            post_id = post["buffer_ids"]["facebook"]
+            print(f"  ⏭ Facebook já agendado — ID: {post_id}")
 
     print()
     print("─────────────────────────")
@@ -326,6 +392,8 @@ def main() -> None:
         f"Concluído. {agendados} posts agendados no Buffer "
         f"({total} Instagram + {total} Facebook)."
     )
+    if saltados:
+        print(f"Saltados (já agendados): {saltados}")
     print("Verifica em: https://publish.buffer.com")
 
 
