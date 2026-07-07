@@ -12,9 +12,35 @@ type PageProps = {
 };
 
 function renderInlineMarkdown(text: string): ReactNode[] {
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g);
 
   return parts.map((part, index) => {
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      const [, label, href] = linkMatch;
+      const isInternal = href.startsWith("/");
+
+      if (isInternal) {
+        return (
+          <Link key={index} href={href} className="font-medium text-emerald-600 hover:underline">
+            {label}
+          </Link>
+        );
+      }
+
+      return (
+        <a
+          key={index}
+          href={href}
+          className="font-medium text-emerald-600 hover:underline"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {label}
+        </a>
+      );
+    }
+
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
         <strong key={index} className="font-semibold text-slate-900">
@@ -84,7 +110,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return {};
 
   return {
-    title: `${post.title} — goRiCycle`,
+    title: post.metaTitle ?? `${post.title} — goRiCycle`,
     description: post.description,
   };
 }

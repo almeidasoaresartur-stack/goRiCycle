@@ -2,12 +2,77 @@ export interface BlogPost {
   slug: string;
   title: string;
   description: string;
+  metaTitle?: string;
   publishedAt: string;
   readingMinutes: number;
   content: string;
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "ipad-11-recondicionado-128gb-256gb-512gb",
+    title: "iPad 11 recondicionado: 128GB, 256GB ou 512GB — qual escolher?",
+    description:
+      "A Apple não chama oficialmente «iPad 11» a este modelo — é o iPad (A16), 11ª geração. Qual capacidade (128GB, 256GB ou 512GB) compensa no recondicionado?",
+    metaTitle:
+      "iPad 11 recondicionado: 128GB, 256GB ou 512GB — qual escolher? | goRiCycle",
+    publishedAt: "2026-07-07",
+    readingMinutes: 6,
+    content: `## O que é o iPad 11, afinal?
+
+Antes de mais, uma clarificação: a Apple não chama oficialmente "iPad 11" a este modelo — o nome técnico é iPad (A16), 11ª geração, lançado em março de 2025. Mas como o mercado (lojas, motores de busca, utilizadores) o trata quase sempre como "iPad 11", é assim que também nos vamos referir a ele aqui.
+
+É o iPad de entrada da Apple, sucessor directo do iPad de 10ª geração. Mantém o design familiar — ecrã Liquid Retina de 10,9", Touch ID integrado no botão superior, ligação USB-C — mas traz o chip A16 (o mesmo que estreou no iPhone 14), 6GB de RAM e, pela primeira vez nesta gama, 128GB como armazenamento inicial em vez dos 64GB anteriores.
+
+Não tem Face ID, não tem ecrã ProMotion a 120Hz, e não suporta Apple Intelligence — características reservadas aos modelos Air e Pro. Isso não o torna um mau tablet; torna-o um tablet claramente posicionado para quem quer capacidade e fiabilidade sem pagar o preço de topo de gama.
+
+## Porque já aparece no mercado de recondicionados?
+
+Pode parecer estranho encontrar um modelo lançado há pouco mais de um ano já disponível como recondicionado — mas é perfeitamente normal. A maior parte da oferta recondicionada recente vem de trocas (trade-ins), devoluções dentro do prazo legal, unidades de demonstração em loja, ou simplesmente pessoas que compraram e decidiram que não era para elas. Para ti, compradora ou comprador, isto é uma boa notícia: significa acesso a um dispositivo praticamente actual com o desconto típico do mercado recondicionado.
+
+## As diferenças entre 128GB, 256GB e 512GB
+
+Aqui está o ponto mais importante a perceber: as três variantes são fisicamente o mesmo tablet. Mesmo chip A16, mesma RAM, mesmo ecrã, mesma câmara, mesma bateria. A única diferença real é o espaço de armazenamento — o que muda é quanto consegues guardar, não o desempenho do dia-a-dia.
+
+**128GB — para quem?**
+Suficiente para a maioria das pessoas que usam o iPad para navegação, streaming, redes sociais, leitura, videochamadas e produtividade ligeira (Office, notas, PDFs). Se não guardas grandes bibliotecas de vídeo ou jogos pesados localmente, este é o ponto de equilíbrio mais razoável — [compara as ofertas de iPad 11 128GB recondicionado](/produto/ipad-11-128gb-recondicionado) no goRiCycle.
+
+**256GB — para quem?**
+Faz sentido se usas o iPad para trabalho ou estudo com Apple Pencil de forma regular (muitos ficheiros de notas, digitalizações, apontamentos com imagem), ou se costumas descarregar conteúdo offline — séries, podcasts, música — para viagens ou zonas sem internet. [Vê os preços do iPad 11 256GB recondicionado](/produto/ipad-11-256gb-recondicionado) nas lojas que comparamos.
+
+**512GB — para quem?**
+Só compensa se fazes edição de vídeo directamente no iPad, trabalhas com ficheiros grandes (design, fotografia profissional), ou instalas muitas apps e jogos pesados sem nunca apagar nada. Para a maioria das pessoas, é mais capacidade do que alguma vez vão usar — mas se precisas mesmo, [encontra ofertas de iPad 11 512GB recondicionado](/produto/ipad-11-512gb-recondicionado).
+
+## O que fica de fora, independentemente da capacidade
+
+Vale a pena repetir: escolher 512GB não te dá nada além de mais espaço. Continuas sem:
+- Face ID (só Touch ID no botão)
+- Ecrã ProMotion a 120Hz (fica-se pelos 60Hz)
+- Suporte a Apple Intelligence
+- Compatibilidade com o Apple Pencil de 2ª geração (só funciona com o Pencil USB-C ou o de 1ª geração, com adaptador)
+
+Se algum destes pontos for essencial para ti, a resposta não está numa capacidade diferente do iPad 11 — está antes num iPad Air.
+
+## Qual capacidade compensa mais no recondicionado?
+
+Nos modelos novos, a Apple cobra um prémio elevado por cada salto de armazenamento — o custo real da memória é muito inferior ao que se paga. No mercado recondicionado, essa distorção tende a manter-se, mas a diferença absoluta em euros costuma ser menor, o que torna o salto para 256GB relativamente mais acessível do que seria a comprar novo. Ainda assim, para a maioria das pessoas, os 128GB continuam a ser a escolha que faz mais sentido — não pagues por espaço que nunca vais preencher.
+
+## Para quem faz sentido comprar o iPad 11 recondicionado?
+
+Faz sentido se:
+- Procuras um tablet fiável para uso diário sem pagar o preço de um Air ou Pro
+- O teu uso é navegação, streaming, leitura, notas e produtividade ligeira
+- Não precisas de Face ID nem de ecrã a 120Hz
+- Estás a substituir um iPad mais antigo (7ª, 8ª ou 9ª geração)
+
+Não é a melhor escolha se:
+- Apple Intelligence é uma prioridade para ti
+- Queres usar o Apple Pencil de 2ª geração
+- Precisas de um ecrã mais fluido para desenho ou jogos
+- Vais usar o tablet intensivamente para edição de vídeo (considera um iPad Air ou Pro em alternativa)
+
+*Os preços do iPad 11 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos em tempo real as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone.*`,
+  },
   {
     slug: "iphone-13-vale-a-pena-2026",
     title: "Ainda faz sentido comprar um iPhone 13 em 2026?",
