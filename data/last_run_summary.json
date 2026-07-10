@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-07-09T10:05:28.671354+00:00",
+  "run_at": "2026-07-10T09:55:23.367440+00:00",
   "mode": "incremental",
   "categories": [
     "iphones",
@@ -22,17 +22,17 @@
       "removed_out_of_stock": 0
     },
     "refurbed": {
-      "total": 99,
+      "total": 96,
       "by_category": {
         "iphones": 45,
-        "ipads": 32,
-        "tablets": 17,
-        "samsung_phones": 1,
+        "ipads": 31,
+        "tablets": 14,
+        "samsung_phones": 2,
         "google_phones": 4
       },
       "errors": 0,
       "removed_out_of_stock": 0,
-      "dedup_removed": 164
+      "dedup_removed": 153
     },
     "swappie": {
       "total": 0,
@@ -41,11 +41,11 @@
       "fatal_error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"a:has([class*='ModelCard__ProductName'])\") to be visible\n"
     },
     "certideal": {
-      "total": 119,
+      "total": 118,
       "by_category": {
         "iphones": 94,
         "ipads": 4,
-        "samsung_phones": 21
+        "samsung_phones": 20
       },
       "errors": 0,
       "removed_out_of_stock": 4
@@ -57,10 +57,10 @@
         "ipads": 1
       },
       "errors": 0,
-      "unavailable": 1422
+      "unavailable": 1423
     }
   },
-  "grand_total": 1685,
+  "grand_total": 1681,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
