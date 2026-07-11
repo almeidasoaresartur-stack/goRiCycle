@@ -126,6 +126,9 @@ jobs:
       - name: Merge, correcções e deduplicação
         run: python scrapers/merge_and_clean.py
 
+      - name: Curadoria de dados (Agente 1)
+        run: python3 scripts/curator.py
+
       - name: Verificar sumário
         run: |
           python <<'PY'

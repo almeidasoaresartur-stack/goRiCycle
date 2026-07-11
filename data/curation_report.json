@@ -1,0 +1,47 @@
+{
+  "curated_at": "2026-07-11T08:45:54+00:00",
+  "alerts": [],
+  "stores": {
+    "iservices": {
+      "hoje_bruto": 33,
+      "removidos_invalidos": 0,
+      "removidos_duplicados": 0,
+      "final": 33,
+      "blocked": false,
+      "ontem": 33
+    },
+    "refurbed": {
+      "hoje_bruto": 84,
+      "removidos_invalidos": 0,
+      "removidos_duplicados": 0,
+      "final": 84,
+      "blocked": false,
+      "ontem": 84
+    },
+    "swappie": {
+      "hoje_bruto": 104,
+      "removidos_invalidos": 0,
+      "removidos_duplicados": 0,
+      "final": 104,
+      "blocked": false,
+      "ontem": 104
+    },
+    "certideal": {
+      "hoje_bruto": 108,
+      "removidos_invalidos": 0,
+      "removidos_duplicados": 0,
+      "final": 108,
+      "blocked": false,
+      "ontem": 108
+    },
+    "callphone": {
+      "hoje_bruto": 257,
+      "removidos_invalidos": 0,
+      "removidos_duplicados": 0,
+      "final": 257,
+      "blocked": false,
+      "ontem": 257
+    }
+  },
+  "total_final": 586
+}
