@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-07-10T11:40:57.340008+00:00",
+  "validated_at": "2026-07-11T10:01:29.229172+00:00",
   "dry_run": false,
   "check_live": false,
   "sources": {
@@ -11,8 +11,8 @@
       "removed_items": []
     },
     "refurbed": {
-      "total": 96,
-      "kept": 96,
+      "total": 95,
+      "kept": 95,
       "removed": 0,
       "reasons": {},
       "removed_items": []
@@ -40,8 +40,8 @@
     }
   },
   "summary": {
-    "total": 1810,
-    "kept": 1810,
+    "total": 1809,
+    "kept": 1809,
     "removed": 0
   }
 }

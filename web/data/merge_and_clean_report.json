@@ -1,5 +1,5 @@
 {
-  "merged_at": "2026-07-10T11:40:57.758526+00:00",
+  "merged_at": "2026-07-11T10:01:29.640894+00:00",
   "dry_run": false,
   "per_source": [
     {
@@ -14,10 +14,10 @@
     },
     {
       "source": "refurbed",
-      "total": 96,
+      "total": 95,
       "kept": 93,
       "removed": 0,
-      "removed_by_relevance": 3,
+      "removed_by_relevance": 2,
       "corrections_applied": 0,
       "marked_unavailable": 0,
       "dropped_unavailable": 0
@@ -56,7 +56,7 @@
   "combined": {
     "total_unique": 590,
     "removed_on_merge": 0,
-    "removed_by_relevance": 12,
+    "removed_by_relevance": 11,
     "corrections_applied": 0,
     "marked_unavailable": 0,
     "dropped_unavailable": 0
