@@ -10,6 +10,55 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "porque-apple-domina-mercado-recondicionados",
+    title: "Porque é que a Apple domina o mercado dos recondicionados",
+    description:
+      "Se já procuraste telemóvel recondicionado, reparaste: o catálogo é dominado por iPhones e iPads. Não é coincidência — explicamos porquê.",
+    metaTitle:
+      "Porque é que a Apple domina o mercado dos recondicionados | goRiCycle",
+    publishedAt: "2026-07-11",
+    readingMinutes: 4,
+    content: `Se já andaste à procura de um telemóvel ou tablet recondicionado, provavelmente reparaste nisto: a maioria das lojas — Certideal, iServices, Swappie, Refurbed, Callphone, entre outras — tem um catálogo dominado por iPhones e iPads. Há Android e outras marcas, sim, mas em muito menor número e variedade. Isto não é coincidência nem falta de opção das lojas. Tem uma explicação bastante simples.
+
+## Porque é que isto acontece
+
+Três factores explicam a dominância da Apple no mercado de recondicionados:
+
+**Valor residual mais alto.** Um iPhone ou iPad perde valor mais devagar do que a maioria dos equivalentes Android ao longo do tempo. Isto é bom para quem vende (recebe mais na troca) e bom para quem recondiciona (o produto continua a valer a pena reparar e revender anos depois do lançamento.
+
+**Ciclo de actualizações mais longo.** A Apple mantém os seus dispositivos a receber actualizações de sistema operativo (iOS, iPadOS) durante mais anos do que é comum no mercado Android. Um iPhone com vários anos continua, na prática, a correr software actual — o que o torna uma compra recondicionada muito mais defensável do que um Android da mesma idade.
+
+**Maior volume de entradas no mercado secundário.** Como a Apple vende um número elevado de unidades e tem uma base de utilizadores que troca de aparelho com regularidade (planos de troca, upgrades, etc.), há simplesmente mais iPhones e iPads a entrar nos circuitos de recondicionamento todos os anos. Mais oferta traduz-se em mais escolha e, normalmente, em processos de recondicionamento mais maduros por parte das lojas.
+
+## O que isto significa para quem compra
+
+Na prática, se procuras um recondicionado, é provável que encontres:
+
+- Mais opções de estado (grade) dentro do mesmo modelo de iPhone ou iPad, porque há mais unidades a passar pelo processo de recondicionamento
+- Processos de verificação mais estabelecidos nas lojas parceiras, simplesmente porque é a categoria onde têm mais experiência e mais volume
+- Preços mais previsíveis e mais fáceis de comparar entre lojas, por haver mais pontos de referência
+
+É também por isto que, no goRiCycle, a maior parte do catálogo que comparamos entre as várias lojas parceiras é composta por iPhones e iPads — não porque decidimos focar-nos só na Apple, mas porque é onde o mercado de recondicionados está, de facto, mais desenvolvido.
+
+## Mas não é sempre a melhor escolha
+
+Dito isto, vale a pena seres honesto contigo próprio sobre o que precisas:
+
+**Faz sentido apostar em Apple recondicionado se** valorizas ter o sistema operativo actualizado durante mais anos, se já estás dentro do ecossistema Apple (Mac, Apple Watch, AirPods), ou se planeias voltar a vender o aparelho daqui a uns anos e queres que retenha valor.
+
+**Não é a melhor escolha se** o teu orçamento é limitado e um Android recondicionado de gama média te dá as funcionalidades que precisas por uma fracção do preço, ou se não tens qualquer investimento no ecossistema Apple e não vês vantagem em entrar nele agora.
+
+A dominância da Apple no mercado de recondicionados é um facto sobre o mercado — não é um conselho de compra. A melhor escolha continua a ser a que faz sentido para o que precisas e podes gastar.
+
+## Como comparar
+
+Se decidires que um iPhone ou iPad recondicionado é o caminho certo, o passo seguinte é comparar o mesmo modelo, capacidade e estado entre lojas — os preços variam mais do que se costuma pensar, e a diferença entre a loja mais cara e a mais barata pode ser significativa. É para isso que existe o goRiCycle: reunimos os preços das principais lojas portuguesas de recondicionados num só lugar, para tornar essa comparação simples.
+
+[Ver iPhones recondicionados →](/?tech=smartphones&brand=Apple&view=all&section=comparador#comparador)
+
+[Ver iPads recondicionados →](/?tech=tablets&brand=Apple&view=all&section=comparador#comparador)`,
+  },
+  {
     slug: "ipad-11-recondicionado-128gb-256gb-512gb",
     title: "iPad 11 recondicionado: 128GB, 256GB ou 512GB — qual escolher?",
     description:
