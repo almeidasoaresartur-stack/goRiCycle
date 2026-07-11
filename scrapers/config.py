@@ -246,8 +246,11 @@ REFURBED_CONFIG: dict[str, Any] = {
         "product_link": "[data-test='productcard-link']",
         # Nome do modelo (<h3> dentro do article)
         "product_name": "h3",
-        # Preço real do cartão (dentro do link do produto, não subscrição refurbed+)
+        # Preço real do cartão (total, não prestação mensal)
         "product_price": "[data-test='productcard-link'] [data-test='product-price']",
+        "product_price_displayed": (
+            "[data-test='productcard-link'] [data-test='product-price'][data-test-displayed-price]"
+        ),
         # Imagem (<picture><img>)
         "product_image": "picture img, img",
         # Avaliação do produto (estrelas Trustpilot na listagem)
@@ -264,6 +267,9 @@ REFURBED_CONFIG: dict[str, Any] = {
         # --- Ficha de produto ---
         "detail_title": "h1",
         "detail_price": "[data-test='product-price']:not([data-test*='subscription'])",
+        "detail_price_displayed": (
+            "[data-test='product-price'][data-test-displayed-price]:not([data-test*='subscription'])"
+        ),
         "detail_image": "picture img, [data-test='product-image'] img",
         "detail_og_image": "meta[property='og:image']",
         # Variantes sugeridas (storage × grade × cor × preço mínimo)

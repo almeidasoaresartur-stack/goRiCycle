@@ -80,6 +80,33 @@ def check_link_status_200(url: str) -> bool:
         return False
 
 
+FINANCING_TEXT_RE = re.compile(
+    r"/\s*m[eê]s|/\s*mes\b|\bmensal\b|installment|parcela|financiamento|"
+    r"pay\s*later|paga\s*depois|presta(?:ç|c)[ãa]o",
+    re.I,
+)
+
+REFURBED_MIN_PRICE_DEFAULT = 100
+REFURBED_MODEL_MIN_PRICE = {
+    "iphone": 100,
+    "ipad": 80,
+}
+
+
+def is_financing_price_text(text: str | None) -> bool:
+    if not text:
+        return False
+    return bool(FINANCING_TEXT_RE.search(text))
+
+
+def refurbed_min_price_for_model(model: str | None) -> float:
+    model_lower = (model or "").lower()
+    for keyword, min_price in REFURBED_MODEL_MIN_PRICE.items():
+        if keyword in model_lower:
+            return min_price
+    return REFURBED_MIN_PRICE_DEFAULT
+
+
 def clean_price(price: float | None) -> float | None:
     # Rejeita valores que são claramente anos ou valores impossíveis
     # Um iPhone recondicionado nunca custa menos de 30€ nem mais de 3000€
@@ -92,11 +119,49 @@ def clean_price(price: float | None) -> float | None:
     return price
 
 
+def accept_refurbed_price(
+    price: float | None,
+    model: str | None,
+    *,
+    price_raw: str | None = None,
+) -> float | None:
+    """Rejeita preços de financiamento ou abaixo do mínimo plausível por modelo."""
+    if price_raw and is_financing_price_text(price_raw):
+        logger.warning(
+            "Preço de financiamento rejeitado (%r) — produto descartado (%s)",
+            price_raw[:80],
+            model,
+        )
+        return None
+
+    price = clean_price(price)
+    if price is None:
+        return None
+
+    min_price = refurbed_min_price_for_model(model)
+    if price < min_price:
+        logger.warning(
+            "Preço suspeito (possível financiamento) rejeitado: %s€ — produto descartado (%s)",
+            price,
+            model,
+        )
+        return None
+
+    return price
+
+
 def parse_refurbed_price_eur(text: str | None) -> float | None:
-    """Preço PT com separador de milhares (ex. 1.131,99 €) — evita apanhar só os centimos."""
+    """Preço PT com separador de milhares (ex. 1.131,99 €) — evita prestações mensais."""
     if not text:
         return None
-    cleaned = re.split(r"/\s*m[eê]s|refurbed\+", text, maxsplit=1, flags=re.I)[0]
+    if is_financing_price_text(text):
+        return None
+    cleaned = re.split(
+        r"/\s*m[eê]s|refurbed\+|installment|financiamento|mensal",
+        text,
+        maxsplit=1,
+        flags=re.I,
+    )[0]
     cleaned = cleaned.replace("\xa0", " ").strip()
     match = re.search(r"(\d{1,3}(?:\.\d{3})*,\d{2}|\d+,\d{2})", cleaned)
     if match:
@@ -105,6 +170,63 @@ def parse_refurbed_price_eur(text: str | None) -> float | None:
         except ValueError:
             return None
     return clean_price(parse_price_eur(cleaned))
+
+
+def _price_context_is_financing(locator) -> bool:
+    if not locator.count():
+        return True
+    try:
+        context = locator.first.evaluate(
+            """el => {
+                let node = el;
+                const parts = [];
+                for (let depth = 0; depth < 5 && node; depth++) {
+                    parts.push(node.innerText || '');
+                    const testId = node.getAttribute?.('data-test') || '';
+                    if (testId) parts.push(testId);
+                    node = node.parentElement;
+                }
+                return parts.join(' ');
+            }"""
+        )
+        return is_financing_price_text(context)
+    except Exception:
+        return False
+
+
+def _read_price_locator(locator, model: str | None) -> float | None:
+    if not locator.count():
+        return None
+    if _price_context_is_financing(locator):
+        return None
+    price_raw = locator.first.inner_text(timeout=5000).strip()
+    return accept_refurbed_price(
+        parse_refurbed_price_eur(price_raw),
+        model,
+        price_raw=price_raw,
+    )
+
+
+def _read_detail_price(page: Page, model: str | None) -> float | None:
+    """Preferir preço total explícito (data-test-displayed-price) antes de fallbacks."""
+    selectors = (
+        SEL["detail_price_displayed"],
+        SEL["detail_price"],
+        "[data-test='price-component'] [data-test='product-price']",
+    )
+    for selector in selectors:
+        price = _read_price_locator(page.locator(selector), model)
+        if price is not None:
+            return price
+    return None
+
+
+def _read_listing_price(card, model: str | None) -> float | None:
+    for selector in (SEL["product_price_displayed"], SEL["product_price"]):
+        price = _read_price_locator(card.locator(selector), model)
+        if price is not None:
+            return price
+    return None
 
 
 def dismiss_cookie_banner(page: Page) -> None:
@@ -210,8 +332,16 @@ def collect_listing_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
                 href = urljoin(base_url, href)
 
             name = card.locator(SEL["product_name"]).first.inner_text(timeout=5000).strip()
-            price_raw = card.locator(SEL["product_price"]).first.inner_text(timeout=5000)
-            listing_price = clean_price(parse_refurbed_price_eur(price_raw))
+            listing_price = _read_listing_price(card, name)
+            price_raw = None
+            try:
+                price_loc = card.locator(SEL["product_price_displayed"])
+                if not price_loc.count():
+                    price_loc = card.locator(SEL["product_price"])
+                if price_loc.count():
+                    price_raw = price_loc.first.inner_text(timeout=5000)
+            except Exception:
+                pass
             image_loc = card.locator(SEL["product_image"]).first
             image_url = resolve_image_url(image_loc) if image_loc.count() else None
             seller_rating = _listing_rating(card)
@@ -436,12 +566,11 @@ def _click_recommended_variant(page: Page, index: int) -> str | None:
         return None
 
 
-def _default_variant_from_detail_page(page: Page) -> dict[str, Any] | None:
+def _default_variant_from_detail_page(page: Page, model: str) -> dict[str, Any] | None:
     """Preço da configuração activa (cabeçalho) — frequentemente o mínimo real."""
     try:
         title = page.locator(SEL["detail_title"]).first.inner_text(timeout=5000).strip()
-        price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-        price = clean_price(parse_refurbed_price_eur(price_raw))
+        price = _read_detail_price(page, model or title)
         if price is None or not title:
             return None
 
@@ -510,7 +639,7 @@ def _variants_from_detail_page(
 
     records: list[dict[str, Any]] = []
 
-    default_variant = _default_variant_from_detail_page(page)
+    default_variant = _default_variant_from_detail_page(page, model)
     if default_variant:
         record = normalize_record(
             category=category,
@@ -552,7 +681,14 @@ def _variants_from_detail_page(
 
             variant_url = _variant_url_from_page(page, product_url)
 
-            price = clean_price(parse_refurbed_price_eur(item.get("price")))
+            variant_price_raw = item.get("price")
+            if variant_price_raw and is_financing_price_text(variant_price_raw):
+                continue
+            price = accept_refurbed_price(
+                parse_refurbed_price_eur(variant_price_raw),
+                model,
+                price_raw=variant_price_raw,
+            )
             if price is None:
                 continue
             record = normalize_record(
@@ -576,13 +712,10 @@ def _variants_from_detail_page(
     if records:
         return records
 
-    # Fallback: preço único na ficha
-    price_raw = None
-    try:
-        price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-    except Exception:
-        pass
-    price = clean_price(parse_refurbed_price_eur(price_raw)) or clean_price(card.get("listing_price"))
+    price = _read_detail_price(page, model)
+    if price is None:
+        fallback_raw = card.get("listing_price")
+        price = accept_refurbed_price(fallback_raw, model) if fallback_raw is not None else None
     if price is None:
         return []
 

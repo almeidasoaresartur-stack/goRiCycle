@@ -33,6 +33,19 @@ KEEP_RATIO = 1 - DROP_THRESHOLD
 
 BAD_URL_PATTERNS = ("/procurar", "search_query", "/search/", "/c/", "/cat", "/categoria")
 
+MODEL_MIN_PRICE = {
+    "iphone": 100,
+    "ipad": 80,
+}
+
+
+def is_price_plausible(model: str, price: float) -> bool:
+    model_lower = (model or "").lower()
+    for keyword, min_price in MODEL_MIN_PRICE.items():
+        if keyword in model_lower and price < min_price:
+            return False
+    return True
+
 
 def load_json(path: Path) -> dict:
     with open(path, encoding="utf-8") as f:
@@ -92,7 +105,9 @@ def is_invalid_product(product: dict) -> bool:
     except (TypeError, ValueError):
         return True
 
-    return not (PRICE_MIN <= price_value <= PRICE_MAX)
+    return not (PRICE_MIN <= price_value <= PRICE_MAX) or not is_price_plausible(
+        product.get("model") or "", price_value
+    )
 
 
 def dedupe_key(product: dict) -> tuple:
