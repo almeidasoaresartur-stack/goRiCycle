@@ -178,6 +178,8 @@ def load_model_image_urls() -> dict[str, str]:
 def resolve_image_url(post: dict) -> str:
     """URL pública para assets.image — requerida no Instagram (ver docs Buffer)."""
     direct_image = (post.get("image_url") or "").strip()
+    if direct_image.startswith("/social-posts/"):
+        return f"{SITE_URL}{direct_image}"
     if direct_image:
         if image_url_is_accessible(direct_image):
             return build_proxy_image_url(direct_image)

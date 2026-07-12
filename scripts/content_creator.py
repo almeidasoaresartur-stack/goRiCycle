@@ -4,7 +4,18 @@ goRiCycle — Agente 2: Content Creator.
 
 Lê data/all_products.json, selecciona produtos interessantes para posts e gera
 conteúdo para Instagram/LinkedIn/WhatsApp via Claude Haiku. Output em
-data/posts_semana.json.
+data/posts_semana.json e imagens de marca em web/public/social-posts/.
+
+Fluxo semanal (ordem actualizada):
+    1. python3 scripts/content_creator.py
+       # gera posts + imagens em web/public/social-posts/
+    2. git add web/public/social-posts/ data/posts_semana.json
+       git commit -m "chore: imagens e posts da semana"
+       git push
+       # Vercel faz deploy — as imagens ficam publicamente acessíveis
+    3. Aguardar o deploy terminar no Vercel (confirmar visualmente uma imagem)
+    4. python3 scripts/publisher.py
+       # agenda no Buffer, usando as imagens já publicadas
 
 Uso:
     python scripts/content_creator.py
@@ -21,6 +32,8 @@ from pathlib import Path
 
 from anthropic import Anthropic
 from dotenv import load_dotenv
+
+from social_image_generator import generate_and_save_post_image
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_FILE = ROOT / "data" / "all_products.json"
@@ -281,6 +294,75 @@ def get_image_for_model(products: list[dict], modelo: str) -> str | None:
     return None
 
 
+def resolve_comparison_product_image(item: dict, catalog_products: list[dict]) -> str | None:
+    """Foto sempre de uma das duas lojas comparadas (mais barata, depois mais cara)."""
+    cheapest = item["cheapest"]
+    priciest = item["priciest"]
+    allowed_sources = {cheapest["source"], priciest["source"]}
+
+    for product in (cheapest, priciest):
+        image_url = (product.get("image_url") or "").strip()
+        if image_url:
+            return image_url
+
+    model = (item.get("model") or "").strip()
+    storage = (item.get("storage") or "").strip()
+    for product in catalog_products:
+        if product.get("source") not in allowed_sources:
+            continue
+        if (product.get("model") or "").strip() != model:
+            continue
+        if (product.get("storage") or "").strip() != storage:
+            continue
+        image_url = (product.get("image_url") or "").strip()
+        if image_url and product.get("is_available"):
+            return image_url
+
+    for product in catalog_products:
+        if product.get("source") not in allowed_sources:
+            continue
+        if not (product.get("model") or "").startswith(model):
+            continue
+        image_url = (product.get("image_url") or "").strip()
+        if image_url and product.get("is_available"):
+            return image_url
+
+    return None
+
+
+def resolve_source_product_image(
+    tipo: str,
+    item: dict,
+    catalog_products: list[dict],
+) -> str | None:
+    """URL original da loja parceira, antes do proxy / imagem de marca."""
+    if tipo == "comparacao":
+        return resolve_comparison_product_image(item, catalog_products)
+    if tipo == "destaque":
+        return item.get("image_url") or get_image_for_model(
+            catalog_products, item["model"]
+        )
+    if tipo == "editorial":
+        return item.get("image_url")
+    return None
+
+
+def attach_branded_image(
+    post_record: dict,
+    *,
+    tipo: str,
+    item: dict,
+    catalog_products: list[dict],
+    week_number: int,
+) -> dict:
+    product_image_url = resolve_source_product_image(tipo, item, catalog_products)
+    return generate_and_save_post_image(
+        post_record,
+        product_image_url=product_image_url,
+        week_number=week_number,
+    )
+
+
 def load_catalog_products() -> list[dict]:
     with open(DATA_FILE, encoding="utf-8") as f:
         data = json.load(f)
@@ -513,12 +595,21 @@ def main() -> None:
 
     client = Anthropic()
     posts: list[dict] = []
+    week_number = date.today().isocalendar()[1]
 
     for day, (tipo, item) in enumerate(scheduled, start=1):
         if tipo == "editorial":
             print_progress_line(day, total_posts, tipo, item)
             post_record = generate_tipo_c_post(item["article"], item["image_url"], client)
             post_record["dia"] = day
+            post_record = attach_branded_image(
+                post_record,
+                tipo=tipo,
+                item=item,
+                catalog_products=catalog_products,
+                week_number=week_number,
+            )
+            print(f"  Imagem: {post_record['image_url']}")
             posts.append(post_record)
             continue
 
@@ -529,7 +620,16 @@ def main() -> None:
             else build_destaque_prompt(item)
         )
         post_text = generate_post_text(client, prompt)
-        posts.append(build_post_record(day, tipo, item, post_text))
+        post_record = build_post_record(day, tipo, item, post_text)
+        post_record = attach_branded_image(
+            post_record,
+            tipo=tipo,
+            item=item,
+            catalog_products=catalog_products,
+            week_number=week_number,
+        )
+        print(f"  Imagem: {post_record['image_url']}")
+        posts.append(post_record)
 
     output = {
         "gerado_em": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
@@ -544,6 +644,7 @@ def main() -> None:
 
     print()
     print(f"Posts guardados em: data/posts_semana.json")
+    print(f"Imagens guardadas em: web/public/social-posts/")
     print("─────────────────────────")
     print(f"Custo estimado: {ESTIMATED_COST_USD}")
 
