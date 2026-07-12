@@ -136,17 +136,24 @@ ISERVICES_CONFIG: dict[str, Any] = {
         "cookie_accept": "#klaro .cm-btn-success",
         "cookie_accept_alt": "#klaro button.cm-btn-success",
         "cookie_accept_all": ".cm-btn-accept-all",
-        # --- Ficha de produto (loja.iservices.pt — PrestaShop) ---
+        # --- Ficha de produto (iservices.pt SPA; fallback PrestaShop loja.iservices.pt) ---
         "detail_title": "h1.page-title, h1",
-        "detail_price": ".current-price, .product-price",
-        "detail_image": ".product-cover img, img.js-qv-product-cover",
+        # Preço total no cabeçalho/CTA — nunca dentro de .product-variants
+        "detail_price_main": ".price-info-divisor .main-price, .price-info-divisor p.main-price, .cta .price.hide-mobile",
+        "detail_price": ".main-price, p.main-price, .price.hide-mobile, .current-price, .product-price",
+        "detail_price_exclude_sections": (
+            ".product-variants, .product-variants-item, .product-accessories, "
+            ".related-products, .accessories-list"
+        ),
+        "detail_image": ".product-cover img, img.js-qv-product-cover, .product-image img, img.image",
         "detail_og_image": "meta[property='og:image']",
         "detail_variants": ".product-variants",
         "detail_variant_group": ".product-variants-item",
         "detail_variant_radio": "input.input-radio",
         "detail_variant_label": ".radio-label",
         "detail_availability_badge": ".availability-badge",
-        "detail_stock_areas": ".product-add-to-cart, .product-actions, .product-prices",
+        "detail_stock_areas": ".cta, .product-cta, .product-add-to-cart, .product-actions, .product-prices",
+        "detail_out_of_stock": ".no-stock, .out-of-stock, .product-out-of-stock, .unavailable",
     },
 }
 

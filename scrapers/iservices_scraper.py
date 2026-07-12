@@ -48,6 +48,19 @@ CFG = ISERVICES_CONFIG
 SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
 DEFAULT_GRADE = "Bom"
+VARIANT_DELTA_PRICE_RE = re.compile(r"^\s*[+\-−–—]")
+
+
+def is_variant_delta_price_text(text: str | None) -> bool:
+    """Ignora deltas de variantes (ex. '64 GB -174,86 €') — não são preços totais."""
+    if not text:
+        return False
+    cleaned = re.sub(r"\s+", " ", text.strip())
+    if VARIANT_DELTA_PRICE_RE.search(cleaned):
+        return True
+    if re.search(r"\b[+\-−–—]\s*\d+[,.]\d{2}\s*€", cleaned):
+        return True
+    return False
 
 
 def clean_price(price: float | None) -> float | None:
@@ -63,12 +76,24 @@ def clean_price(price: float | None) -> float | None:
 
 
 def parse_iservices_price_eur(text: str | None) -> float | None:
-    """Ignora datas de promoção (ex. 29-05-2026) no bloco de preço."""
+    """Ignora datas de promoção (ex. 29-05-2026) e deltas de variante no bloco de preço."""
     if not text:
         return None
+    if is_variant_delta_price_text(text):
+        return None
     cleaned = re.split(r"Promoção|promoção", text, maxsplit=1)[0]
+    if is_variant_delta_price_text(cleaned):
+        return None
     match = re.search(r"(\d+[,.]\d{2})", cleaned.replace("\xa0", " "))
     if match:
+        matched_text = match.group(0)
+        if is_variant_delta_price_text(matched_text):
+            return None
+        # Rejeita se o algarismo vem imediatamente após sinal +/- no texto original
+        start = match.start()
+        prefix = cleaned[:start].rstrip()
+        if prefix and prefix[-1] in "+-−–—":
+            return None
         try:
             return clean_price(float(match.group(1).replace(",", ".")))
         except ValueError:
@@ -159,6 +184,7 @@ def collect_listing_cards(page: Page, *, out_of_stock_urls: set[str] | None = No
             cards.append(
                 {
                     "model": name,
+                    # "Desde" da grelha (AggregateOffer.lowPrice) — só referência; preço final vem da ficha.
                     "listing_price": clean_price(parse_iservices_price_eur(price_raw)),
                     "original_price": parse_original_price_eur(price_raw),
                     "image_url": image_url,
@@ -181,8 +207,9 @@ def get_next_listing_url(page: Page, current_url: str) -> str | None:
     return urljoin(current_url, href)
 
 
-def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any]]:
+def scrape_category_listing(page: Page, category_url: str) -> tuple[list[dict[str, Any]], set[str]]:
     all_cards: list[dict[str, Any]] = []
+    all_oos_urls: set[str] = set()
     url: str | None = category_url
     page_num = 0
 
@@ -192,8 +219,13 @@ def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any
         page.goto(url, wait_until="domcontentloaded", timeout=60_000)
         human_delay(CFG["delays"], "after_navigation")
         dismiss_cookie_banner(page)
+        try:
+            page.wait_for_load_state("networkidle", timeout=30_000)
+        except Exception:
+            pass
 
         out_of_stock_urls = parse_embedded_out_of_stock_urls(page.content())
+        all_oos_urls |= out_of_stock_urls
         if out_of_stock_urls:
             logger.info("Página %s: %s produto(s) OutOfStock no schema.org", page_num, len(out_of_stock_urls))
 
@@ -213,15 +245,157 @@ def scrape_category_listing(page: Page, category_url: str) -> list[dict[str, Any
                 )
             url = None
 
-    return all_cards
+    return all_cards, all_oos_urls
 
 
-def _page_is_out_of_stock(page: Page) -> bool:
+def _wait_for_product_detail(page: Page) -> None:
+    """SPA iservices.pt — espera preço/título antes de extrair."""
+    try:
+        page.wait_for_selector(f"{SEL['detail_title']}, {SEL['detail_price']}", timeout=20_000)
+    except Exception:
+        pass
+    try:
+        page.wait_for_load_state("networkidle", timeout=30_000)
+    except Exception:
+        pass
+
+
+def _iservices_page_is_out_of_stock(page: Page) -> bool:
+    """
+    Disponibilidade na ficha iservices.pt (SPA).
+    Preferência: JSON-LD ligado ao URL → DOM (.no-stock) → heurísticas genéricas.
+    """
+    product_path = normalize_product_url(page.url)
+    if product_path:
+        try:
+            html = page.content()
+            if product_path in parse_embedded_out_of_stock_urls(html):
+                return True
+            escaped = re.escape(product_path)
+            if re.search(
+                rf'{escaped}[\s\S]{{0,3500}}?"availability"\s*:\s*"https://schema.org/OutOfStock"',
+                html,
+                flags=re.IGNORECASE,
+            ):
+                return True
+            if re.search(
+                rf'{escaped}[\s\S]{{0,3500}}?"stock"\s*:\s*0\b',
+                html,
+                flags=re.IGNORECASE,
+            ):
+                return True
+        except Exception:
+            pass
+
+    out_of_stock_selectors = SEL.get(
+        "detail_out_of_stock",
+        ".no-stock, .out-of-stock, .product-out-of-stock, .unavailable",
+    )
     return page_indicates_out_of_stock(
         page,
         availability_badge=SEL.get("detail_availability_badge", ".availability-badge"),
-        stock_areas=SEL.get("detail_stock_areas", ".product-add-to-cart, .product-actions, .product-prices"),
+        stock_areas=SEL.get(
+            "detail_stock_areas",
+            ".cta, .product-cta, .product-add-to-cart, .product-actions, .product-prices",
+        ),
+        out_of_stock_selectors=out_of_stock_selectors,
     )
+
+
+def _locator_is_in_excluded_price_section(locator) -> bool:
+    """True se o elemento está dentro de secções de variantes/acessórios."""
+    if not locator.count():
+        return False
+    exclude = SEL.get("detail_price_exclude_sections", ".product-variants, .product-variants-item")
+    try:
+        return bool(
+            locator.first.evaluate(
+                """(el, excludeSelectors) => {
+                    const selectors = excludeSelectors.split(',').map(s => s.trim()).filter(Boolean);
+                    let node = el;
+                    for (let depth = 0; depth < 14 && node; depth++) {
+                        for (const sel of selectors) {
+                            if (node.matches?.(sel)) return true;
+                        }
+                        node = node.parentElement;
+                    }
+                    return false;
+                }""",
+                exclude,
+            )
+        )
+    except Exception:
+        return False
+
+
+def _read_price_locator(locator, model: str) -> tuple[float | None, str | None]:
+    if not locator.count():
+        return None, None
+    if _locator_is_in_excluded_price_section(locator):
+        return None, None
+    try:
+        price_raw = locator.first.inner_text(timeout=5000).strip()
+    except Exception:
+        return None, None
+    if is_variant_delta_price_text(price_raw):
+        logger.info("Preço ignorado (delta de variante): %s (%s)", price_raw, model)
+        return None, None
+    price = clean_price(parse_iservices_price_eur(price_raw))
+    if price is None:
+        return None, None
+    return price, price_raw
+
+
+def _read_detail_main_price(page: Page, model: str) -> tuple[float | None, str | None]:
+    """Lê o preço total no bloco principal — exclui opções de variante (storage/cor/estado)."""
+    for selector_key in ("detail_price_main", "detail_price"):
+        for selector in (s.strip() for s in SEL.get(selector_key, "").split(",")):
+            if not selector:
+                continue
+            price, price_raw = _read_price_locator(page.locator(selector), model)
+            if price is not None:
+                return price, price_raw
+
+    try:
+        price_raw = page.evaluate(
+            """(excludeSelectors) => {
+                const excluded = excludeSelectors.split(',').map(s => s.trim()).filter(Boolean);
+                const isExcluded = (el) => {
+                    let node = el;
+                    for (let depth = 0; depth < 14 && node; depth++) {
+                        for (const sel of excluded) {
+                            if (node.matches?.(sel)) return true;
+                        }
+                        node = node.parentElement;
+                    }
+                    return false;
+                };
+                const candidates = [
+                    ...document.querySelectorAll('.price-info-divisor .main-price'),
+                    ...document.querySelectorAll('.cta .price.hide-mobile'),
+                    ...document.querySelectorAll('p.main-price'),
+                ];
+                for (const el of candidates) {
+                    if (isExcluded(el)) continue;
+                    const text = (el.innerText || '').trim();
+                    if (!text || /[+\-−–—]\\s*\\d/.test(text)) continue;
+                    return text;
+                }
+                return null;
+            }""",
+            SEL.get(
+                "detail_price_exclude_sections",
+                ".product-variants, .product-variants-item",
+            ),
+        )
+        if price_raw and not is_variant_delta_price_text(price_raw):
+            price = clean_price(parse_iservices_price_eur(price_raw))
+            if price is not None:
+                return price, price_raw
+    except Exception:
+        pass
+
+    return None, None
 
 
 def _read_selected_variant_label(page: Page, group_label: str) -> str | None:
@@ -271,6 +445,7 @@ def _default_listing_from_detail_page(
     """
     page.goto(card["url"], wait_until="domcontentloaded", timeout=60_000)
     human_delay(CFG["delays"], "after_navigation")
+    _wait_for_product_detail(page)
     dismiss_cookie_banner(page)
 
     model = card["model"]
@@ -281,21 +456,21 @@ def _default_listing_from_detail_page(
     except Exception:
         pass
 
-    if _page_is_out_of_stock(page):
+    if _iservices_page_is_out_of_stock(page):
         logger.info("Produto sem stock (ficha): %s", model)
         return []
 
     image_url = _detail_image(page, card.get("image_url"))
     product_url = page.url
 
-    price_raw = None
-    try:
-        price_raw = page.locator(SEL["detail_price"]).first.inner_text(timeout=5000)
-    except Exception:
-        pass
-    price = clean_price(parse_iservices_price_eur(price_raw)) or clean_price(card.get("listing_price"))
+    price, price_raw = _read_detail_main_price(page, model)
     if price is None:
-        logger.warning("Sem preço válido: %s", product_url)
+        listing_hint = card.get("listing_price")
+        logger.warning(
+            "Sem preço válido na ficha (listagem tinha desde %s€): %s",
+            listing_hint,
+            product_url,
+        )
         return []
 
     storage_label = _read_selected_variant_label(page, "Armazenamento") or ""
@@ -303,7 +478,7 @@ def _default_listing_from_detail_page(
     grade = extract_grade(grade_label) or extract_grade(model) or DEFAULT_GRADE
     storage = extract_storage(storage_label) or extract_storage(model)
 
-    if _page_is_out_of_stock(page):
+    if _iservices_page_is_out_of_stock(page):
         logger.info("Produto sem stock após leitura inicial: %s", model)
         return []
 
@@ -380,7 +555,13 @@ def run_scraper(
 ) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or list(CATEGORY_KEYS)
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
+    stats: dict[str, Any] = {
+        "total": 0,
+        "by_category": {},
+        "errors": 0,
+        "removed_out_of_stock": 0,
+        "skipped_unavailable": 0,
+    }
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -409,7 +590,24 @@ def run_scraper(
                 continue
 
             logger.info("=== Categoria: %s ===", category)
-            cards = scrape_category_listing(page, category_url)
+            cards, listing_oos_urls = scrape_category_listing(page, category_url)
+
+            if listing_oos_urls:
+                removed_from_listing = 0
+                for oos_path in listing_oos_urls:
+                    products, n_removed = remove_products_by_url(
+                        products, f"https://iservices.pt{oos_path}"
+                    )
+                    removed_from_listing += n_removed
+                if removed_from_listing:
+                    stats["removed_out_of_stock"] += removed_from_listing
+                    known_ids = {p["product_id"] for p in products if p.get("product_id")}
+                    logger.info(
+                        "%s: removidos %s registo(s) OutOfStock da listagem",
+                        category,
+                        removed_from_listing,
+                    )
+
             cat_count = 0
 
             for index, card in enumerate(cards, start=1):
@@ -433,6 +631,8 @@ def run_scraper(
                             n_removed,
                             card.get("model"),
                         )
+                    else:
+                        stats["skipped_unavailable"] += 1
                     human_delay(CFG["delays"], "between_products")
                     continue
 
@@ -458,9 +658,10 @@ def run_scraper(
     }
     save_products(products, CFG["output_json"], meta)
     logger.info(
-        "Concluído. Total: %s | Removidos sem stock: %s | %s",
+        "Concluído. Total: %s | Removidos sem stock: %s | Ignorados indisponíveis: %s | %s",
         stats["total"],
         stats["removed_out_of_stock"],
+        stats["skipped_unavailable"],
         stats["by_category"],
     )
     return stats

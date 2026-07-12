@@ -540,6 +540,8 @@ def is_model_relevant(model_name: str, brand: str | None) -> bool:
 
 OUT_OF_STOCK_MARKERS: tuple[str, ...] = (
     "sem stock",
+    "produto indisponível",
+    "produto indisponivel",
     "brevemente disponível",
     "brevemente disponivel",
     "out of stock",
@@ -677,15 +679,15 @@ def normalize_product_url(url: str | None) -> str:
 def parse_embedded_out_of_stock_urls(html: str) -> set[str]:
     """Extrai URLs de produtos OutOfStock em JSON-LD/schema.org embutido."""
     oos_urls: set[str] = set()
+    # Liga cada Product ao seu url (não ao primeiro url no bloco — listagens iServices
+    # empacotam vários produtos no mesmo troço HTML).
     for match in re.finditer(
-        r'"@type"\s*:\s*"Product"[\s\S]{0,2500}?"availability"\s*:\s*"https://schema.org/OutOfStock"',
+        r'"@type"\s*:\s*"Product"[\s\S]*?"url"\s*:\s*"([^"]+)"'
+        r'[\s\S]{0,600}?"availability"\s*:\s*"https://schema.org/OutOfStock"',
         html,
         flags=re.IGNORECASE,
     ):
-        chunk = match.group(0)
-        url_match = re.search(r'"url"\s*:\s*"([^"]+)"', chunk)
-        if url_match:
-            oos_urls.add(normalize_product_url(url_match.group(1)))
+        oos_urls.add(normalize_product_url(match.group(1)))
     return oos_urls
 
 
