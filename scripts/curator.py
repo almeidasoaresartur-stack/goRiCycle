@@ -19,6 +19,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from statistics import median
 
 ROOT = Path(__file__).resolve().parent.parent
 ALL_PRODUCTS_JSON = ROOT / "data" / "all_products.json"
@@ -45,6 +46,57 @@ def is_price_plausible(model: str, price: float) -> bool:
         if keyword in model_lower and price < min_price:
             return False
     return True
+
+
+def detect_price_outliers(
+    products_by_store: list[dict],
+    min_group_size: int = 2,
+    outlier_ratio: float = 0.45,
+) -> tuple[list[dict], int]:
+    """
+    Agrupa por (model, storage) e remove preços muito abaixo da mediana do grupo.
+    Só actua quando há pelo menos min_group_size entradas comparáveis.
+    """
+    groups: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for product in products_by_store:
+        key = (
+            (product.get("model") or "").strip(),
+            (product.get("storage") or "").strip(),
+        )
+        groups[key].append(product)
+
+    valid: list[dict] = []
+    removed = 0
+
+    for items in groups.values():
+        if len(items) < min_group_size:
+            valid.extend(items)
+            continue
+
+        prices: list[float] = []
+        for item in items:
+            try:
+                prices.append(float(item["price"]))
+            except (TypeError, ValueError, KeyError):
+                continue
+
+        if not prices:
+            valid.extend(items)
+            continue
+
+        med = median(prices)
+        for item in items:
+            try:
+                price = float(item["price"])
+            except (TypeError, ValueError, KeyError):
+                removed += 1
+                continue
+            if price < med * outlier_ratio:
+                removed += 1
+                continue
+            valid.append(item)
+
+    return valid, removed
 
 
 def load_json(path: Path) -> dict:
@@ -146,14 +198,17 @@ def dedupe_keep_cheapest(products: list[dict]) -> list[dict]:
 
 def process_store_today(products: list[dict]) -> tuple[list[dict], dict]:
     hoje_bruto = len(products)
-    valid = [product for product in products if not is_invalid_product(product)]
-    removidos_invalidos = hoje_bruto - len(valid)
-    deduped = dedupe_keep_cheapest(valid)
-    removidos_duplicados = len(valid) - len(deduped)
+    basic_valid = [product for product in products if not is_invalid_product(product)]
+    removidos_invalidos = hoje_bruto - len(basic_valid)
+
+    after_outliers, removidos_outlier_estatistico = detect_price_outliers(basic_valid)
+    deduped = dedupe_keep_cheapest(after_outliers)
+    removidos_duplicados = len(after_outliers) - len(deduped)
 
     return deduped, {
         "hoje_bruto": hoje_bruto,
         "removidos_invalidos": removidos_invalidos,
+        "removidos_outlier_estatistico": removidos_outlier_estatistico,
         "removidos_duplicados": removidos_duplicados,
         "final": len(deduped),
     }
@@ -167,12 +222,16 @@ def write_summary(report: dict) -> None:
             lines.append(f"- {alert}")
         lines.append("")
     lines.append("## Resumo por loja\n")
-    lines.append("| Loja | Ontem | Hoje (bruto) | Inválidos removidos | Duplicados removidos | Final |")
-    lines.append("|---|---|---|---|---|---|")
+    lines.append(
+        "| Loja | Ontem | Hoje (bruto) | Inválidos removidos | Outliers estatísticos | "
+        "Duplicados removidos | Final |"
+    )
+    lines.append("|---|---|---|---|---|---|---|")
     for store, stats in report["stores"].items():
         lines.append(
             f"| {store} | {stats['ontem']} | {stats['hoje_bruto']} | "
-            f"{stats['removidos_invalidos']} | {stats['removidos_duplicados']} | {stats['final']} |"
+            f"{stats['removidos_invalidos']} | {stats.get('removidos_outlier_estatistico', 0)} | "
+            f"{stats['removidos_duplicados']} | {stats['final']} |"
         )
 
     summary_text = "\n".join(lines)

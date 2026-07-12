@@ -14,7 +14,10 @@ import argparse
 import json
 import logging
 import re
+import signal
 import sys
+import time
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -56,6 +59,67 @@ SEL = CFG["selectors"]
 logger = logging.getLogger(__name__)
 
 
+class ProductExtractionTimeout(Exception):
+    """Produto excedeu o tempo máximo de extracção."""
+
+
+class ProductExtractionBudget:
+    """Prazo por produto — verificado entre variantes e operações longas."""
+
+    def __init__(self, timeout_sec: float, model: str) -> None:
+        self.timeout_sec = timeout_sec
+        self.model = model
+        self.start = time.monotonic()
+        self.deadline = self.start + timeout_sec
+
+    def check(self, label: str) -> None:
+        if time.monotonic() > self.deadline:
+            raise ProductExtractionTimeout(
+                f"Timeout {self.timeout_sec:.0f}s em {label!r} ({self.model})"
+            )
+
+    def elapsed(self) -> float:
+        return time.monotonic() - self.start
+
+
+@contextmanager
+def product_extraction_timeout(seconds: int, model: str):
+    """
+    Alarme SIGALRM (Unix) para interromper chamadas Playwright bloqueadas.
+    Em plataformas sem SIGALRM, só o budget explícito actua.
+    """
+    if not hasattr(signal, "SIGALRM"):
+        yield
+        return
+
+    def _handler(signum, frame) -> None:
+        raise ProductExtractionTimeout(f"Timeout {seconds}s ao extrair {model!r}")
+
+    previous = signal.signal(signal.SIGALRM, _handler)
+    signal.alarm(max(1, seconds))
+    try:
+        yield
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, previous)
+
+
+def _configure_page_timeouts(page: Page) -> None:
+    page.set_default_timeout(30_000)
+    page.set_default_navigation_timeout(60_000)
+
+
+def _recreate_page(context, page: Page) -> Page:
+    """Recria a página após timeout — a instância anterior pode ficar inconsistente."""
+    try:
+        page.close()
+    except Exception:
+        pass
+    fresh = context.new_page()
+    _configure_page_timeouts(fresh)
+    return fresh
+
+
 def check_link_status_200(url: str) -> bool:
     """
     Verifica se o URL do produto responde HTTP 200.
@@ -86,6 +150,8 @@ FINANCING_TEXT_RE = re.compile(
     re.I,
 )
 
+VARIANT_DELTA_PRICE_RE = re.compile(r"^\s*[+\-−–—]")
+
 REFURBED_MIN_PRICE_DEFAULT = 100
 REFURBED_MODEL_MIN_PRICE = {
     "iphone": 100,
@@ -97,6 +163,14 @@ def is_financing_price_text(text: str | None) -> bool:
     if not text:
         return False
     return bool(FINANCING_TEXT_RE.search(text))
+
+
+def is_variant_delta_price_text(text: str | None) -> bool:
+    """Diferença de preço entre variantes (ex. '-84 €', '+52 €') — não é preço total."""
+    if not text:
+        return False
+    normalized = text.replace("\xa0", " ").strip()
+    return bool(VARIANT_DELTA_PRICE_RE.match(normalized))
 
 
 def refurbed_min_price_for_model(model: str | None) -> float:
@@ -134,6 +208,14 @@ def accept_refurbed_price(
         )
         return None
 
+    if price_raw and is_variant_delta_price_text(price_raw):
+        logger.warning(
+            "Diferença de variante rejeitada (%r) — produto descartado (%s)",
+            price_raw[:80],
+            model,
+        )
+        return None
+
     price = clean_price(price)
     if price is None:
         return None
@@ -156,6 +238,8 @@ def parse_refurbed_price_eur(text: str | None) -> float | None:
         return None
     if is_financing_price_text(text):
         return None
+    if is_variant_delta_price_text(text):
+        return None
     cleaned = re.split(
         r"/\s*m[eê]s|refurbed\+|installment|financiamento|mensal",
         text,
@@ -170,6 +254,27 @@ def parse_refurbed_price_eur(text: str | None) -> float | None:
         except ValueError:
             return None
     return clean_price(parse_price_eur(cleaned))
+
+
+def _locator_is_in_recommended_section(locator) -> bool:
+    if not locator.count():
+        return False
+    try:
+        return bool(
+            locator.first.evaluate(
+                """el => {
+                    let node = el;
+                    for (let depth = 0; depth < 12 && node; depth++) {
+                        const test = node.getAttribute?.('data-test') || '';
+                        if (test.startsWith('recommended-product')) return true;
+                        node = node.parentElement;
+                    }
+                    return false;
+                }"""
+            )
+        )
+    except Exception:
+        return False
 
 
 def _price_context_is_financing(locator) -> bool:
@@ -197,9 +302,13 @@ def _price_context_is_financing(locator) -> bool:
 def _read_price_locator(locator, model: str | None) -> float | None:
     if not locator.count():
         return None
+    if _locator_is_in_recommended_section(locator):
+        return None
     if _price_context_is_financing(locator):
         return None
     price_raw = locator.first.inner_text(timeout=5000).strip()
+    if is_variant_delta_price_text(price_raw):
+        return None
     return accept_refurbed_price(
         parse_refurbed_price_eur(price_raw),
         model,
@@ -208,16 +317,48 @@ def _read_price_locator(locator, model: str | None) -> float | None:
 
 
 def _read_detail_price(page: Page, model: str | None) -> float | None:
-    """Preferir preço total explícito (data-test-displayed-price) antes de fallbacks."""
+    """Preço total no bloco principal — exclui carrossel de variantes sugeridas."""
     selectors = (
+        SEL["detail_price_main_mobile"],
+        SEL["detail_price_main"],
         SEL["detail_price_displayed"],
-        SEL["detail_price"],
-        "[data-test='price-component'] [data-test='product-price']",
     )
     for selector in selectors:
-        price = _read_price_locator(page.locator(selector), model)
+        locator = page.locator(selector)
+        if _locator_is_in_recommended_section(locator):
+            continue
+        price = _read_price_locator(locator, model)
         if price is not None:
             return price
+
+    # Fallback: price-component com preço riscado (SRP) ao lado — padrão da ficha principal
+    try:
+        price_raw = page.evaluate(
+            """() => {
+                const blocks = [
+                    document.querySelector('[data-test="price-component-mobile"]'),
+                    document.querySelector('[data-test="price-component"]'),
+                ].filter(Boolean);
+                for (const block of blocks) {
+                    const priceEl = block.querySelector(
+                        '[data-test="product-price"][data-test-displayed-price]'
+                    );
+                    if (!priceEl) continue;
+                    const srp = block.querySelector('[data-test="price-srp"]');
+                    if (srp) return priceEl.innerText.trim();
+                }
+                return null;
+            }"""
+        )
+        if price_raw:
+            return accept_refurbed_price(
+                parse_refurbed_price_eur(price_raw),
+                model,
+                price_raw=price_raw,
+            )
+    except Exception:
+        pass
+
     return None
 
 
@@ -592,7 +733,12 @@ def _variants_from_detail_page(
     category: str,
     source_page: str,
     scraped_at: str,
+    budget: ProductExtractionBudget | None = None,
 ) -> list[dict[str, Any]]:
+    model_label = card.get("model") or "?"
+    if budget:
+        budget.check("início da ficha")
+
     page.goto(card["url"], wait_until="domcontentloaded", timeout=60_000)
     human_delay(CFG["delays"], "after_navigation")
     page_wait_ms(CFG["delays"], "page_load")
@@ -618,9 +764,12 @@ def _variants_from_detail_page(
     try:
         srp = page.locator(SEL["detail_original_price"]).first
         if srp.count():
-            original_price = parse_original_price_eur(srp.inner_text())
+            original_price = parse_original_price_eur(srp.inner_text(timeout=5000))
     except Exception:
         pass
+
+    if budget:
+        budget.check("carrossel de variantes")
 
     items = page.locator(SEL["detail_variant_item"]).evaluate_all(
         """(nodes, sel) => nodes.map((el) => ({
@@ -657,10 +806,34 @@ def _variants_from_detail_page(
         )
         if record:
             records.append(record)
+            logger.info(
+                "  %s: variante activa → %.2f€ %s (%.1fs)",
+                model,
+                record["price"],
+                record.get("url", "")[-35:],
+                budget.elapsed() if budget else 0.0,
+            )
 
     if items:
+        logger.info("  %s: %s variantes sugeridas no carrossel", model, len(items))
         listing_url = product_url
         for index, item in enumerate(items):
+            variant_label = f"variante {index + 1}/{len(items)}"
+            if budget:
+                budget.check(variant_label)
+
+            storage_hint = item.get("storage")
+            grade_hint = item.get("grade")
+            carousel_price = item.get("price")
+            logger.info(
+                "  %s %s: storage=%s grade=%s preço_carousel=%s",
+                model,
+                variant_label,
+                storage_hint,
+                grade_hint,
+                carousel_price,
+            )
+
             if index > 0:
                 page.goto(listing_url, wait_until="domcontentloaded", timeout=60_000)
                 human_delay(CFG["delays"], "after_navigation")
@@ -681,15 +854,22 @@ def _variants_from_detail_page(
 
             variant_url = _variant_url_from_page(page, product_url)
 
-            variant_price_raw = item.get("price")
-            if variant_price_raw and is_financing_price_text(variant_price_raw):
-                continue
-            price = accept_refurbed_price(
-                parse_refurbed_price_eur(variant_price_raw),
-                model,
-                price_raw=variant_price_raw,
-            )
+            price = _read_detail_price(page, model)
             if price is None:
+                variant_price_raw = item.get("price")
+                if variant_price_raw and is_variant_delta_price_text(variant_price_raw):
+                    logger.info("  %s %s → omitida (delta de preço: %s)", model, variant_label, variant_price_raw)
+                    continue
+                if variant_price_raw and is_financing_price_text(variant_price_raw):
+                    logger.info("  %s %s → omitida (preço de financiamento)", model, variant_label)
+                    continue
+                price = accept_refurbed_price(
+                    parse_refurbed_price_eur(variant_price_raw),
+                    model,
+                    price_raw=variant_price_raw,
+                )
+            if price is None:
+                logger.info("  %s %s → omitida (preço inválido)", model, variant_label)
                 continue
             record = normalize_record(
                 category=category,
@@ -707,6 +887,14 @@ def _variants_from_detail_page(
             )
             if record:
                 records.append(record)
+                logger.info(
+                    "  %s %s → %.2f€ %s (%.1fs)",
+                    model,
+                    variant_label,
+                    record["price"],
+                    variant_url[-35:],
+                    budget.elapsed() if budget else 0.0,
+                )
         return records
 
     if records:
@@ -746,6 +934,7 @@ def extract_product(
     category: str,
     source_page: str,
     scraped_at: str,
+    budget: ProductExtractionBudget | None = None,
 ) -> list[dict[str, Any]] | None:
     try:
         ok, reason = validate_listing_card(
@@ -765,12 +954,23 @@ def extract_product(
             )
             return []
 
-        records = _variants_from_detail_page(page, card, category, source_page, scraped_at)
+        records = _variants_from_detail_page(
+            page, card, category, source_page, scraped_at, budget=budget
+        )
         if records:
-            logger.info("%s [%s]: %s registo(s)", card.get("model"), category, len(records))
+            elapsed = budget.elapsed() if budget else 0.0
+            logger.info(
+                "%s [%s]: %s registo(s) (%.1fs)",
+                card.get("model"),
+                category,
+                len(records),
+                elapsed,
+            )
         else:
             logger.warning("Sem registos: %s", card.get("url"))
         return records
+    except ProductExtractionTimeout:
+        raise
     except Exception as exc:
         logger.error(
             "Falha ao extrair %s (%s): %s",
@@ -806,7 +1006,13 @@ def run_scraper(
 ) -> dict[str, Any]:
     scraped_at = datetime.now(timezone.utc).isoformat()
     selected = categories or list(CATEGORY_KEYS)
-    stats: dict[str, Any] = {"total": 0, "by_category": {}, "errors": 0, "removed_out_of_stock": 0}
+    stats: dict[str, Any] = {
+        "total": 0,
+        "by_category": {},
+        "errors": 0,
+        "timeouts": 0,
+        "removed_out_of_stock": 0,
+    }
 
     if mode == "full":
         products: list[dict[str, Any]] = []
@@ -830,6 +1036,8 @@ def run_scraper(
             base_url=CFG["base_url"],
         )
         page = context.new_page()
+        _configure_page_timeouts(page)
+        product_timeout_sec = int(CFG.get("product_extraction_timeout_sec", 300))
 
         for category in selected:
             category_url = CFG["categories"].get(category)
@@ -859,7 +1067,20 @@ def run_scraper(
             for index, card in enumerate(cards, start=1):
                 logger.info("[%s/%s] %s", index, len(cards), card.get("model"))
                 source_page = page.url
-                result = extract_product(page, card, category, source_page, scraped_at)
+                model_name = card.get("model") or "?"
+                budget = ProductExtractionBudget(product_timeout_sec, model_name)
+                try:
+                    with product_extraction_timeout(product_timeout_sec, model_name):
+                        result = extract_product(
+                            page, card, category, source_page, scraped_at, budget=budget
+                        )
+                except ProductExtractionTimeout as exc:
+                    logger.error("Timeout ao extrair %s (%s): %s", model_name, card.get("url"), exc)
+                    stats["timeouts"] += 1
+                    stats["errors"] += 1
+                    page = _recreate_page(context, page)
+                    human_delay(CFG["delays"], "between_products")
+                    continue
 
                 if result is None:
                     stats["errors"] += 1

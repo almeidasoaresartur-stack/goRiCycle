@@ -229,6 +229,8 @@ REFURBED_CONFIG: dict[str, Any] = {
         # "oneplus_phones",
     ),
     "max_pages": 100,
+    # Limite por produto (ficha + variantes) — evita hangs silenciosos até ao timeout do CI.
+    "product_extraction_timeout_sec": 300,
     "delays": {
         "between_products": (1.0, 2.5),
         "between_pages": (3.0, 6.0),
@@ -267,6 +269,12 @@ REFURBED_CONFIG: dict[str, Any] = {
         # --- Ficha de produto ---
         "detail_title": "h1",
         "detail_price": "[data-test='product-price']:not([data-test*='subscription'])",
+        "detail_price_main": (
+            "[data-test='price-component'] [data-test='product-price'][data-test-displayed-price]"
+        ),
+        "detail_price_main_mobile": (
+            "[data-test='price-component-mobile'] [data-test='product-price'][data-test-displayed-price]"
+        ),
         "detail_price_displayed": (
             "[data-test='product-price'][data-test-displayed-price]:not([data-test*='subscription'])"
         ),
