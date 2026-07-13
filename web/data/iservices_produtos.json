@@ -1,9 +1,13 @@
 {
   "source": "iservices",
   "categories": [
-    "ipads"
+    "iphones",
+    "ipads",
+    "tablets",
+    "samsung_phones",
+    "google_phones"
   ],
-  "scraped_at": "2026-07-12T15:37:45.560224+00:00",
+  "scraped_at": "2026-07-13T09:49:46.020095+00:00",
   "total_products": 31,
   "products": [
     {
@@ -658,5 +662,6 @@
       "affiliate_network": null
     }
   ],
-  "merged_at": "2026-07-12T15:45:52.939885+00:00"
+  "validated_at": "2026-07-13T11:19:42.835671+00:00",
+  "merged_at": "2026-07-13T11:19:43.112770+00:00"
 }
