@@ -7,30 +7,9 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-07-16T08:36:50.340425+00:00",
+  "scraped_at": "2026-07-17T08:30:34.978673+00:00",
   "total_products": 31,
   "products": [
-    {
-      "source": "iservices",
-      "scraped_at": "2026-07-12T06:14:07.116985+00:00",
-      "product_id": "iservices_766-iphone-se-2020_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 134.35,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/766-iphone-se-2020",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-se-2020.png",
-      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
     {
       "source": "iservices",
       "scraped_at": "2026-07-12T06:14:07.116985+00:00",
@@ -660,8 +639,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-07-17T08:30:34.978673+00:00",
+      "product_id": "iservices_1263-iphone-se-2022_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone SE 2022",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 138.89,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1263-iphone-se-2022",
+      "image_url": null,
+      "source_page": "https://iservices.pt/produto/1153-iphone-14-pro-max",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-07-16T10:10:36.089265+00:00",
-  "merged_at": "2026-07-16T10:10:36.331176+00:00"
+  "validated_at": "2026-07-17T10:10:39.438377+00:00",
+  "merged_at": "2026-07-17T10:10:39.736847+00:00"
 }
