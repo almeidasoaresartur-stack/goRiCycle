@@ -1,5 +1,5 @@
 {
-  "merged_at": "2026-07-17T10:10:39.810946+00:00",
+  "merged_at": "2026-07-18T09:39:02.179028+00:00",
   "dry_run": false,
   "per_source": [
     {
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 92,
-      "kept": 90,
+      "total": 96,
+      "kept": 94,
       "removed": 0,
       "removed_by_relevance": 2,
       "corrections_applied": 0,
@@ -34,29 +34,29 @@
     },
     {
       "source": "certideal",
-      "total": 98,
-      "kept": 94,
+      "total": 163,
+      "kept": 149,
       "removed": 0,
-      "removed_by_relevance": 4,
+      "removed_by_relevance": 14,
       "corrections_applied": 0,
       "marked_unavailable": 0,
       "dropped_unavailable": 0
     },
     {
       "source": "callphone",
-      "total": 1470,
+      "total": 259,
       "kept": 259,
-      "removed": 1210,
-      "removed_by_relevance": 1,
+      "removed": 0,
+      "removed_by_relevance": 0,
       "corrections_applied": 0,
       "marked_unavailable": 0,
       "dropped_unavailable": 0
     }
   ],
   "combined": {
-    "total_unique": 578,
+    "total_unique": 637,
     "removed_on_merge": 0,
-    "removed_by_relevance": 7,
+    "removed_by_relevance": 16,
     "corrections_applied": 0,
     "marked_unavailable": 0,
     "dropped_unavailable": 0
