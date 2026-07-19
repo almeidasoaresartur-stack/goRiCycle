@@ -1,47 +1,213 @@
 {
-  "validated_at": "2026-07-18T09:39:01.811546+00:00",
+  "validated_at": "2026-07-19T07:32:27.507716+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
       "total": 31,
-      "kept": 31,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "kept": 0,
+      "removed": 31,
+      "reasons": {
+        "Página sem indício de preço (possível categoria ou erro)": 31
+      },
+      "removed_items": [
+        {
+          "model": "iPhone XR",
+          "url": "https://iservices.pt/produto/745-iphone-xr",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 11 Pro Max",
+          "url": "https://iservices.pt/produto/757-iphone-11-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone XS Max",
+          "url": "https://iservices.pt/produto/770-iphone-xs-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 11",
+          "url": "https://iservices.pt/produto/771-iphone-11",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 11 Pro",
+          "url": "https://iservices.pt/produto/772-iphone-11-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 12 Mini",
+          "url": "https://iservices.pt/produto/773-iphone-12-mini",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 12",
+          "url": "https://iservices.pt/produto/774-iphone-12",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 12 Pro",
+          "url": "https://iservices.pt/produto/775-iphone-12-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 12 Pro Max",
+          "url": "https://iservices.pt/produto/776-iphone-12-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 13 Pro",
+          "url": "https://iservices.pt/produto/1005-iphone-13-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 13",
+          "url": "https://iservices.pt/produto/1022-iphone-13",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 13 Mini",
+          "url": "https://iservices.pt/produto/1077-iphone-13-mini",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 13 Pro Max",
+          "url": "https://iservices.pt/produto/1094-iphone-13-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 14",
+          "url": "https://iservices.pt/produto/1117-iphone-14",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 14 Pro",
+          "url": "https://iservices.pt/produto/1137-iphone-14-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 14 Plus",
+          "url": "https://iservices.pt/produto/1152-iphone-14-plus",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 14 Pro Max",
+          "url": "https://iservices.pt/produto/1153-iphone-14-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone SE 2022",
+          "url": "https://iservices.pt/produto/1263-iphone-se-2022",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 15",
+          "url": "https://iservices.pt/produto/1330-iphone-15",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 15 Pro",
+          "url": "https://iservices.pt/produto/1331-iphone-15-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 15 Pro Max",
+          "url": "https://iservices.pt/produto/1355-iphone-15-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 15 Plus",
+          "url": "https://iservices.pt/produto/1356-iphone-15-plus",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 16 Pro",
+          "url": "https://iservices.pt/produto/1618-iphone-16-pro",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 16",
+          "url": "https://iservices.pt/produto/1636-iphone-16",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 16 Pro Max",
+          "url": "https://iservices.pt/produto/1666-iphone-16-pro-max",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPhone 16e",
+          "url": "https://iservices.pt/produto/1719-iphone-16e",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPad Air 2022 (5ª Geração)",
+          "url": "https://iservices.pt/produto/1408-ipad-air-2022-5a-geracao",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPad Pro 12.9\" 2020 (4ª Geração)",
+          "url": "https://iservices.pt/produto/1412-ipad-pro-129-2020-4a-geracao",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPad Pro 11\" 2021 (3ª Geração)",
+          "url": "https://iservices.pt/produto/1424-ipad-pro-11-2021-3a-geracao",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPad 10.9\" 2022 (10ª Geração)",
+          "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        },
+        {
+          "model": "iPad Pro 12.9\" 2022 (6ª Geração)",
+          "url": "https://iservices.pt/produto/1654-ipad-pro-129-2022-6a-geracao",
+          "reason": "Página sem indício de preço (possível categoria ou erro)"
+        }
+      ]
     },
     "refurbed": {
-      "total": 96,
-      "kept": 96,
+      "total": 92,
+      "kept": 92,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "swappie": {
-      "total": 104,
-      "kept": 104,
+      "total": 0,
+      "kept": 0,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "certideal": {
-      "total": 163,
-      "kept": 163,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "total": 162,
+      "kept": 161,
+      "removed": 1,
+      "reasons": {
+        "404 Not Found": 1
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        }
+      ]
     },
     "callphone": {
-      "total": 259,
-      "kept": 259,
+      "total": 0,
+      "kept": 0,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     }
   },
   "summary": {
-    "total": 653,
-    "kept": 653,
-    "removed": 0
+    "total": 285,
+    "kept": 253,
+    "removed": 32
   }
 }
