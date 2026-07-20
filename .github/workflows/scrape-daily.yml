@@ -183,7 +183,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add \
+          # Só adicionar ficheiros que existem. Um pathspec em falta
+          # (ex.: scraper falhou após limpeza) faz o git add sair com código 128.
+          stage_if_present() {
+            for f in "$@"; do
+              if [ -f "$f" ]; then
+                git add -- "$f"
+              else
+                echo "⚠️ A ignorar (em falta): $f"
+              fi
+            done
+          }
+
+          stage_if_present \
             data/iservices_produtos.json \
             data/refurbed_produtos.json \
             data/swappie_produtos.json \
@@ -192,6 +204,7 @@ jobs:
             data/all_products.json \
             data/last_run_summary.json \
             data/merge_and_clean_report.json \
+            data/curation_report.json \
             web/data/iservices_produtos.json \
             web/data/refurbed_produtos.json \
             web/data/swappie_produtos.json \
@@ -199,11 +212,9 @@ jobs:
             web/data/callphone_produtos.json \
             web/data/all_products.json \
             web/data/last_run_summary.json \
-            web/data/merge_and_clean_report.json
-
-          if [ -f data/validate_and_clean_report.json ]; then
-            git add data/validate_and_clean_report.json web/data/validate_and_clean_report.json
-          fi
+            web/data/merge_and_clean_report.json \
+            data/validate_and_clean_report.json \
+            web/data/validate_and_clean_report.json
 
           if git diff --staged --quiet; then
             echo "Sem alterações nos JSON — nada a commitar."

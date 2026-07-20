@@ -71,9 +71,13 @@ def parse_args() -> argparse.Namespace:
 
 def cleanup_source_json(sources: list[str], mode: str) -> None:
     """
-    Limpeza pré-scrape: remove JSONs antigos/corrompidos para evitar duplicados
-    ou dados parciais de execuções anteriores.
+    Limpeza pré-scrape: remove apenas JSONs corrompidos.
+
+    Não apagar ficheiros válidos em modo full — os scrapers reescrevem o JSON
+    no fim. Apagar antes fazia com que uma falha a meio deixasse o ficheiro
+    em falta e o passo de commit do Actions rebentasse (git add → exit 128).
     """
+    _ = mode  # API estável; já não há limpeza destrutiva por modo
     for source in sources:
         cfg = SOURCE_CONFIGS.get(source)
         if not cfg:
@@ -81,13 +85,6 @@ def cleanup_source_json(sources: list[str], mode: str) -> None:
 
         output: Path = cfg["output_json"]
         targets = [output, WEB_DATA_DIR / output.name]
-
-        if mode == "full":
-            for path in targets:
-                if path.exists():
-                    path.unlink()
-                    logger.info("Limpeza pré-scrape: removido %s", path)
-            continue
 
         if not output.exists():
             continue

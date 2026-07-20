@@ -1017,10 +1017,8 @@ def run_scraper(
     if mode == "full":
         products: list[dict[str, Any]] = []
         known_ids: set[str] = set()
-        output_path = Path(CFG["output_json"])
-        if output_path.exists():
-            output_path.unlink()
-            logger.info("JSON anterior removido: %s", output_path)
+        # Não apagar o JSON antes do scrape — se falhar a meio, mantemos a
+        # versão anterior. O save no fim reescreve o ficheiro completo.
         logger.info("Modo full: recriação completa do JSON")
     elif mode == "incremental":
         products, known_ids = load_existing_products(CFG["output_json"])
