@@ -1,32 +1,15 @@
 {
   "source": "iservices",
   "categories": [
-    "ipads"
+    "iphones",
+    "ipads",
+    "tablets",
+    "samsung_phones",
+    "google_phones"
   ],
-  "scraped_at": "2026-07-12T15:46:42.721269+00:00",
+  "scraped_at": "2026-07-20T16:44:34.238619+00:00",
   "total_products": 31,
   "products": [
-    {
-      "source": "iservices",
-      "scraped_at": "2026-07-12T06:14:07.116985+00:00",
-      "product_id": "iservices_766-iphone-se-2020_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 134.35,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/766-iphone-se-2020",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-se-2020.png",
-      "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
     {
       "source": "iservices",
       "scraped_at": "2026-07-12T06:14:07.116985+00:00",
@@ -656,6 +639,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-07-20T16:44:34.238619+00:00",
+      "product_id": "iservices_1263-iphone-se-2022_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone SE 2022",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 137.25,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1263-iphone-se-2022",
+      "image_url": "https://r.iservices.pt/common/online_products/iphone-se-2022-64-gb-good-vermelho.webp",
+      "source_page": "https://iservices.pt/produto/1153-iphone-14-pro-max",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
-  ]
+  ],
+  "validated_at": "2026-07-20T18:01:29.173972+00:00",
+  "merged_at": "2026-07-20T18:01:29.452650+00:00"
 }

@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-07-19T06:09:19.541526+00:00",
-  "mode": "full",
+  "run_at": "2026-07-20T16:44:34.233232+00:00",
+  "mode": "incremental",
   "categories": [
     "iphones",
     "ipads",
@@ -10,23 +10,23 @@
   ],
   "sources": {
     "iservices": {
-      "total": 31,
+      "total": 1,
       "by_category": {
-        "iphones": 26,
-        "ipads": 5,
+        "iphones": 1,
+        "ipads": 0,
         "tablets": 0,
         "samsung_phones": 0,
         "google_phones": 0
       },
       "errors": 0,
-      "removed_out_of_stock": 0,
+      "removed_out_of_stock": 1,
       "skipped_unavailable": 1
     },
     "refurbed": {
-      "total": 92,
+      "total": 86,
       "by_category": {
-        "iphones": 42,
-        "ipads": 28,
+        "iphones": 39,
+        "ipads": 25,
         "tablets": 16,
         "samsung_phones": 2,
         "google_phones": 4
@@ -34,7 +34,7 @@
       "errors": 0,
       "timeouts": 0,
       "removed_out_of_stock": 0,
-      "dedup_removed": 133
+      "dedup_removed": 95
     },
     "swappie": {
       "total": 0,
@@ -43,23 +43,26 @@
       "fatal_error": "Page.wait_for_selector: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"a:has([class*='ModelCard__ProductName'])\") to be visible\n"
     },
     "certideal": {
-      "total": 170,
+      "total": 156,
       "by_category": {
-        "iphones": 95,
+        "iphones": 94,
         "ipads": 4,
-        "samsung_phones": 71
+        "samsung_phones": 58
       },
       "errors": 0,
       "removed_out_of_stock": 4
     },
     "callphone": {
-      "total": 0,
-      "by_category": {},
+      "total": 1480,
+      "by_category": {
+        "iphones": 1479,
+        "ipads": 1
+      },
       "errors": 0,
-      "unavailable": 0
+      "unavailable": 1420
     }
   },
-  "grand_total": 293,
+  "grand_total": 1723,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
