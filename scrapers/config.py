@@ -391,7 +391,7 @@ BACK_MARKET_CONFIG: dict[str, Any] = {
 
 SWAPPIE_CONFIG: dict[str, Any] = {
     "source": "swappie",
-    "base_url": "https://swappie.com/pt-pt",
+    "base_url": "https://swappie.com",
     "currency": "EUR",
     "warranty_months": 12,
     "headless": os.getenv("SWAPPIE_HEADLESS", "true").lower() != "false",
@@ -414,8 +414,8 @@ SWAPPIE_CONFIG: dict[str, Any] = {
         "avg_basket_eur": None,
     },
     "categories": {
-        "iphones": "https://swappie.com/pt/iphone/",
-        "ipads": "https://swappie.com/pt/ipad/",
+        "iphones": "https://swappie.com/pt/iphone/",  # sem "s" — /iphones/ dá 404
+        "ipads": "https://swappie.com/pt/ipad/",      # sem "s" — /ipads/ dá 404
         # "macs": None,
         # "apple_watch": None,
         "tablets": None,
@@ -446,7 +446,7 @@ SWAPPIE_CONFIG: dict[str, Any] = {
         "variant_button": "button[class*='ListItem']",
         "detail_storage_btn": "button[class*='ListItem']:has-text('GB')",
         "detail_grade_btn": "button[class*='ListItem']:has-text('Satisfatório'), button[class*='ListItem']:has-text('Muito Bom'), button[class*='ListItem']:has-text('Excelente'), button[class*='ListItem']:has-text('Premium')",
-        "detail_image": "[class*='ModelInfo'] img, picture img",
+        "detail_image": "[class*='ImagesCarousel'] img, [class*='Product__Image'] img, meta[property='og:image']",
         "detail_og_image": "meta[property='og:image']",
     },
     "replace_on_scrape_categories": ("iphones", "ipads"),
