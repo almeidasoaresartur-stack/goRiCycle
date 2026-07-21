@@ -1,18 +1,18 @@
 {
-  "validated_at": "2026-07-20T18:01:29.110991+00:00",
+  "validated_at": "2026-07-21T10:26:24.072016+00:00",
   "dry_run": false,
   "check_live": false,
   "sources": {
     "iservices": {
-      "total": 31,
-      "kept": 31,
+      "total": 32,
+      "kept": 32,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "refurbed": {
-      "total": 86,
-      "kept": 86,
+      "total": 89,
+      "kept": 89,
       "removed": 0,
       "reasons": {},
       "removed_items": []
@@ -40,8 +40,8 @@
     }
   },
   "summary": {
-    "total": 1849,
-    "kept": 1849,
+    "total": 1853,
+    "kept": 1853,
     "removed": 0
   }
 }
