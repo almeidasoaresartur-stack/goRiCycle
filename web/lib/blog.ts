@@ -10,6 +10,45 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "graus-estado-recondicionados-comparacao-lojas",
+    title:
+      "Grau A, Excelente, Correto: o que significa realmente o estado de um recondicionado, loja a loja",
+    description:
+      "Cada loja usa uma palavra diferente para o mesmo conceito — Grau A, Excelente, Correto. Percebe o que significa cada uma, loja a loja, e o que realmente importa na hora de escolher.",
+    metaTitle:
+      "Grau A, Excelente, Correto: o que significa realmente o estado de um recondicionado, loja a loja | goRiCycle",
+    publishedAt: "2026-07-21",
+    readingMinutes: 4,
+    content: `Se já compraste ou pesquisaste recondicionados em mais do que uma loja, já reparaste nisto: cada loja usa palavras diferentes para o mesmo conceito. Uma diz "Grau A+", outra diz "Excelente", outra diz "Correto". São todas formas de classificar o mesmo tipo de coisa — o estado estético do aparelho — mas sem um padrão comum, é fácil pensar que estás a comparar maçãs com maçãs quando, na prática, os critérios variam.
+
+O princípio é sempre o mesmo em todas as lojas: a classificação refere-se apenas ao aspeto, nunca à funcionalidade. Um aparelho em Grau B ou "Correto" funciona a 100%, tal como um em Grau A+ ou "Excelente" — a diferença está em riscos, marcas de uso e no estado da bateria, não em como o telemóvel se comporta no dia a dia.
+
+**Como cada loja classifica:**
+
+[Certideal](/?store=certideal&view=all&section=comparador#comparador) usa três níveis — Impecável, Muito Bom e Correto — com garantia mínima de bateria de 80% em todos eles, e garantia de 36 meses em qualquer grau.
+
+[iServices](/?store=iservices&view=all&section=comparador#comparador) também usa três níveis — Excelente, Muito Bom e Bom — com bateria entre 80% e 100% independentemente do grau escolhido, e garantia de 3 anos.
+
+[Swappie](/?store=swappie&view=all&section=comparador#comparador) divide os iPhones em Excelente, Muito Bom e Satisfatório (com um nível Premium adicional para alguns modelos), sempre com a mesma promessa: a categoria só afeta o aspeto.
+
+[Refurbed](/?store=refurbed&view=all&section=comparador#comparador) é a loja com mais níveis — Premium, Excelente, Muito Bom e Bom — e é também a que dá mais detalhe sobre a bateria: mínimo de 85% para smartphones em qualquer grau, e 90% no Premium. Garantia mínima de 12 meses, com 30 dias de teste incluídos.
+
+[Callphone](/?store=callphone&view=all&section=comparador#comparador) usa A+, A e B, com bateria garantida entre 81% e 100% e 6 meses de garantia específicos para a bateria, dentro de uma garantia geral de 24 meses no aparelho.
+
+**Então qual escolher?**
+
+Antes de decidires pelo nome do grau, vale a pena perceber uma coisa: estas classificações são auto-avaliadas por cada loja, não há um organismo externo a auditar se o "Muito Bom" da Certideal é o mesmo "Muito Bom" da iServices. Os critérios descritos coincidem no papel — riscos ligeiros, sem grandes marcas — mas quem decide onde está a linha é cada loja, com os seus próprios inspectores. Na prática, isto significa que o grau mais baixo de uma loja rigorosa pode estar em melhor estado do que o grau intermédio de uma loja mais permissiva. Não há como confirmar isto à distância — mas ajuda a não tratar os nomes dos graus como uma escala universal.
+
+Duas perguntas mais úteis do que "qual o grau mais alto":
+
+1. Vais usar capa e película? Se sim, o aspeto do ecrã e do corpo deixa de importar ao fim de uma semana — nesse caso, o grau mais baixo (com bateria dentro do mesmo intervalo garantido) costuma ser a poupança mais óbvia do catálogo.
+2. Qual é a diferença de preço entre graus, no modelo que queres? Às vezes a diferença entre "Correto" e "Impecável" é 15€; outras vezes é 60€. Vale sempre a pena comparar os dois antes de decidir automaticamente pelo mais caro "por segurança" — é precisamente para isto que serve comparar as mesmas configurações lado a lado.
+
+Se o que procuras é sobretudo bateria (por exemplo, para quem usa o telemóvel o dia inteiro fora de casa), a Refurbed é a única das cinco lojas a garantir esse número de forma explícita e consistente em todos os graus (85% mínimo) — as outras dão intervalos mais largos (80–100%) sem indicar onde, dentro desse intervalo, o teu aparelho específico vai cair.
+
+No [goRiCycle](/#comparador) comparas o mesmo modelo entre lojas e vês de imediato o grau, o preço e a diferença entre eles — sem teres de decorar cinco nomenclaturas diferentes só para perceber se estás a fazer um bom negócio.`,
+  },
+  {
     slug: "porque-apple-domina-mercado-recondicionados",
     title: "Porque é que a Apple domina o mercado dos recondicionados",
     description:
