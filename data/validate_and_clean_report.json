@@ -1,7 +1,7 @@
 {
-  "validated_at": "2026-08-01T10:08:43.413144+00:00",
+  "validated_at": "2026-08-02T07:45:01.941402+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
       "total": 32,
@@ -11,8 +11,8 @@
       "removed_items": []
     },
     "refurbed": {
-      "total": 92,
-      "kept": 92,
+      "total": 102,
+      "kept": 102,
       "removed": 0,
       "reasons": {},
       "removed_items": []
@@ -26,22 +26,2143 @@
     },
     "certideal": {
       "total": 122,
-      "kept": 122,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "kept": 121,
+      "removed": 1,
+      "reasons": {
+        "404 Not Found": 1
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        }
+      ]
     },
     "callphone": {
-      "total": 1484,
-      "kept": 1484,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "total": 1448,
+      "kept": 1026,
+      "removed": 422,
+      "reasons": {
+        "HTTP 429": 422
+      },
+      "removed_items": [
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695640840",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695673608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695771912",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695935752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995696066824",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777768911112",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777768976648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777769074952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-512gb?variant=52777769304328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=52776923660552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=57841823482120",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=58253804470536",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=58253804568840",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=58253804699912",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-256gb?variant=53129562161416",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-256gb?variant=53214803099912",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 256GB",
+          "url": "https://callphone.pt/products/iphone-17-256gb?variant=52776918778120",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 256GB",
+          "url": "https://callphone.pt/products/iphone-17-256gb?variant=52978853347592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=52776854880520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=56205776060680",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=58186081075464",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=58186081173768",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=58186081206536",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=58186081272072",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-256gb?variant=52776849768712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-256gb?variant=57887922880776",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741372680",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741438216",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53301949169928",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741602056",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53301949235464",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741765896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53301949301000",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741929736",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53301949333768",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=53008960979208",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=53008961044744",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=58275740090632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=58275740221704",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558464778504",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558464909576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465040648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465138952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465237256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465302792",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 ULTRA 256GB",
+          "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=52551818379528",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 ULTRA 256GB",
+          "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=53136965730568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 ULTRA 256GB",
+          "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=53136965828872",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987691272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987592968",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987986184",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532988018952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987920648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB NOVO",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb-novo?variant=52489487581448",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 256GB NOVO",
+          "url": "https://callphone.pt/products/iphone-17-novo?variant=52489981559048",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro 256GB NOVO",
+          "url": "https://callphone.pt/products/iphone-17-pro-256gb-novo?variant=52489479258376",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287231752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287362824",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287428360",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287526664",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287624968",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150087778568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150087942408",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088040712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088139016",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088237320",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088335624",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192335624",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192499464",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192565000",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192663304",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192761608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192827144",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828479752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068877697288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828250376",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828512520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828283144",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828545288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828315912",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068828840200",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-256gb?variant=51879405977864",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung A55 5G 128GB",
+          "url": "https://callphone.pt/products/samsung-a55-5g-128gb?variant=51879310655752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Google Pixel 9 Pro 128GB",
+          "url": "https://callphone.pt/products/google-pixel-9-pro?variant=51878993363208",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263032072",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263130376",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263228680",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263359752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263425288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263523592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263654664",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263752968",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263851272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263949576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195661064",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195792136",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195890440",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195955976",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196054280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196152584",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196250888",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196349192",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196447496",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196545800",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196611336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196709640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196807944",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196873480",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169413896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169512200",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169577736",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169676040",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169774344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169872648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570169970952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570170102024",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570170200328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570170298632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146640136",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146738440",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146836744",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147033352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147131656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147229960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147328264",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147426568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147524872",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147623176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983521032",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983619336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983717640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983848712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983947016",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983979784",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569984012552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569984110856",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958617352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958715656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958813960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958945032",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569959076104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569959174408",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939546376",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939644680",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939808520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939939592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569940037896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569940168968",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928405256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928536328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928634632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928765704",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928864008",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928995080",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569917821192",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569917919496",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918017800",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918116104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918247176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb?variant=51569918345480",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912643848",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912742152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912873224",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569912971528",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913102600",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913168136",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913266440",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-12-mini-128gb?variant=51569913364744",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889018120",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889116424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889214728",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889313032",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-128gb?variant=51569889411336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 128GB",
+          "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772396808",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 128GB",
+          "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772757256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 128GB",
+          "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772888328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 128GB",
+          "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569772986632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 128GB",
+          "url": "https://callphone.pt/products/iphone-12-128gb?variant=51569773084936",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707122952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707221256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707319560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707385096",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707483400",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707548936",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max-256gb?variant=51569707581704",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695260936",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695392008",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695490312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695555848",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-256gb?variant=51569695654152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686315272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686413576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686544648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686642952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686741256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686839560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569686970632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 128GB",
+          "url": "https://callphone.pt/products/iphone-11-128gb?variant=51569687003400",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220166902024",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220167000328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220167524616",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220168048904",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220168179976",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51552224215304",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51552224313608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336719112",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336850184",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138336948488",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337046792",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346276104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346407176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346505480",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337112328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337210632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337341704",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337440008",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346636552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346734856",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346833160",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346931464",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337538312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337669384",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337767688",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337865992",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138337964296",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138338062600",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51138338160904",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699537572104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=50733492928776",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699537703176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286245128",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699537801480",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286343432",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699537899784",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699537932552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286638344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699538030856",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286900488",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699538129160",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=51552286966024",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699538161928",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S24 ULTRA",
+          "url": "https://callphone.pt/products/samsung-s24-ultra?variant=50732966478088",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S24 ULTRA",
+          "url": "https://callphone.pt/products/samsung-s24-ultra?variant=50732966576392",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S24 ULTRA",
+          "url": "https://callphone.pt/products/samsung-s24-ultra?variant=50732966674696",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=50856169111816",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286199048",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286264584",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286330120",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552130105608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286428424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286493960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552345915656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51570286592264",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max?variant=51552345981192",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570189664520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570189730056",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570189795592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552279298312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552279363848",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570189992200",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552279625992",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552279658760",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552279888136",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570190188808",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570190254344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51570248712456",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51570248843528",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=50754818343176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51570206605576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=50754818310408",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51552249086216",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51570206933256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro",
+          "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50014691655944",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro",
+          "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50014691688712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro",
+          "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50014691721480",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro",
+          "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50235919991048",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro",
+          "url": "https://callphone.pt/products/iphone-15-pro-128gb?variant=50217730081032",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15",
+          "url": "https://callphone.pt/products/iphone-15-128gb-novo?variant=49992877179144",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15",
+          "url": "https://callphone.pt/products/iphone-15-128gb-novo?variant=49992877277448",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPAD Pro, 256GB, 12.9\"",
+          "url": "https://callphone.pt/products/ipas-pro-256gb-12-9?variant=49865210626312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152053035272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022252808",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152053068040",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022285576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152053166344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022678792",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152054280456",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022711560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152054313224",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022744328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152054345992",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=51570022777096",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2020",
+          "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154879752",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2020",
+          "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154945288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2020",
+          "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154978056",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2020",
+          "url": "https://callphone.pt/products/iphone-se-2020?variant=45209155010824",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023369527560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023369560328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023369593096",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023370150152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023370903816",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023371362568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023371395336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023371428104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023371460872",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920674568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008921067784",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920707336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199574280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920903944",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199607048",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008921100552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199705352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008920936712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199836424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008921133320",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199901960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008921723144",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299200000264",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299200098568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=51552275005704",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299200131336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299200196872",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=45006295400712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163187976",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=45006295499016",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163286280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552334676232",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552334709000",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163417352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=45006295990536",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163515656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552274252040",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51552274284808",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163646728",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218297608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570136776968",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218166536",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570136875272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218756360",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570136973576",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=45006218625288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570137071880",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51552267567368",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570137202952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2022",
+          "url": "https://callphone.pt/products/iphone-se-2022?variant=45004458918152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=44802950693128",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198361352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198459656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198557960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S10",
+          "url": "https://callphone.pt/products/samsung-s10?variant=44771728949512",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44441246302472",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44441246400776",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871660808",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871726344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871628040",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=44634871824648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=51552234307848",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=51552234406152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44489667379464",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634867859720",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634868056328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634868089096",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=51552205963528",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=44489675276552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=44634871005448",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=44634871267592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=44634871365896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=51552221364488",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44441228509448",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44441228640520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44634872578312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44634872348936",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44634872611080",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44634872807688",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE X 64GB",
+          "url": "https://callphone.pt/products/iphone-x-1?variant=44634874085640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE X 64GB",
+          "url": "https://callphone.pt/products/iphone-x-1?variant=51552195870984",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44441238372616",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44634874216712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44634874478856",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44634874380552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44634874577160",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=51552196755720",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=51552196821256",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS 64GB",
+          "url": "https://callphone.pt/products/iphone-x?variant=44634876215560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS 64GB",
+          "url": "https://callphone.pt/products/iphone-x?variant=44634876313864",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS 64GB",
+          "url": "https://callphone.pt/products/iphone-x?variant=51552197935368",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro?variant=44441206915336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro?variant=44634867302664",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro?variant=44634867269896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro?variant=51552199409928",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=44440939659528",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=44441112346888",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=44634866581768",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=44634866876680",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=44634866974984",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=51552198885640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44489671966984",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869563656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869694728",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44646257328392",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869661960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=51552216285448",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=51552216416520",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=44441212846344",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=44441212944648",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=51551508824328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=51551508922632",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=51551509250312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=51552218611976",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 128GB",
+          "url": "https://callphone.pt/products/iphone-13?variant=51552218677512",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=44489670230280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=44634865697032",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=44634865959176",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=51552211206408",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=51552211304712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8 Plus",
+          "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873725192",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8 Plus",
+          "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873823496",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 64GB",
+          "url": "https://callphone.pt/products/ipphone-12?variant=44441237324040",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 64GB",
+          "url": "https://callphone.pt/products/ipphone-12?variant=44634868777224",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 64GB",
+          "url": "https://callphone.pt/products/ipphone-12?variant=44680596586760",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 64GB",
+          "url": "https://callphone.pt/products/ipphone-12?variant=44680596652296",
+          "reason": "HTTP 429"
+        }
+      ]
     }
   },
   "summary": {
-    "total": 1730,
-    "kept": 1730,
-    "removed": 0
+    "total": 1704,
+    "kept": 1281,
+    "removed": 423
   }
 }
