@@ -432,22 +432,49 @@ SWAPPIE_CONFIG: dict[str, Any] = {
     },
     "selectors": {
         "listing_grid": "main",
-        "product_card": "a:has([class*='ModelCard__ProductName'])",
+        # ModelCard (iPhones) + ModelCard2025 (iPads — layout novo; título fora do <a>)
+        "product_card": (
+            "a:has([class*='ModelCard__ProductName']), "
+            "[class*='ModelCard2025__CardFrame']"
+        ),
         "product_link": "a:has([class*='ModelCard__ProductName'])",
-        "product_name": "[class*='ModelCard__ProductName']",
-        "product_price": "[class*='ModelCard__Price']",
-        "product_image": "[class*='ModelCard__ImageContainer'] img",
-        "product_storage_badge": "[class*='ModelCard__BadgesContainer'] [class*='Badge']",
-        "product_color_dot": "[class*='ModelCard__ColorDot']",
+        "product_card_2025": "[class*='ModelCard2025__CardFrame']",
+        "product_link_2025": "a[class*='ModelCard2025__StretchedAnchor']",
+        "product_name": (
+            "[class*='ModelCard__ProductName'], "
+            "[class*='ModelCard2025__Title']"
+        ),
+        "product_price": (
+            "[class*='ModelCard__Price'], "
+            "[class*='ModelCard2025__Price']"
+        ),
+        "product_image": (
+            "[class*='ModelCard__ImageContainer'] img, "
+            "[class*='ModelCard2025__ImageContainer'] img"
+        ),
+        "product_storage_badge": (
+            "[class*='ModelCard__BadgesContainer'] [class*='Badge'], "
+            "[class*='ModelCard2025__BadgesContainer'] [class*='Badge'], "
+            "[class*='ModelCard2025__PropertyChipRoot']"
+        ),
+        "product_color_dot": (
+            "[class*='ModelCard__ColorDot'], "
+            "[class*='ModelCard2025__ColorDot']"
+        ),
         "pagination_next": "",
         "cookie_accept": "button:has-text('Aceitar'), button:has-text('Accept')",
-        "detail_title": "h1",
+        "detail_title": "h1, [class*='ModelInfo__TitleColumn'] h3, [class*='ModelHeading__ModelTitle']",
         "detail_price": "[class*='ModelPrice']",
         "variant_button": "button[class*='ListItem']",
+        # Configurador iPads (radios) — confirmado no DOM: input[name=storage|grade]
+        "variant_radio_storage": "input[name='storage']",
+        "variant_radio_grade": "input[name='grade']",
+        "variant_selector_label": "label[class*='Selector__SelectorLabel']",
         "detail_storage_btn": "button[class*='ListItem']:has-text('GB')",
         "detail_grade_btn": "button[class*='ListItem']:has-text('Satisfatório'), button[class*='ListItem']:has-text('Muito Bom'), button[class*='ListItem']:has-text('Excelente'), button[class*='ListItem']:has-text('Premium')",
         "detail_image": "[class*='ImagesCarousel'] img, [class*='Product__Image'] img, meta[property='og:image']",
         "detail_og_image": "meta[property='og:image']",
+        "newsletter_overlay": ".ab-iam-root, [class*='ab-iam-root']",
     },
     "replace_on_scrape_categories": ("iphones", "ipads"),
 }

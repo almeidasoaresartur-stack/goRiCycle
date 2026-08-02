@@ -14,6 +14,7 @@ import json
 import logging
 import re
 import sys
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -29,6 +30,7 @@ from common import (
     build_normalized_product,
     extract_storage,
     human_delay,
+    min_price_for_model,
     normalize_grade_swappie,
     page_wait_ms,
     parse_swappie_price_eur,
@@ -177,6 +179,101 @@ def clean_price(price: float | None) -> float | None:
     return price
 
 
+def accept_swappie_price(price: float | None, model: str | None) -> float | None:
+    """Rejeita preços fora do intervalo ou abaixo do mínimo plausível por modelo."""
+    price = clean_price(price)
+    if price is None:
+        return None
+    min_price = min_price_for_model(model)
+    if price < min_price:
+        logger.warning(
+            "Preço abaixo do mínimo plausível rejeitado: %s€ < %s€ (%s)",
+            price,
+            min_price,
+            model,
+        )
+        return None
+    return price
+
+
+def _storage_slug(storage_key: str) -> str:
+    """Normaliza '512 GB' / '512GB' → '512gb' para comparar com a URL."""
+    return re.sub(r"\s+", "", (storage_key or "").lower())
+
+
+def _storage_slugs_in_url(url: str) -> list[str]:
+    """Extrai slugs de capacidade presentes na URL (ex. ['128gb'])."""
+    return [f"{n}gb" for n in re.findall(r"(\d+)\s*gb", (url or "").lower())]
+
+
+def _url_matches_storage(url: str, storage_key: str) -> bool:
+    """
+    Consistência URL↔storage:
+    - Se a URL tem slug(s) de capacidade, tem de incluir o da capacidade clicada
+      (rejeita ex. storage=512GB com URL …-128gb-…).
+    - Se a URL é /modelo/ sem slug, não há conflito detectável → aceita
+      (a Swappie muitas vezes não actualiza a URL na 1ª capacidade).
+    """
+    slug = _storage_slug(storage_key)
+    if not slug:
+        return False
+    found = _storage_slugs_in_url(url)
+    if not found:
+        return True
+    return slug in found
+
+
+def _reject_equal_prices_across_storages(
+    records: list[dict[str, Any]],
+    model: str | None,
+) -> list[dict[str, Any]]:
+    """
+    No mesmo modelo+grau, se duas ou mais capacidades tiverem o preço exacto,
+    rejeita todas essas variantes (preço não é fiável).
+    """
+    by_grade: dict[str | None, list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        by_grade[record.get("grade")].append(record)
+
+    kept: list[dict[str, Any]] = []
+    for grade, items in by_grade.items():
+        price_to_storages: dict[float, set[str | None]] = defaultdict(set)
+        for record in items:
+            price = record.get("price")
+            if isinstance(price, (int, float)):
+                price_to_storages[float(price)].add(record.get("storage"))
+
+        bad_prices = {
+            price
+            for price, storages in price_to_storages.items()
+            if len(storages) >= 2
+        }
+        for record in items:
+            price = record.get("price")
+            if isinstance(price, (int, float)) and float(price) in bad_prices:
+                logger.warning(
+                    "Preço idêntico em capacidades diferentes — variante rejeitada "
+                    "para revisão: %s / %s / %s @ %s€ (modelo+grau com preço partilhado)",
+                    model,
+                    record.get("storage"),
+                    grade,
+                    price,
+                )
+                continue
+            kept.append(record)
+
+        if bad_prices:
+            logger.warning(
+                "Revisão manual: %s grade=%s — preço(s) %s partilhados por "
+                "capacidades distintas; variantes afectadas descartadas",
+                model,
+                grade,
+                sorted(bad_prices),
+            )
+
+    return kept
+
+
 def dismiss_cookie_banner(page: Page) -> None:
     try:
         btn = page.locator(SEL["cookie_accept"])
@@ -187,64 +284,145 @@ def dismiss_cookie_banner(page: Page) -> None:
         pass
 
 
+def dismiss_page_overlays(page: Page) -> None:
+    """Remove overlays que bloqueiam cliques (newsletter Braze, etc.)."""
+    try:
+        page.evaluate(
+            """() => {
+              document.querySelectorAll(
+                '.ab-iam-root, [class*="ab-iam-root"], [class*="ab-iam "]'
+              ).forEach((el) => el.remove());
+            }"""
+        )
+    except Exception:
+        pass
+
+
+def _listing_card_fully_out_of_stock(root) -> bool:
+    """
+    True só se o modelo inteiro estiver esgotado.
+    Nos cartões ModelCard2025, '(Esgotado)' aparece por capacidade — não
+    rejeitar o modelo se ainda houver pelo menos uma capacidade disponível.
+    """
+    chips = root.locator("[class*='ModelCard2025__PropertyChipRoot']")
+    chip_count = chips.count()
+    if chip_count:
+        available = 0
+        for index in range(chip_count):
+            text = chips.nth(index).inner_text(timeout=2000)
+            if extract_storage(text) and not text_indicates_out_of_stock(text):
+                available += 1
+        return available == 0
+
+    # Layout legado: só rejeitar se o texto do cartão indicar OOS global.
+    try:
+        card_text = root.inner_text(timeout=3000)
+    except Exception:
+        return False
+    return text_indicates_out_of_stock(card_text)
+
+
+def _parse_listing_card(
+    root,
+    *,
+    href: str | None,
+    base_url: str,
+) -> dict[str, Any] | None:
+    """Extrai modelo/preço/imagem a partir de um cartão (link legado ou frame 2025)."""
+    if not href or "/modelo/" not in href:
+        return None
+    if not href.startswith("http"):
+        href = urljoin(base_url, href)
+
+    name_el = root.locator(SEL["product_name"]).first
+    name = name_el.inner_text(timeout=3000).strip() if name_el.count() else ""
+    if not name:
+        return None
+    # ModelCard2025 Title: "iPad Air 7 2025 13″ recondicionado"
+    name = re.sub(r"\s+recondicionado\s*$", "", name, flags=re.I).strip()
+
+    price_raw = ""
+    price_el = root.locator(SEL["product_price"]).first
+    if price_el.count():
+        price_raw = price_el.inner_text(timeout=3000)
+
+    image_url = None
+    img = root.locator(SEL["product_image"]).first
+    if img.count():
+        image_url = resolve_image_url(img)
+
+    storage_badges = root.locator(SEL["product_storage_badge"]).all_inner_texts()
+    storages = [extract_storage(s) for s in storage_badges if extract_storage(s)]
+
+    if _listing_card_fully_out_of_stock(root):
+        logger.info("Modelo ignorado (sem stock): %s", name)
+        return None
+
+    # Sem preço de listagem e sem capacidades detectadas → pouco fiável
+    listing_price = clean_price(parse_swappie_price_eur(price_raw))
+    if listing_price is None and not storages:
+        logger.info("Modelo ignorado (sem preço/capacidades): %s", name)
+        return None
+
+    return {
+        "model": name,
+        "url": href.rstrip("/") + "/",
+        "listing_price": listing_price,
+        "image_url": image_url,
+        "storages_hint": storages,
+    }
+
+
 def collect_model_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
     page.wait_for_selector(SEL["product_card"], timeout=60_000)
     page_wait_ms(CFG["delays"], "page_load")
 
     cards: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+
+    # Layout legado (iPhones): o <a> contém nome/preço.
     links = page.locator(SEL["product_link"])
     total = links.count()
-
     for index in range(total):
         try:
             link = links.nth(index)
-            href = link.get_attribute("href")
-            if not href or "/modelo/" not in href:
+            card = _parse_listing_card(link, href=link.get_attribute("href"), base_url=base_url)
+            if not card or card["url"] in seen_urls:
                 continue
-            if not href.startswith("http"):
-                href = urljoin(base_url, href)
-
-            name_el = link.locator(SEL["product_name"]).first
-            name = name_el.inner_text(timeout=3000).strip() if name_el.count() else ""
-            price_raw = ""
-            price_el = link.locator(SEL["product_price"]).first
-            if price_el.count():
-                price_raw = price_el.inner_text(timeout=3000)
-
-            image_url = None
-            img = link.locator(SEL["product_image"]).first
-            if img.count():
-                image_url = resolve_image_url(img)
-
-            storage_badges = link.locator(SEL["product_storage_badge"]).all_inner_texts()
-            storages = [extract_storage(s) for s in storage_badges if extract_storage(s)]
-
-            if not name:
-                continue
-
-            card_text = link.inner_text(timeout=3000)
-            if text_indicates_out_of_stock(card_text):
-                logger.info("Modelo ignorado (sem stock): %s", name)
-                continue
-
-            cards.append(
-                {
-                    "model": name,
-                    "url": href.rstrip("/") + "/",
-                    "listing_price": clean_price(parse_swappie_price_eur(price_raw)),
-                    "image_url": image_url,
-                    "storages_hint": storages,
-                }
-            )
+            seen_urls.add(card["url"])
+            cards.append(card)
         except Exception as exc:
-            logger.warning("Modelo %s/%s ignorado: %s", index + 1, total, exc)
+            logger.warning("Modelo legado %s/%s ignorado: %s", index + 1, total, exc)
+
+    # Layout ModelCard2025 (iPads): título/preço no frame; link é StretchedAnchor.
+    frames = page.locator(SEL.get("product_card_2025", "[class*='ModelCard2025__CardFrame']"))
+    total_f = frames.count()
+    link_sel = SEL.get("product_link_2025", "a[class*='ModelCard2025__StretchedAnchor']")
+    for index in range(total_f):
+        try:
+            frame = frames.nth(index)
+            anchor = frame.locator(f"{link_sel}, a[href*='/modelo/']").first
+            href = anchor.get_attribute("href") if anchor.count() else None
+            card = _parse_listing_card(frame, href=href, base_url=base_url)
+            if not card or card["url"] in seen_urls:
+                continue
+            seen_urls.add(card["url"])
+            cards.append(card)
+        except Exception as exc:
+            logger.warning("Modelo 2025 %s/%s ignorado: %s", index + 1, total_f, exc)
 
     return cards
 
 
-def _collect_variant_labels(page: Page) -> tuple[list[str], list[str]]:
-    """Variantes do configurador Swappie (botões ListItem — capacidade e condição)."""
-    data = page.evaluate(
+def _collect_variant_labels(page: Page) -> tuple[list[str], list[str], str]:
+    """
+    Variantes do configurador Swappie.
+    Retorna (storage_labels, grade_labels, mode) onde mode é 'listitem' | 'radio'.
+    - iPhones: botões ListItem
+    - iPads: radios input[name=storage|grade] (Selector__)
+    """
+    # Preferir ListItem quando existir (iPhones).
+    listitem_data = page.evaluate(
         """() => {
           const buttons = [...document.querySelectorAll("button[class*='ListItem']")];
           const firstLine = (text) => text.trim().split("\\n")[0].trim();
@@ -262,13 +440,34 @@ def _collect_variant_labels(page: Page) -> tuple[list[str], list[str]]:
           return { storage: uniq(storage), grades: uniq(grades) };
         }"""
     )
-    storage_labels = data.get("storage") or []
-    grade_labels = data.get("grades") or []
+    if listitem_data.get("storage") or listitem_data.get("grades"):
+        storage_labels = listitem_data.get("storage") or []
+        grade_labels = listitem_data.get("grades") or ["Satisfatório"]
+        return storage_labels, grade_labels, "listitem"
 
-    if not grade_labels:
-        grade_labels = ["Satisfatório"]
+    # Configurador radio (iPads / ModelCard2025 detail).
+    radio_data = page.evaluate(
+        """() => {
+          const enabledValues = (name) =>
+            [...document.querySelectorAll(`input[name="${name}"]`)]
+              .filter((input) => !input.disabled)
+              .map((input) => (input.value || "").trim())
+              .filter(Boolean);
+          const uniq = (items) => [...new Set(items)];
+          return {
+            storage: uniq(enabledValues("storage")),
+            grades: uniq(enabledValues("grade")),
+          };
+        }"""
+    )
+    storage_labels = radio_data.get("storage") or []
+    grade_labels = radio_data.get("grades") or []
+    if storage_labels or grade_labels:
+        if not grade_labels:
+            grade_labels = ["Satisfatório"]
+        return storage_labels, grade_labels, "radio"
 
-    return storage_labels, grade_labels
+    return [], ["Satisfatório"], "listitem"
 
 
 def _click_list_item(page: Page, label: str) -> bool:
@@ -277,6 +476,7 @@ def _click_list_item(page: Page, label: str) -> bool:
     btn = page.locator(_VARIANT_BUTTON).filter(has_text=pattern)
     if not btn.count():
         return False
+    dismiss_page_overlays(page)
     btn.first.click(force=True, timeout=5000)
     human_delay(CFG["delays"], "between_variants")
     try:
@@ -285,6 +485,38 @@ def _click_list_item(page: Page, label: str) -> bool:
         pass
     page_wait_ms(CFG["delays"], "after_variant_select")
     return True
+
+
+def _click_radio_option(page: Page, input_name: str, value: str) -> bool:
+    """Selecciona opção do configurador radio (iPads). Clique via JS para evitar overlays."""
+    dismiss_page_overlays(page)
+    line = value.split("\n")[0].strip()
+    clicked = page.evaluate(
+        """([name, value]) => {
+          const inputs = [...document.querySelectorAll(`input[name="${name}"]`)];
+          const input = inputs.find((el) => (el.value || "").trim() === value);
+          if (!input || input.disabled) return false;
+          input.click();
+          return true;
+        }""",
+        [input_name, line],
+    )
+    if not clicked:
+        return False
+    human_delay(CFG["delays"], "between_variants")
+    try:
+        page.locator(SEL["detail_price"]).first.wait_for(state="attached", timeout=5000)
+    except Exception:
+        pass
+    page_wait_ms(CFG["delays"], "after_variant_select")
+    return True
+
+
+def _click_variant(page: Page, label: str, *, mode: str, kind: str) -> bool:
+    """kind: 'storage' | 'grade'."""
+    if mode == "radio":
+        return _click_radio_option(page, kind, label)
+    return _click_list_item(page, label)
 
 
 def _read_detail_price(page: Page) -> float | None:
@@ -335,6 +567,7 @@ def _variants_from_model_page(
     human_delay(CFG["delays"], "after_navigation")
     page_wait_ms(CFG["delays"], "page_load")
     dismiss_cookie_banner(page)
+    dismiss_page_overlays(page)
 
     if swappie_product_page_missing(page, response):
         logger.info("Página inválida/404 (Swappie): %s", card.get("url"))
@@ -347,6 +580,8 @@ def _variants_from_model_page(
             logger.info("Página inválida/404 (Swappie): %s", card.get("url"))
             return [], True
         raise
+
+    dismiss_page_overlays(page)
 
     if page_indicates_out_of_stock(page):
         logger.info("Modelo sem stock (Swappie): %s", card.get("model"))
@@ -368,39 +603,73 @@ def _variants_from_model_page(
     except Exception:
         pass
 
-    storage_labels, grade_labels = _collect_variant_labels(page)
+    # Esperar configurador radio (iPads) se ListItem ainda não existir.
+    try:
+        page.wait_for_selector(
+            "button[class*='ListItem'], input[name='storage'], label[class*='Selector__SelectorLabel']",
+            timeout=15_000,
+        )
+    except Exception:
+        pass
+
+    storage_labels, grade_labels, variant_mode = _collect_variant_labels(page)
     if not storage_labels:
         storage_labels = ["128 GB"]
+    logger.debug(
+        "%s: configurador=%s storages=%s grades=%s",
+        model,
+        variant_mode,
+        storage_labels,
+        grade_labels,
+    )
 
     records: list[dict[str, Any]] = []
-    product_url = page.url.rstrip("/") + "/"
 
     for storage_lbl in storage_labels[:4]:
         storage_key = storage_lbl.split("\n")[0].strip()
         if not _STORAGE_LINE_RE.match(storage_key):
             continue
-        if not _click_list_item(page, storage_key):
+        if not _click_variant(page, storage_key, mode=variant_mode, kind="storage"):
             logger.debug("Capacidade não clicável: %s (%s)", storage_key, card.get("url"))
             continue
 
+        storage_slug = _storage_slug(storage_key)
+        url_updated = False
         try:
             page.wait_for_url(
-                lambda url: storage_key.lower().replace(" ", "") in url.lower(),
-                timeout=3000,
+                lambda url, slug=storage_slug: slug in url.lower(),
+                timeout=5000,
             )
+            url_updated = True
         except Exception:
             pass
 
         variant_url = page.url.rstrip("/") + "/"
 
-        if "/modelo/" in variant_url:
-            variant_url = product_url
+        if not _url_matches_storage(variant_url, storage_key):
+            logger.warning(
+                "Mismatch URL↔storage — variante rejeitada: storage=%s "
+                "(esperado slug %r, URL tem %s) url=%s",
+                storage_key,
+                storage_slug,
+                _storage_slugs_in_url(variant_url) or "nenhum",
+                variant_url,
+            )
+            continue
+
+        if not url_updated:
+            logger.info(
+                "URL sem slug de capacidade após clique (%s) — a aceitar "
+                "sem conflito detectado: %s",
+                storage_key,
+                variant_url,
+            )
 
         for grade_lbl in grade_labels[:4]:
             grade_key = grade_lbl.split("\n")[0].strip()
             if not _GRADE_LINE_RE.match(grade_key):
                 continue
-            if not _click_list_item(page, grade_key):
+            if not _click_variant(page, grade_key, mode=variant_mode, kind="grade"):
                 logger.debug("Condição não clicável: %s (%s)", grade_key, card.get("url"))
                 continue
 
@@ -408,14 +677,38 @@ def _variants_from_model_page(
                 logger.debug("Variante sem stock: %s / %s", storage_key, grade_key)
                 continue
 
-            price = clean_price(_read_detail_price(page) or card.get("listing_price"))
+            # Reconfirma URL↔storage após cliques de grade (pode navegar para SKU errada).
+            current_url = page.url.rstrip("/") + "/"
+            if not _url_matches_storage(current_url, storage_key):
+                logger.warning(
+                    "Mismatch URL↔storage após grade — variante rejeitada: "
+                    "%s / %s (URL tem %s) url=%s",
+                    storage_key,
+                    grade_key,
+                    _storage_slugs_in_url(current_url) or "nenhum",
+                    current_url,
+                )
+                continue
+
+            detail_price = _read_detail_price(page)
+            if detail_price is None:
+                logger.warning(
+                    "Sem preço confiável (detalhe em falta) — variante rejeitada: "
+                    "%s / %s / %s (listing_price NÃO usado como fallback)",
+                    model,
+                    storage_key,
+                    grade_key,
+                )
+                continue
+
+            price = accept_swappie_price(detail_price, model)
             if price is None:
                 continue
 
             record = build_normalized_product(
                 CFG,
                 category=category,
-                url=variant_url,
+                url=current_url,
                 model=model,
                 price=price,
                 image_url=image_url,
@@ -427,6 +720,8 @@ def _variants_from_model_page(
             )
             if record:
                 records.append(record)
+
+    records = _reject_equal_prices_across_storages(records, model)
 
     deduped = dedupe_swappie_products(records)
     if len(deduped) < len(records):
@@ -513,11 +808,17 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                     len(products),
                 )
 
-            page.goto(category_url, wait_until="domcontentloaded", timeout=60_000)
-            human_delay(CFG["delays"], "after_navigation")
-            dismiss_cookie_banner(page)
+            try:
+                page.goto(category_url, wait_until="domcontentloaded", timeout=60_000)
+                human_delay(CFG["delays"], "after_navigation")
+                dismiss_cookie_banner(page)
+                cards = collect_model_cards(page, CFG["base_url"])
+            except Exception as exc:
+                logger.error("Falha ao listar categoria %s: %s", category, exc, exc_info=True)
+                stats["errors"] += 1
+                stats["by_category"][category] = 0
+                continue
 
-            cards = collect_model_cards(page, CFG["base_url"])
             cat_count = 0
 
             for index, card in enumerate(cards, start=1):

@@ -247,6 +247,23 @@ def is_valid_listing_price(price: float | None) -> bool:
     return price is not None and price > 0
 
 
+# Mínimos plausíveis por família de produto (partilhado — ex. Refurbed / Swappie).
+MODEL_MIN_PRICE_DEFAULT = 100
+MODEL_MIN_PRICE: dict[str, float] = {
+    "iphone": 100,
+    "ipad": 80,
+}
+
+
+def min_price_for_model(model: str | None) -> float:
+    """Preço mínimo plausível por modelo (iPhone ≥ 100€, iPad ≥ 80€, resto ≥ 100€)."""
+    model_lower = (model or "").lower()
+    for keyword, min_price in MODEL_MIN_PRICE.items():
+        if keyword in model_lower:
+            return min_price
+    return MODEL_MIN_PRICE_DEFAULT
+
+
 def is_category_url(url: str | None, source: str | None = None) -> bool:
     """
     Detecta URLs de categoria/hub em vez de produto individual.
