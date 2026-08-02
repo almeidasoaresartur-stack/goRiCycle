@@ -57,6 +57,21 @@ function renderInlineMarkdown(text: string): ReactNode[] {
   });
 }
 
+function parseTableCells(line: string): string[] {
+  const trimmed = line.trim().replace(/^\|/, "").replace(/\|$/, "");
+  return trimmed.split("|").map((cell) => cell.trim());
+}
+
+function isTableSeparator(line: string): boolean {
+  return /^\|?[\s:|-]+\|[\s:|-]*\|?$/.test(line.trim()) && line.includes("-");
+}
+
+function isMarkdownTable(lines: string[]): boolean {
+  if (lines.length < 2) return false;
+  if (!lines.every((line) => line.trim().startsWith("|"))) return false;
+  return isTableSeparator(lines[1]);
+}
+
 function BlogContent({ content }: { content: string }) {
   const blocks = content.split("\n\n");
 
@@ -69,12 +84,48 @@ function BlogContent({ content }: { content: string }) {
         if (trimmed.startsWith("## ")) {
           return (
             <h2 key={index} className="mt-10 text-xl font-semibold text-slate-900 first:mt-0">
-              {trimmed.replace("## ", "")}
+              {renderInlineMarkdown(trimmed.replace("## ", ""))}
             </h2>
           );
         }
 
         const lines = trimmed.split("\n");
+
+        if (isMarkdownTable(lines)) {
+          const headerCells = parseTableCells(lines[0]);
+          const bodyRows = lines.slice(2).map(parseTableCells);
+
+          return (
+            <div key={index} className="overflow-x-auto">
+              <table className="w-full min-w-[36rem] border-collapse text-left text-sm leading-relaxed text-slate-700 sm:text-base">
+                <thead>
+                  <tr className="border-b border-slate-200">
+                    {headerCells.map((cell, cellIndex) => (
+                      <th
+                        key={cellIndex}
+                        className="px-3 py-2 font-semibold text-slate-900 first:pl-0 last:pr-0"
+                      >
+                        {renderInlineMarkdown(cell)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bodyRows.map((row, rowIndex) => (
+                    <tr key={rowIndex} className="border-b border-slate-100">
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex} className="px-3 py-2 align-top first:pl-0 last:pr-0">
+                          {renderInlineMarkdown(cell)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+
         if (lines.every((line) => line.startsWith("- "))) {
           return (
             <ul key={index} className="list-disc space-y-2 pl-5">

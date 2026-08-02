@@ -10,6 +10,89 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "comparacao-lojas-certideal-iservices-swappie-refurbed-callphone",
+    title: "As 5 lojas que comparamos no goRiCycle: qual escolher, e para quê",
+    description:
+      "Certideal, iServices, Swappie, Refurbed e Callphone não são a mesma coisa com nomes diferentes. Cada uma tem um modelo de garantia, devolução e transparência próprio. Explicamos as diferenças que realmente importam.",
+    publishedAt: "2026-08-02",
+    readingMinutes: 6,
+    content: `O goRiCycle compara preços entre cinco lojas — Certideal, iServices, Swappie, Refurbed e Callphone. Até aqui, os nossos artigos falaram sempre de modelos: qual iPhone, qual capacidade, qual geração. Mas há uma pergunta que ainda não respondemos directamente, e que é tão importante como a escolha do telemóvel: **em qual destas lojas compensa comprar?**
+
+Não é a mesma loja com cinco nomes diferentes. Há diferenças reais em garantia, prazo de devolução, e no que cada uma está disposta a dizer-te sobre o estado real do aparelho antes de compares. Vamos loja a loja.
+
+## [Certideal](/?store=certideal&view=all&section=comparador#comparador) — o processo mais estruturado, sem loja física
+
+A Certideal opera só online, mas com um processo de recondicionamento interno próprio: mais de 30 pontos de controlo por aparelho antes de ir para venda. A garantia base é de **24 meses**, com possibilidade de extensão até 4 anos mediante pagamento no momento da compra. O prazo de devolução por arrependimento é de **21 dias** — mais generoso do que o mínimo legal de 14.
+
+Os graus estéticos usados são três: Como Novo, Muito Bom e Correto. É a nomenclatura mais simples das cinco lojas, o que facilita a comparação mas também dá menos detalhe do que outras.
+
+**Faz sentido se** procuras o prazo de garantia mais longo possível sem pagar extensão, e não precisas de tocar fisicamente no aparelho antes de decidir.
+
+## [iServices](/?store=iservices&view=all&section=comparador#comparador) — a única com loja física a sério
+
+A iServices é a excepção nesta lista: tem dezenas de lojas físicas em Portugal com assistência técnica própria, além da loja online. Para quem prefere ver e testar o aparelho antes de comprar, ou quer poder entregar pessoalmente em caso de assistência, é a única das cinco lojas que oferece essa opção.
+
+A garantia é de **36 meses** — a mais longa das cinco por defeito, sem custo de extensão. O prazo de devolução é de 30 dias nas fichas de produto de iPhone (14 dias nalgumas categorias de acessórios e wearables, que não fazem parte do catálogo do goRiCycle).
+
+**Faz sentido se** valorizas ter uma loja física por perto, ou se a garantia longa sem custo extra é o critério que mais pesa.
+
+**Não é a melhor escolha se** o preço é o único critério — a rede de lojas físicas tem custos que normalmente não existem nas lojas 100% online.
+
+## [Swappie](/?store=swappie&view=all&section=comparador#comparador) — especialista em iPhone, e só iPhone
+
+Vale a pena dizer isto com clareza: a Swappie **não vende Android nem iPads**. É uma loja focada exclusivamente em iPhone (a partir do iPhone 12 no programa de recompra, embora o catálogo de venda inclua modelos mais antigos). Se procuras um Samsung ou um tablet, a Swappie simplesmente não é opção — e por isso vais vê-la aparecer com menos frequência nos resultados do goRiCycle quando filtras por essas categorias.
+
+A garantia divulgada é de 24 meses. Como em qualquer loja, os termos e condições definem exclusões específicas — no caso da Swappie, dano físico posterior à compra (ecrã rachado, queda, exposição a água) fica fora de cobertura, o que é aliás prática comum no sector. Vale sempre a pena ler as condições completas antes de comprar, seja qual for a loja. O prazo de devolução varia entre 14 e 30 dias consoante o país.
+
+**Faz sentido se** procuras especificamente um iPhone e valorizas um processo muito focado nesse único produto.
+
+**Não é a melhor escolha se** procuras Android, tablets, ou se contas usar a garantia mesmo com pequenos danos estéticos.
+
+## [Refurbed](/?store=refurbed&view=all&section=comparador#comparador) — o único que publica números reais de bateria
+
+Este é o ponto que mais nos chamou a atenção ao investigar as cinco lojas: a Refurbed é a única que publica, com números concretos, os mínimos de saúde de bateria por grau. Nos smartphones, a bateria tem de manter pelo menos 85% de capacidade (80% noutros dispositivos, 90% na categoria Premium) — abaixo disso, é substituída automaticamente antes da venda.
+
+As outras lojas falam em "boa saúde da bateria" ou usam o grau estético como proxy indirecto. A Refurbed é a excepção que dá um número que podes verificar tu próprio depois, nas Definições do aparelho.
+
+Importa perceber que a Refurbed funciona como **marketplace**: não recondiciona directamente, agrega vendedores europeus que cumprem os critérios da plataforma. Isso significa que a qualidade pode variar mais entre vendedores do que numa loja com processo interno único. A garantia mínima é de 12 meses (a mais curta das cinco), com 30 dias de teste gratuito.
+
+**Faz sentido se** a saúde da bateria é o teu critério de decisão principal e queres um número, não um adjectivo.
+
+**Não é a melhor escolha se** preferes lidar sempre com o mesmo recondicionador, e não com um marketplace de vendedores diferentes.
+
+## [Callphone](/?store=callphone&view=all&section=comparador#comparador) — a mais pequena, com loja física no Porto
+
+A Callphone é a loja mais pequena das cinco em presença de mercado, mas também publica um número concreto: bateria saudável entre 81% e 100%, com garantia própria de 6 meses só para a bateria — separada da garantia geral de 24 meses do aparelho. Tem loja física com assistência técnica em Penafiel.
+
+O prazo de devolução é de 14 dias — o mínimo legal, sem margem extra como a Certideal ou a iServices.
+
+**Faz sentido se** estás na zona do Porto e valorizas ter um ponto físico de contacto próximo, ou se o número de bateria concreto pesa na tua decisão tanto quanto na Refurbed.
+
+## As 5 lojas, lado a lado
+
+| Loja | Garantia | Prazo de devolução | Loja física | Transparência de bateria |
+|---|---|---|---|---|
+| Certideal | 24 meses (até 4 anos com extensão paga) | 21 dias | Não | Grau estético apenas |
+| iServices | 36 meses | 30 dias | Sim — rede nacional | Grau estético apenas |
+| Swappie | 24 meses | 14–30 dias (consoante país) | Não | Grau estético apenas |
+| Refurbed | 12 meses (mínimo, marketplace) | 30 dias (teste gratuito) | Não | Sim — mínimo de 85% publicado |
+| Callphone | 24 meses (+ 6 meses só para bateria) | 14 dias | Sim — Penafiel (Porto) | Sim — intervalo 81–100% publicado |
+
+## Então, qual escolher?
+
+Não há resposta única — e seria pouco honesto dizer que há. O que podemos dizer, depois de comparar as cinco directamente:
+
+- **Garantia mais longa sem custo extra:** iServices (36 meses)
+- **Prazo de devolução mais generoso:** Certideal (21 dias) e Refurbed (30 dias de teste)
+- **Só quer transparência de bateria em número, não em adjectivo:** Refurbed ou Callphone
+- **Quer tocar no aparelho antes de comprar:** iServices (rede nacional) ou Callphone (Penafiel)
+- **Procura só iPhone e nada mais:** Swappie entra na comparação; para Android ou tablets, sai automaticamente
+
+O papel do goRiCycle continua a ser o mesmo: mostrar-te o preço de cada uma para o mesmo modelo, capacidade e estado, lado a lado. Mas o preço mais baixo nem sempre é a melhor decisão se a garantia, o prazo de devolução ou a transparência da bateria pesarem mais para ti do que uns euros de diferença.
+
+*As informações sobre garantias e políticas de devolução foram verificadas directamente nos sites oficiais de cada loja em agosto de 2026. Estas condições podem mudar — recomendamos sempre confirmar os termos actuais na própria loja antes de finalizar uma compra.*`,
+  },
+  {
     slug: "graus-estado-recondicionados-comparacao-lojas",
     title:
       "Grau A, Excelente, Correto: o que significa realmente o estado de um recondicionado, loja a loja",
