@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-08-03T10:08:44.328408+00:00",
-  "total_products": 31,
+  "scraped_at": "2026-08-04T09:13:29.280949+00:00",
+  "total_products": 30,
   "products": [
     {
       "source": "iservices",
@@ -622,27 +622,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-08-02T06:13:12.667297+00:00",
-      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad 10.9\" 2022 (10ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 400.96,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-102-2021-9th-generation-64-gb-space-grey-very-good-wi-fi.webp",
-      "source_page": "https://iservices.pt/produto/1424-ipad-pro-11-2021-3a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-08-02T06:13:12.667297+00:00",
       "product_id": "iservices_1654-ipad-pro-129-2022-6a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -662,6 +641,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-08-03T11:52:51.484106+00:00",
-  "merged_at": "2026-08-03T11:52:51.760575+00:00"
+  "validated_at": "2026-08-04T10:54:07.615645+00:00",
+  "merged_at": "2026-08-04T10:54:07.901202+00:00"
 }
