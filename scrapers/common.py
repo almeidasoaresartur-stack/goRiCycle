@@ -264,6 +264,71 @@ def min_price_for_model(model: str | None) -> float:
     return MODEL_MIN_PRICE_DEFAULT
 
 
+def storage_capacity_gb(storage: str | None) -> int | None:
+    """Converte '128GB' / '1TB' / '1000GB' para GB inteiros; None se inválido."""
+    if not storage:
+        return None
+    text = str(storage).strip().upper().replace(" ", "")
+    if text.endswith("TB"):
+        try:
+            return int(float(text[:-2]) * 1000)
+        except ValueError:
+            return None
+    match = re.search(r"(\d+)\s*GB", str(storage), flags=re.I)
+    if not match:
+        return None
+    return int(match.group(1))
+
+
+def filter_monotonic_storage_prices(
+    records: list[dict[str, Any]],
+    *,
+    model_key: str = "model",
+    grade_key: str = "grade",
+    storage_key: str = "storage",
+    price_key: str = "price",
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """
+    Dentro do mesmo modelo+grau, exige preço estritamente crescente com a capacidade.
+    Capacidade maior com preço ≤ capacidade menor já aceite → rejeitada.
+    Retorna (kept, rejected).
+    """
+    by_group: dict[tuple[Any, Any], list[dict[str, Any]]] = {}
+    for record in records:
+        key = (record.get(model_key), record.get(grade_key))
+        by_group.setdefault(key, []).append(record)
+
+    kept: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+
+    for (_model, _grade), items in by_group.items():
+        sortable: list[tuple[int, float, dict[str, Any]]] = []
+        passthrough: list[dict[str, Any]] = []
+        for record in items:
+            gb = storage_capacity_gb(record.get(storage_key))
+            price = record.get(price_key)
+            if gb is None or not isinstance(price, (int, float)):
+                passthrough.append(record)
+                continue
+            sortable.append((gb, float(price), record))
+
+        sortable.sort(key=lambda row: (row[0], row[1]))
+        last_gb: int | None = None
+        last_price: float | None = None
+        for gb, price, record in sortable:
+            if last_gb is not None and gb > last_gb and price <= last_price:
+                rejected.append(record)
+                continue
+            kept.append(record)
+            if last_gb is None or gb > last_gb or (gb == last_gb and price > (last_price or 0)):
+                last_gb = gb
+                last_price = price
+
+        kept.extend(passthrough)
+
+    return kept, rejected
+
+
 def is_category_url(url: str | None, source: str | None = None) -> bool:
     """
     Detecta URLs de categoria/hub em vez de produto individual.

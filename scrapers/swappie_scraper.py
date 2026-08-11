@@ -14,6 +14,7 @@ import json
 import logging
 import re
 import sys
+import time
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,6 +30,7 @@ if str(_SCRAPERS_DIR) not in sys.path:
 from common import (
     build_normalized_product,
     extract_storage,
+    filter_monotonic_storage_prices,
     human_delay,
     min_price_for_model,
     normalize_grade_swappie,
@@ -209,18 +211,83 @@ def _storage_slugs_in_url(url: str) -> list[str]:
 def _url_matches_storage(url: str, storage_key: str) -> bool:
     """
     Consistência URL↔storage:
-    - Se a URL tem slug(s) de capacidade, tem de incluir o da capacidade clicada
-      (rejeita ex. storage=512GB com URL …-128gb-…).
-    - Se a URL é /modelo/ sem slug, não há conflito detectável → aceita
-      (a Swappie muitas vezes não actualiza a URL na 1ª capacidade).
+    - A URL tem de conter o slug da capacidade clicada (ex. '512gb').
+    - URL /modelo/ sem slug → False (não aceitar cegamente; o chamador
+      pode confirmar via UI antes de aceitar o preço).
     """
     slug = _storage_slug(storage_key)
-    if not slug:
+    if not slug or not url:
         return False
     found = _storage_slugs_in_url(url)
     if not found:
-        return True
+        return False
     return slug in found
+
+
+def _storage_ui_selected(page: Page, storage_key: str, mode: str) -> bool:
+    """True se o DOM indica que a capacidade clicada está seleccionada."""
+    line = storage_key.split("\n")[0].strip()
+    slug = _storage_slug(line)
+    return bool(
+        page.evaluate(
+            """([line, slug, mode]) => {
+              const norm = (t) => (t || "").replace(/\\s+/g, "").toLowerCase();
+              if (mode === "radio") {
+                const inputs = [...document.querySelectorAll('input[name="storage"]')];
+                const input = inputs.find((el) => (el.value || "").trim() === line);
+                return !!(input && input.checked && !input.disabled);
+              }
+              const buttons = [...document.querySelectorAll("button[class*='ListItem']")];
+              for (const btn of buttons) {
+                const first = (btn.innerText || "").trim().split("\\n")[0].trim();
+                if (norm(first) !== slug) continue;
+                const aria =
+                  btn.getAttribute("aria-pressed") === "true" ||
+                  btn.getAttribute("aria-checked") === "true" ||
+                  btn.getAttribute("aria-selected") === "true";
+                const cls = (btn.className || "").toString().toLowerCase();
+                const classSelected = /selected|active|checked|pressed|current/.test(cls);
+                if (aria || classSelected) return true;
+              }
+              // Fallback: resumo do modelo (ex. "512 GB | Azul | …")
+              const summaryNodes = document.querySelectorAll(
+                "[class*='ModelSummary'], [class*='summaryWithBadge'], " +
+                "[class*='StyledModelSummary'], [class*='FinePrint'], h1"
+              );
+              for (const node of summaryNodes) {
+                const text = norm(node.innerText || "");
+                if (text.includes(slug)) return true;
+              }
+              return false;
+            }""",
+            [line, slug, mode],
+        )
+    )
+
+
+def _wait_storage_ui_confirmed(
+    page: Page,
+    storage_key: str,
+    mode: str,
+    *,
+    timeout_ms: int = 5000,
+) -> bool:
+    """
+    Espera confirmação de que a capacidade clicada está activa.
+    Aceita: (a) estado seleccionado no DOM / resumo, ou (b) slug na URL.
+    Sem nenhum dos dois até ao timeout → False.
+    """
+    deadline = time.monotonic() + (timeout_ms / 1000)
+    while time.monotonic() < deadline:
+        try:
+            if _storage_ui_selected(page, storage_key, mode):
+                return True
+            if _url_matches_storage(page.url, storage_key):
+                return True
+        except Exception:
+            pass
+        page.wait_for_timeout(200)
+    return False
 
 
 def _reject_equal_prices_across_storages(
@@ -271,6 +338,24 @@ def _reject_equal_prices_across_storages(
                 sorted(bad_prices),
             )
 
+    return kept
+
+
+def _apply_monotonic_storage_prices(
+    records: list[dict[str, Any]],
+    model: str | None,
+) -> list[dict[str, Any]]:
+    """Rejeita capacidades maiores com preço ≤ capacidade menor (mesmo modelo+grau)."""
+    kept, rejected = filter_monotonic_storage_prices(records)
+    for record in rejected:
+        logger.warning(
+            "Preço não monotónico por capacidade — variante rejeitada: "
+            "%s / %s / %s @ %s€ (capacidade maior não pode custar ≤ que menor)",
+            model or record.get("model"),
+            record.get("storage"),
+            record.get("grade"),
+            record.get("price"),
+        )
     return kept
 
 
@@ -633,34 +718,45 @@ def _variants_from_model_page(
             logger.debug("Capacidade não clicável: %s (%s)", storage_key, card.get("url"))
             continue
 
+        # Confirmação UI obrigatória antes de confiar no preço / URL.
+        if not _wait_storage_ui_confirmed(page, storage_key, variant_mode, timeout_ms=5000):
+            logger.warning(
+                "UI não confirmou capacidade após clique — variante rejeitada: "
+                "%s (mode=%s) url=%s",
+                storage_key,
+                variant_mode,
+                page.url,
+            )
+            continue
+
         storage_slug = _storage_slug(storage_key)
-        url_updated = False
         try:
             page.wait_for_url(
                 lambda url, slug=storage_slug: slug in url.lower(),
-                timeout=5000,
+                timeout=3000,
             )
-            url_updated = True
         except Exception:
             pass
 
         variant_url = page.url.rstrip("/") + "/"
+        url_ok = _url_matches_storage(variant_url, storage_key)
+        url_slugs = _storage_slugs_in_url(variant_url)
 
-        if not _url_matches_storage(variant_url, storage_key):
-            logger.warning(
-                "Mismatch URL↔storage — variante rejeitada: storage=%s "
-                "(esperado slug %r, URL tem %s) url=%s",
-                storage_key,
-                storage_slug,
-                _storage_slugs_in_url(variant_url) or "nenhum",
-                variant_url,
-            )
-            continue
-
-        if not url_updated:
+        if not url_ok:
+            if url_slugs:
+                # URL tem capacidade diferente da clicada → rejeitar sempre.
+                logger.warning(
+                    "Mismatch URL↔storage — variante rejeitada: storage=%s "
+                    "(esperado slug %r, URL tem %s) url=%s",
+                    storage_key,
+                    storage_slug,
+                    url_slugs,
+                    variant_url,
+                )
+                continue
+            # URL sem slug: só segue porque a UI já confirmou a capacidade.
             logger.info(
-                "URL sem slug de capacidade após clique (%s) — a aceitar "
-                "sem conflito detectado: %s",
+                "URL sem slug de capacidade (%s) — aceite via confirmação UI: %s",
                 storage_key,
                 variant_url,
             )
@@ -677,18 +773,33 @@ def _variants_from_model_page(
                 logger.debug("Variante sem stock: %s / %s", storage_key, grade_key)
                 continue
 
-            # Reconfirma URL↔storage após cliques de grade (pode navegar para SKU errada).
+            # Reconfirma capacidade na UI após cliques de grade.
+            if not _wait_storage_ui_confirmed(page, storage_key, variant_mode, timeout_ms=3000):
+                logger.warning(
+                    "UI perdeu confirmação de capacidade após grade — variante rejeitada: "
+                    "%s / %s url=%s",
+                    storage_key,
+                    grade_key,
+                    page.url,
+                )
+                continue
+
             current_url = page.url.rstrip("/") + "/"
-            if not _url_matches_storage(current_url, storage_key):
+            url_ok_after = _url_matches_storage(current_url, storage_key)
+            url_slugs_after = _storage_slugs_in_url(current_url)
+            if not url_ok_after and url_slugs_after:
                 logger.warning(
                     "Mismatch URL↔storage após grade — variante rejeitada: "
                     "%s / %s (URL tem %s) url=%s",
                     storage_key,
                     grade_key,
-                    _storage_slugs_in_url(current_url) or "nenhum",
+                    url_slugs_after,
                     current_url,
                 )
                 continue
+            if not url_ok_after and not url_slugs_after:
+                # Sem slug na URL: só OK com UI já confirmada acima.
+                pass
 
             detail_price = _read_detail_price(page)
             if detail_price is None:
@@ -722,6 +833,7 @@ def _variants_from_model_page(
                 records.append(record)
 
     records = _reject_equal_prices_across_storages(records, model)
+    records = _apply_monotonic_storage_prices(records, model)
 
     deduped = dedupe_swappie_products(records)
     if len(deduped) < len(records):
