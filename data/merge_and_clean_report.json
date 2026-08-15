@@ -1,5 +1,5 @@
 {
-  "merged_at": "2026-08-14T09:37:03.213737+00:00",
+  "merged_at": "2026-08-15T11:53:51.436776+00:00",
   "dry_run": false,
   "per_source": [
     {
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 91,
-      "kept": 89,
+      "total": 93,
+      "kept": 91,
       "removed": 0,
       "removed_by_relevance": 2,
       "corrections_applied": 0,
@@ -34,8 +34,8 @@
     },
     {
       "source": "certideal",
-      "total": 118,
-      "kept": 114,
+      "total": 120,
+      "kept": 116,
       "removed": 0,
       "removed_by_relevance": 4,
       "corrections_applied": 0,
@@ -54,7 +54,7 @@
     }
   ],
   "combined": {
-    "total_unique": 599,
+    "total_unique": 603,
     "removed_on_merge": 0,
     "removed_by_relevance": 7,
     "corrections_applied": 0,
