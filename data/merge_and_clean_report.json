@@ -1,5 +1,5 @@
 {
-  "merged_at": "2026-08-19T12:07:43.057522+00:00",
+  "merged_at": "2026-08-20T09:01:32.063691+00:00",
   "dry_run": false,
   "per_source": [
     {
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 103,
-      "kept": 101,
+      "total": 121,
+      "kept": 119,
       "removed": 0,
       "removed_by_relevance": 2,
       "corrections_applied": 0,
@@ -24,8 +24,8 @@
     },
     {
       "source": "swappie",
-      "total": 105,
-      "kept": 105,
+      "total": 100,
+      "kept": 100,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -34,8 +34,8 @@
     },
     {
       "source": "certideal",
-      "total": 116,
-      "kept": 113,
+      "total": 115,
+      "kept": 112,
       "removed": 0,
       "removed_by_relevance": 3,
       "corrections_applied": 0,
@@ -54,7 +54,7 @@
     }
   ],
   "combined": {
-    "total_unique": 616,
+    "total_unique": 628,
     "removed_on_merge": 0,
     "removed_by_relevance": 6,
     "corrections_applied": 0,
