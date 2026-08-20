@@ -10,6 +10,66 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "garantia-bateria-recondicionados-comparacao-lojas",
+    title:
+      "Bateria: a garantia mais curta do recondicionado — o que cada loja garante (e não garante)",
+    description:
+      "Todas as lojas falam de bateria saudável — mas a duração da garantia varia muito. Comparámos o mínimo garantido e o prazo real de cobertura em Certideal, Refurbed, Swappie, iServices e Callphone.",
+    publishedAt: "2026-08-20",
+    readingMinutes: 5,
+    content: `Todas as lojas falam de "bateria saudável". Poucas dizem, em letras do mesmo tamanho, quanto tempo essa promessa dura — e a duração varia muito mais entre lojas do que o número de capacidade mínima.
+
+## O mínimo garantido no momento da compra
+
+| Loja | Mínimo garantido | Varia por grau? |
+|---|---|---|
+| Refurbed | 85% (90% no Premium, 80% noutros dispositivos) | Sim |
+| Certideal | 80% (85% no Premium); iPads sempre 80% | Sim |
+| Swappie | 86% | Não |
+| iServices | 80% | Não |
+| Callphone | 81% | Não |
+
+Na prática, um "Grau A" ou "Bom Estado" na Swappie, iServices ou Callphone pode vir com a mesma saúde de bateria mínima que o grau mais alto — o grau só descreve o estado estético, não a bateria. Já na Refurbed e na Certideal, pagar mais por um grau superior também compra uma margem de capacidade mais alta.
+
+## A garantia da bateria não é sempre a garantia do aparelho
+
+Aqui está o ponto que a maioria dos compradores não confirma antes de comprar: nalgumas lojas, a garantia do telemóvel e a garantia da bateria têm prazos diferentes.
+
+| Loja | Garantia do aparelho | Garantia da bateria |
+|---|---|---|
+| Certideal | 36 meses (encomendas desde jun 2022) | Incluída nos 36 meses — substituição garantida se a capacidade cair abaixo de 80% |
+| Refurbed | 12 meses mínimo | 12 meses, mas só cobre falhas técnicas, não a perda gradual de capacidade |
+| iServices | até 3 anos | 1 ano — expressamente mais curta do que a do aparelho |
+| Swappie | 12 meses | 12 meses só para defeitos técnicos; o desgaste normal fica de fora (é preciso subscrever o Swappie Care à parte) |
+| Callphone | 24 meses | 6 meses — a mais curta das cinco |
+
+Duas lojas destacam-se em sentidos opostos. A Certideal integra a bateria na garantia geral de 36 meses, com um critério claro (substitui se cair abaixo de 80%) — é a cobertura mais longa e mais simples de perceber. A Callphone vai no sentido inverso: garante o aparelho por 24 meses, mas a bateria só está coberta durante 6 — passado esse período, qualquer degradação deixa de ser problema da loja.
+
+## O que a maioria das garantias não cobre
+
+Fora a Certideal, a generalidade das lojas cobre avarias da bateria — incha, desliga o telemóvel sozinho, não carrega — mas não cobre a perda gradual e normal de capacidade ao longo do tempo. Isto é especialmente explícito na Refurbed e na Swappie.
+
+Ou seja: se comprares um iPhone com bateria a 85% numa dessas lojas e, um ano depois de uso normal, a bateria estiver a 78%, isso não é uma avaria — é o comportamento esperado de qualquer bateria de lítio. Não há troca por esse motivo, mesmo dentro do período de garantia "da bateria".
+
+## O que isto significa na prática
+
+Se a autonomia é a tua prioridade principal, três coisas valem mais do que confiar cegamente no nome do grau:
+
+- **Confirma o número, não só o grau.** "Excelente" ou "Grau A" não te diz a saúde da bateria em nenhuma das cinco lojas — pede sempre a percentagem exacta na ficha do produto.
+- **Sabe até quando estás coberto.** Se a bateria falhar aos 8 meses na Callphone, já podes estar fora do prazo. Na Certideal, a mesma falha aos 8 meses ainda está integrada nos 36 meses de garantia geral.
+- **Considera a bateria nova como opção paga**, quando disponível. Certideal, Swappie e outras oferecem esta opção nalguns modelos — sai mais caro, mas resolve o problema na origem em vez de depender de uma garantia limitada.
+
+## O veredito do goRiCycle
+
+Nenhuma das cinco lojas mente sobre a bateria — os números que publicam são reais. Mas há uma distância grande entre "a bateria está garantida" e "durante quanto tempo, e contra o quê". Se comprares olhando só para o grau estético, estás a decidir com metade da informação. A percentagem de bateria e a duração real da cobertura contam a outra metade.
+
+Pronto para comparar preços?
+
+Compara em tempo real nas principais lojas portuguesas de recondicionados.
+
+[Ir para o comparador →](https://goricycle.com/)`,
+  },
+  {
     slug: "comparacao-lojas-certideal-iservices-swappie-refurbed-callphone",
     title: "As 5 lojas que comparamos no goRiCycle: qual escolher, e para quê",
     description:
