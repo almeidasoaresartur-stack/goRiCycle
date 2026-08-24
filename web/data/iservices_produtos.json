@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-08-23T04:03:12.581906+00:00",
-  "total_products": 30,
+  "scraped_at": "2026-08-24T07:31:41.688184+00:00",
+  "total_products": 31,
   "products": [
     {
       "source": "iservices",
@@ -639,8 +639,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-08-24T07:31:41.688184+00:00",
+      "product_id": "iservices_1719-iphone-16e_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 16e",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 413.45,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1719-iphone-16e",
+      "image_url": "https://r.iservices.pt/common/online_products/iphone-16e-128-gb-excellent-preto.webp",
+      "source_page": "https://iservices.pt/produto/1752-iphone-16-plus",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-08-23T05:57:26.383562+00:00",
-  "merged_at": "2026-08-23T06:27:34.421040+00:00"
+  "validated_at": "2026-08-24T09:18:17.037872+00:00",
+  "merged_at": "2026-08-24T09:18:17.337879+00:00"
 }
