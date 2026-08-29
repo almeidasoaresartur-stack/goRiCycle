@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-08-28T18:48:24.179714+00:00",
+  "run_at": "2026-08-29T12:44:20.806819+00:00",
   "mode": "incremental",
   "categories": [
     "iphones",
@@ -23,24 +23,24 @@
       "skipped_unavailable": 0
     },
     "refurbed": {
-      "total": 118,
+      "total": 109,
       "by_category": {
-        "iphones": 44,
-        "ipads": 31,
-        "tablets": 29,
-        "samsung_phones": 9,
+        "iphones": 35,
+        "ipads": 39,
+        "tablets": 24,
+        "samsung_phones": 6,
         "google_phones": 5
       },
       "errors": 0,
       "timeouts": 0,
       "removed_out_of_stock": 0,
-      "dedup_removed": 133
+      "dedup_removed": 129
     },
     "swappie": {
-      "total": 104,
+      "total": 98,
       "by_category": {
-        "iphones": 79,
-        "ipads": 25
+        "iphones": 76,
+        "ipads": 22
       },
       "errors": 0,
       "removed_out_of_stock": 0
@@ -62,10 +62,10 @@
         "ipads": 1
       },
       "errors": 0,
-      "unavailable": 1458
+      "unavailable": 1457
     }
   },
-  "grand_total": 1919,
+  "grand_total": 1904,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
