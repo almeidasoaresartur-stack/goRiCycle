@@ -1,6 +1,8 @@
 {
-  "curated_at": "2026-08-29T14:19:02+00:00",
-  "alerts": [],
+  "curated_at": "2026-08-30T11:26:03+00:00",
+  "alerts": [
+    "**swappie**: queda de 100% (98 → 0) — mantidos dados de ontem (scraper provavelmente partido)"
+  ],
   "stores": {
     "iservices": {
       "hoje_bruto": 30,
@@ -12,41 +14,41 @@
       "ontem": 30
     },
     "refurbed": {
-      "hoje_bruto": 107,
+      "hoje_bruto": 106,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 107,
+      "final": 106,
       "blocked": false,
-      "ontem": 116
+      "ontem": 107
     },
     "swappie": {
-      "hoje_bruto": 98,
+      "hoje_bruto": 0,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
       "final": 98,
-      "blocked": false,
-      "ontem": 104
+      "blocked": true,
+      "ontem": 98
     },
     "certideal": {
-      "hoje_bruto": 161,
+      "hoje_bruto": 157,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 161,
+      "final": 157,
       "blocked": false,
       "ontem": 161
     },
     "callphone": {
-      "hoje_bruto": 266,
+      "hoje_bruto": 263,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 266,
+      "final": 263,
       "blocked": false,
       "ontem": 266
     }
   },
-  "total_final": 662
+  "total_final": 654
 }
