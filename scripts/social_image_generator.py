@@ -9,11 +9,15 @@ from __future__ import annotations
 
 import hashlib
 import html
+import logging
+import time
 from pathlib import Path
 from urllib.parse import quote
 
 import httpx
 from playwright.sync_api import sync_playwright
+
+logger = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parent.parent
 SOCIAL_POSTS_DIR = ROOT / "web" / "public" / "social-posts"
@@ -21,6 +25,7 @@ SOCIAL_POSTS_DIR = ROOT / "web" / "public" / "social-posts"
 SITE_URL = "https://goricycle.com"
 SITE_DOMAIN = "goricycle.com"
 LOGO_URL = f"{SITE_URL}/images/goricycle-logo.png"
+LOGO_URL_LIGHT = "https://goricycle.com/images/goricycle-logo-light.png"
 
 BRAND_DARK = "#064e3b"
 BRAND_DEEP = "#022c22"
@@ -67,7 +72,6 @@ def _base_styles() -> str:
     }}
     .logo {{
       height: 52px; width: auto; object-fit: contain; object-position: left;
-      filter: brightness(0) invert(1);
     }}
     .footer {{
       margin-top: auto;
@@ -81,9 +85,49 @@ def _base_styles() -> str:
     """
 
 
-def _product_image_block(image_url: str, *, large: bool = False) -> str:
+def _product_image_block(
+    image_url: str,
+    *,
+    large: bool = False,
+    is_fallback: bool | None = None,
+) -> str:
     height = 360 if large else 300
     img_max = 250 if large else 210
+    if is_fallback is None:
+        is_fallback = image_url == LOGO_URL
+
+    if is_fallback:
+        fallback_img_max = 200 if large else 170
+        logo_src = f"{_esc(LOGO_URL_LIGHT)}?v={int(time.time())}"
+        return f"""
+    <div class="product-fallback-wrap">
+      <img
+        class="product-img product-img-fallback-logo"
+        src="{logo_src}"
+        alt=""
+        decoding="async"
+        loading="eager"
+      />
+    </div>
+    <style>
+      .product-fallback-wrap {{
+        display: flex; align-items: center; justify-content: center;
+        width: 100%;
+        align-self: center;
+        height: {height}px; margin: 16px 0 20px;
+      }}
+      .product-img-fallback-logo {{
+        display: block;
+        margin: 0 auto;
+        max-height: {fallback_img_max}px;
+        max-width: 85%;
+        object-fit: contain;
+        object-position: center;
+        opacity: 0.95;
+      }}
+    </style>
+    """
+
     return f"""
     <div class="product-wrap">
       <div class="product-card">
@@ -136,6 +180,7 @@ def build_template_a(
     loja_b_preco: float,
     imagem_produto_url: str,
     storage: str = "",
+    is_fallback_image: bool = False,
 ) -> str:
     if loja_a_preco > loja_b_preco:
         loja_a_nome, loja_b_nome = loja_b_nome, loja_a_nome
@@ -144,6 +189,12 @@ def build_template_a(
     titulo = produto_modelo.strip()
     if storage:
         titulo = f"{titulo} {storage.strip()}"
+
+    corner_logo_html = ""
+    if not is_fallback_image:
+        corner_logo_html = (
+            f'  <img class="logo" src="{_esc(LOGO_URL_LIGHT)}?v={int(time.time())}" alt="goRiCycle"/>\n'
+        )
 
     return f"""<!DOCTYPE html>
 <html lang="pt">
@@ -192,8 +243,7 @@ def build_template_a(
 </head>
 <body>
 <div class="canvas">
-  <img class="logo" src="{_esc(LOGO_URL)}" alt="goRiCycle"/>
-  {_product_image_block(imagem_produto_url)}
+{corner_logo_html}  {_product_image_block(imagem_produto_url, is_fallback=is_fallback_image)}
   <h1 class="headline">{_esc(titulo)}</h1>
   <div class="compare-row">
     <div class="store-box cheapest">
@@ -219,6 +269,7 @@ def build_template_b(
     estado_garantia: str | None,
     imagem_produto_url: str,
     storage: str = "",
+    is_fallback_image: bool = False,
 ) -> str:
     titulo = produto_modelo.strip()
     if storage:
@@ -226,6 +277,12 @@ def build_template_b(
     badge_html = ""
     if estado_garantia:
         badge_html = f'<div class="warranty">{_esc(estado_garantia)}</div>'
+
+    corner_logo_html = ""
+    if not is_fallback_image:
+        corner_logo_html = (
+            f'  <img class="logo" src="{_esc(LOGO_URL_LIGHT)}?v={int(time.time())}" alt="goRiCycle"/>\n'
+        )
 
     return f"""<!DOCTYPE html>
 <html lang="pt">
@@ -263,8 +320,7 @@ def build_template_b(
 </head>
 <body>
 <div class="canvas">
-  <img class="logo" src="{_esc(LOGO_URL)}" alt="goRiCycle"/>
-  {_product_image_block(imagem_produto_url, large=True)}
+{corner_logo_html}  {_product_image_block(imagem_produto_url, large=True, is_fallback=is_fallback_image)}
   <h1 class="headline">{_esc(titulo)}</h1>
   <div class="price-block">
     <div class="price">{_esc(format_price_display(preco))}</div>
@@ -301,6 +357,20 @@ def build_template_c(
         }}
         """
 
+    logo_src = f"{_esc(LOGO_URL_LIGHT)}?v={int(time.time())}"
+    title_len = len(titulo_artigo.strip())
+    title_font_size = 52 if title_len > 70 else 58
+    header_logo_html = f"""
+  <div class="editorial-logo-wrap">
+    <img
+      class="editorial-logo"
+      src="{logo_src}"
+      alt="goRiCycle"
+      decoding="async"
+      loading="eager"
+    />
+  </div>"""
+
     return f"""<!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -311,10 +381,26 @@ def build_template_c(
 {bg_style}
 .canvas {{
   justify-content: center;
-  padding-top: 72px; padding-bottom: 56px;
+  padding-top: 40px; padding-bottom: 56px;
+}}
+.editorial-logo-wrap {{
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+}}
+.editorial-logo {{
+  display: block;
+  margin: 0 auto;
+  max-height: 140px;
+  max-width: 85%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.95;
 }}
 .title {{
-  font-size: 58px; font-weight: 800; line-height: 1.12;
+  font-size: {title_font_size}px; font-weight: 800; line-height: 1.12;
   letter-spacing: -0.03em;
   text-align: center;
   max-width: 920px;
@@ -333,7 +419,7 @@ def build_template_c(
 </head>
 <body>
 <div class="canvas">
-  <img class="logo" src="{_esc(LOGO_URL)}" alt="goRiCycle"/>
+{header_logo_html}
   <h1 class="title">{_esc(titulo_artigo)}</h1>
   {resumo_block}
   <div class="footer">Lê o artigo completo no {SITE_DOMAIN}</div>
@@ -356,16 +442,21 @@ def render_post_image(
             device_scale_factor=1,
         )
         page.set_content(html_content, wait_until="domcontentloaded")
-        page.wait_for_timeout(400)
-        for selector in ("img.logo", "img.product-img"):
-            try:
-                page.wait_for_selector(selector, timeout=8000)
-            except Exception:
-                pass
         try:
-            page.wait_for_load_state("networkidle", timeout=12000)
-        except Exception:
-            page.wait_for_timeout(800)
+            page.wait_for_function(
+                "() => Array.from(document.images).every(img => img.complete && img.naturalWidth > 0)",
+                timeout=10000,
+            )
+        except Exception as exc:
+            incomplete = page.evaluate(
+                "() => Array.from(document.images).filter(img => !img.complete || img.naturalWidth === 0).map(img => ({src: img.src, complete: img.complete, naturalWidth: img.naturalWidth}))"
+            )
+            print(f"AVISO: imagens não carregadas: {incomplete}")
+            logger.warning("Imagens não carregadas antes do screenshot: %s", incomplete)
+        all_images_status = page.evaluate(
+            "() => Array.from(document.images).map(img => ({src: img.src, complete: img.complete, naturalWidth: img.naturalWidth}))"
+        )
+        print(f"DEBUG: estado de todas as imagens: {all_images_status}")
         page.screenshot(path=output_path, type="png")
         browser.close()
 
@@ -422,6 +513,7 @@ def make_post_id(post: dict, week_number: int) -> str:
 
 def build_html_for_post(post: dict, product_image_url: str | None) -> str:
     template_image = resolve_template_image_url(product_image_url)
+    is_fallback_image = template_image == LOGO_URL
 
     if post["tipo"] == "comparacao":
         lojas = post.get("lojas") or ["", ""]
@@ -434,6 +526,7 @@ def build_html_for_post(post: dict, product_image_url: str | None) -> str:
             loja_b_preco=float(precos[1]),
             imagem_produto_url=template_image,
             storage=post.get("storage") or "",
+            is_fallback_image=is_fallback_image,
         )
 
     if post["tipo"] == "destaque":
@@ -446,6 +539,7 @@ def build_html_for_post(post: dict, product_image_url: str | None) -> str:
             estado_garantia=estado,
             imagem_produto_url=template_image,
             storage=post.get("storage") or "",
+            is_fallback_image=is_fallback_image,
         )
 
     if post["tipo"] == "editorial":
