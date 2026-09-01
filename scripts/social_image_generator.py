@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SOCIAL_POSTS_DIR = ROOT / "web" / "public" / "social-posts"
 
 SITE_URL = "https://goricycle.com"
+SITE_DOMAIN = "goricycle.com"
 LOGO_URL = f"{SITE_URL}/images/goricycle-logo.png"
 
 BRAND_DARK = "#064e3b"
@@ -205,7 +206,7 @@ def build_template_a(
     </div>
   </div>
   <div class="badge">Diferença de {format_delta_display(delta)} entre lojas</div>
-  <div class="footer">Compara no goricycle.pt</div>
+  <div class="footer">Compara no {SITE_DOMAIN}</div>
 </div>
 </body>
 </html>"""
@@ -270,7 +271,7 @@ def build_template_b(
     <div class="store">{_esc(loja_nome)}</div>
     {badge_html}
   </div>
-  <div class="footer">Compara no goricycle.pt</div>
+  <div class="footer">Compara no {SITE_DOMAIN}</div>
 </div>
 </body>
 </html>"""
@@ -335,7 +336,7 @@ def build_template_c(
   <img class="logo" src="{_esc(LOGO_URL)}" alt="goRiCycle"/>
   <h1 class="title">{_esc(titulo_artigo)}</h1>
   {resumo_block}
-  <div class="footer">Lê o artigo completo no goricycle.pt</div>
+  <div class="footer">Lê o artigo completo no {SITE_DOMAIN}</div>
 </div>
 </body>
 </html>"""
