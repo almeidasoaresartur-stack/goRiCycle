@@ -14,14 +14,14 @@ type LogoProps = {
 const LOGO_SRC = "/images/goricycle-logo.png";
 const LOGO_ALT =
   "goRiCycle - comparador de preços de smartphones e tablets recondicionados em Portugal";
-const LOGO_WIDTH = 1024;
-const LOGO_HEIGHT = 239;
+const LOGO_WIDTH = 1200;
+const LOGO_HEIGHT = 320;
 
 const SIZE_CLASS = {
   sm: "h-7 sm:h-8",
-  md: "h-9 sm:h-10",
+  md: "h-12 sm:h-14",
   lg: "h-11 sm:h-12",
-  header: "h-14 w-auto md:h-16",
+  header: "h-20 w-auto md:h-24",
 } as const;
 
 const DARK_THEME_CLASS = "brightness-0 invert";
