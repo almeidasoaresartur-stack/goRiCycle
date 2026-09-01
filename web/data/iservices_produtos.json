@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-08-31T14:01:31.061045+00:00",
-  "total_products": 30,
+  "scraped_at": "2026-09-01T11:45:23.239568+00:00",
+  "total_products": 27,
   "products": [
     {
       "source": "iservices",
@@ -237,69 +237,6 @@
       "url": "https://iservices.pt/produto/1331-iphone-15-pro",
       "image_url": "https://r.iservices.pt/common/online_products/iphone-15-pro-128-gb-good-titanio-preto.webp",
       "source_page": "https://iservices.pt/produto/1355-iphone-15-pro-max",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-08-30T09:17:27.350108+00:00",
-      "product_id": "iservices_1330-iphone-15_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 15",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 434.16,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1330-iphone-15",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-15-128-gb-good-preto.webp",
-      "source_page": "https://iservices.pt/produto/1331-iphone-15-pro",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-08-30T09:17:27.350108+00:00",
-      "product_id": "iservices_1263-iphone-se-2022_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone SE 2022",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 150.24,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1263-iphone-se-2022",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-se-2022-64-gb-vermelho-very-good-1785417461.webp",
-      "source_page": "https://iservices.pt/produto/1330-iphone-15",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-08-30T09:17:27.350108+00:00",
-      "product_id": "iservices_1153-iphone-14-pro-max_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 14 Pro Max",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 532.48,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1153-iphone-14-pro-max",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-14-pro-max-256-gb-good-preto-sideral-1784824232.webp",
-      "source_page": "https://iservices.pt/produto/1263-iphone-se-2022",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
@@ -641,6 +578,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-08-31T16:02:41.873907+00:00",
-  "merged_at": "2026-08-31T16:02:42.152949+00:00"
+  "validated_at": "2026-09-01T13:13:19.449066+00:00",
+  "merged_at": "2026-09-01T13:13:19.737661+00:00"
 }
