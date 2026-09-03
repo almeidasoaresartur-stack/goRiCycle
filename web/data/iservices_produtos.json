@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-02T14:27:05.633988+00:00",
-  "total_products": 30,
+  "scraped_at": "2026-09-03T14:23:25.830039+00:00",
+  "total_products": 29,
   "products": [
     {
       "source": "iservices",
@@ -27,27 +27,6 @@
       "url": "https://iservices.pt/produto/1792-iphone-air",
       "image_url": "https://r.iservices.pt/common/online_products/iphone-air-256-gb-douradoclaro-excellent-1784799931.webp",
       "source_page": "https://iservices.pt/produtos/iphones-recondicionados-90",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-08-30T09:17:27.350108+00:00",
-      "product_id": "iservices_1791-iphone-17-pro-max_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone 17 Pro Max",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 1233.0,
-      "original_price": 1.0,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1791-iphone-17-pro-max",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-17-pro-max-256-gb-azul-escuro-muito-bom-1783677371.webp",
-      "source_page": "https://iservices.pt/produto/1792-iphone-air",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
@@ -641,6 +620,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-02T16:30:10.637903+00:00",
-  "merged_at": "2026-09-02T16:30:10.936220+00:00"
+  "validated_at": "2026-09-03T16:22:13.612116+00:00",
+  "merged_at": "2026-09-03T16:22:13.903814+00:00"
 }
