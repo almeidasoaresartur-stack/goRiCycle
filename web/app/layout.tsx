@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SiteHeader } from "@/components/SiteHeader";
+import { VercelAnalytics } from "@/components/VercelAnalytics";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -57,6 +58,7 @@ export default function RootLayout({
     <html lang="pt" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-[#F8FAFC] text-slate-900">
         <GoogleAnalytics />
+        <VercelAnalytics />
         <SiteHeader />
         {children}
         <CookieConsent />
