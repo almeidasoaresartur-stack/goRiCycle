@@ -3,10 +3,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { BlogMoneyCtas } from "@/components/BlogMoneyCtas";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BLOG_POSTS, getBlogPost } from "@/lib/blog";
+import { getBlogCtas } from "@/lib/blog-ctas";
 import { getCatalogStats } from "@/lib/products";
 import { canonicalPath } from "@/lib/seo";
+import { buildArticleJsonLd } from "@/lib/structured-data";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -176,15 +181,28 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const stats = getCatalogStats();
+  const moneyCtas = getBlogCtas(slug);
 
   return (
     <>
+      <JsonLd
+        data={buildArticleJsonLd({
+          slug: post.slug,
+          title: post.title,
+          description: post.description,
+          publishedAt: post.publishedAt,
+        })}
+      />
       <main className="flex-1">
         <section className="border-b border-slate-100 bg-gradient-to-b from-white to-[#f5f5f7] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <Link href="/blog" className="text-sm text-emerald-600 hover:underline">
-              ← Voltar ao blog
-            </Link>
+            <Breadcrumbs
+              items={[
+                { label: "goRiCycle", href: "/" },
+                { label: "Blog", href: "/blog" },
+                { label: post.title },
+              ]}
+            />
             <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
               {post.title}
             </h1>
@@ -205,18 +223,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <BlogContent content={post.content} />
           </div>
 
-          <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-emerald-100 bg-emerald-50/60 p-6 text-center sm:p-8">
-            <p className="text-sm font-medium text-emerald-800">Pronto para comparar preços?</p>
-            <p className="mt-2 text-sm text-emerald-900/80">
-              Compara em tempo real nas principais lojas portuguesas de recondicionados.
-            </p>
-            <Link
-              href="/"
-              className="mt-5 inline-flex rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-600"
-            >
-              Ir para o comparador →
-            </Link>
-          </div>
+          <BlogMoneyCtas ctas={moneyCtas} />
         </section>
       </main>
 

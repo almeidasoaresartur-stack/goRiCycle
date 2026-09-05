@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BLOG_POSTS } from "@/lib/blog";
 import { getCatalogStats } from "@/lib/products";
-import { canonicalPath } from "@/lib/seo";
+import { canonicalPath, SITE_URL } from "@/lib/seo";
+import { buildCollectionPageJsonLd, buildItemListJsonLd } from "@/lib/structured-data";
+
+const BLOG_INDEX_DESCRIPTION =
+  "Guias, comparações e conselhos para comprar smartphones e tablets recondicionados em Portugal.";
 
 export const metadata: Metadata = {
   title: "Blog — goRiCycle",
-  description:
-    "Guias, comparações e conselhos para comprar smartphones e tablets recondicionados em Portugal.",
+  description: BLOG_INDEX_DESCRIPTION,
   alternates: {
     canonical: canonicalPath("/blog"),
   },
@@ -20,6 +24,21 @@ export default function BlogPage() {
 
   return (
     <>
+      <JsonLd
+        data={buildCollectionPageJsonLd({
+          name: "Blog goRiCycle",
+          description: BLOG_INDEX_DESCRIPTION,
+          path: "/blog",
+        })}
+      />
+      <JsonLd
+        data={buildItemListJsonLd(
+          BLOG_POSTS.map((post) => ({
+            url: `${SITE_URL}/blog/${post.slug}`,
+            name: post.title,
+          })),
+        )}
+      />
       <main className="flex-1">
         <section className="border-b border-slate-100 bg-gradient-to-b from-white to-[#f5f5f7] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">

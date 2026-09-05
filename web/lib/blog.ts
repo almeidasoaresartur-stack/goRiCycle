@@ -65,9 +65,7 @@ Nenhuma das cinco lojas mente sobre a bateria — os números que publicam são 
 
 Pronto para comparar preços?
 
-Compara em tempo real nas principais lojas portuguesas de recondicionados.
-
-[Ir para o comparador →](https://goricycle.com/)`,
+Compara um modelo popular — o [iPhone 13 128GB recondicionado](/produto/iphone-13-128gb-recondicionado) — ou [vê todos os smartphones recondicionados](/smartphones).`
   },
   {
     slug: "comparacao-lojas-certideal-iservices-swappie-refurbed-callphone",
@@ -150,7 +148,9 @@ Não há resposta única — e seria pouco honesto dizer que há. O que podemos 
 
 O papel do goRiCycle continua a ser o mesmo: mostrar-te o preço de cada uma para o mesmo modelo, capacidade e estado, lado a lado. Mas o preço mais baixo nem sempre é a melhor decisão se a garantia, o prazo de devolução ou a transparência da bateria pesarem mais para ti do que uns euros de diferença.
 
-*As informações sobre garantias e políticas de devolução foram verificadas directamente nos sites oficiais de cada loja em agosto de 2026. Estas condições podem mudar — recomendamos sempre confirmar os termos actuais na própria loja antes de finalizar uma compra.*`,
+Para um exemplo concreto, compara o [iPhone 13 128GB recondicionado](/produto/iphone-13-128gb-recondicionado) entre lojas, ou [explora todos os smartphones](/smartphones).
+
+*As informações sobre garantias e políticas de devolução foram verificadas directamente nos sites oficiais de cada loja em agosto de 2026. Estas condições podem mudar — recomendamos sempre confirmar os termos actuais na própria loja antes de finalizar uma compra.*`
   },
   {
     slug: "graus-estado-recondicionados-comparacao-lojas",
@@ -363,15 +363,15 @@ Não é a melhor escolha se:
 
 ## Qual variante escolher no mercado recondicionado?
 
-**Para a maioria das pessoas:** iPhone 13 128GB — boa câmara, boa bateria, preço acessível.
+**Para a maioria das pessoas:** [iPhone 13 128GB recondicionado](/produto/iphone-13-128gb-recondicionado) — boa câmara, boa bateria, preço acessível.
 
-**Se a câmara é prioridade:** iPhone 13 Pro — o zoom óptico 3x e o ecrã a 120Hz fazem a diferença.
+**Se a câmara é prioridade:** [iPhone 13 Pro 128GB recondicionado](/produto/iphone-13-pro-128gb-recondicionado) — o zoom óptico 3x e o ecrã a 120Hz fazem a diferença.
 
-**Se queres o mais pequeno possível:** iPhone 13 mini — mas confirma a saúde da bateria antes de comprar.
+**Se queres o mais pequeno possível:** [iPhone 13 Mini 128GB recondicionado](/produto/iphone-13-mini-128gb-recondicionado) — mas confirma a saúde da bateria antes de comprar.
 
 **Evita:** iPhone 13 Pro Max em recondicionado a não ser que o encontres a bom preço — o tamanho não é para todos.
 
-*Os preços do iPhone 13 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos em tempo real as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone.*`,
+*Os preços do iPhone 13 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos em tempo real as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone.*`
   },
   {
     slug: "iphone-15-vs-iphone-16-recondicionado",
@@ -414,22 +414,22 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
 
 ## A nossa recomendação
 
-**Escolhe o iPhone 15 recondicionado se:**
+**Escolhe o [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado) se:**
 - O teu uso é sobretudo quotidiano
 - Estás a fazer a transição de um iPhone com Lightning e queres USB-C
 - Preferes poupar 150-200€ e não precisas de funcionalidades de IA
 - Queres um telemóvel com boa relação qualidade-preço e suporte até 2030
 
-**Escolhe o iPhone 16 recondicionado se:**
+**Escolhe o [iPhone 16 128GB recondicionado](/produto/iphone-16-128gb-recondicionado) se:**
 - Apple Intelligence é uma funcionalidade que usas ou planeias usar
 - Queres o telemóvel por 5 ou mais anos
 - Usas muito a câmara e o botão Camera Control parece útil
 
-**Considera o iPhone 15 Pro se:**
+**Considera o [iPhone 15 Pro 128GB recondicionado](/produto/iphone-15-pro-128gb-recondicionado) se:**
 - Queres Apple Intelligence mas preferes não pagar preço de iPhone 16
 - A câmara com zoom óptico 3x e o ecrã a 120Hz são importantes para ti
 
-*No goRiCycle podes comparar os preços do iPhone 15 e iPhone 16 recondicionados em tempo real nas principais lojas portuguesas.*`,
+*No goRiCycle podes comparar os preços do iPhone 15 e iPhone 16 recondicionados em tempo real nas principais lojas portuguesas.*`
   },
   {
     slug: "google-pixel-vs-iphone-pro-recondicionado",
@@ -438,7 +438,7 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
       "Pixel Pro ou iPhone Pro Max? Não estamos a comparar apenas telemóveis — estamos a comparar duas visões distintas sobre como a tecnologia deve servir o teu dia a dia.",
     publishedAt: "2026-06-28",
     readingMinutes: 5,
-    content: `Esta comparação aplica-se particularmente bem às gerações disponíveis no mercado recondicionado: os Google Pixel 8 Pro e 9 Pro, e os iPhone 15 Pro Max e 16 Pro Max — modelos que já encontras com preços competitivos e garantia nas lojas parceiras do goRiCycle.
+    content: `Esta comparação aplica-se particularmente bem às gerações disponíveis no mercado recondicionado: os Google Pixel 8 Pro e 9 Pro, e os iPhone 15 Pro Max e 16 Pro Max — modelos que já encontras com preços competitivos e garantia nas lojas parceiras do goRiCycle. Do lado Apple, compara o [iPhone 15 Pro 128GB recondicionado](/produto/iphone-15-pro-128gb-recondicionado) ou o [iPhone 15 Pro Max 256GB recondicionado](/produto/iphone-15-pro-max-256gb-recondicionado).
 
 ## O que define cada filosofia
 
@@ -493,7 +493,7 @@ O Touch ID continua a ser um dos métodos de desbloqueio mais rápidos e fiávei
 
 **Ergonomia:** o ecrã de 4,7" permite chegar a qualquer canto com o polegar. Se os modelos "Plus" e "Pro Max" te parecem demasiado grandes, o SE é praticamente o único iPhone que resolve esse problema.
 
-**Preço:** no mercado recondicionado português, é frequentemente um dos modelos mais acessíveis com chip moderno — porta de entrada excelente para o ecossistema Apple.
+**Preço:** no mercado recondicionado português, é frequentemente um dos modelos mais acessíveis com chip moderno — porta de entrada excelente para o ecossistema Apple. Compara o [iPhone SE (2022) 128GB recondicionado](/produto/iphone-se-2022-128gb-recondicionado) e, se o orçamento for ainda mais curto, o [iPhone SE (2022) 64GB recondicionado](/produto/iphone-se-2022-64gb-recondicionado).
 
 **Simplicidade:** não tem Dynamic Island, não tem câmaras triplas, não tem ecrã a 120Hz. Para quem vê o telemóvel como uma ferramenta, isso é uma vantagem.
 
@@ -501,7 +501,7 @@ O Touch ID continua a ser um dos métodos de desbloqueio mais rápidos e fiávei
 
 **A bateria é o ponto crítico.** O SE (2022) tem uma bateria mais pequena do que os restantes iPhones da mesma geração. Em recondicionado, verifica sempre a saúde da bateria — idealmente acima de 85%. Abaixo disso, considera o custo de uma substituição (normalmente 50-80€) no preço total.
 
-**Ecrã LCD em vez de OLED:** a qualidade de ecrã é claramente inferior à dos modelos iPhone 13 em diante. Se o ecrã é importante — para ver vídeos, editar fotos, usar ao sol — considera subir o orçamento para um iPhone 13.
+**Ecrã LCD em vez de OLED:** a qualidade de ecrã é claramente inferior à dos modelos iPhone 13 em diante. Se o ecrã é importante — para ver vídeos, editar fotos, usar ao sol — considera subir o orçamento para um [iPhone 13 128GB recondicionado](/produto/iphone-13-128gb-recondicionado).
 
 ## Para quem é o iPhone SE (2022)?
 

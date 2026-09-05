@@ -120,3 +120,81 @@ export function buildItemListJsonLd(
     })),
   };
 }
+
+export function buildArticleJsonLd(params: {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  imageUrl?: string;
+}): Record<string, unknown> {
+  const pageUrl = `${SITE_URL}/blog/${params.slug}`;
+  const image = params.imageUrl ? absoluteMediaUrl(params.imageUrl) : SITE_LOGO_URL;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: params.title,
+    description: params.description,
+    datePublished: params.publishedAt,
+    dateModified: params.publishedAt,
+    inLanguage: "pt-PT",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": pageUrl,
+    },
+    url: pageUrl,
+    image: [image],
+    author: {
+      "@type": "Organization",
+      name: "goRiCycle",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "goRiCycle",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: SITE_LOGO_URL,
+      },
+    },
+  };
+}
+
+export function buildFaqPageJsonLd(
+  items: { question: string; answer: string }[],
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function buildCollectionPageJsonLd(params: {
+  name: string;
+  description: string;
+  path: string;
+}): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: params.name,
+    description: params.description,
+    url: `${SITE_URL}${params.path === "/" ? "" : params.path}`,
+    inLanguage: "pt-PT",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "goRiCycle",
+      url: SITE_URL,
+    },
+  };
+}
