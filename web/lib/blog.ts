@@ -236,9 +236,9 @@ A dominância da Apple no mercado de recondicionados é um facto sobre o mercado
 
 Se decidires que um iPhone ou iPad recondicionado é o caminho certo, o passo seguinte é comparar o mesmo modelo, capacidade e estado entre lojas — os preços variam mais do que se costuma pensar, e a diferença entre a loja mais cara e a mais barata pode ser significativa. É para isso que existe o goRiCycle: reunimos os preços das principais lojas portuguesas de recondicionados num só lugar, para tornar essa comparação simples.
 
-[Ver iPhones recondicionados →](/?tech=smartphones&brand=Apple&view=all&section=comparador#comparador)
+[Ver iPhones recondicionados →](/marca/apple)
 
-[Ver iPads recondicionados →](/?tech=tablets&brand=Apple&view=all&section=comparador#comparador)`,
+[Ver iPads recondicionados →](/tablets)`,
   },
   {
     slug: "ipad-11-recondicionado-128gb-256gb-512gb",

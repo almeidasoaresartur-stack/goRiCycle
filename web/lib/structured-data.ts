@@ -89,3 +89,34 @@ export function productSchemaName(model: string, storage?: string | null): strin
 export function resolveProductBrand(listing: ProductListing): string | null {
   return listing.brand ?? inferBrand(listing.model);
 }
+
+export function buildBreadcrumbJsonLd(
+  items: { name: string; path?: string }[],
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      ...(item.path ? { item: `${SITE_URL}${item.path === "/" ? "" : item.path}` } : {}),
+    })),
+  };
+}
+
+export function buildItemListJsonLd(
+  items: { url: string; name: string }[],
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: item.url,
+      name: item.name,
+    })),
+  };
+}

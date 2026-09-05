@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PriceAlertForm } from "@/components/PriceAlertForm";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCardImage } from "@/components/ProductCardImage";
+import { RelatedBlogPosts } from "@/components/RelatedBlogPosts";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StoreLogo } from "@/components/StoreLogo";
+import {
+  brandHubPath,
+  getRelatedBlogPosts,
+  getRelatedBlogSlugsForListing,
+  techHubPath,
+} from "@/lib/hubs";
 import {
   formatProductPageName,
   getAllProductSlugs,
@@ -135,6 +142,11 @@ export default async function ProductPage({ params }: PageProps) {
     affiliateEnabled: best.storeSlug === "swappie" || best.storeSlug === "refurbed",
   });
 
+  const brand = resolveProductBrand(best);
+  const categoryHref = techHubPath(best.tech);
+  const brandHref = brandHubPath(brand);
+  const relatedPosts = getRelatedBlogPosts(getRelatedBlogSlugsForListing(best));
+
   return (
     <>
       <JsonLd
@@ -142,22 +154,22 @@ export default async function ProductPage({ params }: PageProps) {
           listings: group,
           imageUrl,
           productName: productSchemaName(best.model, best.storage),
-          brand: resolveProductBrand(best),
+          brand,
         })}
       />
       <main className="flex-1 bg-[#F8FAFC]">
         <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-          <nav className="mb-6 text-sm text-slate-400">
-            <Link href="/" className="transition hover:text-slate-600">
-              goRiCycle
-            </Link>
-            <span className="mx-2">›</span>
-            <Link href="/" className="transition hover:text-slate-600">
-              {techLabel(best.tech)}
-            </Link>
-            <span className="mx-2">›</span>
-            <span className="text-slate-700">{modelName}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "goRiCycle", href: "/" },
+              {
+                label: techLabel(best.tech),
+                href: categoryHref ?? undefined,
+              },
+              ...(brand && brandHref ? [{ label: brand, href: brandHref }] : []),
+              { label: modelName },
+            ]}
+          />
 
           <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm sm:p-6">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
@@ -283,6 +295,8 @@ export default async function ProductPage({ params }: PageProps) {
               Callphone — para que encontres sempre a melhor oferta com garantia.
             </p>
           </div>
+
+          <RelatedBlogPosts posts={relatedPosts} title="Guias relacionados" />
         </div>
       </main>
 

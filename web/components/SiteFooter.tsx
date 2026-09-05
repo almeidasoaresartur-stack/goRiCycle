@@ -74,6 +74,42 @@ export function SiteFooter({
             {topBrands && <p className="mt-1">{topBrands}</p>}
             <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-end">
               <Link
+                href="/smartphones"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
+              >
+                Smartphones
+              </Link>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <Link
+                href="/tablets"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
+              >
+                Tablets
+              </Link>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <Link
+                href="/marca/apple"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
+              >
+                Apple
+              </Link>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <Link
+                href="/marca/samsung"
+                className="font-medium text-slate-600 transition hover:text-emerald-600"
+              >
+                Samsung
+              </Link>
+              <span className="hidden text-slate-300 sm:inline" aria-hidden>
+                ·
+              </span>
+              <Link
                 href="/faq"
                 className="font-medium text-slate-600 transition hover:text-emerald-600"
               >

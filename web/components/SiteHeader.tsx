@@ -46,7 +46,19 @@ export function SiteHeader({
           )}
         </button>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-6">
+          <Link
+            href="/smartphones"
+            className="text-sm font-medium text-slate-600 transition hover:text-emerald-600"
+          >
+            Smartphones
+          </Link>
+          <Link
+            href="/tablets"
+            className="text-sm font-medium text-slate-600 transition hover:text-emerald-600"
+          >
+            Tablets
+          </Link>
           <Link
             href="/blog"
             className="text-sm font-medium text-slate-600 transition hover:text-emerald-600"
@@ -76,6 +88,20 @@ export function SiteHeader({
 
       {mobileMenuOpen ? (
         <div className="flex flex-col gap-3 border-t border-gray-100 bg-white px-4 py-3 md:hidden">
+          <Link
+            href="/smartphones"
+            className="py-2 text-sm text-gray-700"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Smartphones
+          </Link>
+          <Link
+            href="/tablets"
+            className="py-2 text-sm text-gray-700"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Tablets
+          </Link>
           <Link
             href="/blog"
             className="py-2 text-sm text-gray-700"
