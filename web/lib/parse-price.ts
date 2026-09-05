@@ -3,6 +3,8 @@
  * Garante que milhares com espaço ou ponto (ex. "1 139,00 €") não são truncados.
  */
 
+import { parseStorageGb } from "./storage";
+
 const MIN_PRICE: Record<string, number> = {
   iphones: 80,
   ipads: 100,
@@ -47,8 +49,7 @@ export function parsePtEurAmount(text: string | null | undefined): number | null
 }
 
 function storageGb(storage: string | null | undefined): number | null {
-  const match = (storage ?? "").match(/(\d+)\s*GB/i);
-  return match ? Number.parseInt(match[1], 10) : null;
+  return parseStorageGb(storage);
 }
 
 /** Rejeita preços claramente truncados (ex. iPad Pro 512GB a 139€ em vez de 1139€). */

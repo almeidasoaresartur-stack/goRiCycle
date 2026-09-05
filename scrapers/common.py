@@ -19,7 +19,6 @@ from config import (
     GRADE_KEYWORDS,
     IMAGE_SRC_ATTRIBUTES,
     REFURBED_GRADE_KEYWORDS,
-    STORAGE_REGEX,
     SWAPPIE_GRADE_KEYWORDS,
 )
 
@@ -264,20 +263,48 @@ def min_price_for_model(model: str | None) -> float:
     return MODEL_MIN_PRICE_DEFAULT
 
 
-def storage_capacity_gb(storage: str | None) -> int | None:
-    """Converte '128GB' / '1TB' / '1000GB' para GB inteiros; None se inválido."""
+_STORAGE_TOKEN_RE = re.compile(r"(\d+(?:\.\d+)?)\s*(TB|GB)", re.I)
+_DECIMAL_TB_TO_BINARY_GB = {1000: 1024, 2000: 2048}
+MIN_SLUG_STORAGE_GB = 16
+MAX_SLUG_STORAGE_GB = 1024
+
+
+def parse_storage_gb(storage: str | None) -> int | None:
+    """
+    Converte '128GB' / '1TB' / '1000GB' para GB inteiros.
+    1TB = 1024GB (não 1000). RAM típica (<16GB) só é devolvida se for o único token.
+    """
     if not storage:
         return None
-    text = str(storage).strip().upper().replace(" ", "")
-    if text.endswith("TB"):
+    candidates: list[int] = []
+    for match in _STORAGE_TOKEN_RE.finditer(str(storage)):
         try:
-            return int(float(text[:-2]) * 1000)
+            value = float(match.group(1))
         except ValueError:
-            return None
-    match = re.search(r"(\d+)\s*GB", str(storage), flags=re.I)
-    if not match:
+            continue
+        if value <= 0:
+            continue
+        unit = match.group(2).upper()
+        gb = int(round(value * 1024)) if unit == "TB" else int(round(value))
+        gb = _DECIMAL_TB_TO_BINARY_GB.get(gb, gb)
+        candidates.append(gb)
+    if not candidates:
         return None
-    return int(match.group(1))
+    plausible = [gb for gb in candidates if gb >= MIN_SLUG_STORAGE_GB]
+    return max(plausible) if plausible else max(candidates)
+
+
+def storage_capacity_gb(storage: str | None) -> int | None:
+    """Converte '128GB' / '1TB' / '1000GB' para GB inteiros; None se inválido."""
+    return parse_storage_gb(storage)
+
+
+def normalize_storage_label(storage: str | None) -> str | None:
+    """RAM (<16GB) → None; 1TB/1000GB → 1024GB; 2TB/2000GB → 2048GB."""
+    gb = parse_storage_gb(storage)
+    if gb is None or gb < MIN_SLUG_STORAGE_GB:
+        return None
+    return f"{gb}GB"
 
 
 def filter_monotonic_storage_prices(
@@ -501,12 +528,13 @@ def parse_rating(text: str | None) -> float | None:
 
 
 def extract_storage(text: str | None) -> str | None:
+    """Maior capacidade plausível (≥16GB). Ignora RAM; 1TB → 1024GB."""
     if not text:
         return None
-    match = re.search(STORAGE_REGEX, text, re.IGNORECASE)
-    if not match:
+    gb = parse_storage_gb(text)
+    if gb is None or gb < MIN_SLUG_STORAGE_GB:
         return None
-    return f"{match.group(1)}GB"
+    return f"{gb}GB"
 
 
 def extract_grade(text: str | None, extra_keywords: tuple[tuple[str, str], ...] = ()) -> str | None:
@@ -957,7 +985,7 @@ def build_normalized_product(
     if not is_allowed_brand(model):
         logger.debug("Marca não permitida ignorada: %s", model)
         return None
-    storage_norm = storage or extract_storage(model)
+    storage_norm = normalize_storage_label(storage or extract_storage(model))
     grade_norm = grade or extract_grade(model, extra_grade_keywords)
 
     available = is_available

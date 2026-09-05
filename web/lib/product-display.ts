@@ -1,5 +1,6 @@
 import type { AggregatedProduct } from "./marketplace";
 import { getProductImage, techToImageCategory } from "./productImages";
+import { MIN_SLUG_STORAGE_GB, parseStorageGb } from "./storage";
 
 export type CleanProductData = {
   displayName: string;
@@ -245,15 +246,9 @@ export function productImageAlt(
 }
 
 export function formatStorageLabel(storage: string | null | undefined): string {
-  const value = (storage ?? "").trim();
-  if (!value) return "NFPM*";
-  const upper = value.toUpperCase();
-  if (/^\d+\s*GB$/i.test(value)) return upper.replace(/\s/g, "");
-  if (/\d+\s*GB/i.test(value)) {
-    const match = value.match(/(\d+\s*GB)/i);
-    return match ? match[1].replace(/\s/g, "").toUpperCase() : "NFPM*";
-  }
-  return "NFPM*";
+  const gb = parseStorageGb(storage);
+  if (gb == null || gb < MIN_SLUG_STORAGE_GB) return "NFPM*";
+  return `${gb}GB`;
 }
 
 export function getCleanProductData(product: AggregatedProduct): CleanProductData {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -20,6 +20,7 @@ import {
   getAllProductSlugs,
   getListingsForProductSlug,
   getProductSlugIndexation,
+  getProductSlugRedirect,
   productPageCanonical,
 } from "@/lib/product-pages";
 import { productImageAlt } from "@/lib/product-display";
@@ -62,8 +63,14 @@ function techLabel(tech: TechType): string {
   }
 }
 
+function redirectJunkStorageSlug(slug: string): void {
+  const destination = getProductSlugRedirect(slug);
+  if (destination) permanentRedirect(destination);
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  redirectJunkStorageSlug(slug);
   const group = getListingsForProductSlug(slug);
 
   if (!group.length) {
@@ -123,6 +130,7 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
+  redirectJunkStorageSlug(slug);
   const group = getListingsForProductSlug(slug);
 
   if (!group.length) notFound();

@@ -14,6 +14,7 @@ import {
   resolveScrapedAvailability,
   scrapedProductIsAvailable,
 } from "./product-availability";
+import { normalizeListingStorage } from "./storage";
 
 export type GradeTier = "Premium" | "Excelente" | "Bom";
 
@@ -214,7 +215,7 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
   const tech = categoryToTech(category);
   const model = safeStr(product?.model);
   if (!isAllowedBrand(model)) return null;
-  const storage = safeStr(product?.storage) || null;
+  const storage = normalizeListingStorage(safeStr(product?.storage) || null);
   const price = safePrice(product?.price, category, model, storage);
   const source = product?.source as ProductSource | undefined;
 
