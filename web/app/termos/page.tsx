@@ -4,11 +4,15 @@ import Link from "next/link";
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getCatalogStats } from "@/lib/products";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Termos e Responsabilidade — goRiCycle",
   description:
     "Aviso de isenção de responsabilidade do goRiCycle: plataforma informativa, preços agregados e limitação de responsabilidade.",
+  alternates: {
+    canonical: canonicalPath("/termos"),
+  },
 };
 
 export default function TermosPage() {
@@ -51,6 +55,7 @@ export default function TermosPage() {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />

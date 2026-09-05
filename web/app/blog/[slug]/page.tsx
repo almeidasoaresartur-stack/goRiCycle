@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BLOG_POSTS, getBlogPost } from "@/lib/blog";
 import { getCatalogStats } from "@/lib/products";
+import { canonicalPath } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -163,6 +164,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.metaTitle ?? `${post.title} — goRiCycle`,
     description: post.description,
+    alternates: {
+      canonical: canonicalPath(`/blog/${slug}`),
+    },
   };
 }
 
@@ -218,6 +222,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />

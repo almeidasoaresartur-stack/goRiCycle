@@ -4,11 +4,15 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BLOG_POSTS } from "@/lib/blog";
 import { getCatalogStats } from "@/lib/products";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Blog — goRiCycle",
   description:
     "Guias, comparações e conselhos para comprar smartphones e tablets recondicionados em Portugal.",
+  alternates: {
+    canonical: canonicalPath("/blog"),
+  },
 };
 
 export default function BlogPage() {
@@ -60,6 +64,7 @@ export default function BlogPage() {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />

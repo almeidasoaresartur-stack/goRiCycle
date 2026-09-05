@@ -12,6 +12,8 @@ import {
   formatProductPageName,
   getAllProductSlugs,
   getListingsForProductSlug,
+  getProductSlugIndexation,
+  productPageCanonical,
 } from "@/lib/product-pages";
 import { productImageAlt } from "@/lib/product-display";
 import { getProductImage, techToImageCategory } from "@/lib/productImages";
@@ -65,6 +67,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const modelName = formatProductPageName(best.model, best.storage);
   const ogPrice = formatOgPrice(best.price);
   const pageUrl = `${SITE_URL}/produto/${slug}`;
+  const indexation = getProductSlugIndexation(slug);
+  const canonicalUrl = productPageCanonical(slug);
   const imageUrl =
     best.imageUrl ?? getProductImage(best.model, techToImageCategory(best.tech));
   const absoluteImageUrl = absoluteMediaUrl(imageUrl);
@@ -72,6 +76,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${modelName} Recondicionado — a partir de ${ogPrice}€ | goRiCycle`,
     description: `Compara o preço de ${modelName} recondicionado em várias lojas portuguesas. A partir de ${ogPrice}€.`,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: indexation.indexable
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     openGraph: {
       type: "website",
       siteName: "goRiCycle",
@@ -278,6 +288,7 @@ export default async function ProductPage({ params }: PageProps) {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />

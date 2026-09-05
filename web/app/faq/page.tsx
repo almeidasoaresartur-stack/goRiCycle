@@ -5,11 +5,15 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { getCatalogStats } from "@/lib/products";
+import { canonicalPath } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "FAQs — goRiCycle",
   description:
     "Perguntas frequentes sobre o goRiCycle: o que somos, como comparar recondicionados, graus estéticos e garantia.",
+  alternates: {
+    canonical: canonicalPath("/faq"),
+  },
 };
 
 export default function FaqPage() {
@@ -55,6 +59,7 @@ export default function FaqPage() {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />
