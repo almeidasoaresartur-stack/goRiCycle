@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { BLOG_POSTS } from "@/lib/blog";
+import { getSitemapHubEntries } from "@/lib/hubs";
 import { getIndexableProductSlugs } from "@/lib/product-pages";
 import { SITE_URL } from "@/lib/seo";
 
@@ -25,6 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const hubs: MetadataRoute.Sitemap = getSitemapHubEntries().map((hub) => ({
+    url: hub.url,
+    lastModified: new Date(),
+    changeFrequency: "daily",
+    priority: hub.priority,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -32,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 1,
     },
+    ...hubs,
     {
       url: `${SITE_URL}/faq`,
       lastModified: new Date(),

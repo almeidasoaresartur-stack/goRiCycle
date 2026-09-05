@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { PartnerStoresSection } from "@/components/PartnerStoresSection";
 import { HeroSection } from "@/components/HeroSection";
+import { HubExploreSection } from "@/components/HubExploreSection";
 import { MarketplaceShell } from "@/components/MarketplaceShell";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -52,6 +53,7 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <main className="bg-[#F8FAFC]">
         <HeroSection defaultQuery={query} highlights={heroHighlights} />
+        <HubExploreSection />
         <MarketplaceShell
           allProducts={allProducts}
           defaultFilters={defaultFilters}
