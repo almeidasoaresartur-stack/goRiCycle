@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { BenefitsSection } from "@/components/BenefitsSection";
@@ -13,7 +14,14 @@ import { getAllListings } from "@/lib/load-listings";
 import { aggregateListings, parseMarketplaceFilters, type MarketplaceFilters } from "@/lib/marketplace";
 import { filterAvailableAggregatedProducts } from "@/lib/product-availability";
 import { getCatalogStats, inferBrand, parseSearchQuery } from "@/lib/products";
+import { canonicalPath } from "@/lib/seo";
 import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: canonicalPath("/"),
+  },
+};
 
 type PageProps = {
   searchParams: Promise<Record<string, string | undefined>>;
@@ -58,6 +66,7 @@ export default async function HomePage({ searchParams }: PageProps) {
 
       <SiteFooter
         totalProducts={stats.totalProducts}
+        uniqueModels={stats.uniqueModels}
         lastScraped={stats.lastScraped}
         brandCounts={stats.brandCounts}
       />

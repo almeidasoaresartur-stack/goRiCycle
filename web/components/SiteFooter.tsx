@@ -8,11 +8,24 @@ import { ACTIVE_SOURCES } from "@/lib/scraper-data";
 
 type SiteFooterProps = {
   totalProducts?: number;
+  uniqueModels?: number;
   lastScraped?: string | null;
   brandCounts?: Record<string, number>;
 };
 
-export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFooterProps) {
+function catalogLabel(totalProducts?: number, uniqueModels?: number): string {
+  if (!totalProducts) return "MVP";
+  const ofertas = `${totalProducts.toLocaleString("pt-PT")} ofertas`;
+  if (!uniqueModels) return ofertas;
+  return `${uniqueModels.toLocaleString("pt-PT")} modelos · ${ofertas}`;
+}
+
+export function SiteFooter({
+  totalProducts,
+  uniqueModels,
+  lastScraped,
+  brandCounts,
+}: SiteFooterProps) {
   const scrapedLabel = lastScraped
     ? new Date(lastScraped).toLocaleDateString("pt-PT", {
         day: "numeric",
@@ -54,7 +67,7 @@ export function SiteFooter({ totalProducts, lastScraped, brandCounts }: SiteFoot
           </div>
           <div className="text-center text-xs text-slate-500 sm:text-right">
             <p>
-              {totalProducts ? `${totalProducts.toLocaleString("pt-PT")} produtos` : "MVP"}
+              {catalogLabel(totalProducts, uniqueModels)}
               {scrapedLabel ? ` · actualizado ${scrapedLabel}` : ""}
               {` · ${ACTIVE_SOURCES.length} fontes activas`}
             </p>

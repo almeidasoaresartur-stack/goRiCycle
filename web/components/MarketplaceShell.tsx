@@ -424,7 +424,7 @@ function MarketplaceContent({ allProducts, defaultFilters, totalProducts }: Mark
                 onClick={showAllCatalog}
                 className="min-h-[44px] text-sm font-medium text-slate-600 transition hover:text-emerald-600"
               >
-                Ver todos os {totalProducts.toLocaleString("pt-PT")} produtos →
+                Ver todas as {totalProducts.toLocaleString("pt-PT")} ofertas →
               </button>
             </div>
           </div>

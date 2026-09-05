@@ -1,7 +1,9 @@
 import type { StoreOffer } from "@/components/ComparatorSection";
 import type { NormalizedGrade, ProductSource, ScrapedProduct } from "./types";
 import { inferBrand, inferCategory, parseSearchQuery, inferTechFromQuery } from "./inference";
+import { getAllListings } from "./load-listings";
 import { modelMatches } from "./model-matching";
+import { cleanBaseModel } from "./product-display";
 import { generateExactProductUrl } from "./product-urls";
 import { ACTIVE_SOURCES, loadAllScrapedProducts, getScraperCatalogMeta } from "./scraper-data";
 import { getStoreInfo } from "./stores";
@@ -118,13 +120,20 @@ export function getComparisonOffers(
 }
 
 export function getCatalogStats(): {
+  /** Available scraped listings (ofertas), not unique PDP slugs. */
   totalProducts: number;
+  /** Unique base models among indexable marketplace listings. */
+  uniqueModels: number;
   lastScraped: string | null;
   brandCounts: Record<string, number>;
 } {
   const meta = getScraperCatalogMeta();
+  const uniqueModels = new Set(
+    getAllListings().map((listing) => cleanBaseModel(listing.model)),
+  ).size;
   return {
     totalProducts: meta.totalProducts,
+    uniqueModels,
     lastScraped: meta.lastScraped,
     brandCounts: meta.brandCounts,
   };
