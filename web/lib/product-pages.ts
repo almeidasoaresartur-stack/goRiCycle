@@ -3,6 +3,15 @@ import { getAllListings } from "./load-listings";
 import type { ProductListing } from "./marketplace";
 import { canonicalPath } from "./seo";
 import { slugify } from "./slugify";
+import {
+  MAX_SLUG_STORAGE_GB,
+  hubPathForProductSlug,
+  isCanonicalSlugStorageGb,
+  isNonCanonicalStorageSlug,
+  normalizeStorageForSlug,
+  remapStorageSlug,
+  storageGbFromProductSlug,
+} from "./storage";
 
 const STORAGE_SLUG_SUFFIX = /-\d+-?gb-recondicionado$/i;
 
@@ -31,7 +40,8 @@ export function getListingsForProductSlug(slug: string): ProductListing[] {
 export function getAllProductSlugs(): string[] {
   const slugs = new Set<string>();
   for (const listing of loadAllProducts()) {
-    slugs.add(listingProductSlug(listing));
+    const slug = listingProductSlug(listing);
+    if (!isNonCanonicalStorageSlug(slug)) slugs.add(slug);
   }
   return Array.from(slugs);
 }
@@ -47,8 +57,14 @@ export function listingHasStorage(listing: ProductListing): boolean {
   return formatStorageLabel(listing.storage) !== "NFPM*";
 }
 
+/** True when the listing can produce an indexable `…-{n}gb-…` slug (16–1024GB). */
+export function listingHasSlugStorage(listing: ProductListing): boolean {
+  return normalizeStorageForSlug(listing.storage) != null;
+}
+
 export function isStorageSpecificProductSlug(slug: string): boolean {
-  return STORAGE_SLUG_SUFFIX.test(slug);
+  const gb = storageGbFromProductSlug(slug);
+  return gb != null && isCanonicalSlugStorageGb(gb);
 }
 
 /** Family key shared by `iphone-13-recondicionado` and `iphone-13-128gb-recondicionado`. */
@@ -99,16 +115,28 @@ export function buildProductSlugIndexationMap(
 
   const result = new Map<string, ProductSlugIndexation>();
   for (const [slug, group] of listingsBySlug) {
-    const isGeneric = !group.some(listingHasStorage) && !isStorageSpecificProductSlug(slug);
-    const siblings = (slugsByFamily.get(productSlugFamilyKey(slug)) ?? []).filter(
+    const familySiblings = (slugsByFamily.get(productSlugFamilyKey(slug)) ?? []).filter(
       (candidate) => candidate !== slug && isStorageSpecificProductSlug(candidate),
     );
 
-    if (isGeneric && siblings.length > 0) {
+    if (isNonCanonicalStorageSlug(slug)) {
       result.set(slug, {
         slug,
         indexable: false,
-        canonicalSlug: pickPreferredStorageSlug(siblings, listingsBySlug),
+        canonicalSlug:
+          pickPreferredStorageSlug(familySiblings, listingsBySlug) || slug,
+      });
+      continue;
+    }
+
+    const isGeneric =
+      !group.some(listingHasSlugStorage) && !isStorageSpecificProductSlug(slug);
+
+    if (isGeneric && familySiblings.length > 0) {
+      result.set(slug, {
+        slug,
+        indexable: false,
+        canonicalSlug: pickPreferredStorageSlug(familySiblings, listingsBySlug),
       });
       continue;
     }
@@ -119,19 +147,78 @@ export function buildProductSlugIndexationMap(
   return result;
 }
 
+export function getProductSlugRedirect(slug: string): string | null {
+  const gb = storageGbFromProductSlug(slug);
+  if (gb == null || isCanonicalSlugStorageGb(gb)) return null;
+
+  const listings = loadAllProducts();
+  const indexation = buildProductSlugIndexationMap(listings);
+  const family = productSlugFamilyKey(slug);
+
+  if (gb === 1000) {
+    const dest = remapStorageSlug(slug, 1000, 1024);
+    if (indexation.get(dest)?.indexable || listings.some((item) => listingProductSlug(item) === dest)) {
+      return `/produto/${dest}`;
+    }
+  }
+
+  if (gb > MAX_SLUG_STORAGE_GB) {
+    return hubPathForProductSlug(slug);
+  }
+
+  const siblings = [...indexation.values()]
+    .filter(
+      (entry) =>
+        entry.indexable &&
+        productSlugFamilyKey(entry.slug) === family &&
+        isStorageSpecificProductSlug(entry.slug),
+    )
+    .map((entry) => entry.slug);
+
+  if (siblings.length) {
+    const listingsBySlug = new Map<string, ProductListing[]>();
+    for (const sibling of siblings) {
+      listingsBySlug.set(
+        sibling,
+        listings
+          .filter((item) => listingProductSlug(item) === sibling)
+          .sort((a, b) => a.price - b.price),
+      );
+    }
+    const preferred = pickPreferredStorageSlug(siblings, listingsBySlug);
+    if (preferred) return `/produto/${preferred}`;
+  }
+
+  if (listings.some((item) => listingProductSlug(item) === family)) {
+    return `/produto/${family}`;
+  }
+
+  return hubPathForProductSlug(slug);
+}
+
 export function getProductSlugIndexation(slug: string): ProductSlugIndexation {
-  return (
-    buildProductSlugIndexationMap().get(slug) ?? {
+  const mapped = buildProductSlugIndexationMap().get(slug);
+  if (mapped) return mapped;
+
+  const redirect = getProductSlugRedirect(slug);
+  if (redirect?.startsWith("/produto/")) {
+    return {
       slug,
       indexable: false,
-      canonicalSlug: slug,
-    }
-  );
+      canonicalSlug: redirect.slice("/produto/".length),
+    };
+  }
+
+  return {
+    slug,
+    indexable: false,
+    canonicalSlug: slug,
+  };
 }
 
 export function getIndexableProductSlugs(): string[] {
   return [...buildProductSlugIndexationMap().entries()]
-    .filter(([, indexation]) => indexation.indexable)
+    .filter(([, indexation]) => indexation.indexable && !isNonCanonicalStorageSlug(indexation.slug))
     .map(([slug]) => slug);
 }
 
