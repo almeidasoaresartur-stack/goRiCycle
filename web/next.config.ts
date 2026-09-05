@@ -20,12 +20,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/produto/ipad-pro-2021-8gb-recondicionado",
-        destination: "/produto/ipad-pro-2021-128gb-recondicionado",
+        destination: "/produto/ipad-pro-2021-256gb-recondicionado",
         permanent: true,
       },
       {
         source: "/produto/ipad-pro-2022-8gb-recondicionado",
-        destination: "/produto/ipad-pro-2022-128gb-recondicionado",
+        destination: "/produto/ipad-pro-2022-recondicionado",
         permanent: true,
       },
       {
