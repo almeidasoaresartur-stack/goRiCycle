@@ -1,7 +1,7 @@
 {
-  "validated_at": "2026-09-05T12:27:00.857208+00:00",
+  "validated_at": "2026-09-06T10:03:12.045629+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
       "total": 30,
@@ -11,37 +11,921 @@
       "removed_items": []
     },
     "refurbed": {
-      "total": 103,
-      "kept": 103,
+      "total": 104,
+      "kept": 104,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "swappie": {
-      "total": 97,
-      "kept": 97,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "total": 94,
+      "kept": 0,
+      "removed": 94,
+      "reasons": {
+        "HTTP 403": 94
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 13",
+          "url": "https://swappie.com/pt/modelo/iphone-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13",
+          "url": "https://swappie.com/pt/iphone/iphone-13/iphone-13-256gb-meia-noite-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13",
+          "url": "https://swappie.com/pt/iphone/iphone-13/iphone-13-512gb-meia-noite-12/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-14-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-14-pro/iphone-14-pro-256gb-roxo-escuro-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-14-pro/iphone-14-pro-512gb-roxo-escuro-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-15-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-15-pro-max/iphone-15-pro-max-512gb-titanio-preto-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-13-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-13-pro/iphone-13-pro-256gb-azul-sierra-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-13-pro/iphone-13-pro-512gb-grafite-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Mini",
+          "url": "https://swappie.com/pt/modelo/iphone-13-mini/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Mini",
+          "url": "https://swappie.com/pt/iphone/iphone-13-mini/iphone-13-mini-256gb-rosa-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Mini",
+          "url": "https://swappie.com/pt/iphone/iphone-13-mini/iphone-13-mini-512gb-luz-das-estrelas-17/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-14-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-14-pro-max/iphone-14-pro-max-256gb-preto-sideral-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-14-pro-max/iphone-14-pro-max-512gb-roxo-escuro-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-16-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-16-pro-max/iphone-16-pro-max-512gb-titanio-do-deserto-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-13-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-13-pro-max/iphone-13-pro-max-256gb-azul-sierra-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 13 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-13-pro-max/iphone-13-pro-max-512gb-azul-sierra-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 17 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-17-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 17 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-17-pro/iphone-17-pro-512gb-laranja-cosmico-35/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 17 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-17-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14",
+          "url": "https://swappie.com/pt/modelo/iphone-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14",
+          "url": "https://swappie.com/pt/iphone/iphone-14/iphone-14-256gb-azul-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14",
+          "url": "https://swappie.com/pt/iphone/iphone-14/iphone-14-512gb-luz-das-estrelas-5/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-15-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-15-pro/iphone-15-pro-256gb-titanio-natural-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-15-pro/iphone-15-pro-512gb-titanio-azul-18/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15",
+          "url": "https://swappie.com/pt/modelo/iphone-15/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15",
+          "url": "https://swappie.com/pt/iphone/iphone-15/iphone-15-256gb-amarelo-3/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15",
+          "url": "https://swappie.com/pt/iphone/iphone-15/iphone-15-512gb-preto-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12",
+          "url": "https://swappie.com/pt/modelo/iphone-12/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12",
+          "url": "https://swappie.com/pt/iphone/iphone-12/iphone-12-128gb-branco-12/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12",
+          "url": "https://swappie.com/pt/iphone/iphone-12/iphone-12-256gb-branco-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-16-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-16-pro/iphone-16-pro-256gb-titanio-preto-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-16-pro/iphone-16-pro-512gb-titanio-preto-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Mini",
+          "url": "https://swappie.com/pt/modelo/iphone-12-mini/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Mini",
+          "url": "https://swappie.com/pt/iphone/iphone-12-mini/iphone-12-mini-128gb-branco-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Mini",
+          "url": "https://swappie.com/pt/iphone/iphone-12-mini/iphone-12-mini-256gb-azul-17/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11",
+          "url": "https://swappie.com/pt/iphone/iphone-11/iphone-11-64gb-preto-9/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11",
+          "url": "https://swappie.com/pt/iphone/iphone-11/iphone-11-128gb-preto-12/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11",
+          "url": "https://swappie.com/pt/iphone/iphone-11/iphone-11-256gb-roxo-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Plus",
+          "url": "https://swappie.com/pt/modelo/iphone-15-plus/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-15-plus/iphone-15-plus-256gb-azul-8/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 15 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-15-plus/iphone-15-plus-512gb-verde-19/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16",
+          "url": "https://swappie.com/pt/modelo/iphone-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16",
+          "url": "https://swappie.com/pt/iphone/iphone-16/iphone-16-256gb-branco-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16",
+          "url": "https://swappie.com/pt/iphone/iphone-16/iphone-16-512gb-ultramarino-19/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-12-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-12-pro/iphone-12-pro-256gb-azul-pacifico-7/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-12-pro/iphone-12-pro-512gb-grafite-15/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone SE 2022",
+          "url": "https://swappie.com/pt/iphone/iphone-se-2022/iphone-se-2022-64gb-meia-noite-3/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone SE 2022",
+          "url": "https://swappie.com/pt/iphone/iphone-se-2022/iphone-se-2022-128gb-meia-noite-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone SE 2022",
+          "url": "https://swappie.com/pt/iphone/iphone-se-2022/iphone-se-2022-256gb-meia-noite-18/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Plus",
+          "url": "https://swappie.com/pt/modelo/iphone-14-plus/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-14-plus/iphone-14-plus-256gb-meia-noite-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 14 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-14-plus/iphone-14-plus-512gb-vermelho-15/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-12-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-12-pro-max/iphone-12-pro-max-256gb-grafite-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 12 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-12-pro-max/iphone-12-pro-max-512gb-azul-pacifico-16/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11 Pro",
+          "url": "https://swappie.com/pt/modelo/iphone-11-pro/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11 Pro",
+          "url": "https://swappie.com/pt/iphone/iphone-11-pro/iphone-11-pro-256gb-prateado-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Plus",
+          "url": "https://swappie.com/pt/modelo/iphone-16-plus/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-16-plus/iphone-16-plus-256gb-preto-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16 Plus",
+          "url": "https://swappie.com/pt/iphone/iphone-16-plus/iphone-16-plus-512gb-ultramarino-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11 Pro Max",
+          "url": "https://swappie.com/pt/modelo/iphone-11-pro-max/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 11 Pro Max",
+          "url": "https://swappie.com/pt/iphone/iphone-11-pro-max/iphone-11-pro-max-256gb-prateado-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16e",
+          "url": "https://swappie.com/pt/modelo/iphone-16e/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 16e",
+          "url": "https://swappie.com/pt/iphone/iphone-16e/iphone-16e-512gb-branco-14/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone SE 2020",
+          "url": "https://swappie.com/pt/modelo/iphone-se-2020/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone SE 2020",
+          "url": "https://swappie.com/pt/iphone/iphone-se-2020/iphone-se-2020-128gb-branco-32/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone Air",
+          "url": "https://swappie.com/pt/modelo/iphone-air/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 17",
+          "url": "https://swappie.com/pt/modelo/iphone-17/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPhone 17",
+          "url": "https://swappie.com/pt/iphone/iphone-17/iphone-17-512gb-verde-salvia-40/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Air 6 (2024) 13″",
+          "url": "https://swappie.com/pt/modelo/ipad-air-6-2024-13/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Mini 7 (2024) 8.3″",
+          "url": "https://swappie.com/pt/modelo/ipad-mini-7-2024-8.3/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad 9 (2021) 10.2″",
+          "url": "https://swappie.com/pt/ipad/ipad-9-2021-10.2/ipad-9-2021-10-2-64gb-cinzento-sideral-26/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad 8 (2020) 10.2″",
+          "url": "https://swappie.com/pt/ipad/ipad-8-2020-10.2/ipad-8-2020-10-2-32gb-prateado-24/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Mini 6 (2021) 8.3″",
+          "url": "https://swappie.com/pt/modelo/ipad-mini-6-2021-8.3/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Mini 6 (2021) 8.3″",
+          "url": "https://swappie.com/pt/ipad/ipad-mini-6-2021-8.3/ipad-mini-6-2021-8-3-256gb-roxo-4/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2022) 12.9″",
+          "url": "https://swappie.com/pt/modelo/ipad-pro-2022-12.9/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2022) 11″",
+          "url": "https://swappie.com/pt/ipad/ipad-pro-2022-11/ipad-pro-2022-11-256gb-cinzento-sideral-24/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2021) 12.9″",
+          "url": "https://swappie.com/pt/modelo/ipad-pro-2021-12.9/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2021) 11″",
+          "url": "https://swappie.com/pt/modelo/ipad-pro-2021-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Air 3 (2019) 10.5″",
+          "url": "https://swappie.com/pt/modelo/ipad-air-3-2019-10.5/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Air 3 (2019) 10.5″",
+          "url": "https://swappie.com/pt/ipad/ipad-air-3-2019-10.5/ipad-air-3-10-5-256gb-space-gray-5/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2018) 11″",
+          "url": "https://swappie.com/pt/modelo/ipad-pro-2018-11/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2020) 12.9″",
+          "url": "https://swappie.com/pt/modelo/ipad-pro-2020-12.9/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2020) 12.9″",
+          "url": "https://swappie.com/pt/ipad/ipad-pro-2020-12.9/ipad-pro-12-9-256gb-silver-22/",
+          "reason": "HTTP 403"
+        },
+        {
+          "model": "iPad Pro (2020) 12.9″",
+          "url": "https://swappie.com/pt/ipad/ipad-pro-2020-12.9/ipad-pro-12-9-512gb-silver-22/",
+          "reason": "HTTP 403"
+        }
+      ]
     },
     "certideal": {
       "total": 136,
-      "kept": 136,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "kept": 134,
+      "removed": 2,
+      "reasons": {
+        "404 Not Found": 2
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        },
+        {
+          "model": "iPhone 11 Pro meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-recondicionado/iphone-11-pro-256-gb-verde-meia‑noite-correto-6006",
+          "reason": "404 Not Found"
+        }
+      ]
     },
     "callphone": {
       "total": 1517,
-      "kept": 1517,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": []
+      "kept": 1438,
+      "removed": 79,
+      "reasons": {
+        "HTTP 429": 79
+      },
+      "removed_items": [
+        {
+          "model": "IPHONE 14 256GB",
+          "url": "https://callphone.pt/products/iphone-14-256gb?variant=51570069012744",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG ZFLIP 6 512GB",
+          "url": "https://callphone.pt/products/samsung-zflip-6-256gb?variant=58467269214472",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung A17 128GB NOVO",
+          "url": "https://callphone.pt/products/samsung-a17-128gb-novo?variant=55666703106312",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung Z Fold 7 256GB",
+          "url": "https://callphone.pt/products/samsung-z-fold-7?variant=54073333317896",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695083784",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695116552",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-max-512gb?variant=52995695673608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-17-pro-max-256gb?variant=58253804601608",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 256GB",
+          "url": "https://callphone.pt/products/iphone-17-256gb?variant=52978853314824",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 128GB",
+          "url": "https://callphone.pt/products/iphone-16-128?variant=58186081141000",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-256gb?variant=57887922880776",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741667592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-128gb?variant=53243741995272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=52810494837000",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=53008960979208",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-16-pro-max-256gb?variant=58275740254472",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-512gb?variant=52558465138952",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 ULTRA 256GB",
+          "url": "https://callphone.pt/products/samsung-s23-ultra-256gb?variant=53136965730568",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S23 128GB",
+          "url": "https://callphone.pt/products/samsung-s23-128gb?variant=52532987986184",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 17 256GB NOVO",
+          "url": "https://callphone.pt/products/iphone-17-novo?variant=52489981624584",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287395592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "SAMSUNG S25 ULTRA 512GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-512gb-1?variant=52453287690504",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 512GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max-256gb-copia?variant=52150088335624",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S25 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s25-ultra-256gb?variant=52069192663304",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068877697288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "Samsung S24 Ultra 256GB",
+          "url": "https://callphone.pt/products/samsung-s24-ultra-256gb?variant=52068877795592",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263425288",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-15-pro-256gb?variant=51570263851272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570195923208",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196054280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 256GB",
+          "url": "https://callphone.pt/products/iphone-15-256gb?variant=51570196349192",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max-256gb?variant=51570170167560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570146705672",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147033352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-256gb?variant=51570147557640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max-256gb?variant=51569983815944",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958584584",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569958846728",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569959043336",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-256gb?variant=51569959076104",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 128GB",
+          "url": "https://callphone.pt/products/iphone-13-mini-128gb?variant=51569939710216",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 256GB",
+          "url": "https://callphone.pt/products/iphone-13-256gb?variant=51569928438024",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220167590152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Mini 256GB",
+          "url": "https://callphone.pt/products/iphone-13-mini?variant=51220168114440",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 16 Pro",
+          "url": "https://callphone.pt/products/iphone-16-pro?variant=51552346341640",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=50733492928776",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Plus 256GB",
+          "url": "https://callphone.pt/products/iphone-15-plus?variant=52699538063624",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51570190123272",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 128GB",
+          "url": "https://callphone.pt/products/iphone-15?variant=51552280019208",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51570248876296",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 15 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-15-pro?variant=51552248824072",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 128GB",
+          "url": "https://callphone.pt/products/iphone-14?variant=45152054247688",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE SE 2020",
+          "url": "https://callphone.pt/products/iphone-se-2020?variant=45209154846984",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Mini 64GB",
+          "url": "https://callphone.pt/products/iphone-12-mini?variant=45023370150152",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199344904",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=45008921067784",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=53299199803656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Plus 128GB",
+          "url": "https://callphone.pt/products/iphone-14-plus?variant=51552274972936",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro-max?variant=51570163548424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51570136809736",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 14 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-14-pro?variant=51552267567368",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198361352",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198459656",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS Max 64GB",
+          "url": "https://callphone.pt/products/iphone-xs-max?variant=51552198492424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro-max?variant=51552234438920",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro Max 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro-max?variant=44634867892488",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=44634870907144",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 13 Pro 128GB",
+          "url": "https://callphone.pt/products/iphone-13-pro?variant=51552221331720",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8",
+          "url": "https://callphone.pt/products/iphone-8?variant=44634872774920",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XR 64GB",
+          "url": "https://callphone.pt/products/iphone-xr?variant=44634874216712",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS 64GB",
+          "url": "https://callphone.pt/products/iphone-x?variant=44634876248328",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE XS 64GB",
+          "url": "https://callphone.pt/products/iphone-x?variant=51552197869832",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 Pro 64GB",
+          "url": "https://callphone.pt/products/iphone-11-pro?variant=51552199442696",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 11 64GB",
+          "url": "https://callphone.pt/products/iphone-11?variant=51552198852872",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro Max 128GB",
+          "url": "https://callphone.pt/products/iphone-12-pro-max?variant=44634869596424",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 Pro 256GB",
+          "url": "https://callphone.pt/products/iphone-12-pro?variant=44489670230280",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8 Plus",
+          "url": "https://callphone.pt/products/iphone-8-plus?variant=44441241911560",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 8 Plus",
+          "url": "https://callphone.pt/products/iphone-8-plus?variant=44634873757960",
+          "reason": "HTTP 429"
+        },
+        {
+          "model": "IPHONE 12 64GB",
+          "url": "https://callphone.pt/products/ipphone-12?variant=44441237225736",
+          "reason": "HTTP 429"
+        }
+      ]
     }
   },
   "summary": {
-    "total": 1883,
-    "kept": 1883,
-    "removed": 0
+    "total": 1881,
+    "kept": 1706,
+    "removed": 175
   }
 }
