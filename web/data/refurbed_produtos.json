@@ -7,31 +7,9 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-10T11:31:26.474645+00:00",
-  "total_products": 1,
-  "products": [
-    {
-      "source": "refurbed",
-      "scraped_at": "2026-09-10T11:31:26.474645+00:00",
-      "product_id": "refurbed_samsung-galaxy-tab-active-3_64gb_64_gb",
-      "category": "tablets",
-      "brand": "Samsung",
-      "model": "Samsung Galaxy Tab Active 3 (T575)",
-      "storage": "64GB",
-      "color": "64 gb",
-      "grade": null,
-      "price": 110.99,
-      "original_price": 499.0,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.refurbed.pt/p/samsung-galaxy-tab-active-3/",
-      "image_url": "https://files.refurbed.com/ii/-1633684652.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/c/tablets/",
-      "is_available": true,
-      "affiliate_enabled": true,
-      "affiliate_network": "brandreward"
-    }
-  ],
-  "validated_at": "2026-09-10T12:17:50.716342+00:00",
-  "merged_at": "2026-09-10T12:17:50.985127+00:00"
+  "scraped_at": "2026-09-11T14:33:22.172382+00:00",
+  "total_products": 0,
+  "products": [],
+  "validated_at": "2026-09-11T15:15:14.000721+00:00",
+  "merged_at": "2026-09-11T15:15:14.274209+00:00"
 }
