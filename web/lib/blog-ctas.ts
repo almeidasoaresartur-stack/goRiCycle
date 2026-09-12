@@ -19,6 +19,28 @@ type CtaSpec =
  * indexable PDP set (same set as the sitemap) so we never emit junk/404 links.
  */
 const BLOG_CTA_SPECS: Record<string, readonly CtaSpec[]> = {
+  "iphone-14-vs-iphone-15-recondicionado": [
+    {
+      kind: "pdp",
+      options: [
+        { slug: "iphone-14-128gb-recondicionado", label: "iPhone 14 128GB recondicionado" },
+      ],
+    },
+    {
+      kind: "pdp",
+      options: [
+        { slug: "iphone-15-128gb-recondicionado", label: "iPhone 15 128GB recondicionado" },
+      ],
+    },
+    {
+      kind: "pdp",
+      options: [
+        { slug: "iphone-15-256gb-recondicionado", label: "iPhone 15 256GB recondicionado" },
+        { slug: "iphone-15-pro-max-256gb-recondicionado", label: "iPhone 15 Pro Max 256GB recondicionado" },
+      ],
+    },
+    { kind: "path", href: "/smartphones", label: "Ver smartphones recondicionados" },
+  ],
   "iphone-13-vale-a-pena-2026": [
     {
       kind: "pdp",

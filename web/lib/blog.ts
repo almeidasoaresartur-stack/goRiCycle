@@ -10,6 +10,105 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "iphone-14-vs-iphone-15-recondicionado",
+    title: "iPhone 14 ou iPhone 15 recondicionado — qual escolher em 2026?",
+    description:
+      "O 15 traz USB-C, Dynamic Island e câmara de 48 MP. O 14 continua mais barato no mercado de recondicionados. Quando vale a pena pagar a diferença?",
+    metaTitle:
+      "iPhone 14 ou iPhone 15 recondicionado — qual escolher em 2026? | goRiCycle",
+    publishedAt: "2026-09-13",
+    readingMinutes: 6,
+    content: `O iPhone 15 não é um redesenho. É o mesmo tamanho, o mesmo tipo de ecrã e o mesmo Face ID do 14 — com três mudanças que se sentem no dia a dia: USB-C, Dynamic Island e câmara de 48 MP. O 14 ficou mais barato precisamente porque não as tem. Em 2026, no mercado de recondicionados, a decisão resume-se a isto: precisas destas três coisas, ou preferes ficar com o dinheiro?
+
+## O salto que interessa
+
+Há diferenças que se lêem na ficha técnica e diferenças que mudam a rotina. Do 14 para o 15, o salto que interessa cabe em três pontos:
+
+- **O cabo.** O 15 passou a USB-C; o 14 continua em Lightning.
+- **A frente.** O 15 trocou o entalhe pela Dynamic Island; o 14 manteve o recorte clássico.
+- **A câmara.** O 15 subiu a principal de 12 MP para 48 MP, com um "zoom" 2x recortado do mesmo sensor.
+
+O resto é incremental. Os dois têm ecrã OLED Super Retina XDR de 6,1", 60 Hz, Face ID, 5G, MagSafe e resistência IP68. O chip mudou (A15 no 14, A16 no 15), mas para chamadas, redes sociais, streaming e fotografia casual a diferença é pequena. Se estás a vir de um iPhone 11, 12 ou de um Android antigo, qualquer um dos dois parece um telemóvel actual. A pergunta útil é outra: **quando vale a pena pagar a diferença pelo 15?**
+
+Compara o [iPhone 14 128GB recondicionado](/produto/iphone-14-128gb-recondicionado) com o [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado) no mesmo estado — é aí que a diferença de preço fica honesta.
+
+## USB-C vs Lightning
+
+Esta é a mudança que mais se sente, todos os dias.
+
+Desde o iPhone 15, a Apple abandonou o Lightning em toda a linha. O 15 carrega e transfere dados com o mesmo cabo USB-C que já usas no portátil, nos auriculares, no iPad ou no Android. O 14 obriga-te a manter um cabo que, em 2026, já quase ninguém compra para mais nada.
+
+Há um senão honesto: no 15 standard, o USB-C é USB 2.0 — serve para carregar e passar fotos, não para transferências rápidas de vídeo. Mesmo assim, deixar de viver com dois carregadores no saco vale mais do que a ficha técnica sugere.
+
+Se a tua casa já é USB-C, o 14 torna-se uma pedra no sapato. Se ainda tens gaveta cheia de Lightning e não te importas, o argumento enfraquece — e o 14 ganha pontos no preço.
+
+## Dynamic Island vs entalhe
+
+A Dynamic Island é a cápsula preta no topo do ecrã que substitui o entalhe. Mostra o temporizador, a música, uma chamada a chegar, o Face ID a reconhecer-te. Não torna o telemóvel mais rápido. Torna a frente mais limpa e algumas acções mais visíveis sem abrires a app.
+
+O entalhe do 14 faz o mesmo trabalho de câmara e sensores — só ocupa o ecrã de outra forma. Se vens de um iPhone 13 ou 14, a Dynamic Island é uma melhoria agradável, não uma necessidade. Se vens de um Android com ecrã inteiro, o 15 parece menos "antigo" à primeira vista.
+
+Não pagues a diferença só por isto. Paga se o conjunto USB-C + câmara + Dynamic Island justificar o extra.
+
+## Câmara 12 vs 48 MP
+
+Aqui a diferença é real, sobretudo se recortas fotos ou fotografas com pouca luz.
+
+O 14 tem câmara principal de 12 MP e ultra grande-angular de 12 MP. Para stories, retratos casuais e scans de documentos, chega — e chega bem. O 15 sobe a principal para 48 MP. Isso dá mais margem para recortar sem a foto desfazer-se, um zoom 2x "óptico" (na prática, um recorte do sensor maior) e mais detalhe quando a luz não ajuda.
+
+Nenhum dos dois é um Pro. Não há teleobjectiva de verdade, nem o tratamento de vídeo dos modelos topo de gama. Se a fotografia é o critério número um e o orçamento estica, o salto seguinte não é o 15 standard — é um Pro. O [iPhone 15 Pro Max 256GB recondicionado](/produto/iphone-15-pro-max-256gb-recondicionado) entra nessa conversa; o 15 base, não.
+
+Para o resto das pessoas: se partilhas fotos no telemóvel e não editas em ecrã grande, o 14 não te vai envergonhar. Se queres um ficheiro com mais informação para recortar ou imprimir, o 15 nota-se.
+
+## Chip e longevidade
+
+O 14 leva o A15 Bionic; o 15 leva o A16, o mesmo chip que estreou nos Pro de 2022. No uso quotidiano, os dois estão folgados. Jogos, edição ligeira, separadores no Safari — nenhum dos dois vai "engasgar" em 2026.
+
+A diferença que importa é o calendário, não o benchmark. O 15 é um ano mais novo: em princípio, recebe um ciclo extra de iOS. Estamos a falar de suporte até cerca de 2029–2030 no 14 e até 2030–2031 no 15 — números aproximados, com base no historial da Apple, não numa promessa escrita na caixa.
+
+Há um ponto que confunde muita gente: **nem o 14 nem o 15 standard correm Apple Intelligence.** Essa linha começa no 15 Pro e no 16. Se a inteligência artificial nativa da Apple for prioridade, este artigo não é o confronto certo — lê a comparação [iPhone 15 ou iPhone 16 recondicionado](/blog/iphone-15-vs-iphone-16-recondicionado).
+
+Se planeias ficar com o telemóvel dois ou três anos, o A15 do 14 chega. Se queres cinco anos sem pensar no assunto, o A16 e o ano extra de ciclo pesam a favor do 15.
+
+## Bateria e calor
+
+No papel, o 15 dura um pouco mais e gere melhor o calor sob carga — o A16 é mais eficiente. Na prática, em recondicionado, **a saúde da bateria do exemplar concreto vale mais do que o modelo.** Um 15 com 81% de capacidade pode render menos do que um 14 com 92%.
+
+Pede sempre a percentagem exacta, não só o grau estético. E confirma até quando a loja cobre a bateria: nalgumas, a garantia do aparelho e a da bateria não duram o mesmo. Explicámos isto loja a loja no artigo sobre [a garantia da bateria nos recondicionados](/blog/garantia-bateria-recondicionados-comparacao-lojas).
+
+Quanto ao calor: os dois aquecem a gravar vídeo longo ou a jogar com o telemóvel ao sol. Não é um critério de compra entre 14 e 15. É um critério para não comprares um aparelho com bateria inchada ou com histórico duvidoso.
+
+## Capacidade 128 vs 256
+
+O armazenamento é a outra decisão — e, ao contrário do chip, não se resolve com uma actualização.
+
+**128 GB** chega se usas iCloud ou Google Fotos, fazes streaming em vez de descarregar séries, e não gravas vídeo 4K às horas. É a capacidade que mais se vende, e a que melhor preço tem no 14 e no 15. Vê o [iPhone 14 128GB recondicionado](/produto/iphone-14-128gb-recondicionado) e o [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado).
+
+**256 GB** faz sentido se gravares muito vídeo, descarregares conteúdo offline, ou se já encheste um 128 GB uma vez. No recondicionado, o prémio por este salto costuma ser menor do que no aparelho novo — mas continua a existir. Compara o [iPhone 14 256GB recondicionado](/produto/iphone-14-256gb-recondicionado) com o [iPhone 15 256GB recondicionado](/produto/iphone-15-256gb-recondicionado) antes de assumires que "mais espaço" é automaticamente o 15.
+
+Uma regra simples: se estás em dúvida entre 14 de 256 GB e 15 de 128 GB, pergunta-te o que te vai irritar primeiro — o cabo Lightning, ou o aviso de armazenamento cheio. A resposta muda de pessoa para pessoa.
+
+## E os Plus/Pro
+
+O 14 Plus e o 15 Plus são o mesmo argumento: ecrã maior (6,7") e mais bateria, sem o kit Pro. Se usas o telemóvel o dia inteiro longe de tomadas e não te importas com o tamanho, o Plus rende mais do que saltar de geração no modelo standard.
+
+Os Pro são outra categoria. Zoom óptico a sério, ecrã a 120 Hz, chips um degrau acima — e, no 15 Pro / Pro Max, Apple Intelligence. Só compensam se essas funções forem o motivo da compra, não "para ficar mais seguro". O [iPhone 15 Pro Max 256GB recondicionado](/produto/iphone-15-pro-max-256gb-recondicionado) é o atalho para esse patamar; não é o desempate entre o 14 e o 15 base.
+
+Se estás a comparar 14 standard com 15 Pro, estás a misturar duas conversas. Volta ao mesmo modelo, à mesma capacidade, e olha para o preço.
+
+## Então qual escolher
+
+**Fica com o iPhone 14 se** o orçamento manda, já tens cabos Lightning (ou não te importa), e a câmara de 12 MP te chega. O [iPhone 14 128GB recondicionado](/produto/iphone-14-128gb-recondicionado) é a escolha mais racional para uso quotidiano em 2026.
+
+**Sobe ao iPhone 15 se** queres USB-C de uma vez, valorizas a câmara de 48 MP, ou planeias ficar com o telemóvel mais tempo. O [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado) é o ponto de equilíbrio; o [iPhone 15 256GB recondicionado](/produto/iphone-15-256gb-recondicionado) se o espaço for o que te fez hesitar.
+
+**Não pagues a diferença só pela Dynamic Island.** Paga pelo conjunto — cabo, câmara e um ano extra de ciclo.
+
+O preço certo só existe lado a lado, no mesmo estado e na mesma capacidade. [Vê todos os smartphones recondicionados](/smartphones) e compara o 14 e o 15 nas lojas portuguesas — Certideal, iServices, Swappie, Refurbed e Callphone — antes de decidires.
+
+*Os preços de recondicionados em Portugal mudam com o grau, a loja e a saúde da bateria. No goRiCycle comparamos as ofertas em tempo real.*`,
+  },
+  {
     slug: "garantia-bateria-recondicionados-comparacao-lojas",
     title:
       "Bateria: a garantia mais curta do recondicionado — o que cada loja garante (e não garante)",
