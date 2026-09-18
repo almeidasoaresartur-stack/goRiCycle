@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-09-17T13:28:37.853851+00:00",
+  "validated_at": "2026-09-18T13:11:03.171623+00:00",
   "dry_run": false,
   "check_live": false,
   "sources": {
@@ -11,22 +11,22 @@
       "removed_items": []
     },
     "refurbed": {
-      "total": 37,
-      "kept": 37,
+      "total": 38,
+      "kept": 38,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "swappie": {
-      "total": 16,
-      "kept": 16,
+      "total": 84,
+      "kept": 84,
       "removed": 0,
       "reasons": {},
       "removed_items": []
     },
     "certideal": {
-      "total": 157,
-      "kept": 157,
+      "total": 152,
+      "kept": 152,
       "removed": 0,
       "reasons": {},
       "removed_items": []
@@ -40,8 +40,8 @@
     }
   },
   "summary": {
-    "total": 1760,
-    "kept": 1760,
+    "total": 1824,
+    "kept": 1824,
     "removed": 0
   }
 }
