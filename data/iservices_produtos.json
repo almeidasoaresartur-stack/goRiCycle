@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-20T08:38:31.724866+00:00",
-  "total_products": 26,
+  "scraped_at": "2026-09-21T12:58:01.461927+00:00",
+  "total_products": 27,
   "products": [
     {
       "source": "iservices",
@@ -555,8 +555,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-09-21T12:58:01.461927+00:00",
+      "product_id": "iservices_1407-ipad-102-2021-9a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad 10.2\" 2021 (9ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 204.76,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1407-ipad-102-2021-9a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-102-2021-9th-generation-64-gb-space-grey-very-good-wi-fi.webp",
+      "source_page": "https://iservices.pt/produto/1408-ipad-air-2022-5a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-20T10:17:41.106698+00:00",
-  "merged_at": "2026-09-20T10:39:38.289119+00:00"
+  "validated_at": "2026-09-21T14:46:54.449890+00:00",
+  "merged_at": "2026-09-21T14:46:54.733099+00:00"
 }
