@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-24T14:56:40.867120+00:00",
-  "total_products": 27,
+  "scraped_at": "2026-09-25T14:58:34.603925+00:00",
+  "total_products": 25,
   "products": [
     {
       "source": "iservices",
@@ -517,27 +517,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-09-20T08:38:31.724866+00:00",
-      "product_id": "iservices_1412-ipad-pro-129-2020-4a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Pro 12.9\" 2020 (4ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 537.07,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1412-ipad-pro-129-2020-4a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2021-3rd-generation-128-gb-silver-very-good-wi-fi.webp",
-      "source_page": "https://iservices.pt/produto/1424-ipad-pro-11-2021-3a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-09-20T08:38:31.724866+00:00",
       "product_id": "iservices_1408-ipad-air-2022-5a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -555,29 +534,8 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-09-21T12:58:01.461927+00:00",
-      "product_id": "iservices_1407-ipad-102-2021-9a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad 10.2\" 2021 (9ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 204.76,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1407-ipad-102-2021-9a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-102-2021-9th-generation-64-gb-space-grey-very-good-wi-fi.webp",
-      "source_page": "https://iservices.pt/produto/1408-ipad-air-2022-5a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-24T16:35:12.464437+00:00",
-  "merged_at": "2026-09-24T16:35:12.740278+00:00"
+  "validated_at": "2026-09-25T16:55:50.228043+00:00",
+  "merged_at": "2026-09-25T16:55:50.443094+00:00"
 }
