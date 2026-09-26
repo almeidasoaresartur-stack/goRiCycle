@@ -1,11 +1,11 @@
 {
-  "merged_at": "2026-09-25T16:55:50.493369+00:00",
+  "merged_at": "2026-09-26T16:22:43.157997+00:00",
   "dry_run": false,
   "per_source": [
     {
       "source": "iservices",
-      "total": 25,
-      "kept": 25,
+      "total": 26,
+      "kept": 26,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -14,8 +14,8 @@
     },
     {
       "source": "refurbed",
-      "total": 35,
-      "kept": 35,
+      "total": 36,
+      "kept": 36,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,
@@ -24,8 +24,8 @@
     },
     {
       "source": "swappie",
-      "total": 21,
-      "kept": 21,
+      "total": 19,
+      "kept": 19,
       "removed": 0,
       "removed_by_relevance": 0,
       "corrections_applied": 0,

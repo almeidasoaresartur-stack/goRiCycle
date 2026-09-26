@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-25T14:58:34.603925+00:00",
-  "total_products": 25,
+  "scraped_at": "2026-09-26T14:32:50.622472+00:00",
+  "total_products": 26,
   "products": [
     {
       "source": "iservices",
@@ -534,8 +534,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-09-26T14:32:50.622472+00:00",
+      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad 10.9\" 2022 (10ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 381.68,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/gaming-console-handheld-1790335093.webp",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-25T16:55:50.228043+00:00",
-  "merged_at": "2026-09-25T16:55:50.443094+00:00"
+  "validated_at": "2026-09-26T16:22:42.770597+00:00",
+  "merged_at": "2026-09-26T16:22:43.086744+00:00"
 }

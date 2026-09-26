@@ -1,29 +1,29 @@
 {
-  "curated_at": "2026-09-25T16:55:50+00:00",
+  "curated_at": "2026-09-26T16:22:43+00:00",
   "alerts": [
-    "**swappie**: queda de 77% (90 → 21) — mantidos dados de ontem (scraper provavelmente partido)"
+    "**swappie**: queda de 79% (90 → 19) — mantidos dados de ontem (scraper provavelmente partido)"
   ],
   "stores": {
     "iservices": {
-      "hoje_bruto": 25,
+      "hoje_bruto": 26,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 25,
+      "final": 26,
       "blocked": false,
-      "ontem": 27
+      "ontem": 25
     },
     "refurbed": {
-      "hoje_bruto": 35,
+      "hoje_bruto": 36,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 35,
+      "final": 36,
       "blocked": false,
       "ontem": 35
     },
     "swappie": {
-      "hoje_bruto": 21,
+      "hoje_bruto": 19,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
@@ -50,5 +50,5 @@
       "ontem": 267
     }
   },
-  "total_final": 550
+  "total_final": 552
 }

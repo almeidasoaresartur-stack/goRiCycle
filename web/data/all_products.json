@@ -1,6 +1,6 @@
 {
-  "merged_at": "2026-09-25T16:55:50.493369+00:00",
-  "total_products": 550,
+  "merged_at": "2026-09-26T16:22:43.157997+00:00",
+  "total_products": 552,
   "products": [
     {
       "source": "iservices",
@@ -528,8 +528,29 @@
       "affiliate_network": null
     },
     {
+      "source": "iservices",
+      "scraped_at": "2026-09-26T14:32:50.622472+00:00",
+      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
+      "category": "tablet",
+      "brand": "Apple",
+      "model": "iPad 10.9\" 2022 (10ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 381.68,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/gaming-console-handheld-1790335093.webp",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-15",
       "category": "smartphone",
       "brand": "Apple",
@@ -537,12 +558,12 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 438.99,
+      "price": 429.99,
       "original_price": 849.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-15/",
-      "image_url": "https://files.refurbed.com/ii/iphone-15-1786449827213808252.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/iphone-15-1786450473185192813.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/c/iphones/",
       "is_available": true,
       "affiliate_enabled": true,
@@ -551,7 +572,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-17-pro-max",
       "category": "smartphone",
       "brand": "Apple",
@@ -559,8 +580,8 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 1246.99,
-      "original_price": 1241.0,
+      "price": 1240.99,
+      "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-17-pro-max/",
@@ -572,7 +593,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-16-pro",
       "category": "smartphone",
       "brand": "Apple",
@@ -580,13 +601,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 713.99,
+      "price": 719.99,
       "original_price": 1199.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-16-pro/",
       "image_url": "https://files.refurbed.com/ii/iphone-16-pro-1725953077053245542.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-17-pro-max/359119/?offer=21302057",
+      "source_page": "https://www.refurbed.pt/p/iphone-17-pro-max/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -594,7 +615,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-13",
       "category": "smartphone",
       "brand": "Apple",
@@ -607,8 +628,8 @@
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-13/",
-      "image_url": "https://files.refurbed.com/ii/iphone-13-1631688288.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-16-pro/396025aa/?offer=21168640",
+      "image_url": "https://files.refurbed.com/ii/iphone-13-1631687942.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/iphone-16-pro/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -616,7 +637,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-17-pro",
       "category": "smartphone",
       "brand": "Apple",
@@ -624,20 +645,20 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 1019.99,
+      "price": 1071.99,
       "original_price": 1299.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-17-pro/",
       "image_url": "https://files.refurbed.com/ii/iphone-17-pro-1757486182035148059.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-13/14164/?offer=20616415",
+      "source_page": "https://www.refurbed.pt/p/iphone-13/409501/?offer=21342514",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-14-pro-max",
       "category": "smartphone",
       "brand": "Apple",
@@ -645,13 +666,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 504.99,
+      "price": 498.99,
       "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-14-pro-max/",
-      "image_url": "https://files.refurbed.com/ii/iphone-14-pro-max-1662627048.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-17-pro/359105/?offer=17288120",
+      "image_url": "https://files.refurbed.com/ii/iphone-14-pro-max-1662626716.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/iphone-17-pro/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -659,7 +680,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-17",
       "category": "smartphone",
       "brand": "Apple",
@@ -667,13 +688,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 784.99,
+      "price": 777.99,
       "original_price": 949.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-17/",
-      "image_url": "https://files.refurbed.com/ii/iphone-17-1787659171475767654.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-14-pro-max/41034b/?offer=19390837",
+      "image_url": "https://files.refurbed.com/ii/iphone-17-1787656898142841558.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/iphone-14-pro-max/41081b/?offer=17346717",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -681,7 +702,29 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
+      "product_id": "refurbed_iphone-14-pro",
+      "category": "smartphone",
+      "brand": "Apple",
+      "model": "iPhone 14 Pro",
+      "storage": null,
+      "color": null,
+      "grade": null,
+      "price": 469.99,
+      "original_price": 1299.0,
+      "currency": "EUR",
+      "warranty_months": 24,
+      "url": "https://www.refurbed.pt/p/iphone-14-pro/",
+      "image_url": "https://files.refurbed.com/ii/iphone-14-pro-1662623063.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/iphone-17/359087/?offer=20622084",
+      "is_available": true,
+      "affiliate_enabled": true,
+      "affiliate_network": "brandreward",
+      "seller_rating": 4.79
+    },
+    {
+      "source": "refurbed",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-15-pro-max",
       "category": "smartphone",
       "brand": "Apple",
@@ -689,13 +732,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 723.99,
+      "price": 706.99,
       "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-15-pro-max/",
       "image_url": "https://files.refurbed.com/ii/iphone-15-pro-max-1694584620.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "about:blank",
+      "source_page": "https://www.refurbed.pt/p/iphone-14-pro/409379aa/?offer=20813234",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -703,7 +746,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-15-pro",
       "category": "smartphone",
       "brand": "Apple",
@@ -711,13 +754,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 575.99,
+      "price": 610.99,
       "original_price": 1199.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-15-pro/",
-      "image_url": "https://files.refurbed.com/ii/iphone-15-pro-1694588646.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-15-pro-max/",
+      "image_url": "https://files.refurbed.com/ii/iphone-15-pro-1694586795.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/iphone-15-pro-max/98066b/?offer=20882957",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -725,7 +768,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-14",
       "category": "smartphone",
       "brand": "Apple",
@@ -733,13 +776,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 322.99,
+      "price": 327.99,
       "original_price": 729.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-14/",
       "image_url": "https://files.refurbed.com/ii/iphone-14-1662616716.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-15-pro/395138/?offer=20849857",
+      "source_page": "https://www.refurbed.pt/p/iphone-15-pro/395137/?offer=20850360",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -747,7 +790,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-16-pro-max",
       "category": "smartphone",
       "brand": "Apple",
@@ -755,12 +798,12 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 847.99,
+      "price": 833.99,
       "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-16-pro-max/",
-      "image_url": "https://files.refurbed.com/ii/iphone-16-pro-max-1725955303853964396.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/iphone-16-pro-max-1725955473628017213.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/p/iphone-14/75607aa/?offer=17616238",
       "is_available": true,
       "affiliate_enabled": true,
@@ -769,7 +812,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-16e",
       "category": "smartphone",
       "brand": "Apple",
@@ -777,12 +820,12 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 422.99,
+      "price": 426.99,
       "original_price": 709.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-16e/",
-      "image_url": "https://files.refurbed.com/ii/iphone-16e-1740377203626875002.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/iphone-16e-1740377113287505472.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/p/iphone-16-pro-max/396033aa/?offer=19961438",
       "is_available": true,
       "affiliate_enabled": true,
@@ -791,7 +834,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-11",
       "category": "smartphone",
       "brand": "Apple",
@@ -799,13 +842,13 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 161.99,
+      "price": 172.99,
       "original_price": 579.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-11/",
       "image_url": "https://files.refurbed.com/ii/iphone-11-1568185539.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-16e/396060/?offer=21208929",
+      "source_page": "https://www.refurbed.pt/p/iphone-16e/304681aa/?offer=20741041",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -813,7 +856,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_iphone-16-plus",
       "category": "smartphone",
       "brand": "Apple",
@@ -827,7 +870,7 @@
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/iphone-16-plus/",
       "image_url": "https://files.refurbed.com/ii/iphone-16-plus-1725948351235144385.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/iphone-11/",
+      "source_page": "https://www.refurbed.pt/p/iphone-11/4793aa/?offer=20739022",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -835,7 +878,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-2025-11_11_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -843,20 +886,20 @@
       "storage": null,
       "color": "11-polegadas",
       "grade": null,
-      "price": 968.99,
+      "price": 952.99,
       "original_price": 1299.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-2025-11/",
-      "image_url": "https://files.refurbed.com/ii/ipad-pro-2025-11-1761809362470001727.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-air-5/",
+      "image_url": "https://files.refurbed.com/ii/ipad-pro-2025-11-1761809293166948008.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/ipad-air-5/21669aa/?offer=21129131",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-5-2024-11_11_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -870,7 +913,7 @@
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-5-2024-11/",
       "image_url": "https://files.refurbed.com/ii/ipad-pro-5-2024-11-1715665372246435445.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-pro-2025-11/369040aa/?offer=20928302",
+      "source_page": "https://www.refurbed.pt/p/ipad-pro-2025-11/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -878,7 +921,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-8-2026-13_13_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -886,20 +929,20 @@
       "storage": null,
       "color": "13-polegadas",
       "grade": null,
-      "price": 820.0,
+      "price": 889.99,
       "original_price": 999.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-air-8-2026-13/",
       "image_url": "https://files.refurbed.com/ii/ipad-air-8-2026-13-1772537192904070531.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-8-10-2/10371b/?offer=18730640",
+      "source_page": "https://www.refurbed.pt/p/ipad-8-10-2/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-7-2024-13_13_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -907,7 +950,7 @@
       "storage": null,
       "color": "13-polegadas",
       "grade": null,
-      "price": 969.99,
+      "price": 967.99,
       "original_price": 1549.0,
       "currency": "EUR",
       "warranty_months": 24,
@@ -921,7 +964,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-8-2026-11_11_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -929,20 +972,20 @@
       "storage": null,
       "color": "11-polegadas",
       "grade": null,
-      "price": 777.99,
+      "price": 778.99,
       "original_price": 799.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-air-8-2026-11/",
       "image_url": "https://files.refurbed.com/ii/ipad-air-8-2026-11-1772521683890539390.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-11/",
+      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-11/173817aa/?offer=21333833",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-11-10-9-2025_10_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -950,12 +993,12 @@
       "storage": null,
       "color": "10.9-polegadas",
       "grade": null,
-      "price": 479.99,
+      "price": 439.0,
       "original_price": 499.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-11-10-9-2025/",
-      "image_url": "https://files.refurbed.com/ii/ipad-11-10-9-2025-1742972644076946505.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/ipad-11-10-9-2025-1742972659191349292.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/p/ipad-air-8-2026-11/417741aa/?offer=21310361",
       "is_available": true,
       "affiliate_enabled": true,
@@ -964,7 +1007,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-7-2025-13_13_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -986,7 +1029,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-9-2021_10_2_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -994,7 +1037,7 @@
       "storage": null,
       "color": "10.2-polegadas",
       "grade": null,
-      "price": 200.99,
+      "price": 191.99,
       "original_price": 429.0,
       "currency": "EUR",
       "warranty_months": 24,
@@ -1008,7 +1051,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-8-10-2_10_2_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1021,8 +1064,8 @@
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-8-10-2/",
-      "image_url": "https://files.refurbed.com/ii/ipad-8-10-2-1612354774.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-9-2021/",
+      "image_url": "https://files.refurbed.com/ii/ipad-8-10-2-1612354767.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/ipad-9-2021/14241b/?offer=15842022",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -1030,7 +1073,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-5_10_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1038,13 +1081,13 @@
       "storage": null,
       "color": "10.9-polegadas",
       "grade": null,
-      "price": 415.99,
-      "original_price": 969.0,
+      "price": 409.0,
+      "original_price": 769.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-air-5/",
-      "image_url": "https://files.refurbed.com/ii/ipad-air-5-1646898484.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-8-10-2/10371b/?offer=18730640",
+      "image_url": "https://files.refurbed.com/ii/ipad-air-5-1646903123.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/ipad-8-10-2/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -1052,7 +1095,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-6-12-9-2022_12_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1060,13 +1103,13 @@
       "storage": null,
       "color": "12.9-polegadas",
       "grade": null,
-      "price": 669.99,
+      "price": 671.99,
       "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-6-12-9-2022/",
       "image_url": "https://files.refurbed.com/ii/ipad-pro-6-12-9-2022-1683180654.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-air-5/21664c/?offer=21277529",
+      "source_page": "https://www.refurbed.pt/p/ipad-air-5/21669aa/?offer=21129131",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -1074,7 +1117,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-6-2024-13_13_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1082,20 +1125,20 @@
       "storage": null,
       "color": "13-polegadas",
       "grade": null,
-      "price": 605.99,
+      "price": 665.99,
       "original_price": 949.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-air-6-2024-13/",
       "image_url": "https://files.refurbed.com/ii/ipad-air-6-2024-13-1715672856417075406.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-pro-6-12-9-2022/56209/?offer=21237977",
+      "source_page": "https://www.refurbed.pt/p/ipad-pro-6-12-9-2022/56670b/?offer=21012051",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-2025-13_13_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1109,7 +1152,7 @@
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-2025-13/",
       "image_url": "https://files.refurbed.com/ii/ipad-pro-2025-13-1761815795703349013.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-13/173861aa/?offer=21185872",
+      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-13/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -1117,7 +1160,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-12-9-2017_12_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1125,12 +1168,12 @@
       "storage": null,
       "color": "12.9-polegadas",
       "grade": null,
-      "price": 222.99,
-      "original_price": 899.0,
+      "price": 302.99,
+      "original_price": 1099.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-12-9-2017/",
-      "image_url": "https://files.refurbed.com/ii/64-gb-silber-wifi-1563815200.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/256-gb-silber-wifi-1563815210.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/p/ipad-pro-2025-13/369084aa/?offer=20928312",
       "is_available": true,
       "affiliate_enabled": true,
@@ -1138,7 +1181,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-12-9-2020_12_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1146,20 +1189,20 @@
       "storage": null,
       "color": "12.9-polegadas",
       "grade": null,
-      "price": 469.99,
+      "price": 484.99,
       "original_price": 1099.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-12-9-2020/",
       "image_url": "https://files.refurbed.com/ii/ipad-pro-12-9-2020-1607678747.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-pro-12-9-2017/921b/?offer=15841282",
+      "source_page": "https://www.refurbed.pt/p/ipad-pro-12-9-2017/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-10-10-9-2022_10_9_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1167,13 +1210,13 @@
       "storage": null,
       "color": "10.9-polegadas",
       "grade": null,
-      "price": 386.99,
+      "price": 392.99,
       "original_price": 429.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-10-10-9-2022/",
       "image_url": "https://files.refurbed.com/ii/ipad-10-10-9-2022-1668773468.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-pro-12-9-2020/9606b/?offer=19814142",
+      "source_page": "https://www.refurbed.pt/p/ipad-pro-12-9-2020/",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -1181,7 +1224,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-pro-11-0-2018_11_0_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1189,20 +1232,20 @@
       "storage": null,
       "color": "11.0-polegadas",
       "grade": null,
-      "price": 330.0,
-      "original_price": 1219.0,
+      "price": 372.99,
+      "original_price": 1049.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-pro-11-0-2018/",
-      "image_url": "https://files.refurbed.com/ii/256-gb-silber-wifi-lte-1563859327.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-10-10-9-2022/58247/?offer=21113183",
+      "image_url": "https://files.refurbed.com/ii/64-gb-spacegrau-wifi-lte-1563858285.jpg?t=fitdesign&h=600&w=800",
+      "source_page": "https://www.refurbed.pt/p/ipad-10-10-9-2022/58248c/?offer=21158052",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_ipad-air-6-2024-11_11_polegadas",
       "category": "tablet",
       "brand": "Apple",
@@ -1210,12 +1253,12 @@
       "storage": null,
       "color": "11-polegadas",
       "grade": null,
-      "price": 569.99,
+      "price": 549.0,
       "original_price": 699.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/ipad-air-6-2024-11/",
-      "image_url": "https://files.refurbed.com/ii/ipad-air-6-2024-11-1715671486800738165.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/ipad-air-6-2024-11-1715671534840631701.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/p/ipad-pro-11-0-2018/",
       "is_available": true,
       "affiliate_enabled": true,
@@ -1224,7 +1267,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_samsung-galaxy-tab-s11-u-x936_14_6_polegadas",
       "category": "tablet",
       "brand": "Samsung",
@@ -1238,14 +1281,14 @@
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/samsung-galaxy-tab-s11-u-x936/",
       "image_url": "https://files.refurbed.com/ii/samsung-galaxy-tab-s11-u-x936-1763626765846262353.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-11/",
+      "source_page": "https://www.refurbed.pt/p/ipad-air-6-2024-11/173817aa/?offer=21333833",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward"
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_samsung-galaxy-s24-ultra",
       "category": "smartphone",
       "brand": "Samsung",
@@ -1253,12 +1296,12 @@
       "storage": null,
       "color": null,
       "grade": null,
-      "price": 504.99,
+      "price": 546.99,
       "original_price": 1449.0,
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/samsung-galaxy-s24-ultra/",
-      "image_url": "https://files.refurbed.com/ii/samsung-galaxy-s24-ultra-1705563291.jpg?t=fitdesign&h=600&w=800",
+      "image_url": "https://files.refurbed.com/ii/samsung-galaxy-s24-ultra-1705563165.jpg?t=fitdesign&h=600&w=800",
       "source_page": "https://www.refurbed.pt/c/smartphones/?brand=Samsung",
       "is_available": true,
       "affiliate_enabled": true,
@@ -1267,7 +1310,7 @@
     },
     {
       "source": "refurbed",
-      "scraped_at": "2026-09-25T15:00:57.679817+00:00",
+      "scraped_at": "2026-09-26T14:35:10.730950+00:00",
       "product_id": "refurbed_samsung-galaxy-z-fold-6",
       "category": "smartphone",
       "brand": "Samsung",
@@ -1281,7 +1324,7 @@
       "warranty_months": 24,
       "url": "https://www.refurbed.pt/p/samsung-galaxy-z-fold-6/",
       "image_url": "https://files.refurbed.com/ii/samsung-galaxy-z-fold-6-1721713327091454307.jpg?t=fitdesign&h=600&w=800",
-      "source_page": "https://www.refurbed.pt/p/samsung-galaxy-s24-ultra/120243b/?offer=20304302",
+      "source_page": "https://www.refurbed.pt/p/samsung-galaxy-s24-ultra/120242b/?offer=20304305",
       "is_available": true,
       "affiliate_enabled": true,
       "affiliate_network": "brandreward",
@@ -3179,7 +3222,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-dourado-correto-14182_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3200,7 +3243,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-256-gb-dourado-correto-14183_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3221,7 +3264,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3242,7 +3285,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-cinzento-sideral-correto-6009_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3263,7 +3306,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3284,7 +3327,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-512-gb-verde-meianoite-6018_512gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3305,7 +3348,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-prateado-correto-14179_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3326,7 +3369,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-64-gb-cinzento-sideral-correto-6001_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3347,7 +3390,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-64-gb-verde-meia-noite-correto-5999_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3368,7 +3411,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-256-gb-dourado-correto-6003_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3389,7 +3432,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-256-gb-verde-meia‑noite-correto-6006_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3410,7 +3453,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-pro-256-gb-cinzento-sideral-correto-6004_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3431,7 +3474,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-64-gb-vermelho-correto-4958_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3452,7 +3495,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-11-128-gb-preto-correto-14174_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3473,7 +3516,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-mini-64-gb-azul-correto-6198_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3494,7 +3537,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-mini-128-gb-vermelho-correto-6215_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3515,7 +3558,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-128-gb-prateado-correto-14191_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3536,7 +3579,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-256-gb-prateado-correto-14192_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3557,7 +3600,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-512-gb-prateado-correto-14193_512gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3578,7 +3621,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-max-128-gb-grafite-correto-6338_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3599,7 +3642,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-max-256-gb-dourado-correto-14195_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3620,7 +3663,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-pro-max-512-gb-dourado-correto-6334_512gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3641,7 +3684,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-64-gb-roxo-correto-14185_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3662,7 +3705,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-12-128-gb-roxo-correto-14186_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3683,7 +3726,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-128-gb-meia-noite-12884_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3704,7 +3747,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-256-gb-meia-noite-12886_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3725,7 +3768,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-mini-128-gb-luz-das-estrelas-correto-8581_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3738,7 +3781,7 @@
       "currency": "EUR",
       "warranty_months": 24,
       "url": "https://www.certideal.pt/iphone-13-mini/iphone-13-mini-128-gb-luz-das-estrelas-correto-8581",
-      "image_url": "https://cf6.certideal.com/54869-thumb_default/iphone-13-mini-128-gb-luz-das-estrelas-correto.jpg",
+      "image_url": null,
       "source_page": "https://www.certideal.pt/iphone-13-mini-289",
       "is_available": true,
       "affiliate_enabled": false,
@@ -3746,7 +3789,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-128-gb-azul-sierra-correto-14201_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3767,7 +3810,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-128-gb-azul-sierra-correto-8815_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3788,7 +3831,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-256-gb-azul-sierra-correto-14202_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3809,7 +3852,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-256-gb-azul-sierra-correto-9023_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3830,7 +3873,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-max-128-gb-prateado-correto-14205_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3851,7 +3894,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-max-128-gb-azul-sierra-correto-9061_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3872,7 +3915,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-max-256-gb-prateado-correto-14206_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3893,7 +3936,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-13-pro-max-256-gb-azul-sierra-correto-8699_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3914,7 +3957,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-128-gb-cor-surpresa-14209_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3935,7 +3978,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-256-gb-azul-correto-9241_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3956,7 +3999,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-plus-128-gb-cor-surpresa-14212_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3977,7 +4020,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-plus-256-gb-cor-surpresa-14213_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -3998,7 +4041,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-cor-surpresa-14215_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4019,7 +4062,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-roxo-escuro-correto-9599_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4040,7 +4083,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-preto-sideral-correto-9550_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4061,7 +4104,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-cor-surpresa-14216_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4082,7 +4125,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-roxo-escuro-bom-14452_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4103,7 +4146,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-preto-sideral-correto-9555_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4124,7 +4167,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-cor-surpresa-14219_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4145,7 +4188,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-roxo-escuro-correto-7052_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4166,7 +4209,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-preto-sideral-correto-7025_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4187,7 +4230,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-cor-surpresa-14220_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4208,7 +4251,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-roxo-escuro-correto-7055_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4229,7 +4272,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-preto-sideral-correto-7028_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4250,7 +4293,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-128-gb-cor-surpresa-14223_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4271,7 +4314,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-plus-128-gb-cor-surpresa-14226_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4292,7 +4335,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-plus-256-gb-cor-surpresa-14227_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4313,7 +4356,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-128-gb-titanio-preto-correto-10029_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4334,7 +4377,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-256-gb-titanio-preto-correto-10038_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4355,7 +4398,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-256-gb-titanio-natural-correto-10097_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4376,7 +4419,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-cor-surpresa-14233_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4397,7 +4440,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-titanio-natural-correto-9501_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4418,7 +4461,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-titanio-branco-excelente-9512_256gb_excelente",
       "category": "smartphone",
       "brand": "Apple",
@@ -4439,7 +4482,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128-gb-cor-surpresa-esim-14236_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4460,7 +4503,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128-gb-ultramarino-correto-12467_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4481,7 +4524,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128-gb-verde-azulado-correto-12471_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4502,7 +4545,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-256-gb-ultramarino-correto-12414_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4523,7 +4566,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12491_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4544,7 +4587,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-12597_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4565,7 +4608,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12605_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4586,7 +4629,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12533_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4607,7 +4650,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12499_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4628,7 +4671,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titanio-branco-correto-12537_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4649,7 +4692,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titane-sable-esim-12503_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4670,7 +4713,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titanio-natural-correto-12520_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4691,7 +4734,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-pro-128-gb-titanio-natural-bom-12517_128gb_bom",
       "category": "smartphone",
       "brand": "Apple",
@@ -4712,7 +4755,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12620_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4733,7 +4776,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12653_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4754,7 +4797,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16e-128-gb-preto-correto-12977_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4775,7 +4818,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-17-256-go-blanc-19818_256gb_premium",
       "category": "smartphone",
       "brand": "Apple",
@@ -4796,7 +4839,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14777_256gb_premium",
       "category": "smartphone",
       "brand": "Apple",
@@ -4817,7 +4860,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14769_256gb_premium",
       "category": "smartphone",
       "brand": "Apple",
@@ -4838,7 +4881,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14879_256gb_premium",
       "category": "smartphone",
       "brand": "Apple",
@@ -4859,7 +4902,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14891_256gb_premium",
       "category": "smartphone",
       "brand": "Apple",
@@ -4880,7 +4923,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-7-plus-128-gb-ouro-rosa-correto-3023_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4901,7 +4944,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-7-plus-32-gb-preto-correto-3059_32gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4922,7 +4965,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-7-32-gb-preto-bom-4409_32gb_bom_iphone_7_32_gb_preto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4943,7 +4986,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-plus-64-gb-dourado-correto-5377_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -4964,7 +5007,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-plus-64-gb-cinzento-sideral-excelente-3621_64gb_excelente",
       "category": "smartphone",
       "brand": "Apple",
@@ -4985,7 +5028,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-plus-128-gb-prateado-bom-5344_128gb_bom_iphone_8_plus_128_gb_prateado",
       "category": "smartphone",
       "brand": "Apple",
@@ -5006,7 +5049,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-plus-128-gb-cinzento-sideral-bom-5341_128gb_bom",
       "category": "smartphone",
       "brand": "Apple",
@@ -5027,7 +5070,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-64-gb-prateado-correto-5370_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5048,7 +5091,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-64-gb-cinzento-sideral-correto-5372_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5069,7 +5112,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-8-256-gb-cinzento-sideral-correto-5366_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5090,7 +5133,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-2-2020-64-gb-branco-correto-5454_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5111,7 +5154,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-2-2020-128-gb-branco-correto-5719_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5132,7 +5175,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-3-2022-64-gb-luz-das-estrelas-correto-8785_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5153,7 +5196,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-3-2022-64-gb-vermelho-correto-8776_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5174,7 +5217,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-3-2022-128-gb-meia-noite-correto-8795_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5195,7 +5238,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-se-3-2022-128-gb-luz-das-estrelas-correto-8788_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5216,7 +5259,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-x-64-gb-cinzento-sideral-correto-5254_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5237,7 +5280,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-x-64-gb-prateado-correto-5253_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5258,7 +5301,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-x-256-gb-prateado-correto-5255_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5279,7 +5322,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-x-256-gb-cinzento-sideral-correto-5256_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5300,7 +5343,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xr-128-gb-branco-correto-4393_128gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5321,7 +5364,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xr-64-gb-branco-bom-9171_64gb_bom_iphone_xr_64_gb_branco",
       "category": "smartphone",
       "brand": "Apple",
@@ -5342,7 +5385,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-max-64-gb-cinzento-sideral-correto-5383_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5363,7 +5406,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-max-64-gb-prateado-correto-5052_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5384,7 +5427,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-max-256-gb-dourado-correto-5059_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5405,7 +5448,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-max-256-gb-cinzento-sideral-correto-5060_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5426,7 +5469,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-64-gb-prateado-correto-5381_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5447,7 +5490,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-64-gb-cinzento-sideral-correto-6387_64gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5468,7 +5511,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-256-gb-cinzento-sideral-correto-6388_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5489,7 +5532,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_iphone-xs-256-gb-dourado-correto-6062_256gb_correto",
       "category": "smartphone",
       "brand": "Apple",
@@ -5510,7 +5553,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a05s-64-gb-preto-excelente-14648_64gb_excelente_samsung_galaxy_a05s_64_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5531,7 +5574,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a12-64-gb-preto-correto-14638_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5552,7 +5595,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a12-32-gb-preto-excelente-18169_32gb_excelente_samsung_galaxy_a12_32_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5573,7 +5616,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a13-32-gb-cinzento-correto-15513_32gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5594,7 +5637,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a13-64-gb-branco-correto-14632_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5615,7 +5658,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a14-64-gb-prateado-correto-14665_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5636,7 +5679,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a16-128-gb-cinzento-premium-14660_128gb_premium",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5657,7 +5700,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a17-128-gb-azul-excelente-18171_128gb_excelente_samsung_galaxy_a17_128_gb_azul",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5678,7 +5721,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a23-64-gb-preto-correto-17106_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5699,7 +5742,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a23-64-gb-laranja-correto-17107_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5720,7 +5763,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a23-128-gb-preto-correto-17103_128gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5741,7 +5784,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a33-128-gb-preto-bom-15542_128gb_bom_samsung_galaxy_a33_128_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5762,7 +5805,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-a41-64-gb-azul-correto-15852_64gb_correto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5783,7 +5826,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s22-128-gb-preto-excelente-9417_128gb_excelente_samsung_galaxy_s22_128_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5804,7 +5847,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s22-256-gb-branco-excelente-9465_256gb_excelente_samsung_galaxy_s22_256_gb_branco",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5825,7 +5868,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s22-plus-128-gb-preto-excelente-11894_128gb_excelente_samsung_galaxy_s22_plus_128_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5846,7 +5889,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s23-fe-128-gb-verde-excelente-14683_128gb_excelente_samsung_galaxy_s23_fe_128_gb_verde",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5867,7 +5910,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s24-256-gb-amarelo-excelente-15478_256gb_excelente_samsung_galaxy_s24_256_gb_amarelo",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5888,7 +5931,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-s24-ultra-256-gb-cinzento-excelente-15085_256gb_excelente",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5909,7 +5952,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-z-flip7-256-gb-azul-intenso-bom-15934_256gb_bom_samsung_galaxy_z_flip7_256_gb_azul",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5930,7 +5973,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-z-flip7-256-gb-preto-excelente-15562_256gb_excelente_samsung_galaxy_z_flip7_256_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5951,7 +5994,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-09-25T16:30:13.827049+00:00",
+      "scraped_at": "2026-09-26T15:57:31.265918+00:00",
       "product_id": "certideal_samsung-galaxy-z-flip7-512-gb-preto-excelente-19955_512gb_excelente_samsung_galaxy_z_flip7_512_gb_preto",
       "category": "smartphone",
       "brand": "Samsung",
@@ -5972,7 +6015,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58690463138056",
       "category": "smartphone",
       "brand": "Apple",
@@ -5994,7 +6037,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58747909767432",
       "category": "smartphone",
       "brand": "Apple",
@@ -6016,7 +6059,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52489479291144",
       "category": "smartphone",
       "brand": "Apple",
@@ -6037,7 +6080,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58467258466568",
       "category": "smartphone",
       "brand": "Apple",
@@ -6059,7 +6102,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58467258728712",
       "category": "smartphone",
       "brand": "Apple",
@@ -6081,7 +6124,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58467258990856",
       "category": "smartphone",
       "brand": "Apple",
@@ -6103,7 +6146,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58467259253000",
       "category": "smartphone",
       "brand": "Apple",
@@ -6125,7 +6168,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570068095240",
       "category": "smartphone",
       "brand": "Apple",
@@ -6147,7 +6190,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570068488456",
       "category": "smartphone",
       "brand": "Apple",
@@ -6169,7 +6212,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570068881672",
       "category": "smartphone",
       "brand": "Apple",
@@ -6191,7 +6234,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58233454330120",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6213,7 +6256,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_57841812341000",
       "category": "smartphone",
       "brand": "Apple",
@@ -6235,7 +6278,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_57628996763912",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6256,7 +6299,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_57616063889672",
       "category": "smartphone",
       "brand": "Apple",
@@ -6278,7 +6321,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_55666703040776",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6299,7 +6342,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_54168826347784",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6320,7 +6363,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_54073333252360",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6342,7 +6385,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53473400553736",
       "category": "smartphone",
       "brand": "Apple",
@@ -6364,7 +6407,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53174874964232",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6386,7 +6429,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53074420760840",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6408,7 +6451,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53074421743880",
       "category": "smartphone",
       "brand": "Samsung",
@@ -6430,7 +6473,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52995695083784",
       "category": "smartphone",
       "brand": "Apple",
@@ -6452,7 +6495,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52995695345928",
       "category": "smartphone",
       "brand": "Apple",
@@ -6474,7 +6517,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52995695608072",
       "category": "smartphone",
       "brand": "Apple",
@@ -6496,7 +6539,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52995695870216",
       "category": "smartphone",
       "brand": "Apple",
@@ -6518,7 +6561,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52777768878344",
       "category": "smartphone",
       "brand": "Apple",
@@ -6540,7 +6583,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52777769042184",
       "category": "smartphone",
       "brand": "Apple",
@@ -6562,7 +6605,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52777769140488",
       "category": "smartphone",
       "brand": "Apple",
@@ -6584,7 +6627,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52777769271560",
       "category": "smartphone",
       "brand": "Apple",
@@ -6606,7 +6649,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_57841823482120",
       "category": "smartphone",
       "brand": "Apple",
@@ -6628,7 +6671,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58253804437768",
       "category": "smartphone",
       "brand": "Apple",
@@ -6650,7 +6693,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58253804536072",
       "category": "smartphone",
       "brand": "Apple",
@@ -6672,7 +6715,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58253804634376",
       "category": "smartphone",
       "brand": "Apple",
@@ -6694,7 +6737,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52489487548680",
       "category": "smartphone",
       "brand": "Apple",
@@ -6715,7 +6758,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52776919433480",
       "category": "smartphone",
       "brand": "Apple",
@@ -6737,7 +6780,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52776918778120",
       "category": "smartphone",
       "brand": "Apple",
@@ -6759,7 +6802,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52489981526280",
       "category": "smartphone",
       "brand": "Apple",
@@ -6781,7 +6824,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52776854880520",
       "category": "smartphone",
       "brand": "Apple",
@@ -6802,7 +6845,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58186081075464",
       "category": "smartphone",
       "brand": "Apple",
@@ -6824,7 +6867,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52776849735944",
       "category": "smartphone",
       "brand": "Apple",
@@ -6846,7 +6889,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52957824352520",
       "category": "smartphone",
       "brand": "Apple",
@@ -6867,7 +6910,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53243741470984",
       "category": "smartphone",
       "brand": "Apple",
@@ -6889,7 +6932,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53243741667592",
       "category": "smartphone",
       "brand": "Apple",
@@ -6911,7 +6954,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53243741896968",
       "category": "smartphone",
       "brand": "Apple",
@@ -6933,7 +6976,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52746879828232",
       "category": "smartphone",
       "brand": "Apple",
@@ -6955,7 +6998,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_58275740057864",
       "category": "smartphone",
       "brand": "Apple",
@@ -6977,7 +7020,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52558464745736",
       "category": "smartphone",
       "brand": "Apple",
@@ -6999,7 +7042,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52558464942344",
       "category": "smartphone",
       "brand": "Apple",
@@ -7021,7 +7064,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52558465073416",
       "category": "smartphone",
       "brand": "Apple",
@@ -7043,7 +7086,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52558465237256",
       "category": "smartphone",
       "brand": "Apple",
@@ -7065,7 +7108,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52551818346760",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7087,7 +7130,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53136965697800",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7109,7 +7152,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53136965763336",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7131,7 +7174,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52551794262280",
       "category": "smartphone",
       "brand": "Apple",
@@ -7153,7 +7196,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52532987560200",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7175,7 +7218,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52532987592968",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7197,7 +7240,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52532987756808",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7219,7 +7262,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52532987789576",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7241,7 +7284,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52453287264520",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7263,7 +7306,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52453287362824",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7285,7 +7328,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52453287493896",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7307,7 +7350,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52453287624968",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7329,7 +7372,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52150087811336",
       "category": "smartphone",
       "brand": "Apple",
@@ -7351,7 +7394,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52150087909640",
       "category": "smartphone",
       "brand": "Apple",
@@ -7373,7 +7416,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52150088073480",
       "category": "smartphone",
       "brand": "Apple",
@@ -7395,7 +7438,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52150088237320",
       "category": "smartphone",
       "brand": "Apple",
@@ -7417,7 +7460,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52069192368392",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7439,7 +7482,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52069192499464",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7461,7 +7504,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52069192630536",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7483,7 +7526,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52069192728840",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7505,7 +7548,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52068828217608",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7527,7 +7570,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52068828381448",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7549,7 +7592,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52068828283144",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7571,7 +7614,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_52068828315912",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7593,7 +7636,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51879405977864",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7615,7 +7658,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51879310590216",
       "category": "smartphone",
       "brand": "Samsung",
@@ -7637,7 +7680,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51878993297672",
       "category": "smartphone",
       "brand": "Google",
@@ -7659,7 +7702,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570262966536",
       "category": "smartphone",
       "brand": "Apple",
@@ -7681,7 +7724,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570263228680",
       "category": "smartphone",
       "brand": "Apple",
@@ -7703,7 +7746,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570263523592",
       "category": "smartphone",
       "brand": "Apple",
@@ -7725,7 +7768,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570263752968",
       "category": "smartphone",
       "brand": "Apple",
@@ -7747,7 +7790,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570195628296",
       "category": "smartphone",
       "brand": "Apple",
@@ -7769,7 +7812,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570195955976",
       "category": "smartphone",
       "brand": "Apple",
@@ -7791,7 +7834,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570196283656",
       "category": "smartphone",
       "brand": "Apple",
@@ -7813,7 +7856,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570196644104",
       "category": "smartphone",
       "brand": "Apple",
@@ -7835,7 +7878,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570169348360",
       "category": "smartphone",
       "brand": "Apple",
@@ -7857,7 +7900,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570169610504",
       "category": "smartphone",
       "brand": "Apple",
@@ -7879,7 +7922,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570169905416",
       "category": "smartphone",
       "brand": "Apple",
@@ -7901,7 +7944,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570170134792",
       "category": "smartphone",
       "brand": "Apple",
@@ -7923,7 +7966,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570146607368",
       "category": "smartphone",
       "brand": "Apple",
@@ -7944,7 +7987,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570146902280",
       "category": "smartphone",
       "brand": "Apple",
@@ -7966,7 +8009,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570147131656",
       "category": "smartphone",
       "brand": "Apple",
@@ -7988,7 +8031,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570147426568",
       "category": "smartphone",
       "brand": "Apple",
@@ -8010,7 +8053,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569983488264",
       "category": "smartphone",
       "brand": "Apple",
@@ -8032,7 +8075,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569983652104",
       "category": "smartphone",
       "brand": "Apple",
@@ -8053,7 +8096,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569983815944",
       "category": "smartphone",
       "brand": "Apple",
@@ -8075,7 +8118,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569984012552",
       "category": "smartphone",
       "brand": "Apple",
@@ -8097,7 +8140,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569958584584",
       "category": "smartphone",
       "brand": "Apple",
@@ -8119,7 +8162,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569958781192",
       "category": "smartphone",
       "brand": "Apple",
@@ -8141,7 +8184,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569958912264",
       "category": "smartphone",
       "brand": "Apple",
@@ -8163,7 +8206,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569959108872",
       "category": "smartphone",
       "brand": "Apple",
@@ -8185,7 +8228,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569939513608",
       "category": "smartphone",
       "brand": "Apple",
@@ -8207,7 +8250,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569939742984",
       "category": "smartphone",
       "brand": "Apple",
@@ -8229,7 +8272,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569939906824",
       "category": "smartphone",
       "brand": "Apple",
@@ -8251,7 +8294,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569940103432",
       "category": "smartphone",
       "brand": "Apple",
@@ -8273,7 +8316,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569928339720",
       "category": "smartphone",
       "brand": "Apple",
@@ -8294,7 +8337,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569928536328",
       "category": "smartphone",
       "brand": "Apple",
@@ -8316,7 +8359,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569928732936",
       "category": "smartphone",
       "brand": "Apple",
@@ -8338,7 +8381,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569928962312",
       "category": "smartphone",
       "brand": "Apple",
@@ -8360,7 +8403,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569917821192",
       "category": "smartphone",
       "brand": "Apple",
@@ -8382,7 +8425,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569917985032",
       "category": "smartphone",
       "brand": "Apple",
@@ -8404,7 +8447,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569918116104",
       "category": "smartphone",
       "brand": "Apple",
@@ -8426,7 +8469,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569918312712",
       "category": "smartphone",
       "brand": "Apple",
@@ -8448,7 +8491,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569912676616",
       "category": "smartphone",
       "brand": "Apple",
@@ -8470,7 +8513,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569912840456",
       "category": "smartphone",
       "brand": "Apple",
@@ -8492,7 +8535,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569913037064",
       "category": "smartphone",
       "brand": "Apple",
@@ -8514,7 +8557,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569913233672",
       "category": "smartphone",
       "brand": "Apple",
@@ -8536,7 +8579,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569889018120",
       "category": "smartphone",
       "brand": "Apple",
@@ -8558,7 +8601,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569889149192",
       "category": "smartphone",
       "brand": "Apple",
@@ -8580,7 +8623,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569889247496",
       "category": "smartphone",
       "brand": "Apple",
@@ -8602,7 +8645,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569889378568",
       "category": "smartphone",
       "brand": "Apple",
@@ -8624,7 +8667,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569772429576",
       "category": "smartphone",
       "brand": "Apple",
@@ -8645,7 +8688,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569772593416",
       "category": "smartphone",
       "brand": "Apple",
@@ -8667,7 +8710,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569772790024",
       "category": "smartphone",
       "brand": "Apple",
@@ -8689,7 +8732,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569773019400",
       "category": "smartphone",
       "brand": "Apple",
@@ -8711,7 +8754,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569707155720",
       "category": "smartphone",
       "brand": "Apple",
@@ -8733,7 +8776,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569707254024",
       "category": "smartphone",
       "brand": "Apple",
@@ -8755,7 +8798,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569707385096",
       "category": "smartphone",
       "brand": "Apple",
@@ -8777,7 +8820,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569707516168",
       "category": "smartphone",
       "brand": "Apple",
@@ -8799,7 +8842,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569695260936",
       "category": "smartphone",
       "brand": "Apple",
@@ -8821,7 +8864,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569695359240",
       "category": "smartphone",
       "brand": "Apple",
@@ -8843,7 +8886,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569695523080",
       "category": "smartphone",
       "brand": "Apple",
@@ -8865,7 +8908,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569695621384",
       "category": "smartphone",
       "brand": "Apple",
@@ -8887,7 +8930,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569686315272",
       "category": "smartphone",
       "brand": "Apple",
@@ -8909,7 +8952,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569686511880",
       "category": "smartphone",
       "brand": "Apple",
@@ -8931,7 +8974,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569686708488",
       "category": "smartphone",
       "brand": "Apple",
@@ -8953,7 +8996,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51569686905096",
       "category": "smartphone",
       "brand": "Apple",
@@ -8975,7 +9018,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51220166869256",
       "category": "smartphone",
       "brand": "Apple",
@@ -8997,7 +9040,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51220167459080",
       "category": "smartphone",
       "brand": "Apple",
@@ -9019,7 +9062,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51220168048904",
       "category": "smartphone",
       "brand": "Apple",
@@ -9041,7 +9084,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552224182536",
       "category": "smartphone",
       "brand": "Apple",
@@ -9063,7 +9106,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138336719112",
       "category": "smartphone",
       "brand": "Apple",
@@ -9085,7 +9128,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337079560",
       "category": "smartphone",
       "brand": "Apple",
@@ -9107,7 +9150,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337505544",
       "category": "smartphone",
       "brand": "Apple",
@@ -9129,7 +9172,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337865992",
       "category": "smartphone",
       "brand": "Apple",
@@ -9151,7 +9194,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138336817416",
       "category": "smartphone",
       "brand": "Apple",
@@ -9173,7 +9216,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337210632",
       "category": "smartphone",
       "brand": "Apple",
@@ -9195,7 +9238,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337636616",
       "category": "smartphone",
       "brand": "Apple",
@@ -9217,7 +9260,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337997064",
       "category": "smartphone",
       "brand": "Apple",
@@ -9239,7 +9282,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138336948488",
       "category": "smartphone",
       "brand": "Apple",
@@ -9261,7 +9304,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337341704",
       "category": "smartphone",
       "brand": "Apple",
@@ -9283,7 +9326,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138337734920",
       "category": "smartphone",
       "brand": "Apple",
@@ -9305,7 +9348,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51138338128136",
       "category": "smartphone",
       "brand": "Apple",
@@ -9327,7 +9370,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50733492830472",
       "category": "smartphone",
       "brand": "Apple",
@@ -9349,7 +9392,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552286212360",
       "category": "smartphone",
       "brand": "Apple",
@@ -9371,7 +9414,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552286540040",
       "category": "smartphone",
       "brand": "Apple",
@@ -9393,7 +9436,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552286867720",
       "category": "smartphone",
       "brand": "Apple",
@@ -9415,7 +9458,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50732966510856",
       "category": "smartphone",
       "brand": "Samsung",
@@ -9437,7 +9480,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50732966609160",
       "category": "smartphone",
       "brand": "Samsung",
@@ -9459,7 +9502,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50856169111816",
       "category": "smartphone",
       "brand": "Apple",
@@ -9481,7 +9524,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570286297352",
       "category": "smartphone",
       "brand": "Apple",
@@ -9503,7 +9546,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552130138376",
       "category": "smartphone",
       "brand": "Apple",
@@ -9525,7 +9568,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570286559496",
       "category": "smartphone",
       "brand": "Apple",
@@ -9547,7 +9590,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51311219310856",
       "category": "smartphone",
       "brand": "Apple",
@@ -9569,7 +9612,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552279232776",
       "category": "smartphone",
       "brand": "Apple",
@@ -9591,7 +9634,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552279560456",
       "category": "smartphone",
       "brand": "Apple",
@@ -9613,7 +9656,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570190156040",
       "category": "smartphone",
       "brand": "Apple",
@@ -9635,7 +9678,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570248712456",
       "category": "smartphone",
       "brand": "Apple",
@@ -9657,7 +9700,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50754818343176",
       "category": "smartphone",
       "brand": "Apple",
@@ -9679,7 +9722,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552248725768",
       "category": "smartphone",
       "brand": "Apple",
@@ -9701,7 +9744,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552248987912",
       "category": "smartphone",
       "brand": "Apple",
@@ -9723,7 +9766,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50014691655944",
       "category": "smartphone",
       "brand": "Apple",
@@ -9745,7 +9788,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50217730113800",
       "category": "smartphone",
       "brand": "Apple",
@@ -9767,7 +9810,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50005924413704",
       "category": "smartphone",
       "brand": "Apple",
@@ -9789,7 +9832,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_50441468313864",
       "category": "smartphone",
       "brand": "Apple",
@@ -9811,7 +9854,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_49992877146376",
       "category": "smartphone",
       "brand": "Apple",
@@ -9833,7 +9876,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45152053035272",
       "category": "smartphone",
       "brand": "Apple",
@@ -9855,7 +9898,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45152053625096",
       "category": "smartphone",
       "brand": "Apple",
@@ -9877,7 +9920,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570022646024",
       "category": "smartphone",
       "brand": "Apple",
@@ -9899,7 +9942,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45209154650376",
       "category": "smartphone",
       "brand": "Apple",
@@ -9921,7 +9964,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45209154846984",
       "category": "smartphone",
       "brand": "Apple",
@@ -9943,7 +9986,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45209154748680",
       "category": "smartphone",
       "brand": "Apple",
@@ -9965,7 +10008,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45209154945288",
       "category": "smartphone",
       "brand": "Apple",
@@ -9987,7 +10030,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45023369527560",
       "category": "smartphone",
       "brand": "Apple",
@@ -10009,7 +10052,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45023370150152",
       "category": "smartphone",
       "brand": "Apple",
@@ -10031,7 +10074,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45023370772744",
       "category": "smartphone",
       "brand": "Apple",
@@ -10053,7 +10096,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45023371395336",
       "category": "smartphone",
       "brand": "Apple",
@@ -10075,7 +10118,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45008920674568",
       "category": "smartphone",
       "brand": "Apple",
@@ -10097,7 +10140,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_53299199574280",
       "category": "smartphone",
       "brand": "Apple",
@@ -10119,7 +10162,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45008920740104",
       "category": "smartphone",
       "brand": "Apple",
@@ -10141,7 +10184,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552274907400",
       "category": "smartphone",
       "brand": "Apple",
@@ -10163,7 +10206,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570163155208",
       "category": "smartphone",
       "brand": "Apple",
@@ -10185,7 +10228,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552334610696",
       "category": "smartphone",
       "brand": "Apple",
@@ -10207,7 +10250,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570163417352",
       "category": "smartphone",
       "brand": "Apple",
@@ -10229,7 +10272,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552274219272",
       "category": "smartphone",
       "brand": "Apple",
@@ -10251,7 +10294,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570136744200",
       "category": "smartphone",
       "brand": "Apple",
@@ -10272,7 +10315,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51570136842504",
       "category": "smartphone",
       "brand": "Apple",
@@ -10294,7 +10337,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45006218232072",
       "category": "smartphone",
       "brand": "Apple",
@@ -10316,7 +10359,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552267534600",
       "category": "smartphone",
       "brand": "Apple",
@@ -10338,7 +10381,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_45004458918152",
       "category": "smartphone",
       "brand": "Apple",
@@ -10360,7 +10403,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44802950627592",
       "category": "smartphone",
       "brand": "Apple",
@@ -10382,7 +10425,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552198295816",
       "category": "smartphone",
       "brand": "Apple",
@@ -10404,7 +10447,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552198394120",
       "category": "smartphone",
       "brand": "Apple",
@@ -10426,7 +10469,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552198492424",
       "category": "smartphone",
       "brand": "Apple",
@@ -10448,7 +10491,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44771751133448",
       "category": "smartphone",
       "brand": "Samsung",
@@ -10470,7 +10513,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441246269704",
       "category": "smartphone",
       "brand": "Apple",
@@ -10492,7 +10535,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634871595272",
       "category": "smartphone",
       "brand": "Apple",
@@ -10514,7 +10557,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634871693576",
       "category": "smartphone",
       "brand": "Apple",
@@ -10536,7 +10579,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552234307848",
       "category": "smartphone",
       "brand": "Apple",
@@ -10558,7 +10601,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44489667346696",
       "category": "smartphone",
       "brand": "Apple",
@@ -10580,7 +10623,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634867859720",
       "category": "smartphone",
       "brand": "Apple",
@@ -10602,7 +10645,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634867892488",
       "category": "smartphone",
       "brand": "Apple",
@@ -10624,7 +10667,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552205930760",
       "category": "smartphone",
       "brand": "Apple",
@@ -10646,7 +10689,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44489675243784",
       "category": "smartphone",
       "brand": "Apple",
@@ -10667,7 +10710,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634870907144",
       "category": "smartphone",
       "brand": "Apple",
@@ -10689,7 +10732,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634871234824",
       "category": "smartphone",
       "brand": "Apple",
@@ -10711,7 +10754,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552221266184",
       "category": "smartphone",
       "brand": "Apple",
@@ -10733,7 +10776,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441228411144",
       "category": "smartphone",
       "brand": "Apple",
@@ -10755,7 +10798,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634872316168",
       "category": "smartphone",
       "brand": "Apple",
@@ -10777,7 +10820,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634872414472",
       "category": "smartphone",
       "brand": "Apple",
@@ -10799,7 +10842,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441228574984",
       "category": "smartphone",
       "brand": "Apple",
@@ -10821,7 +10864,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634872578312",
       "category": "smartphone",
       "brand": "Apple",
@@ -10843,7 +10886,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634872611080",
       "category": "smartphone",
       "brand": "Apple",
@@ -10865,7 +10908,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44612133224712",
       "category": "smartphone",
       "brand": "Apple",
@@ -10887,7 +10930,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634873987336",
       "category": "smartphone",
       "brand": "Apple",
@@ -10909,7 +10952,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634874085640",
       "category": "smartphone",
       "brand": "Apple",
@@ -10931,7 +10974,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552195870984",
       "category": "smartphone",
       "brand": "Apple",
@@ -10953,7 +10996,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441238274312",
       "category": "smartphone",
       "brand": "Apple",
@@ -10975,7 +11018,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634874216712",
       "category": "smartphone",
       "brand": "Apple",
@@ -10997,7 +11040,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634874249480",
       "category": "smartphone",
       "brand": "Apple",
@@ -11019,7 +11062,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552196690184",
       "category": "smartphone",
       "brand": "Apple",
@@ -11041,7 +11084,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44606926520584",
       "category": "smartphone",
       "brand": "Apple",
@@ -11063,7 +11106,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634876281096",
       "category": "smartphone",
       "brand": "Apple",
@@ -11085,7 +11128,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634876313864",
       "category": "smartphone",
       "brand": "Apple",
@@ -11107,7 +11150,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552197869832",
       "category": "smartphone",
       "brand": "Apple",
@@ -11129,7 +11172,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441206849800",
       "category": "smartphone",
       "brand": "Apple",
@@ -11151,7 +11194,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634867237128",
       "category": "smartphone",
       "brand": "Apple",
@@ -11173,7 +11216,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634867335432",
       "category": "smartphone",
       "brand": "Apple",
@@ -11195,7 +11238,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552199409928",
       "category": "smartphone",
       "brand": "Apple",
@@ -11217,7 +11260,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44440939659528",
       "category": "smartphone",
       "brand": "Apple",
@@ -11239,7 +11282,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634866417928",
       "category": "smartphone",
       "brand": "Apple",
@@ -11261,7 +11304,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634866811144",
       "category": "smartphone",
       "brand": "Apple",
@@ -11283,7 +11326,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552198820104",
       "category": "smartphone",
       "brand": "Apple",
@@ -11305,7 +11348,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44489671934216",
       "category": "smartphone",
       "brand": "Apple",
@@ -11327,7 +11370,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634869498120",
       "category": "smartphone",
       "brand": "Apple",
@@ -11349,7 +11392,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634869596424",
       "category": "smartphone",
       "brand": "Apple",
@@ -11371,7 +11414,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552216285448",
       "category": "smartphone",
       "brand": "Apple",
@@ -11393,7 +11436,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441212780808",
       "category": "smartphone",
       "brand": "Apple",
@@ -11414,7 +11457,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51551508758792",
       "category": "smartphone",
       "brand": "Apple",
@@ -11435,7 +11478,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51551509152008",
       "category": "smartphone",
       "brand": "Apple",
@@ -11457,7 +11500,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552218611976",
       "category": "smartphone",
       "brand": "Apple",
@@ -11479,7 +11522,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44489670164744",
       "category": "smartphone",
       "brand": "Apple",
@@ -11501,7 +11544,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634865664264",
       "category": "smartphone",
       "brand": "Apple",
@@ -11523,7 +11566,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634865991944",
       "category": "smartphone",
       "brand": "Apple",
@@ -11545,7 +11588,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_51552211206408",
       "category": "smartphone",
       "brand": "Apple",
@@ -11567,7 +11610,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441241813256",
       "category": "smartphone",
       "brand": "Apple",
@@ -11589,7 +11632,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634873430280",
       "category": "smartphone",
       "brand": "Apple",
@@ -11611,7 +11654,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634873659656",
       "category": "smartphone",
       "brand": "Apple",
@@ -11633,7 +11676,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441241944328",
       "category": "smartphone",
       "brand": "Apple",
@@ -11655,7 +11698,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634873561352",
       "category": "smartphone",
       "brand": "Apple",
@@ -11677,7 +11720,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634873790728",
       "category": "smartphone",
       "brand": "Apple",
@@ -11699,7 +11742,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44441237258504",
       "category": "smartphone",
       "brand": "Apple",
@@ -11721,7 +11764,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634868646152",
       "category": "smartphone",
       "brand": "Apple",
@@ -11743,7 +11786,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44634868678920",
       "category": "smartphone",
       "brand": "Apple",
@@ -11765,7 +11808,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44680596553992",
       "category": "smartphone",
       "brand": "Apple",
@@ -11787,7 +11830,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_49865210626312",
       "category": "tablet",
       "brand": "Apple",
@@ -11809,7 +11852,7 @@
     },
     {
       "source": "callphone",
-      "scraped_at": "2026-09-25T16:55:32.706380+00:00",
+      "scraped_at": "2026-09-26T16:22:17.051372+00:00",
       "product_id": "callphone_44696996053256",
       "category": "smartphone",
       "brand": "Samsung",
