@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-26T14:32:50.622472+00:00",
+  "scraped_at": "2026-09-28T17:41:22.380945+00:00",
   "total_products": 26,
   "products": [
     {
@@ -537,26 +537,26 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-09-26T14:32:50.622472+00:00",
-      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
+      "scraped_at": "2026-09-28T17:41:22.380945+00:00",
+      "product_id": "iservices_1654-ipad-pro-129-2022-6a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
-      "model": "iPad 10.9\" 2022 (10ª Geração)",
+      "model": "iPad Pro 12.9\" 2022 (6ª Geração)",
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 381.68,
-      "original_price": null,
+      "price": 1407.99,
+      "original_price": 1.0,
       "currency": "EUR",
       "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/gaming-console-handheld-1790335093.webp",
+      "url": "https://iservices.pt/produto/1654-ipad-pro-129-2022-6a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2021-3rd-generation-128-gb-space-grey-very-good-wi-fi.webp",
       "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-26T16:22:42.770597+00:00",
-  "merged_at": "2026-09-26T16:22:43.086744+00:00"
+  "validated_at": "2026-09-28T19:19:32.456344+00:00",
+  "merged_at": "2026-09-28T19:19:32.653670+00:00"
 }

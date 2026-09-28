@@ -1,7 +1,7 @@
 {
-  "curated_at": "2026-09-26T16:22:43+00:00",
+  "curated_at": "2026-09-28T19:19:32+00:00",
   "alerts": [
-    "**swappie**: queda de 79% (90 → 19) — mantidos dados de ontem (scraper provavelmente partido)"
+    "**swappie**: queda de 77% (90 → 21) — mantidos dados de ontem (scraper provavelmente partido)"
   ],
   "stores": {
     "iservices": {
@@ -11,19 +11,19 @@
       "removidos_duplicados": 0,
       "final": 26,
       "blocked": false,
-      "ontem": 25
+      "ontem": 26
     },
     "refurbed": {
-      "hoje_bruto": 36,
+      "hoje_bruto": 34,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 36,
+      "final": 34,
       "blocked": false,
-      "ontem": 35
+      "ontem": 36
     },
     "swappie": {
-      "hoje_bruto": 19,
+      "hoje_bruto": 21,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
@@ -32,11 +32,11 @@
       "ontem": 90
     },
     "certideal": {
-      "hoje_bruto": 133,
+      "hoje_bruto": 171,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 133,
+      "final": 171,
       "blocked": false,
       "ontem": 133
     },
@@ -50,5 +50,5 @@
       "ontem": 267
     }
   },
-  "total_final": 552
+  "total_final": 588
 }
