@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-09-29T16:03:44.116673+00:00",
+  "scraped_at": "2026-09-30T12:44:29.883054+00:00",
   "total_products": 26,
   "products": [
     {
@@ -557,6 +557,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-09-29T17:51:59.402441+00:00",
-  "merged_at": "2026-09-29T17:51:59.687944+00:00"
+  "validated_at": "2026-09-30T14:35:38.230097+00:00",
+  "merged_at": "2026-09-30T14:35:38.518157+00:00"
 }
