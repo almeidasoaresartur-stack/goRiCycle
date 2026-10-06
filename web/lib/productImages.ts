@@ -162,30 +162,58 @@ const CATEGORY_FALLBACKS: Record<string, string> = {
   wearable: "/images/products/apple-watch-series-9-alumnio-41-mm-2023.jpg",
 };
 
-const SORTED_MODEL_KEYS = Object.keys(MODEL_IMAGE_MAP).sort((a, b) => b.length - a.length);
-
 /** Normaliza o nome do modelo para lookup no catálogo oficial. */
 export function normalizeModelForCatalog(rawName: string): string {
   return rawName
     .toLowerCase()
-    .replace(/[""″'']/g, '"')
+    // Aspas tipográficas / polegadas / guillemets → "
+    .replace(/[\u201C\u201D\u201E\u201F\u2033\u2036"″«»]/g, '"')
+    .replace(/[\u2018\u2019\u2032\u2035'′]/g, "'")
+    // Refurbed (e similares): "11-polegadas" / "11 polegadas" / "11 pol." → 11"
+    .replace(/(\d+(?:\.\d+)?)\s*-?\s*polegadas?\b/gi, '$1"')
+    .replace(/(\d+(?:\.\d+)?)\s*-?\s*pol\.?\b/gi, '$1"')
     .replace(/\b(64|128|256|512|1024)\s*gb\b/gi, "")
     .replace(/\b(grade [abc]|excelente|premium|bom|refurbished|recondicionado)\b/gi, "")
+    .replace(/\s+"/g, '"')
     .replace(/\s+/g, " ")
     .trim();
 }
+
+/**
+ * Chaves do catálogo já normalizadas (aspas e polegadas).
+ * Em colisão, fica a chave de origem mais longa.
+ */
+const NORMALIZED_MODEL_IMAGE_MAP: Record<string, string> = (() => {
+  const out: Record<string, string> = {};
+  const winnerLength = new Map<string, number>();
+
+  for (const [key, path] of Object.entries(MODEL_IMAGE_MAP)) {
+    const normalized = normalizeModelForCatalog(key);
+    const previous = winnerLength.get(normalized);
+    if (previous === undefined || key.length > previous) {
+      out[normalized] = path;
+      winnerLength.set(normalized, key.length);
+    }
+  }
+
+  return out;
+})();
+
+const SORTED_NORMALIZED_KEYS = Object.keys(NORMALIZED_MODEL_IMAGE_MAP).sort(
+  (a, b) => b.length - a.length,
+);
 
 /** Resolve imagem local do catálogo oficial (149 modelos). Null se não mapeado. */
 export function resolveCatalogImagePath(rawName: string): string | null {
   const normalized = normalizeModelForCatalog(rawName);
 
-  if (MODEL_IMAGE_MAP[normalized]) {
-    return MODEL_IMAGE_MAP[normalized];
+  if (NORMALIZED_MODEL_IMAGE_MAP[normalized]) {
+    return NORMALIZED_MODEL_IMAGE_MAP[normalized];
   }
 
-  for (const key of SORTED_MODEL_KEYS) {
+  for (const key of SORTED_NORMALIZED_KEYS) {
     if (normalized.includes(key) || key.includes(normalized)) {
-      return MODEL_IMAGE_MAP[key];
+      return NORMALIZED_MODEL_IMAGE_MAP[key];
     }
   }
 

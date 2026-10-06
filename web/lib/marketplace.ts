@@ -7,7 +7,7 @@ import {
   normalizeModelForFilter,
   sortFilterModelNames,
 } from "./product-display";
-import { getProductImage, isInOfficialCatalog, techToImageCategory } from "./productImages";
+import { getProductImage, techToImageCategory } from "./productImages";
 import { modelMatches, productMatchesSearchText } from "./model-matching";
 import {
   aggregatedProductIsAvailable,
@@ -22,6 +22,16 @@ export type TechType = "smartphones" | "tablets" | "laptops" | "wearables";
 
 /** Categorias visíveis no site (foco smartphones + tablets). */
 export const LAUNCH_TECH_TYPES: TechType[] = ["smartphones", "tablets"];
+
+/** Preços fora deste intervalo são quase de certeza parsing errado / lixo. */
+export function isPlausibleListingPrice(price: number, tech: TechType): boolean {
+  if (!Number.isFinite(price)) return false;
+  if (tech === "tablets") return price >= 50 && price <= 2500;
+  if (tech === "smartphones") return price >= 40 && price <= 2000;
+  if (tech === "laptops") return price >= 100 && price <= 4000;
+  if (tech === "wearables") return price >= 30 && price <= 1500;
+  return false;
+}
 
 export type ProductListing = {
   id: string;
@@ -220,7 +230,9 @@ export function scraperProductToListing(product: ScrapedProduct): ProductListing
   const source = product?.source as ProductSource | undefined;
 
   if (!tech || !price || !model || !source || !getStoreInfo(source)) return null;
-  if (!isInOfficialCatalog(model)) return null;
+  // Soft-gate: o catálogo oficial só escolhe a imagem; não descarta a oferta.
+  // Marca permitida, tech conhecida e preço normalizado já foram validados.
+  if (!isPlausibleListingPrice(price, tech)) return null;
 
   const grade = normalizeGrade(product?.grade);
   const brand = safeStr(product?.brand) || inferBrand(model) || null;
