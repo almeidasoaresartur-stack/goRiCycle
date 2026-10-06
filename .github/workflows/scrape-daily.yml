@@ -145,17 +145,44 @@ jobs:
           total = summary.get("grand_total", 0)
           sources = summary.get("sources", {})
 
-          print(f"Modo: {summary.get('mode')} | Total scrape: {total}")
+          mode = summary.get("mode")
+          print(f"Modo: {mode} | Total scrape: {total}")
           for name, stats in sources.items():
               errors = stats.get("errors", 0)
               count = stats.get("total", 0)
-              flag = "⚠️" if errors or count == 0 else "✓"
+              fatal = stats.get("fatal_error")
+              flag = "⚠️" if errors or count == 0 or fatal else "✓"
               print(f"  {flag} {name}: {count} produtos, {errors} erros")
-              if stats.get("fatal_error"):
-                  print(f"      {stats['fatal_error'][:120]}")
+              if fatal:
+                  print(f"      FATAL: {fatal[:200]}")
+              for note in stats.get("warnings") or []:
+                  print(f"      aviso: {note[:200]}")
 
           if total < 400:
               print(f"⚠️ grand_total ({total}) abaixo do esperado (~900+)")
+
+          # Lojas críticas: fatal_error falha sempre.
+          # total==0 no full é catálogo vazio (falha). No incremental, iservices/swappie
+          # contam só product_ids novos, por isso 0 é aviso e não parte o job.
+          critical = ("iservices", "refurbed", "swappie", "certideal")
+          hard_fails = []
+          for name in critical:
+              st = sources.get(name) or {}
+              if st.get("fatal_error"):
+                  hard_fails.append(f"{name}: fatal_error")
+                  print(f"::error::{name} fatal_error: {str(st.get('fatal_error'))[:200]}")
+              elif st.get("total", 0) == 0:
+                  message = f"{name}: 0 produtos"
+                  if mode == "full":
+                      hard_fails.append(message)
+                      print(f"::error::{message}")
+                  else:
+                      print(f"::warning::{message} (modo {mode}; confirmar se o total é só novidades)")
+          if hard_fails:
+              print("❌ Scrapers críticos em falha:")
+              for line in hard_fails:
+                  print(f"  - {line}")
+              sys.exit(1)
 
           catalog_path = Path("data/all_products.json")
           if not catalog_path.exists():
@@ -166,7 +193,9 @@ jobs:
           catalog_total = catalog.get("total_products", len(catalog.get("products", [])))
           print(f"Catálogo merge: {catalog_total} produtos únicos")
           if catalog_total < 400:
-              print(f"⚠️ all_products ({catalog_total}) abaixo do esperado (~900+)")
+              print(f"❌ all_products ({catalog_total}) abaixo do esperado (~400+)")
+              print(f"::error::all_products ({catalog_total}) abaixo de 400")
+              sys.exit(1)
           PY
 
       - name: Sync relatórios para Next.js (Vercel)

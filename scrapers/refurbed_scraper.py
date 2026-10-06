@@ -643,14 +643,111 @@ def _detail_image(page: Page, fallback: str | None) -> str | None:
     return fallback
 
 
+# Último segmento do h1 que é tamanho de ecrã, não cor ("11-polegadas", "11\"", "11").
+_SCREEN_SIZE_SEGMENT_RE = re.compile(
+    r'^(?:\d+(?:[.,]\d+)?(?:\s*-?\s*(?:polegadas?|pol\.?|["″]))?)$',
+    re.IGNORECASE,
+)
+
+
 def _parse_detail_title(title: str) -> tuple[str | None, str | None]:
     """Extrai armazenamento e cor do título da ficha (ex. 'iPhone 12 128 GB | … | preto')."""
     storage = extract_storage(title)
     color = None
     parts = [part.strip() for part in title.split("|") if part.strip()]
     if len(parts) >= 2:
-        color = parts[-1].lower()
+        candidate = parts[-1].lower()
+        # iPads: o h1 passou a ser "iPad Pro (2025) | 11-polegadas" (sem GB).
+        if extract_storage(candidate) is None and not _SCREEN_SIZE_SEGMENT_RE.match(candidate):
+            color = candidate
     return storage, color
+
+
+def _locator_visible_or_text(loc) -> str:
+    try:
+        text = (loc.inner_text(timeout=2000) or "").strip()
+    except Exception:
+        text = ""
+    if text:
+        return text
+    try:
+        return (loc.text_content(timeout=2000) or "").strip()
+    except Exception:
+        return ""
+
+
+def _active_storage_from_page(page: Page) -> str | None:
+    """Capacidade seleccionada no configurador (iPads já não trazem GB no h1)."""
+    selectors = [
+        "[data-test='current-recommended-product-storage']",
+        "[data-test='recommended-product-storage']",
+        "select[data-test*='storage'] option:checked",
+        "[data-test-value$='GB'][selected]",
+    ]
+    for sel in selectors:
+        try:
+            loc = page.locator(sel).first
+            if loc.count() == 0:
+                continue
+            got = extract_storage(_locator_visible_or_text(loc))
+            if got:
+                return got
+            val = loc.get_attribute("data-test-value") or loc.get_attribute("value")
+            got = extract_storage(val)
+            if got:
+                return got
+        except Exception:
+            continue
+    return None
+
+
+def _read_recommended_variants(page: Page) -> list[dict[str, Any]]:
+    """Lê o carrossel. textContent (não innerText): slides fora do ecrã e o GB
+    dentro de um <span> ficavam vazios com innerText."""
+    selector = SEL["detail_variant_item"]
+    try:
+        page.evaluate(
+            """(selector) => {
+                const el = document.querySelector(selector)
+                    || document.querySelector("[data-test='current-recommended-product-storage']");
+                el?.scrollIntoView({block: "center"});
+            }""",
+            selector,
+        )
+    except Exception:
+        pass
+    try:
+        page.wait_for_selector(selector, state="attached", timeout=8_000)
+    except Exception:
+        logger.info("Carrossel de variantes ausente ou ainda não renderizado.")
+        return []
+    try:
+        page.locator(selector).first.scroll_into_view_if_needed(timeout=3_000)
+    except Exception:
+        pass
+    try:
+        return page.locator(selector).evaluate_all(
+            """(nodes, sel) => nodes.map((el) => {
+                const text = (node) => (node?.textContent || "").replace(/\\s+/g, " ").trim();
+                const storageNode = el.querySelector(sel.storage);
+                const storage = text(storageNode) || text(el);
+                return {
+                    storage: storage || null,
+                    grade: text(el.querySelector(sel.grade)) || null,
+                    price: text(el.querySelector(sel.price)) || null,
+                    color: text(el.querySelector(sel.color)) || null,
+                };
+            })""",
+            {
+                "storage": SEL["detail_variant_storage"],
+                "grade": SEL["detail_variant_grade"],
+                "price": SEL["detail_variant_price"],
+                "color": SEL["detail_variant_color"],
+            },
+        )
+    except Exception as exc:
+        logger.warning("Falha a ler carrossel de variantes: %s", exc)
+        return []
 
 
 def _active_grade_from_page(page: Page) -> str | None:
@@ -716,6 +813,7 @@ def _default_variant_from_detail_page(page: Page, model: str) -> dict[str, Any] 
             return None
 
         storage, color = _parse_detail_title(title)
+        storage = storage or _active_storage_from_page(page)
         grade = _active_grade_from_page(page)
         return {
             "storage": storage,
@@ -771,20 +869,7 @@ def _variants_from_detail_page(
     if budget:
         budget.check("carrossel de variantes")
 
-    items = page.locator(SEL["detail_variant_item"]).evaluate_all(
-        """(nodes, sel) => nodes.map((el) => ({
-            storage: el.querySelector(sel.storage)?.innerText?.trim() || null,
-            grade: el.querySelector(sel.grade)?.innerText?.trim() || null,
-            price: el.querySelector(sel.price)?.innerText?.trim() || null,
-            color: el.querySelector(sel.color)?.innerText?.trim() || null,
-        }))""",
-        {
-            "storage": SEL["detail_variant_storage"],
-            "grade": SEL["detail_variant_grade"],
-            "price": SEL["detail_variant_price"],
-            "color": SEL["detail_variant_color"],
-        },
-    )
+    items = _read_recommended_variants(page)
 
     records: list[dict[str, Any]] = []
 
@@ -841,15 +926,17 @@ def _variants_from_detail_page(
                 dismiss_cookie_banner(page)
 
             clicked_href = _click_recommended_variant(page, index)
+            landed_on_variant = False
             if clicked_href:
-                variant_token = clicked_href.rstrip("/").split("/")[-1]
+                variant_token = clicked_href.rstrip("/").split("/")[-1].split("?")[0]
                 try:
                     page.wait_for_url(
-                        lambda url: variant_token in url,
+                        lambda url, token=variant_token: token in url,
                         timeout=5000,
                     )
                 except Exception:
                     pass
+                landed_on_variant = bool(variant_token) and variant_token in page.url
                 page_wait_ms(CFG["delays"], "page_load")
 
             variant_url = _variant_url_from_page(page, product_url)
@@ -879,7 +966,10 @@ def _variants_from_detail_page(
                 image_url=image_url,
                 source_page=source_page,
                 scraped_at=scraped_at,
-                storage=extract_storage(item.get("storage") or ""),
+                storage=(
+                    extract_storage(item.get("storage") or "")
+                    or (_active_storage_from_page(page) if landed_on_variant else None)
+                ),
                 grade=normalize_grade_refurbed(item.get("grade")),
                 color=item.get("color"),
                 original_price=original_price or card.get("original_price"),

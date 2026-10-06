@@ -41,18 +41,17 @@ CERTIDEAL_URLS: dict[str, list[dict[str, str]]] = {
         {"model": "iPhone XS Max", "url": "https://www.certideal.pt/iphone-xs-max-recondicionado-208"},
         {"model": "iPhone XS", "url": "https://www.certideal.pt/iphone-xs-recondicionado-207"},
     ],
+    # Verificado por HTTP em 2026-10-06. Mantidas só famílias com grelha
+    # PrestaShop (ajax_block_product) e pelo menos um SKU com preço.
+    # Fora: redirects 302 /ipad → tablettes-reconditionnees-118
+    # (ipad-11-wifi-580, ipad-10-wifi-5g-369, ipad-9-wifi-5g-316),
+    # páginas 200 sem grelha (ipad-air-348, ipad-349, ipad-pro-129-2021-wifi-339)
+    # e ipad-air-6-wifi-649 (loop de redirect).
     "ipads": [
-        {"model": "iPad 10.2 WiFi 5G", "url": "https://www.certideal.pt/ipad-10-wifi-5g-369"},
-        {"model": "iPad 11 WiFi", "url": "https://www.certideal.pt/ipad-11-wifi-580"},
-        {"model": "iPad", "url": "https://www.certideal.pt/ipad-349"},
-        {"model": "iPad 9 WiFi 5G", "url": "https://www.certideal.pt/ipad-9-wifi-5g-316"},
-        {"model": "iPad Air", "url": "https://www.certideal.pt/ipad-air-348"},
-        {"model": "iPad Air 6 WiFi", "url": "https://www.certideal.pt/ipad-air-6-wifi-649"},
         {"model": "iPad Mini", "url": "https://www.certideal.pt/ipad-mini-350"},
         {"model": "iPad Mini 6 WiFi", "url": "https://www.certideal.pt/ipad-mini-6-wifi-365"},
-        {"model": "iPad Pro 2021 WiFi", "url": "https://www.certideal.pt/ipad-pro-129-2021-wifi-339"},
-        {"model": "iPad Pro 2021 WiFi 5G", "url": "https://www.certideal.pt/ipad-pro-129-2021-wifi-5g-340"},
         {"model": "iPad Pro", "url": "https://www.certideal.pt/ipad-pro-347"},
+        {"model": "iPad Pro 2021 WiFi 5G", "url": "https://www.certideal.pt/ipad-pro-129-2021-wifi-5g-340"},
     ],
     "samsung_phones": [
         {"model": "Samsung Galaxy A03 461", "url": "https://www.certideal.pt/samsung-galaxy-a03-461"},
