@@ -84,7 +84,10 @@ def parse_iservices_price_eur(text: str | None) -> float | None:
     cleaned = re.split(r"Promoção|promoção", text, maxsplit=1)[0]
     if is_variant_delta_price_text(cleaned):
         return None
-    match = re.search(r"(\d+[,.]\d{2})", cleaned.replace("\xa0", " "))
+    cleaned = cleaned.replace("\xa0", " ").replace("\u202f", " ")
+    # Milhares PT no cartão novo: "1 407,99" / "1.407,99".
+    cleaned = re.sub(r"(?<=\d)[.\s](?=\d{3}(?:[,\s.]|$))", "", cleaned)
+    match = re.search(r"(\d+[,.]\d{2})", cleaned)
     if match:
         matched_text = match.group(0)
         if is_variant_delta_price_text(matched_text):
@@ -151,6 +154,27 @@ def normalize_record(
     )
 
 
+def _listing_card_href(card) -> str | None:
+    """href do cartão. sp-card é um <article>; o link vive num <a> interior."""
+    href = None
+    link_sel = SEL.get("product_link")
+    if link_sel:
+        link = card.locator(link_sel).first
+        try:
+            if link.count():
+                href = link.get_attribute("href")
+        except Exception:
+            href = None
+    if not href:
+        try:
+            href = card.get_attribute("href")
+        except Exception:
+            href = None
+    if not href:
+        return None
+    return urljoin(CFG["base_url"] + "/", href)
+
+
 def collect_listing_cards(page: Page, *, out_of_stock_urls: set[str] | None = None) -> list[dict[str, Any]]:
     page.wait_for_selector(SEL["listing_grid"], timeout=60_000)
     page.wait_for_selector(SEL["product_card"], timeout=60_000)
@@ -163,11 +187,15 @@ def collect_listing_cards(page: Page, *, out_of_stock_urls: set[str] | None = No
     for index in range(total):
         try:
             card = elements.nth(index)
-            name = card.locator(SEL["product_name"]).inner_text(timeout=5000).strip()
-            price_raw = card.locator(SEL["product_price"]).inner_text(timeout=5000)
+            name_loc = card.locator(SEL["product_name"]).first
+            if name_loc.count() == 0:
+                continue
+            name = name_loc.inner_text(timeout=5000).strip()
+            price_loc = card.locator(SEL["product_price"]).first
+            price_raw = price_loc.inner_text(timeout=5000) if price_loc.count() else ""
             image_loc = card.locator(SEL["product_image"])
-            image_url = resolve_image_url(image_loc) if image_loc.count() else None
-            href = card.get_attribute("href")
+            image_url = resolve_image_url(image_loc.first) if image_loc.count() else None
+            href = _listing_card_href(card)
 
             if not href or not name:
                 continue

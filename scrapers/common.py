@@ -449,6 +449,13 @@ def normalize_model_name(name: str) -> str:
         " max": " Max",
     }
     result = name.strip()
+    # Refurbed passou a escrever "11-polegadas" no h1 (antes "11"").
+    result = re.sub(
+        r"(\d+(?:\.\d+)?)\s*-?\s*polegadas?\b",
+        r'\1"',
+        result,
+        flags=re.IGNORECASE,
+    )
     for old, new in replacements.items():
         result = re.sub(re.escape(old), new, result, flags=re.IGNORECASE)
     return result

@@ -122,14 +122,13 @@ ISERVICES_CONFIG: dict[str, Any] = {
         # --- Listagem (iservices.pt/produtos/…) ---
         # Grelha com todos os cartões da categoria
         "listing_grid": ".products-list",
-        # Cartão clicável (<a class="product-box">)
-        "product_card": "a.product-box",
-        # Nome do modelo (<p class="product-box-info-title">)
-        "product_name": ".product-box-info-title",
-        # Preço no cartão (<p class="product-box-info-price">)
-        "product_price": ".product-box-info-price",
-        # Imagem (<img class="image">; lazy: data-src)
-        "product_image": "img.image",
+        # Cartão (2026): <article class="sp-card">. a.product-box deixou de existir.
+        "product_card": "article.sp-card, a.product-box",
+        "product_name": ".sp-card__title, .product-box-info-title",
+        "product_price": ".sp-card__price, .product-box-info-price",
+        "product_image": ".sp-card__media img, img.image",
+        # Descendente do cartão: o <article> já não é o próprio link.
+        "product_link": "a.sp-card__title, a[href*='/produto/'], a.product-box",
         # Paginação PrestaShop — ausente na listagem actual (single page)
         "pagination_next": ".next a",
         # --- Cookies Klaro ---

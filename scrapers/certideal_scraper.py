@@ -439,6 +439,33 @@ def get_next_listing_url(page: Page, current_url: str) -> str | None:
     return None
 
 
+_GENERIC_HUB_MARKERS = (
+    "tablettes-reconditionnees",
+    "ipad-recondicionados",
+    "ipad-reconditionnes",
+)
+_GENERIC_HUB_SLUGS = frozenset({"ipad", "tablettes", "tablets"})
+
+
+def _url_slug(url: str) -> str:
+    path = urlparse(url).path.strip("/")
+    return path.split("/")[0].lower() if path else ""
+
+
+def is_unrelated_catalog_hub(requested_url: str, final_url: str) -> bool:
+    """True se o goto saiu da família e aterrou num hub genérico (ex. /ipad → tablettes)."""
+    requested_slug = _url_slug(requested_url)
+    final_slug = _url_slug(final_url)
+    if not final_slug or final_slug == requested_slug:
+        return False
+    final_path = urlparse(final_url).path.lower()
+    if requested_slug and requested_slug in final_path:
+        return False
+    if final_slug in _GENERIC_HUB_SLUGS:
+        return True
+    return any(marker in final_slug for marker in _GENERIC_HUB_MARKERS)
+
+
 def open_listing_url(page: Page, url: str) -> int | None:
     """Abre URL e devolve o status HTTP, ou None se a navegação falhar."""
     try:
@@ -465,6 +492,13 @@ def scrape_category_listing(
             status = open_listing_url(page, url)
             if status != 200:
                 logger.warning("URL %s retornou HTTP %s — a saltar.", url, status or "desconhecido")
+                break
+            if is_unrelated_catalog_hub(url, page.url):
+                logger.warning(
+                    "URL %s aterrou em hub genérico %s — a saltar.",
+                    url,
+                    page.url,
+                )
                 break
 
             human_delay(CFG["delays"], "after_navigation")
@@ -504,6 +538,7 @@ def scrape_family_listing(
     family_url: str,
     family_model: str,
     category: str,
+    warnings: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Scrape uma família (ex. iPhone 16). Se não houver SKUs com preço, tenta sub-páginas hub."""
     status = open_listing_url(page, family_url)
@@ -514,6 +549,15 @@ def scrape_family_listing(
             family_url,
             status or "desconhecido",
         )
+        return []
+
+    if is_unrelated_catalog_hub(family_url, page.url):
+        message = (
+            f"{family_model}: {family_url} redireccionou para hub genérico {page.url} — ignorada"
+        )
+        logger.warning(message)
+        if warnings is not None:
+            warnings.append(message)
         return []
 
     human_delay(CFG["delays"], "after_navigation")
@@ -679,6 +723,7 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
 
     variant_registry = init_variant_registry(products)
     removed_product_ids: set[str] = set()
+    warnings: list[str] = []
 
     with sync_playwright() as playwright:
         browser = launch_chromium(playwright, headless=CFG["headless"])
@@ -714,7 +759,9 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                     family_url,
                 )
 
-                cards = scrape_family_listing(page, family_url, family_model, category)
+                cards = scrape_family_listing(
+                    page, family_url, family_model, category, warnings=warnings
+                )
                 if not cards:
                     continue
 
@@ -756,12 +803,32 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                         known_ids.add(record["product_id"])
                         cat_count += 1
 
-            stats["by_category"][category] = cat_count
-            stats["total"] += cat_count
+            logger.info(
+                "Categoria %s: %s registo(s) aceite(s) nesta passagem (o total final sai do registo).",
+                category,
+                cat_count,
+            )
 
         browser.close()
 
     products = list(variant_registry.values())
+    by_category: dict[str, int] = {}
+    for product in products:
+        cat = str(product.get("category") or "unknown")
+        by_category[cat] = by_category.get(cat, 0) + 1
+    for category in selected:
+        by_category.setdefault(category, 0)
+        if category == "ipads" and by_category[category] == 0:
+            warnings.append(
+                "ipads: 0 produtos guardados "
+                "(famílias sem grelha ou redirects para hub foram ignorados)"
+            )
+    stats["by_category"] = by_category
+    stats["total"] = len(products)
+    if warnings:
+        stats["warnings"] = warnings
+        for message in warnings:
+            logger.warning("Certideal: %s", message)
 
     save_products(
         products,
