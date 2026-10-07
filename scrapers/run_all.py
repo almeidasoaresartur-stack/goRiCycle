@@ -13,6 +13,9 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
+import signal
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -36,6 +39,19 @@ SOURCE_MODULES = {
     "certideal": "certideal_scraper",
     "callphone": "callphone_scraper",
 }
+
+# Um scraper preso não pode ocupar o job inteiro (timeout do Actions: 180 min).
+# Os valores cabem na folga do job mesmo que um deles seja morto no limite.
+SOURCE_TIMEOUT_SEC = {
+    "iservices": 12 * 60,
+    "refurbed": 90 * 60,
+    "backmarket": 25 * 60,
+    "swappie": 25 * 60,
+    "certideal": 35 * 60,
+    "callphone": 10 * 60,
+}
+DEFAULT_SOURCE_TIMEOUT_SEC = 30 * 60
+_PROCESS_STOP_GRACE_SEC = 15
 
 
 def build_affiliate_revenue_estimate() -> dict[str, dict]:
@@ -65,6 +81,16 @@ def parse_args() -> argparse.Namespace:
         "--categories",
         default="",
         help="Categorias separadas por vírgula (default: todas)",
+    )
+    parser.add_argument(
+        "--worker",
+        action="store_true",
+        help="Processo filho: corre uma fonte e escreve o JSON de stats",
+    )
+    parser.add_argument(
+        "--stats-out",
+        default="",
+        help="Ficheiro de stats do worker (uso interno)",
     )
     return parser.parse_args()
 
@@ -98,20 +124,114 @@ def cleanup_source_json(sources: list[str], mode: str) -> None:
                     logger.warning("Limpeza pré-scrape: JSON corrompido removido %s", path)
 
 
+def _empty_failure(message: str) -> dict:
+    return {
+        "total": 0,
+        "by_category": {},
+        "errors": 1,
+        "fatal_error": message,
+    }
+
+
 def run_source(source: str, mode: str, categories: list[str] | None) -> dict:
     module_name = SOURCE_MODULES.get(source)
     if not module_name:
         raise ValueError(f"Fonte desconhecida: {source}")
 
     module = __import__(module_name)
-    logger.info("A iniciar scraper: %s", source)
     return module.run_scraper(mode=mode, categories=categories)
 
 
-def main() -> None:
-    setup_logging(DATA_DIR / "run_all.log")
-    args = parse_args()
+def _write_stats(path: Path, stats: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(stats, ensure_ascii=False), encoding="utf-8")
+    temporary.replace(path)
 
+
+def run_worker(source: str, mode: str, categories: list[str] | None, stats_path: Path) -> None:
+    """Corre uma fonte neste processo e grava as stats para o pai ler."""
+    try:
+        stats = run_source(source, mode, categories)
+    except Exception as exc:
+        logger.error("Scraper %s falhou: %s", source, exc, exc_info=True)
+        stats = _empty_failure(str(exc))
+    _write_stats(stats_path, stats)
+
+
+def _stop_process_group(proc: subprocess.Popen) -> None:
+    """Termina o worker e o Chromium que ele lançou."""
+    if proc.poll() is not None:
+        return
+    try:
+        os.killpg(proc.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    try:
+        proc.wait(timeout=_PROCESS_STOP_GRACE_SEC)
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        proc.wait(timeout=_PROCESS_STOP_GRACE_SEC)
+
+
+def run_source_bounded(source: str, mode: str, categories: list[str] | None) -> dict:
+    """
+    Corre o scraper num processo à parte.
+
+    Se o Playwright ficar preso (driver morto, página que não responde),
+    o pai mata o grupo de processos e segue para a fonte seguinte.
+    """
+    timeout_sec = SOURCE_TIMEOUT_SEC.get(source, DEFAULT_SOURCE_TIMEOUT_SEC)
+    stats_path = DATA_DIR / f".{source}_run_stats.json"
+    stats_path.unlink(missing_ok=True)
+    logger.info("A iniciar scraper: %s (limite %ss)", source, timeout_sec)
+
+    command = [
+        sys.executable,
+        str(Path(__file__).resolve()),
+        "--worker",
+        "--mode",
+        mode,
+        "--sources",
+        source,
+        "--stats-out",
+        str(stats_path),
+    ]
+    if categories:
+        command.extend(["--categories", ",".join(categories)])
+
+    env = os.environ.copy()
+    env["PYTHONUNBUFFERED"] = "1"
+    proc = subprocess.Popen(command, start_new_session=True, env=env)
+    timed_out = False
+    try:
+        proc.wait(timeout=timeout_sec)
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        logger.error(
+            "Scraper %s excedeu %ss — a terminar o processo para não bloquear o job",
+            source,
+            timeout_sec,
+        )
+        _stop_process_group(proc)
+
+    try:
+        if timed_out:
+            return _empty_failure(
+                f"Timeout {timeout_sec}s — processo terminado para não bloquear os outros scrapers"
+            )
+        if proc.returncode != 0 or not stats_path.exists():
+            return _empty_failure(f"Scraper terminou com código {proc.returncode}")
+        return json.loads(stats_path.read_text(encoding="utf-8"))
+    finally:
+        stats_path.unlink(missing_ok=True)
+        Path(str(stats_path) + ".tmp").unlink(missing_ok=True)
+
+
+def _parse_source_args(args: argparse.Namespace) -> tuple[list[str], list[str] | None]:
     sources = [s.strip() for s in args.sources.split(",") if s.strip()]
     categories = [c.strip() for c in args.categories.split(",") if c.strip()] or None
 
@@ -123,6 +243,21 @@ def main() -> None:
     invalid_sources = [s for s in sources if s not in SOURCE_MODULES]
     if invalid_sources:
         raise ValueError(f"Fontes inválidas: {invalid_sources}")
+    return sources, categories
+
+
+def main() -> None:
+    setup_logging(DATA_DIR / "run_all.log")
+    args = parse_args()
+    sources, categories = _parse_source_args(args)
+
+    if args.worker:
+        if len(sources) != 1:
+            raise SystemExit("--worker exige exactamente uma fonte")
+        if not args.stats_out:
+            raise SystemExit("--worker exige --stats-out")
+        run_worker(sources[0], args.mode, categories, Path(args.stats_out))
+        return
 
     cleanup_source_json(sources, args.mode)
 
@@ -137,18 +272,11 @@ def main() -> None:
     }
 
     for source in sources:
-        try:
-            stats = run_source(source, args.mode, categories)
-            summary["sources"][source] = stats
-            summary["grand_total"] += stats.get("total", 0)
-        except Exception as exc:
-            logger.error("Scraper %s falhou: %s", source, exc, exc_info=True)
-            summary["sources"][source] = {
-                "total": 0,
-                "by_category": {},
-                "errors": 1,
-                "fatal_error": str(exc),
-            }
+        stats = run_source_bounded(source, args.mode, categories)
+        summary["sources"][source] = stats
+        summary["grand_total"] += stats.get("total", 0)
+        if stats.get("fatal_error"):
+            logger.error("Scraper %s falhou: %s", source, stats["fatal_error"])
 
     LAST_RUN_SUMMARY_JSON.parent.mkdir(parents=True, exist_ok=True)
     with LAST_RUN_SUMMARY_JSON.open("w", encoding="utf-8") as fh:

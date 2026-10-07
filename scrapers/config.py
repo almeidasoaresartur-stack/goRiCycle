@@ -235,8 +235,9 @@ REFURBED_CONFIG: dict[str, Any] = {
         # "oneplus_phones",
     ),
     "max_pages": 100,
-    # Limite por produto (ficha + variantes) — evita hangs silenciosos até ao timeout do CI.
-    "product_extraction_timeout_sec": 300,
+    # Uma ficha (o carrossel não é clicado variante a variante). O processo
+    # inteiro tem outro limite em run_all.py — este prazo só abandona o modelo.
+    "product_extraction_timeout_sec": 120,
     "delays": {
         "between_products": (1.0, 2.5),
         "between_pages": (3.0, 6.0),

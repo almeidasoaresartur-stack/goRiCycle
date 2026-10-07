@@ -14,10 +14,8 @@ import argparse
 import json
 import logging
 import re
-import signal
 import sys
 import time
-from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -38,6 +36,7 @@ from common import (
     filter_refurbed_min_per_storage,
     human_delay,
     is_allowed_brand,
+    is_model_relevant,
     log_discarded_listing,
     normalize_grade_refurbed,
     page_indicates_out_of_stock,
@@ -64,7 +63,14 @@ class ProductExtractionTimeout(Exception):
 
 
 class ProductExtractionBudget:
-    """Prazo por produto — verificado entre variantes e operações longas."""
+    """Prazo por produto, verificado entre operações Playwright.
+
+    Não usar signal.alarm / SIGALRM. O alarme dispara no event loop do
+    Playwright sync e a excepção mata o greenlet do driver: page.goto deixa
+    de regressar e o processo fica preso até o job ser cancelado (~3h).
+    Cada chamada Playwright tem timeout próprio; run_all.py mata o processo
+    se mesmo assim o scraper não voltar.
+    """
 
     def __init__(self, timeout_sec: float, model: str) -> None:
         self.timeout_sec = timeout_sec
@@ -80,28 +86,6 @@ class ProductExtractionBudget:
 
     def elapsed(self) -> float:
         return time.monotonic() - self.start
-
-
-@contextmanager
-def product_extraction_timeout(seconds: int, model: str):
-    """
-    Alarme SIGALRM (Unix) para interromper chamadas Playwright bloqueadas.
-    Em plataformas sem SIGALRM, só o budget explícito actua.
-    """
-    if not hasattr(signal, "SIGALRM"):
-        yield
-        return
-
-    def _handler(signum, frame) -> None:
-        raise ProductExtractionTimeout(f"Timeout {seconds}s ao extrair {model!r}")
-
-    previous = signal.signal(signal.SIGALRM, _handler)
-    signal.alarm(max(1, seconds))
-    try:
-        yield
-    finally:
-        signal.alarm(0)
-        signal.signal(signal.SIGALRM, previous)
 
 
 def _configure_page_timeouts(page: Page) -> None:
@@ -123,12 +107,12 @@ def _recreate_page(context, page: Page) -> Page:
 def check_link_status_200(url: str) -> bool:
     """
     Verifica se o URL do produto responde HTTP 200.
-    Refurbed devolve 404 a HEAD mas 200 a GET — fallback automático.
+
+    HEAD na Refurbed devolve 404 mesmo quando GET é 200 — ir directo ao GET
+    evita uma ida extra por cada oferta.
     """
     try:
-        r = httpx.head(url, timeout=8, follow_redirects=True)
-        if r.status_code != 200:
-            r = httpx.get(url, timeout=8, follow_redirects=True)
+        r = httpx.get(url, timeout=8, follow_redirects=True)
 
         if r.status_code != 200:
             return False
@@ -542,7 +526,7 @@ def _click_load_more(page: Page) -> bool:
     if btn.count() == 0:
         return False
     try:
-        btn.first.scroll_into_view_if_needed()
+        btn.first.scroll_into_view_if_needed(timeout=5_000)
         btn.first.click(force=True, timeout=5000)
         human_delay(CFG["delays"], "between_pages")
         page_wait_ms(CFG["delays"], "page_load")
@@ -787,23 +771,6 @@ def _variant_url_from_page(page: Page, fallback_url: str) -> str:
     return url
 
 
-def _click_recommended_variant(page: Page, index: int) -> str | None:
-    """Clica numa variante sugerida; devolve href relativo/absoluto ou None."""
-    item = page.locator(SEL["detail_variant_item"]).nth(index)
-    link = item.locator("a").first
-    try:
-        if link.count():
-            href = link.get_attribute("href")
-            link.scroll_into_view_if_needed()
-            link.click(force=True, timeout=5000)
-            return href
-        item.scroll_into_view_if_needed()
-        item.click(force=True, timeout=5000)
-        return None
-    except Exception:
-        return None
-
-
 def _default_variant_from_detail_page(page: Page, model: str) -> dict[str, Any] | None:
     """Preço da configuração activa (cabeçalho) — frequentemente o mínimo real."""
     try:
@@ -823,6 +790,93 @@ def _default_variant_from_detail_page(page: Page, model: str) -> dict[str, Any] 
         }
     except Exception:
         return None
+
+
+def records_from_carousel_items(
+    *,
+    category: str,
+    model: str,
+    product_url: str,
+    image_url: str | None,
+    source_page: str,
+    scraped_at: str,
+    items: list[dict[str, Any]],
+    original_price: float | None,
+    seller_rating: float | None,
+) -> list[dict[str, Any]]:
+    """Ofertas lidas do carrossel, sem navegar para cada slide.
+
+    Os preços do carrossel coincidem com os da ficha (ex. «314,99 €» → 314.99).
+    Reabrir a página e clicar em cada variante demorava ~15s por slide; um
+    modelo com 13 slides passava dos 300s e o SIGALRM deixava o browser preso.
+    O URL canónico /p/<modelo>/ não fixa a variante — os URLs /offer/ que o
+    clique produzia respondem 404 a HTTP e eram descartados na verificação.
+    """
+    records: list[dict[str, Any]] = []
+    total = len(items)
+    for index, item in enumerate(items, start=1):
+        raw_price = item.get("price")
+        label = f"variante {index}/{total}"
+        if raw_price and is_variant_delta_price_text(raw_price):
+            logger.info("  %s %s → omitida (delta de preço: %s)", model, label, raw_price)
+            continue
+        if raw_price and is_financing_price_text(raw_price):
+            logger.info("  %s %s → omitida (preço de financiamento)", model, label)
+            continue
+        price = accept_refurbed_price(
+            parse_refurbed_price_eur(raw_price),
+            model,
+            price_raw=raw_price,
+        )
+        if price is None:
+            logger.info("  %s %s → omitida (preço inválido: %s)", model, label, raw_price)
+            continue
+        record = normalize_record(
+            category=category,
+            url=product_url,
+            model=model,
+            price=price,
+            image_url=image_url,
+            source_page=source_page,
+            scraped_at=scraped_at,
+            storage=extract_storage(item.get("storage") or ""),
+            grade=normalize_grade_refurbed(item.get("grade")),
+            color=item.get("color"),
+            original_price=original_price,
+            seller_rating=seller_rating,
+        )
+        if record is None:
+            continue
+        records.append(record)
+        logger.info(
+            "  %s %s → %.2f€ storage=%s (carrossel)",
+            model,
+            label,
+            record["price"],
+            record.get("storage"),
+        )
+    return records
+
+
+def cheapest_per_storage(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Uma oferta por modelo+capacidade: o preço mais baixo do carrossel."""
+    best: dict[tuple[str, str], dict[str, Any]] = {}
+    order: list[tuple[str, str]] = []
+    for record in records:
+        key = (
+            (record.get("model") or "").strip(),
+            (record.get("storage") or "").strip().upper(),
+        )
+        current = best.get(key)
+        price = record.get("price")
+        if not isinstance(price, (int, float)):
+            continue
+        if current is None:
+            best[key] = record
+            order.append(key)
+        elif price < current.get("price", float("inf")):
+            best[key] = record
+    return [best[key] for key in order]
 
 
 def _variants_from_detail_page(
@@ -900,95 +954,32 @@ def _variants_from_detail_page(
             )
 
     if items:
-        logger.info("  %s: %s variantes sugeridas no carrossel", model, len(items))
-        listing_url = product_url
-        for index, item in enumerate(items):
-            variant_label = f"variante {index + 1}/{len(items)}"
-            if budget:
-                budget.check(variant_label)
-
-            storage_hint = item.get("storage")
-            grade_hint = item.get("grade")
-            carousel_price = item.get("price")
-            logger.info(
-                "  %s %s: storage=%s grade=%s preço_carousel=%s",
-                model,
-                variant_label,
-                storage_hint,
-                grade_hint,
-                carousel_price,
-            )
-
-            if index > 0:
-                page.goto(listing_url, wait_until="domcontentloaded", timeout=60_000)
-                human_delay(CFG["delays"], "after_navigation")
-                page_wait_ms(CFG["delays"], "page_load")
-                dismiss_cookie_banner(page)
-
-            clicked_href = _click_recommended_variant(page, index)
-            landed_on_variant = False
-            if clicked_href:
-                variant_token = clicked_href.rstrip("/").split("/")[-1].split("?")[0]
-                try:
-                    page.wait_for_url(
-                        lambda url, token=variant_token: token in url,
-                        timeout=5000,
-                    )
-                except Exception:
-                    pass
-                landed_on_variant = bool(variant_token) and variant_token in page.url
-                page_wait_ms(CFG["delays"], "page_load")
-
-            variant_url = _variant_url_from_page(page, product_url)
-
-            price = _read_detail_price(page, model)
-            if price is None:
-                variant_price_raw = item.get("price")
-                if variant_price_raw and is_variant_delta_price_text(variant_price_raw):
-                    logger.info("  %s %s → omitida (delta de preço: %s)", model, variant_label, variant_price_raw)
-                    continue
-                if variant_price_raw and is_financing_price_text(variant_price_raw):
-                    logger.info("  %s %s → omitida (preço de financiamento)", model, variant_label)
-                    continue
-                price = accept_refurbed_price(
-                    parse_refurbed_price_eur(variant_price_raw),
-                    model,
-                    price_raw=variant_price_raw,
-                )
-            if price is None:
-                logger.info("  %s %s → omitida (preço inválido)", model, variant_label)
-                continue
-            record = normalize_record(
+        logger.info("  %s: %s variantes no carrossel (sem navegação)", model, len(items))
+        if budget:
+            budget.check("preços do carrossel")
+        records.extend(
+            records_from_carousel_items(
                 category=category,
-                url=variant_url,
                 model=model,
-                price=price,
+                product_url=_variant_url_from_page(page, product_url),
                 image_url=image_url,
                 source_page=source_page,
                 scraped_at=scraped_at,
-                storage=(
-                    extract_storage(item.get("storage") or "")
-                    or (_active_storage_from_page(page) if landed_on_variant else None)
-                ),
-                grade=normalize_grade_refurbed(item.get("grade")),
-                color=item.get("color"),
+                items=items,
                 original_price=original_price or card.get("original_price"),
                 seller_rating=seller_rating,
             )
-            if record:
-                records.append(record)
-                logger.info(
-                    "  %s %s → %.2f€ %s (%.1fs)",
-                    model,
-                    variant_label,
-                    record["price"],
-                    variant_url[-35:],
-                    budget.elapsed() if budget else 0.0,
-                )
-        return records
+        )
 
     if records:
-        return records
+        kept = cheapest_per_storage(records)
+        logger.info(
+            "  %s: %s oferta(s) após mínimo por armazenamento (%.1fs)",
+            model,
+            len(kept),
+            budget.elapsed() if budget else 0.0,
+        )
+        return kept
 
     price = _read_detail_price(page, model)
     if price is None:
@@ -1125,7 +1116,8 @@ def run_scraper(
         )
         page = context.new_page()
         _configure_page_timeouts(page)
-        product_timeout_sec = int(CFG.get("product_extraction_timeout_sec", 300))
+        product_timeout_sec = int(CFG.get("product_extraction_timeout_sec", 120))
+        link_ok_cache: dict[str, bool] = {}
 
         for category in selected:
             category_url = CFG["categories"].get(category)
@@ -1156,12 +1148,15 @@ def run_scraper(
                 logger.info("[%s/%s] %s", index, len(cards), card.get("model"))
                 source_page = page.url
                 model_name = card.get("model") or "?"
+                if not is_model_relevant(model_name, detect_brand(model_name)):
+                    logger.info("Ignorado (anterior a 2022): %s", model_name)
+                    continue
                 budget = ProductExtractionBudget(product_timeout_sec, model_name)
                 try:
-                    with product_extraction_timeout(product_timeout_sec, model_name):
-                        result = extract_product(
-                            page, card, category, source_page, scraped_at, budget=budget
-                        )
+                    budget.check("antes da ficha")
+                    result = extract_product(
+                        page, card, category, source_page, scraped_at, budget=budget
+                    )
                 except ProductExtractionTimeout as exc:
                     logger.error("Timeout ao extrair %s (%s): %s", model_name, card.get("url"), exc)
                     stats["timeouts"] += 1
@@ -1200,9 +1195,14 @@ def run_scraper(
                 for record in result:
                     pid = record["product_id"]
                     product_url = record.get("url")
-                    if product_url and not check_link_status_200(product_url):
-                        logger.warning("Link morto removido: %s", product_url)
-                        continue
+                    if product_url:
+                        link_ok = link_ok_cache.get(product_url)
+                        if link_ok is None:
+                            link_ok = check_link_status_200(product_url)
+                            link_ok_cache[product_url] = link_ok
+                        if not link_ok:
+                            logger.warning("Link morto removido: %s", product_url)
+                            continue
                     products.append(record)
                     known_ids.add(pid)
                     cat_count += 1

@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin
 
-from playwright.sync_api import Page, sync_playwright
+from playwright.sync_api import Page, TimeoutError as PlaywrightTimeoutError, sync_playwright
 
 _SCRAPERS_DIR = Path(__file__).resolve().parent
 if str(_SCRAPERS_DIR) not in sys.path:
@@ -244,20 +244,38 @@ def scrape_category_listing(page: Page, category_url: str) -> tuple[list[dict[st
     while url:
         page_num += 1
         logger.info("Listagem página %s: %s", page_num, url)
-        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-        human_delay(CFG["delays"], "after_navigation")
-        dismiss_cookie_banner(page)
-        try:
-            page.wait_for_load_state("networkidle", timeout=30_000)
-        except Exception:
-            pass
+        cards: list[dict[str, Any]] = []
+        out_of_stock_urls: set[str] = set()
+        # A grelha .products-list às vezes não chega a renderizar no primeiro
+        # load (o job de 2026-10-06 abortava a fonte ao fim de 60s). Uma
+        # segunda navegação recupera; se voltar a falhar, a excepção sobe.
+        for attempt in (1, 2):
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            human_delay(CFG["delays"], "after_navigation")
+            dismiss_cookie_banner(page)
+            try:
+                page.wait_for_load_state("networkidle", timeout=30_000)
+            except Exception:
+                pass
 
-        out_of_stock_urls = parse_embedded_out_of_stock_urls(page.content())
+            out_of_stock_urls = parse_embedded_out_of_stock_urls(page.content())
+            try:
+                cards = collect_listing_cards(page, out_of_stock_urls=out_of_stock_urls)
+                break
+            except PlaywrightTimeoutError as exc:
+                if attempt == 2:
+                    raise
+                logger.warning(
+                    "Listagem sem grelha (tentativa %s/2) — a recarregar %s (%s)",
+                    attempt,
+                    url,
+                    exc,
+                )
+
         all_oos_urls |= out_of_stock_urls
         if out_of_stock_urls:
             logger.info("Página %s: %s produto(s) OutOfStock no schema.org", page_num, len(out_of_stock_urls))
 
-        cards = collect_listing_cards(page, out_of_stock_urls=out_of_stock_urls)
         logger.info("Página %s: %s cartões", page_num, len(cards))
         all_cards.extend(cards)
 
@@ -618,7 +636,20 @@ def run_scraper(
                 continue
 
             logger.info("=== Categoria: %s ===", category)
-            cards, listing_oos_urls = scrape_category_listing(page, category_url)
+            try:
+                cards, listing_oos_urls = scrape_category_listing(page, category_url)
+            except PlaywrightTimeoutError as exc:
+                # Uma categoria em timeout não pode abortar a fonte inteira:
+                # run_all marca fatal_error e o workflow deixa de publicar dados.
+                logger.error("Listagem %s falhou após retry: %s", category, exc)
+                stats["errors"] += 1
+                stats["by_category"][category] = 0
+                try:
+                    page.close()
+                except Exception:
+                    pass
+                page = context.new_page()
+                continue
 
             if listing_oos_urls:
                 removed_from_listing = 0

@@ -40,6 +40,7 @@ permissions:
 env:
   # Lojas activas no site (Back Market excluído — Cloudflare)
   SCRAPE_SOURCES: iservices,refurbed,swappie,certideal,callphone
+  PYTHONUNBUFFERED: "1"
 
 jobs:
   should-run:
@@ -110,6 +111,9 @@ jobs:
           fi
 
       - name: Correr scrapers
+        # run_all.py mata cada fonte no seu limite (Refurbed 90 min, restantes
+        # 10–35). A soma fica abaixo dos 180 min do job: um browser preso não
+        # cancela validação, sync e commit.
         run: |
           python scrapers/run_all.py \
             --mode "${{ steps.mode.outputs.value }}" \
