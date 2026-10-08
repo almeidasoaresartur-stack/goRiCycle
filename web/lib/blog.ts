@@ -22,7 +22,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 ## O salto que interessa
 
-Há diferenças que se lêem na ficha técnica e diferenças que mudam a rotina. Do 14 para o 15, o salto que interessa cabe em três pontos:
+Há diferenças que se leem na ficha técnica e diferenças que mudam a rotina. Do 14 para o 15, o salto que interessa cabe em três pontos:
 
 - **O cabo.** O 15 passou a USB-C; o 14 continua em Lightning.
 - **A frente.** O 15 trocou o entalhe pela Dynamic Island; o 14 manteve o recorte clássico.
@@ -56,7 +56,7 @@ Aqui a diferença é real, sobretudo se recortas fotos ou fotografas com pouca l
 
 O 14 tem câmara principal de 12 MP e ultra grande-angular de 12 MP. Para stories, retratos casuais e scans de documentos, chega — e chega bem. O 15 sobe a principal para 48 MP. Isso dá mais margem para recortar sem a foto desfazer-se, um zoom 2x "óptico" (na prática, um recorte do sensor maior) e mais detalhe quando a luz não ajuda.
 
-Nenhum dos dois é um Pro. Não há teleobjectiva de verdade, nem o tratamento de vídeo dos modelos topo de gama. Se a fotografia é o critério número um e o orçamento estica, o salto seguinte não é o 15 standard — é um Pro. O [iPhone 15 Pro Max 256GB recondicionado](/produto/iphone-15-pro-max-256gb-recondicionado) entra nessa conversa; o 15 base, não.
+Nenhum dos dois é um Pro. Não há teleobjetiva de verdade, nem o tratamento de vídeo dos modelos topo de gama. Se a fotografia é o critério número um e o orçamento estica, o salto seguinte não é o 15 standard — é um Pro. O [iPhone 15 Pro Max 256GB recondicionado](/produto/iphone-15-pro-max-256gb-recondicionado) entra nessa conversa; o 15 base, não.
 
 Para o resto das pessoas: se partilhas fotos no telemóvel e não editas em ecrã grande, o 14 não te vai envergonhar. Se queres um ficheiro com mais informação para recortar ou imprimir, o 15 nota-se.
 
@@ -187,7 +187,7 @@ Os graus estéticos usados são três: Como Novo, Muito Bom e Correto. É a nome
 
 ## [iServices](/?store=iservices&view=all&section=comparador#comparador) — a única com loja física a sério
 
-A iServices é a excepção nesta lista: tem dezenas de lojas físicas em Portugal com assistência técnica própria, além da loja online. Para quem prefere ver e testar o aparelho antes de comprar, ou quer poder entregar pessoalmente em caso de assistência, é a única das cinco lojas que oferece essa opção.
+A iServices é a exceção nesta lista: tem dezenas de lojas físicas em Portugal com assistência técnica própria, além da loja online. Para quem prefere ver e testar o aparelho antes de comprar, ou quer poder entregar pessoalmente em caso de assistência, é a única das cinco lojas que oferece essa opção.
 
 A garantia é de **36 meses** — a mais longa das cinco por defeito, sem custo de extensão. O prazo de devolução é de 30 dias nas fichas de produto de iPhone (14 dias nalgumas categorias de acessórios e wearables, que não fazem parte do catálogo do goRiCycle).
 
@@ -209,11 +209,11 @@ A garantia divulgada é de 24 meses. Como em qualquer loja, os termos e condiç�
 
 Este é o ponto que mais nos chamou a atenção ao investigar as cinco lojas: a Refurbed é a única que publica, com números concretos, os mínimos de saúde de bateria por grau. Nos smartphones, a bateria tem de manter pelo menos 85% de capacidade (80% noutros dispositivos, 90% na categoria Premium) — abaixo disso, é substituída automaticamente antes da venda.
 
-As outras lojas falam em "boa saúde da bateria" ou usam o grau estético como proxy indireto. A Refurbed é a excepção que dá um número que podes verificar tu próprio depois, nas Definições do aparelho.
+As outras lojas falam em "boa saúde da bateria" ou usam o grau estético como proxy indireto. A Refurbed é a exceção que dá um número que podes verificar tu próprio depois, nas Definições do aparelho.
 
 Importa perceber que a Refurbed funciona como **marketplace**: não recondiciona diretamente, agrega vendedores europeus que cumprem os critérios da plataforma. Isso significa que a qualidade pode variar mais entre vendedores do que numa loja com processo interno único. A garantia mínima é de 12 meses (a mais curta das cinco), com 30 dias de teste gratuito.
 
-**Faz sentido se** a saúde da bateria é o teu critério de decisão principal e queres um número, não um adjectivo.
+**Faz sentido se** a saúde da bateria é o teu critério de decisão principal e queres um número, não um adjetivo.
 
 **Não é a melhor escolha se** preferes lidar sempre com o mesmo recondicionador, e não com um marketplace de vendedores diferentes.
 
@@ -241,7 +241,7 @@ Não há resposta única — e seria pouco honesto dizer que há. O que podemos 
 
 - **Garantia mais longa sem custo extra:** iServices (36 meses)
 - **Prazo de devolução mais generoso:** Certideal (21 dias) e Refurbed (30 dias de teste)
-- **Só quer transparência de bateria em número, não em adjectivo:** Refurbed ou Callphone
+- **Só quer transparência de bateria em número, não em adjetivo:** Refurbed ou Callphone
 - **Quer tocar no aparelho antes de comprar:** iServices (rede nacional) ou Callphone (Penafiel)
 - **Procura só iPhone e nada mais:** Swappie entra na comparação; para Android ou tablets, sai automaticamente
 
@@ -362,7 +362,7 @@ Pode parecer estranho encontrar um modelo lançado há pouco mais de um ano já 
 
 ## As diferenças entre 128GB, 256GB e 512GB
 
-Aqui está o ponto mais importante a perceber: as três variantes são fisicamente o mesmo tablet. Mesmo chip A16, mesma RAM, mesmo ecrã, mesma câmara, mesma bateria. A única diferença real é o espaço de armazenamento — o que muda é quanto consegues guardar, não o desempenho do dia-a-dia.
+Aqui está o ponto mais importante a perceber: as três variantes são fisicamente o mesmo tablet. Mesmo chip A16, mesma RAM, mesmo ecrã, mesma câmara, mesma bateria. A única diferença real é o espaço de armazenamento — o que muda é quanto consegues guardar, não o desempenho do dia a dia.
 
 **128GB — para quem?**
 Suficiente para a maioria das pessoas que usam o iPad para navegação, streaming, redes sociais, leitura, videochamadas e produtividade ligeira (Office, notas, PDFs). Se não guardas grandes bibliotecas de vídeo ou jogos pesados localmente, este é o ponto de equilíbrio mais razoável — [compara as ofertas de iPad 11 128GB recondicionado](/produto/ipad-11-128gb-recondicionado) no goRiCycle.
@@ -434,7 +434,7 @@ Vale notar que o iPhone 13 não suporta as funcionalidades de Apple Intelligence
 
 **Desempenho:** o chip A15 Bionic continua a ser capaz de lidar com a maioria das tarefas, incluindo jogos e edição de vídeo. Não é o chip mais rápido do mercado, mas para uso quotidiano — redes sociais, streaming, fotografia, produtividade — é mais do que suficiente.
 
-**Câmara:** a câmara do iPhone 13 continua a produzir resultados excelentes para uso do dia-a-dia. Os sensores maiores face ao iPhone 12 permitem captar mais 47% de luz, o que se traduz em melhores fotografias em condições de pouca luz. O modo Cinematic mantém-se uma funcionalidade diferenciadora face à concorrência no mesmo preço.
+**Câmara:** a câmara do iPhone 13 continua a produzir resultados excelentes para uso do dia a dia. Os sensores maiores face ao iPhone 12 permitem captar mais 47% de luz, o que se traduz em melhores fotografias em condições de pouca luz. O modo Cinematic mantém-se uma funcionalidade diferenciadora face à concorrência no mesmo preço.
 
 **5G e conectividade:** suporte completo a 5G, Wi-Fi 6 e Bluetooth 5.0.
 

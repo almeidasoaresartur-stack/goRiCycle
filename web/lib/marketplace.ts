@@ -433,6 +433,13 @@ export function sortAggregatedProducts(
   }
 }
 
+/** Compara o modelo do filtro sem distinguir maiúsculas («Galaxy s24» = «Galaxy S24»). */
+function matchesModelFilter(itemModel: string, filterModel: string): boolean {
+  const normalized = normalizeModelForFilter(itemModel);
+  if (normalized.toLowerCase() === filterModel.toLowerCase()) return true;
+  return modelMatches(itemModel, filterModel);
+}
+
 export function filterAggregatedProducts(
   products: AggregatedProduct[],
   filters: MarketplaceFilters,
@@ -450,13 +457,7 @@ export function filterAggregatedProducts(
     if (!aggregatedProductIsAvailable(item)) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (
-      model &&
-      normalizeModelForFilter(item.model) !== model &&
-      !modelMatches(item.model, model)
-    ) {
-      return false;
-    }
+    if (model && !matchesModelFilter(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
     if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
@@ -556,13 +557,7 @@ export function filterListings(
     if (item.isAvailable === false) return false;
     if (tech && item.tech !== tech) return false;
     if (brand && resolveProductBrand(item)?.toLowerCase() !== brand.toLowerCase()) return false;
-    if (
-      model &&
-      normalizeModelForFilter(item.model) !== model &&
-      !modelMatches(item.model, model)
-    ) {
-      return false;
-    }
+    if (model && !matchesModelFilter(item.model, model)) return false;
     if (storage && item.storage?.toUpperCase() !== storage) return false;
     if (grade && item.gradeTier !== grade) return false;
     if (q && !productMatchesSearchText({ model: item.model }, q)) return false;
