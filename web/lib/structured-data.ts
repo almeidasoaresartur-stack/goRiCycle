@@ -25,7 +25,7 @@ export function buildOrganizationJsonLd() {
     url: SITE_URL,
     logo: SITE_LOGO_URL,
     description:
-      "Descobre em primeira mão a melhor opção em segunda mão. Comparador de preços de smartphones e tablets recondicionados em Portugal.",
+      "Comparador de preços de telemóveis e tablets recondicionados em Portugal: iServices, Refurbed, Swappie, Certideal e Callphone.",
   };
 }
 

@@ -458,7 +458,61 @@ def normalize_model_name(name: str) -> str:
     )
     for old, new in replacements.items():
         result = re.sub(re.escape(old), new, result, flags=re.IGNORECASE)
-    return result
+    return _normalize_samsung_tokens(result)
+
+
+_SAMSUNG_WORD_CASE = {
+    "samsung": "Samsung",
+    "galaxy": "Galaxy",
+    "note": "Note",
+    "ultra": "Ultra",
+    "lite": "Lite",
+    "tab": "Tab",
+    "fe": "FE",
+    "flip": "Flip",
+    "fold": "Fold",
+}
+
+
+def _normalize_samsung_tokens(name: str) -> str:
+    """
+    Capitaliza tokens Samsung (Galaxy, S/A/Z/M+dígitos, Note, Fold, Flip, Ultra, FE, Lite, Tab).
+
+    Só muda maiúsculas. Não insere «Galaxy» nem parte tokens (ex. «fold4», «ZFLIP»),
+    para os slugs gerados na web a partir destes nomes permanecerem iguais.
+    Idempotente: um nome já correto («Samsung Galaxy S24 Ultra») sai igual.
+    """
+    if not re.search(r"samsung|galaxy", name, flags=re.IGNORECASE):
+        return name
+
+    def series(match: re.Match[str]) -> str:
+        letter = match.group(1).upper()
+        digits = match.group(2)
+        suffix = match.group(3) or ""
+        if suffix.lower() in {"e", "s"}:
+            suffix = suffix.lower()
+        elif suffix:
+            suffix = suffix.upper()
+        return f"{letter}{digits}{suffix}"
+
+    result = re.sub(r"\b([sazm])(\d+)([a-z])?\b", series, name, flags=re.IGNORECASE)
+
+    def fold_flip(match: re.Match[str]) -> str:
+        word = _SAMSUNG_WORD_CASE[match.group(1).lower()]
+        return f"{word}{match.group(2)}"
+
+    result = re.sub(r"\b(fold|flip)(\d+)\b", fold_flip, result, flags=re.IGNORECASE)
+
+    def word(match: re.Match[str]) -> str:
+        return _SAMSUNG_WORD_CASE[match.group(1).lower()]
+
+    result = re.sub(
+        r"\b(samsung|galaxy|note|ultra|lite|tab|fe|flip|fold)\b",
+        word,
+        result,
+        flags=re.IGNORECASE,
+    )
+    return re.sub(r"\bz\b", "Z", result, flags=re.IGNORECASE)
 
 
 def _normalize_price_text(text: str) -> str:

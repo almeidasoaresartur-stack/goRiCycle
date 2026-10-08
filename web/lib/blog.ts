@@ -28,7 +28,7 @@ Há diferenças que se lêem na ficha técnica e diferenças que mudam a rotina.
 - **A frente.** O 15 trocou o entalhe pela Dynamic Island; o 14 manteve o recorte clássico.
 - **A câmara.** O 15 subiu a principal de 12 MP para 48 MP, com um "zoom" 2x recortado do mesmo sensor.
 
-O resto é incremental. Os dois têm ecrã OLED Super Retina XDR de 6,1", 60 Hz, Face ID, 5G, MagSafe e resistência IP68. O chip mudou (A15 no 14, A16 no 15), mas para chamadas, redes sociais, streaming e fotografia casual a diferença é pequena. Se estás a vir de um iPhone 11, 12 ou de um Android antigo, qualquer um dos dois parece um telemóvel actual. A pergunta útil é outra: **quando vale a pena pagar a diferença pelo 15?**
+O resto é incremental. Os dois têm ecrã OLED Super Retina XDR de 6,1", 60 Hz, Face ID, 5G, MagSafe e resistência IP68. O chip mudou (A15 no 14, A16 no 15), mas para chamadas, redes sociais, streaming e fotografia casual a diferença é pequena. Se estás a vir de um iPhone 11, 12 ou de um Android antigo, qualquer um dos dois parece um telemóvel atual. A pergunta útil é outra: **quando vale a pena pagar a diferença pelo 15?**
 
 Compara o [iPhone 14 128GB recondicionado](/produto/iphone-14-128gb-recondicionado) com o [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado) no mesmo estado — é aí que a diferença de preço fica honesta.
 
@@ -74,13 +74,13 @@ Se planeias ficar com o telemóvel dois ou três anos, o A15 do 14 chega. Se que
 
 No papel, o 15 dura um pouco mais e gere melhor o calor sob carga — o A16 é mais eficiente. Na prática, em recondicionado, **a saúde da bateria do exemplar concreto vale mais do que o modelo.** Um 15 com 81% de capacidade pode render menos do que um 14 com 92%.
 
-Pede sempre a percentagem exacta, não só o grau estético. E confirma até quando a loja cobre a bateria: nalgumas, a garantia do aparelho e a da bateria não duram o mesmo. Explicámos isto loja a loja no artigo sobre [a garantia da bateria nos recondicionados](/blog/garantia-bateria-recondicionados-comparacao-lojas).
+Pede sempre a percentagem exata, não só o grau estético. E confirma até quando a loja cobre a bateria: nalgumas, a garantia do aparelho e a da bateria não duram o mesmo. Explicámos isto loja a loja no artigo sobre [a garantia da bateria nos recondicionados](/blog/garantia-bateria-recondicionados-comparacao-lojas).
 
 Quanto ao calor: os dois aquecem a gravar vídeo longo ou a jogar com o telemóvel ao sol. Não é um critério de compra entre 14 e 15. É um critério para não comprares um aparelho com bateria inchada ou com histórico duvidoso.
 
 ## Capacidade 128 vs 256
 
-O armazenamento é a outra decisão — e, ao contrário do chip, não se resolve com uma actualização.
+O armazenamento é a outra decisão — e, ao contrário do chip, não se resolve com uma atualização.
 
 **128 GB** chega se usas iCloud ou Google Fotos, fazes streaming em vez de descarregar séries, e não gravas vídeo 4K às horas. É a capacidade que mais se vende, e a que melhor preço tem no 14 e no 15. Vê o [iPhone 14 128GB recondicionado](/produto/iphone-14-128gb-recondicionado) e o [iPhone 15 128GB recondicionado](/produto/iphone-15-128gb-recondicionado).
 
@@ -106,7 +106,7 @@ Se estás a comparar 14 standard com 15 Pro, estás a misturar duas conversas. V
 
 O preço certo só existe lado a lado, no mesmo estado e na mesma capacidade. [Vê todos os smartphones recondicionados](/smartphones) e compara o 14 e o 15 nas lojas portuguesas — Certideal, iServices, Swappie, Refurbed e Callphone — antes de decidires.
 
-*Os preços de recondicionados em Portugal mudam com o grau, a loja e a saúde da bateria. No goRiCycle comparamos as ofertas em tempo real.*`,
+*Os preços de recondicionados em Portugal mudam com o grau, a loja e a saúde da bateria. No goRiCycle comparamos as ofertas das principais lojas, com preços atualizados diariamente.*`,
   },
   {
     slug: "garantia-bateria-recondicionados-comparacao-lojas",
@@ -154,7 +154,7 @@ Ou seja: se comprares um iPhone com bateria a 85% numa dessas lojas e, um ano de
 
 Se a autonomia é a tua prioridade principal, três coisas valem mais do que confiar cegamente no nome do grau:
 
-- **Confirma o número, não só o grau.** "Excelente" ou "Grau A" não te diz a saúde da bateria em nenhuma das cinco lojas — pede sempre a percentagem exacta na ficha do produto.
+- **Confirma o número, não só o grau.** "Excelente" ou "Grau A" não te diz a saúde da bateria em nenhuma das cinco lojas — pede sempre a percentagem exata na ficha do produto.
 - **Sabe até quando estás coberto.** Se a bateria falhar aos 8 meses na Callphone, já podes estar fora do prazo. Na Certideal, a mesma falha aos 8 meses ainda está integrada nos 36 meses de garantia geral.
 - **Considera a bateria nova como opção paga**, quando disponível. Certideal, Swappie e outras oferecem esta opção nalguns modelos — sai mais caro, mas resolve o problema na origem em vez de depender de uma garantia limitada.
 
@@ -173,7 +173,7 @@ Compara um modelo popular — o [iPhone 13 128GB recondicionado](/produto/iphone
       "Certideal, iServices, Swappie, Refurbed e Callphone não são a mesma coisa com nomes diferentes. Cada uma tem um modelo de garantia, devolução e transparência próprio. Explicamos as diferenças que realmente importam.",
     publishedAt: "2026-08-02",
     readingMinutes: 6,
-    content: `O goRiCycle compara preços entre cinco lojas — Certideal, iServices, Swappie, Refurbed e Callphone. Até aqui, os nossos artigos falaram sempre de modelos: qual iPhone, qual capacidade, qual geração. Mas há uma pergunta que ainda não respondemos directamente, e que é tão importante como a escolha do telemóvel: **em qual destas lojas compensa comprar?**
+    content: `O goRiCycle compara preços entre cinco lojas — Certideal, iServices, Swappie, Refurbed e Callphone. Até aqui, os nossos artigos falaram sempre de modelos: qual iPhone, qual capacidade, qual geração. Mas há uma pergunta que ainda não respondemos diretamente, e que é tão importante como a escolha do telemóvel: **em qual destas lojas compensa comprar?**
 
 Não é a mesma loja com cinco nomes diferentes. Há diferenças reais em garantia, prazo de devolução, e no que cada uma está disposta a dizer-te sobre o estado real do aparelho antes de compares. Vamos loja a loja.
 
@@ -209,9 +209,9 @@ A garantia divulgada é de 24 meses. Como em qualquer loja, os termos e condiç�
 
 Este é o ponto que mais nos chamou a atenção ao investigar as cinco lojas: a Refurbed é a única que publica, com números concretos, os mínimos de saúde de bateria por grau. Nos smartphones, a bateria tem de manter pelo menos 85% de capacidade (80% noutros dispositivos, 90% na categoria Premium) — abaixo disso, é substituída automaticamente antes da venda.
 
-As outras lojas falam em "boa saúde da bateria" ou usam o grau estético como proxy indirecto. A Refurbed é a excepção que dá um número que podes verificar tu próprio depois, nas Definições do aparelho.
+As outras lojas falam em "boa saúde da bateria" ou usam o grau estético como proxy indireto. A Refurbed é a excepção que dá um número que podes verificar tu próprio depois, nas Definições do aparelho.
 
-Importa perceber que a Refurbed funciona como **marketplace**: não recondiciona directamente, agrega vendedores europeus que cumprem os critérios da plataforma. Isso significa que a qualidade pode variar mais entre vendedores do que numa loja com processo interno único. A garantia mínima é de 12 meses (a mais curta das cinco), com 30 dias de teste gratuito.
+Importa perceber que a Refurbed funciona como **marketplace**: não recondiciona diretamente, agrega vendedores europeus que cumprem os critérios da plataforma. Isso significa que a qualidade pode variar mais entre vendedores do que numa loja com processo interno único. A garantia mínima é de 12 meses (a mais curta das cinco), com 30 dias de teste gratuito.
 
 **Faz sentido se** a saúde da bateria é o teu critério de decisão principal e queres um número, não um adjectivo.
 
@@ -237,7 +237,7 @@ O prazo de devolução é de 14 dias — o mínimo legal, sem margem extra como 
 
 ## Então, qual escolher?
 
-Não há resposta única — e seria pouco honesto dizer que há. O que podemos dizer, depois de comparar as cinco directamente:
+Não há resposta única — e seria pouco honesto dizer que há. O que podemos dizer, depois de comparar as cinco diretamente:
 
 - **Garantia mais longa sem custo extra:** iServices (36 meses)
 - **Prazo de devolução mais generoso:** Certideal (21 dias) e Refurbed (30 dias de teste)
@@ -249,7 +249,7 @@ O papel do goRiCycle continua a ser o mesmo: mostrar-te o preço de cada uma par
 
 Para um exemplo concreto, compara o [iPhone 13 128GB recondicionado](/produto/iphone-13-128gb-recondicionado) entre lojas, ou [explora todos os smartphones](/smartphones).
 
-*As informações sobre garantias e políticas de devolução foram verificadas directamente nos sites oficiais de cada loja em agosto de 2026. Estas condições podem mudar — recomendamos sempre confirmar os termos actuais na própria loja antes de finalizar uma compra.*`
+*As informações sobre garantias e políticas de devolução foram verificadas diretamente nos sites oficiais de cada loja em agosto de 2026. Estas condições podem mudar — recomendamos sempre confirmar os termos atuais na própria loja antes de finalizar uma compra.*`
   },
   {
     slug: "graus-estado-recondicionados-comparacao-lojas",
@@ -307,7 +307,7 @@ Três factores explicam a dominância da Apple no mercado de recondicionados:
 
 **Valor residual mais alto.** Um iPhone ou iPad perde valor mais devagar do que a maioria dos equivalentes Android ao longo do tempo. Isto é bom para quem vende (recebe mais na troca) e bom para quem recondiciona (o produto continua a valer a pena reparar e revender anos depois do lançamento.
 
-**Ciclo de actualizações mais longo.** A Apple mantém os seus dispositivos a receber actualizações de sistema operativo (iOS, iPadOS) durante mais anos do que é comum no mercado Android. Um iPhone com vários anos continua, na prática, a correr software actual — o que o torna uma compra recondicionada muito mais defensável do que um Android da mesma idade.
+**Ciclo de atualizações mais longo.** A Apple mantém os seus dispositivos a receber atualizações de sistema operativo (iOS, iPadOS) durante mais anos do que é comum no mercado Android. Um iPhone com vários anos continua, na prática, a correr software atual — o que o torna uma compra recondicionada muito mais defensável do que um Android da mesma idade.
 
 **Maior volume de entradas no mercado secundário.** Como a Apple vende um número elevado de unidades e tem uma base de utilizadores que troca de aparelho com regularidade (planos de troca, upgrades, etc.), há simplesmente mais iPhones e iPads a entrar nos circuitos de recondicionamento todos os anos. Mais oferta traduz-se em mais escolha e, normalmente, em processos de recondicionamento mais maduros por parte das lojas.
 
@@ -325,7 +325,7 @@ Na prática, se procuras um recondicionado, é provável que encontres:
 
 Dito isto, vale a pena seres honesto contigo próprio sobre o que precisas:
 
-**Faz sentido apostar em Apple recondicionado se** valorizas ter o sistema operativo actualizado durante mais anos, se já estás dentro do ecossistema Apple (Mac, Apple Watch, AirPods), ou se planeias voltar a vender o aparelho daqui a uns anos e queres que retenha valor.
+**Faz sentido apostar em Apple recondicionado se** valorizas ter o sistema operativo atualizado durante mais anos, se já estás dentro do ecossistema Apple (Mac, Apple Watch, AirPods), ou se planeias voltar a vender o aparelho daqui a uns anos e queres que retenha valor.
 
 **Não é a melhor escolha se** o teu orçamento é limitado e um Android recondicionado de gama média te dá as funcionalidades que precisas por uma fracção do preço, ou se não tens qualquer investimento no ecossistema Apple e não vês vantagem em entrar nele agora.
 
@@ -352,13 +352,13 @@ Se decidires que um iPhone ou iPad recondicionado é o caminho certo, o passo se
 
 Antes de mais, uma clarificação: a Apple não chama oficialmente "iPad 11" a este modelo — o nome técnico é iPad (A16), 11ª geração, lançado em março de 2025. Mas como o mercado (lojas, motores de busca, utilizadores) o trata quase sempre como "iPad 11", é assim que também nos vamos referir a ele aqui.
 
-É o iPad de entrada da Apple, sucessor directo do iPad de 10ª geração. Mantém o design familiar — ecrã Liquid Retina de 10,9", Touch ID integrado no botão superior, ligação USB-C — mas traz o chip A16 (o mesmo que estreou no iPhone 14), 6GB de RAM e, pela primeira vez nesta gama, 128GB como armazenamento inicial em vez dos 64GB anteriores.
+É o iPad de entrada da Apple, sucessor direto do iPad de 10ª geração. Mantém o design familiar — ecrã Liquid Retina de 10,9", Touch ID integrado no botão superior, ligação USB-C — mas traz o chip A16 (o mesmo que estreou no iPhone 14), 6GB de RAM e, pela primeira vez nesta gama, 128GB como armazenamento inicial em vez dos 64GB anteriores.
 
 Não tem Face ID, não tem ecrã ProMotion a 120Hz, e não suporta Apple Intelligence — características reservadas aos modelos Air e Pro. Isso não o torna um mau tablet; torna-o um tablet claramente posicionado para quem quer capacidade e fiabilidade sem pagar o preço de topo de gama.
 
 ## Porque já aparece no mercado de recondicionados?
 
-Pode parecer estranho encontrar um modelo lançado há pouco mais de um ano já disponível como recondicionado — mas é perfeitamente normal. A maior parte da oferta recondicionada recente vem de trocas (trade-ins), devoluções dentro do prazo legal, unidades de demonstração em loja, ou simplesmente pessoas que compraram e decidiram que não era para elas. Para ti, compradora ou comprador, isto é uma boa notícia: significa acesso a um dispositivo praticamente actual com o desconto típico do mercado recondicionado.
+Pode parecer estranho encontrar um modelo lançado há pouco mais de um ano já disponível como recondicionado — mas é perfeitamente normal. A maior parte da oferta recondicionada recente vem de trocas (trade-ins), devoluções dentro do prazo legal, unidades de demonstração em loja, ou simplesmente pessoas que compraram e decidiram que não era para elas. Para ti, compradora ou comprador, isto é uma boa notícia: significa acesso a um dispositivo praticamente atual com o desconto típico do mercado recondicionado.
 
 ## As diferenças entre 128GB, 256GB e 512GB
 
@@ -371,7 +371,7 @@ Suficiente para a maioria das pessoas que usam o iPad para navegação, streamin
 Faz sentido se usas o iPad para trabalho ou estudo com Apple Pencil de forma regular (muitos ficheiros de notas, digitalizações, apontamentos com imagem), ou se costumas descarregar conteúdo offline — séries, podcasts, música — para viagens ou zonas sem internet. [Vê os preços do iPad 11 256GB recondicionado](/produto/ipad-11-256gb-recondicionado) nas lojas que comparamos.
 
 **512GB — para quem?**
-Só compensa se fazes edição de vídeo directamente no iPad, trabalhas com ficheiros grandes (design, fotografia profissional), ou instalas muitas apps e jogos pesados sem nunca apagar nada. Para a maioria das pessoas, é mais capacidade do que alguma vez vão usar — mas se precisas mesmo, [encontra ofertas de iPad 11 512GB recondicionado](/produto/ipad-11-512gb-recondicionado).
+Só compensa se fazes edição de vídeo diretamente no iPad, trabalhas com ficheiros grandes (design, fotografia profissional), ou instalas muitas apps e jogos pesados sem nunca apagar nada. Para a maioria das pessoas, é mais capacidade do que alguma vez vão usar — mas se precisas mesmo, [encontra ofertas de iPad 11 512GB recondicionado](/produto/ipad-11-512gb-recondicionado).
 
 ## O que fica de fora, independentemente da capacidade
 
@@ -401,7 +401,7 @@ Não é a melhor escolha se:
 - Precisas de um ecrã mais fluido para desenho ou jogos
 - Vais usar o tablet intensivamente para edição de vídeo (considera um iPad Air ou Pro em alternativa)
 
-*Os preços do iPad 11 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos em tempo real as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone.*`,
+*Os preços do iPad 11 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone, com preços atualizados diariamente.*`,
   },
   {
     slug: "iphone-13-vale-a-pena-2026",
@@ -426,7 +426,7 @@ Todos os modelos partilham o mesmo chip A15 Bionic, suporte a 5G, MagSafe, resis
 
 ## Quanto tempo de suporte ainda tem?
 
-O iOS 27, anunciado em Junho de 2026, suporta a série iPhone 13. Tendo em conta o historial da Apple, o iPhone 13 deverá receber actualizações principais do iOS até pelo menos 2027-2028, e actualizações de segurança até 2030. Na prática: se comprares um iPhone 13 recondicionado hoje, tens pela frente pelo menos mais 2-3 anos de suporte activo — o que é um argumento sólido para um telemóvel que podes encontrar abaixo dos 200€.
+O iOS 27, anunciado em junho de 2026, suporta a série iPhone 13. Tendo em conta o historial da Apple, o iPhone 13 deverá receber atualizações principais do iOS até pelo menos 2027-2028, e atualizações de segurança até 2030. Na prática: se comprares um iPhone 13 recondicionado hoje, tens pela frente pelo menos mais 2-3 anos de suporte ativo — o que é um argumento sólido para um telemóvel que podes encontrar abaixo dos 200€.
 
 Vale notar que o iPhone 13 não suporta as funcionalidades de Apple Intelligence — as ferramentas de inteligência artificial que a Apple começou a integrar no iOS. Se o acesso a IA nativa da Apple é uma prioridade, precisas de um iPhone 15 Pro ou mais recente.
 
@@ -451,7 +451,7 @@ Vale notar que o iPhone 13 não suporta as funcionalidades de Apple Intelligence
 O iPhone 13 recondicionado é uma boa escolha se:
 - Queres entrar no ecossistema Apple sem pagar preço de novo
 - O teu uso principal é quotidiano: chamadas, mensagens, redes sociais, fotografia casual, streaming
-- Preferes um telemóvel com suporte a actualizações garantido ainda por 2-3 anos
+- Preferes um telemóvel com suporte a atualizações garantido ainda por 2-3 anos
 - Estás a substituir um Android antigo ou um iPhone 11/12
 
 Não é a melhor escolha se:
@@ -470,7 +470,7 @@ Não é a melhor escolha se:
 
 **Evita:** iPhone 13 Pro Max em recondicionado a não ser que o encontres a bom preço — o tamanho não é para todos.
 
-*Os preços do iPhone 13 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos em tempo real as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone.*`
+*Os preços do iPhone 13 recondicionado em Portugal variam conforme a loja, o estado de conservação e a capacidade. No goRiCycle comparamos as ofertas da Certideal, Swappie, iServices, Refurbed e Callphone, com preços atualizados diariamente.*`
   },
   {
     slug: "iphone-15-vs-iphone-16-recondicionado",
@@ -497,11 +497,11 @@ Não é a melhor escolha se:
 
 O iPhone 15 foi o modelo que finalmente trouxe USB-C a todos os iPhones, introduziu a Dynamic Island em toda a linha, e melhorou a câmara para 48MP. Estas são as melhorias que se sentem todos os dias.
 
-Para uso quotidiano — chamadas, mensagens, redes sociais, streaming, fotografia casual — o iPhone 15 faz tudo isso sem qualquer limitação. E fá-lo com actualizações garantidas até aproximadamente 2030.
+Para uso quotidiano — chamadas, mensagens, redes sociais, streaming, fotografia casual — o iPhone 15 faz tudo isso sem qualquer limitação. E fá-lo com atualizações garantidas até aproximadamente 2030.
 
 ## Quando é que o iPhone 16 compensa?
 
-**Se Apple Intelligence é uma prioridade.** Se usas muito a Siri para automatizar tarefas, queres resumos automáticos de emails e mensagens, ou valorizas a integração com ChatGPT directamente no sistema, o iPhone 16 é o modelo mais acessível que oferece isso.
+**Se Apple Intelligence é uma prioridade.** Se usas muito a Siri para automatizar tarefas, queres resumos automáticos de emails e mensagens, ou valorizas a integração com ChatGPT diretamente no sistema, o iPhone 16 é o modelo mais acessível que oferece isso.
 
 **Se planeias ficar com o telemóvel 5 ou mais anos.** O A18 e o suporte a Apple Intelligence dão ao iPhone 16 uma vantagem de longevidade.
 
@@ -528,7 +528,7 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
 - Queres Apple Intelligence mas preferes não pagar preço de iPhone 16
 - A câmara com zoom óptico 3x e o ecrã a 120Hz são importantes para ti
 
-*No goRiCycle podes comparar os preços do iPhone 15 e iPhone 16 recondicionados em tempo real nas principais lojas portuguesas.*`
+*No goRiCycle podes comparar os preços do iPhone 15 e iPhone 16 recondicionados nas principais lojas portuguesas, atualizados diariamente.*`
   },
   {
     slug: "google-pixel-vs-iphone-pro-recondicionado",
@@ -551,7 +551,7 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
 
 **Ecossistema:** o iPhone Pro Max vive dentro da "bolha" perfeita da Apple. Se tens um MacBook, iPad ou Apple Watch, a integração é absoluta. O Pixel é a porta de entrada para um Android mais puro e extremamente integrado com os serviços Google.
 
-**Longevidade:** a Apple garante tipicamente 6-7 anos de actualizações de iOS. A Google comprometeu-se com 7 anos de actualizações para os modelos Pixel 8 em diante — ambos são apostas seguras em recondicionado.
+**Longevidade:** a Apple garante tipicamente 6-7 anos de atualizações de iOS. A Google comprometeu-se com 7 anos de atualizações para os modelos Pixel 8 em diante — ambos são apostas seguras em recondicionado.
 
 **Preço:** os modelos Pixel Pro tendem a ser mais acessíveis do que os iPhone Pro Max equivalentes no mercado recondicionado português — uma diferença que pode chegar a 150-200€.
 
@@ -560,7 +560,7 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
 **Escolhe um Google Pixel Pro recondicionado se:**
 - A fotografia é a tua prioridade e preferes resultados "editados" automaticamente pela IA
 - Vives dentro dos serviços Google e queres integração nativa
-- Preferes Android na sua forma mais pura e actualizada
+- Preferes Android na sua forma mais pura e atualizada
 - O orçamento é um factor e queres o máximo de câmara pelo menor preço possível
 
 **Escolhe um iPhone Pro Max recondicionado se:**
@@ -571,7 +571,7 @@ O iPhone 15 Pro e 15 Pro Max suportam Apple Intelligence — o que elimina a pri
 
 ## O veredito do goRiCycle
 
-A escolha entre Pixel Pro e iPhone Pro Max não é sobre qual é melhor — é sobre qual serve melhor o teu estilo de vida. No goRiCycle podes comparar os preços actuais de ambos nas principais lojas portuguesas.`,
+A escolha entre Pixel Pro e iPhone Pro Max não é sobre qual é melhor — é sobre qual serve melhor o teu estilo de vida. No goRiCycle podes comparar os preços atuais de ambos nas principais lojas portuguesas.`,
   },
   {
     slug: "iphone-se-2022-recondicionado-2026",

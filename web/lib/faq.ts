@@ -13,7 +13,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     id: "vende-directamente",
-    question: "O goRiCycle vende os aparelhos directamente?",
+    question: "O goRiCycle vende os aparelhos diretamente?",
     answer:
       "Não. Nós não vendemos telemóveis nem processamos pagamentos. Apenas comparamos e redirecionamos para as lojas oficiais, onde podes concluir a compra em total segurança.",
   },
@@ -27,6 +27,6 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: "garantia",
     question: "Os produtos têm garantia?",
     answer:
-      "Sim. Os produtos recondicionados vendidos por lojas profissionais em Portugal têm direito a garantia — geralmente entre 1 a 3 anos, dependendo da loja parceira. Confirma sempre as condições exactas no site de destino antes de comprar.",
+      "Sim. Os produtos recondicionados vendidos por lojas profissionais em Portugal têm direito a garantia — geralmente entre 1 a 3 anos, dependendo da loja parceira. Confirma sempre as condições exatas no site de destino antes de comprar.",
   },
 ];

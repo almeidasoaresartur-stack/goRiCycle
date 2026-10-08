@@ -1,4 +1,4 @@
-import { cleanBaseModel, formatStorageLabel } from "./product-display";
+import { UNKNOWN_STORAGE_LABEL, cleanBaseModel, formatStorageLabel } from "./product-display";
 import { getAllListings } from "./load-listings";
 import type { ProductListing } from "./marketplace";
 import { canonicalPath } from "./seo";
@@ -49,12 +49,12 @@ export function getAllProductSlugs(): string[] {
 export function formatProductPageName(model: string, storage?: string | null): string {
   const displayName = cleanBaseModel(model);
   const storageLabel = formatStorageLabel(storage);
-  if (!storage || storageLabel === "NFPM*") return displayName;
+  if (!storage || storageLabel === UNKNOWN_STORAGE_LABEL) return displayName;
   return `${displayName} ${storageLabel}`;
 }
 
 export function listingHasStorage(listing: ProductListing): boolean {
-  return formatStorageLabel(listing.storage) !== "NFPM*";
+  return formatStorageLabel(listing.storage) !== UNKNOWN_STORAGE_LABEL;
 }
 
 /** True when the listing can produce an indexable `…-{n}gb-…` slug (16–1024GB). */

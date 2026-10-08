@@ -9,20 +9,29 @@ type HeroHighlightsProps = {
   highlights: HeroHighlight[];
 };
 
+function highlightCapacityLabel(storage: string | null): string | null {
+  if (!storage) return null;
+  const match = storage.match(/(\d+(?:[.,]\d+)?)\s*(gb|tb)/i);
+  if (!match) return null;
+  return `${match[1]} ${match[2].toUpperCase()}`;
+}
+
 export function HeroHighlights({ highlights }: HeroHighlightsProps) {
   if (highlights.length === 0) return null;
 
   return (
     <div className="mx-auto mb-2 mt-3 w-full max-w-5xl px-1">
       <div className="scrollbar-hide flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:grid md:grid-cols-5 md:overflow-visible md:snap-none">
-        {highlights.map((product) => (
-          <a
-            key={`${product.storeSlug}-${product.productId}`}
-            href={product.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex min-h-[44px] min-w-[150px] max-w-[170px] flex-shrink-0 snap-start items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 transition-all duration-150 hover:border-gray-300 hover:shadow-sm md:min-w-0 md:max-w-none md:w-full"
-          >
+        {highlights.map((product) => {
+          const capacity = product.priceFrom ? null : highlightCapacityLabel(product.storage);
+          return (
+            <a
+              key={`${product.storeSlug}-${product.productId}`}
+              href={product.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-[44px] min-w-[150px] max-w-[170px] flex-shrink-0 snap-start items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 transition-all duration-150 hover:border-gray-300 hover:shadow-sm md:min-w-0 md:max-w-none md:w-full"
+            >
             <div className="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-lg bg-gray-50">
               {product.imageUrl ? (
                 <Image
@@ -43,7 +52,7 @@ export function HeroHighlights({ highlights }: HeroHighlightsProps) {
               </p>
               <p className="truncate text-[10px] leading-tight text-gray-400">
                 {product.storeLabel}
-                {product.priceFrom ? " · a partir de" : ""}
+                {product.priceFrom ? " · a partir de" : capacity ? ` · ${capacity}` : ""}
               </p>
               <p className="text-[12px] font-bold leading-tight text-green-600">
                 {product.price.toLocaleString("pt-PT", {
@@ -53,8 +62,9 @@ export function HeroHighlights({ highlights }: HeroHighlightsProps) {
                 })}
               </p>
             </div>
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </div>
   );

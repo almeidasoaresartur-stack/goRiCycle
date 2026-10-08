@@ -3,7 +3,6 @@ import { Mail } from "lucide-react";
 
 import { Logo, SLOGAN } from "@/components/Logo";
 import { DisclaimerBlock } from "@/components/DisclaimerBlock";
-import { NFPM_FOOTNOTE } from "@/lib/legal";
 import { ACTIVE_SOURCES } from "@/lib/scraper-data";
 
 type SiteFooterProps = {
@@ -68,8 +67,8 @@ export function SiteFooter({
           <div className="text-center text-xs text-slate-500 sm:text-right">
             <p>
               {catalogLabel(totalProducts, uniqueModels)}
-              {scrapedLabel ? ` · actualizado ${scrapedLabel}` : ""}
-              {` · ${ACTIVE_SOURCES.length} fontes activas`}
+              {scrapedLabel ? ` · atualizado ${scrapedLabel}` : ""}
+              {` · ${ACTIVE_SOURCES.length} fontes ativas`}
             </p>
             {topBrands && <p className="mt-1">{topBrands}</p>}
             <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:justify-end">
@@ -135,9 +134,6 @@ export function SiteFooter({
                 contact@goricycle.com
               </a>
             </nav>
-            <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-400 sm:text-right">
-              {NFPM_FOOTNOTE}
-            </p>
           </div>
         </div>
       </div>

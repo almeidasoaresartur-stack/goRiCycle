@@ -43,7 +43,7 @@ export default function TermosPage() {
             </div>
 
             <p className="mt-8 text-center text-xs text-slate-500">
-              Última actualização: Maio 2026 · Dúvidas? Consulta as{" "}
+              Última atualização: maio de 2026 · Dúvidas? Consulta as{" "}
               <Link href="/faq" className="font-medium text-emerald-700 hover:text-emerald-800">
                 perguntas frequentes
               </Link>

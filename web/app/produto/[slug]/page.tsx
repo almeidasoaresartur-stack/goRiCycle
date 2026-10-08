@@ -196,7 +196,7 @@ export default async function ProductPage({ params }: PageProps) {
                 </h1>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">
                   Comparámos {group.length} oferta{group.length > 1 ? "s" : ""} em {storeCount}{" "}
-                  loja{storeCount > 1 ? "s" : ""} parceira{storeCount > 1 ? "s" : ""}. Actualizado
+                  loja{storeCount > 1 ? "s" : ""} parceira{storeCount > 1 ? "s" : ""}. Atualizado
                   diariamente.
                 </p>
               </div>
@@ -298,7 +298,7 @@ export default async function ProductPage({ params }: PageProps) {
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">
               O {modelName} recondicionado é uma alternativa sustentável e económica ao produto
-              novo. No goRiCycle comparamos os preços em tempo real nas principais lojas
+              novo. No goRiCycle comparamos diariamente os preços nas principais lojas
               portuguesas de recondicionados — iServices, Refurbed, Swappie, Certideal e
               Callphone — para que encontres sempre a melhor oferta com garantia.
             </p>

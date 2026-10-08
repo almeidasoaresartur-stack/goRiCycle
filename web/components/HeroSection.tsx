@@ -2,7 +2,6 @@
 
 import { Clock, Search, ShieldCheck, Tag } from "lucide-react";
 
-import { SLOGAN } from "@/components/Logo";
 import { HeroHighlights } from "@/components/HeroHighlights";
 import type { HeroHighlight } from "@/lib/hero-highlights";
 
@@ -17,12 +16,12 @@ export function HeroSection({ defaultQuery = "", highlights = [] }: HeroSectionP
       <div className="pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full bg-emerald-400/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-4xl text-center animate-fade-up">
-        <p className="mb-2 text-xs font-medium text-emerald-700 sm:text-sm">{SLOGAN}</p>
-
         <h1 className="text-xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-2xl lg:text-3xl lg:leading-[1.2]">
-          Compara recondicionados em Portugal —{" "}
-          <span className="text-emerald-900">num só sítio</span>
+          Compara preços de telemóveis e tablets recondicionados em Portugal
         </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+          iPhone, iPad e Samsung em 5 lojas — iServices, Refurbed, Swappie, Certideal e Callphone
+        </p>
 
         <form
           className="mx-auto mt-4 flex max-w-2xl flex-col gap-2.5 sm:flex-row"

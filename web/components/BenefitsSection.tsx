@@ -4,7 +4,8 @@ const BENEFITS = [
   {
     icon: Scale,
     title: "Preços Transparentes",
-    description: "Comparamos as maiores lojas em tempo real.",
+    description:
+      "Comparamos 5 lojas portuguesas lado a lado, com preços atualizados diariamente.",
   },
   {
     icon: BadgeCheck,
