@@ -485,13 +485,13 @@ export function MarketplaceShell(props: MarketplaceShellProps) {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-medium uppercase tracking-wider text-emerald-600">
-              Marketplace
+              Comparador
             </p>
             <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Compara recondicionados
             </h2>
             <p className="mt-2 text-sm text-slate-600">
-              Selecção curada de modelos recentes — pesquisa ou filtra para ver o catálogo completo.
+              Seleção curada de modelos recentes — pesquisa ou filtra para ver o catálogo completo.
             </p>
           </div>
         </div>

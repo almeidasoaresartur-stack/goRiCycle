@@ -23,7 +23,7 @@ export function FaqAccordion({ items, defaultOpenId }: FaqAccordionProps) {
         const isOpen = openId === item.id;
 
         return (
-          <div key={item.id} className="group">
+          <div key={item.id} id={item.id} className="group scroll-mt-24">
             <button
               type="button"
               id={`faq-trigger-${item.id}`}

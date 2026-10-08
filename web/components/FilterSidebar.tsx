@@ -252,7 +252,7 @@ export function FilterSidebar({
               );
             })}
             {options.stores.length === 0 && (
-              <p className="text-xs text-slate-500">Nenhuma loja disponível nesta selecção.</p>
+              <p className="text-xs text-slate-500">Nenhuma loja disponível nesta seleção.</p>
             )}
           </div>
         </FilterGroup>

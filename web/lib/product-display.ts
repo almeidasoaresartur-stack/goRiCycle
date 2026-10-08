@@ -110,6 +110,52 @@ function formatIpadDisplayName(name: string): string | null {
   return result;
 }
 
+/** Rótulo quando a loja não indicou uma capacidade de armazenamento utilizável. */
+export const UNKNOWN_STORAGE_LABEL = "Capacidade não indicada";
+
+const SAMSUNG_DISPLAY_WORDS: Record<string, string> = {
+  samsung: "Samsung",
+  galaxy: "Galaxy",
+  note: "Note",
+  ultra: "Ultra",
+  lite: "Lite",
+  tab: "Tab",
+  fe: "FE",
+  flip: "Flip",
+  fold: "Fold",
+};
+
+/**
+ * Capitaliza tokens Samsung sem acrescentar nem partir palavras.
+ * A slug (já em minúsculas) fica igual para os nomes gravados no catálogo.
+ */
+export function applySamsungDisplayCase(name: string): string {
+  if (!/samsung|galaxy/i.test(name)) return name;
+
+  let result = name.replace(
+    /\b([sazm])(\d+)([a-z])?\b/gi,
+    (_match, series: string, digits: string, suffix?: string) => {
+      const tail = !suffix
+        ? ""
+        : suffix.toLowerCase() === "e" || suffix.toLowerCase() === "s"
+          ? suffix.toLowerCase()
+          : suffix.toUpperCase();
+      return `${series.toUpperCase()}${digits}${tail}`;
+    },
+  );
+
+  result = result.replace(/\b(fold|flip)(\d+)\b/gi, (_match, word: string, digits: string) => {
+    return `${SAMSUNG_DISPLAY_WORDS[word.toLowerCase()] ?? word}${digits}`;
+  });
+
+  result = result.replace(
+    /\b(samsung|galaxy|note|ultra|lite|tab|fe|flip|fold)\b/gi,
+    (word) => SAMSUNG_DISPLAY_WORDS[word.toLowerCase()] ?? word,
+  );
+
+  return result.replace(/\bz\b/gi, "Z");
+}
+
 function formatMacbookDisplayName(name: string): string | null {
   const match = name.match(
     /macbook(?:\s+(?:pro|air))?(?:\s*[\d.]+\s*(?:["″'']|pol)?)?(?:\s*\(\d{4}\))?(?:\s*\d{4})?(?:\s*m[1-4]\b)?/i,
@@ -179,28 +225,34 @@ export function cleanBaseModel(raw: string): string {
 
   const galaxyFold = name.match(/(?:samsung\s+)?galaxy\s*z\s*fold\s*\d+/i);
   if (galaxyFold) {
-    return galaxyFold[0]
-      .replace(/^samsung\s+/i, "")
-      .replace(/\s{2,}/g, " ")
-      .replace(/^galaxy/i, "Galaxy")
-      .trim();
+    return applySamsungDisplayCase(
+      galaxyFold[0]
+        .replace(/^samsung\s+/i, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/^galaxy/i, "Galaxy")
+        .trim(),
+    );
   }
 
   const galaxyTab = name.match(/(?:samsung\s+)?galaxy\s*tab\s*[a-z0-9\s]*/i);
   if (galaxyTab) {
-    return galaxyTab[0]
-      .replace(/^samsung\s+/i, "Samsung ")
-      .replace(/\s{2,}/g, " ")
-      .trim();
+    return applySamsungDisplayCase(
+      galaxyTab[0]
+        .replace(/^samsung\s+/i, "Samsung ")
+        .replace(/\s{2,}/g, " ")
+        .trim(),
+    );
   }
 
   const galaxy = name.match(/(?:samsung\s+)?galaxy\s*s\d+(?:\s*ultra|\s*plus|\s*fe|\+)?/i);
   if (galaxy) {
-    return galaxy[0]
-      .replace(/^samsung\s+/i, "")
-      .replace(/\s{2,}/g, " ")
-      .replace(/^galaxy/i, "Galaxy")
-      .trim();
+    return applySamsungDisplayCase(
+      galaxy[0]
+        .replace(/^samsung\s+/i, "")
+        .replace(/\s{2,}/g, " ")
+        .replace(/^galaxy/i, "Galaxy")
+        .trim(),
+    );
   }
 
   const pixel = name.match(/(?:google\s+)?pixel\s*\d+(?:\s*pro\s*fold|\s*pro|\s*a|\s*fold)?/i);
@@ -228,7 +280,9 @@ export function cleanBaseModel(raw: string): string {
     return lat ? lat[0].replace(/\s{2,}/g, " ").trim() : "Latitude";
   }
 
-  return name.replace(/\s{2,}/g, " ").trim() || "Modelo desconhecido";
+  const cleaned = name.replace(/\s{2,}/g, " ").trim();
+  if (!cleaned) return "Modelo desconhecido";
+  return applySamsungDisplayCase(cleaned);
 }
 
 /** Alt text padrão para imagens de produto (modelo + armazenamento + loja). */
@@ -239,7 +293,7 @@ export function productImageAlt(
 ): string {
   const modelPart = cleanBaseModel(model);
   const storageLabel = formatStorageLabel(storage);
-  if (storageLabel && storageLabel !== "NFPM*") {
+  if (storageLabel && storageLabel !== UNKNOWN_STORAGE_LABEL) {
     return `${modelPart} ${storageLabel} recondicionado - ${store}`;
   }
   return `${modelPart} recondicionado - ${store}`;
@@ -247,7 +301,7 @@ export function productImageAlt(
 
 export function formatStorageLabel(storage: string | null | undefined): string {
   const gb = parseStorageGb(storage);
-  if (gb == null || gb < MIN_SLUG_STORAGE_GB) return "NFPM*";
+  if (gb == null || gb < MIN_SLUG_STORAGE_GB) return UNKNOWN_STORAGE_LABEL;
   return `${gb}GB`;
 }
 

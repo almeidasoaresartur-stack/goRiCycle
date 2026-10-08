@@ -12,7 +12,7 @@ export function BlogMoneyCtas({ ctas }: BlogMoneyCtasProps) {
       <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-emerald-100 bg-emerald-50/60 p-6 text-center sm:p-8">
         <p className="text-sm font-medium text-emerald-800">Pronto para comparar preços?</p>
         <p className="mt-2 text-sm text-emerald-900/80">
-          Compara em tempo real nas principais lojas portuguesas de recondicionados.
+          Compara preços nas principais lojas portuguesas de recondicionados, atualizados diariamente.
         </p>
         <Link
           href="/"

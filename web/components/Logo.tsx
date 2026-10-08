@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const SLOGAN =
-  "#descobre em primeira mão a melhor opção em segunda mão.";
+  "Descobre em primeira mão a melhor opção em segunda mão.";
 
 type LogoProps = {
   variant?: "full" | "icon";
