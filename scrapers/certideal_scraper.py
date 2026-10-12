@@ -607,6 +607,53 @@ def scrape_category_listing(
     return all_cards
 
 
+def _canonical_ipad_listing_fallback(
+    page: Page,
+    *,
+    family_model: str,
+    family_url: str,
+    status: int | None,
+    visited_hubs: set[str] | None,
+) -> list[dict[str, Any]]:
+    """Lê a listagem geral de iPads quando uma família de tablet não abre.
+
+    Só corre se essa listagem ainda não foi lida nesta execução. Se o URL que
+    falhou já é o canónico, não se volta a abri-lo.
+    """
+    hub_key = _url_slug(CANONICAL_IPAD_LISTING_URL)
+    status_label = status or "desconhecido"
+    if visited_hubs is not None and hub_key in visited_hubs:
+        logger.info(
+            "%s: HTTP %s em %s — listagem geral %s já lida nesta execução.",
+            family_model,
+            status_label,
+            family_url,
+            CANONICAL_IPAD_LISTING_URL,
+        )
+        return []
+    if _url_slug(family_url) == hub_key:
+        logger.warning(
+            "Família '%s' indisponível (%s) — HTTP %s, a saltar.",
+            family_model,
+            family_url,
+            status_label,
+        )
+        return []
+    if visited_hubs is not None:
+        visited_hubs.add(hub_key)
+    logger.warning(
+        "Família '%s' indisponível (%s) — HTTP %s; a ler a listagem geral %s.",
+        family_model,
+        family_url,
+        status_label,
+        CANONICAL_IPAD_LISTING_URL,
+    )
+    cards = scrape_category_listing(page, CANONICAL_IPAD_LISTING_URL, page_ready=False)
+    for card in cards:
+        card.setdefault("source_page", CANONICAL_IPAD_LISTING_URL)
+    return cards
+
+
 def scrape_family_listing(
     page: Page,
     family_url: str,
@@ -618,6 +665,17 @@ def scrape_family_listing(
     """Scrape uma família (ex. iPhone 16). Se não houver SKUs com preço, tenta sub-páginas hub."""
     status = open_listing_url(page, family_url)
     if status != 200:
+        if category in TABLET_HUB_CATEGORIES:
+            # Famílias como /ipad-11-wifi-580 não devolvem 200: o goto segue
+            # /ipad → http://…/tablettes-reconditionnees-118 e pode pendurar.
+            # Lê-se a listagem HTTPS canónica, uma vez por execução.
+            return _canonical_ipad_listing_fallback(
+                page,
+                family_model=family_model,
+                family_url=family_url,
+                status=status,
+                visited_hubs=visited_hubs,
+            )
         logger.warning(
             "Família '%s' indisponível (%s) — HTTP %s, a saltar.",
             family_model,

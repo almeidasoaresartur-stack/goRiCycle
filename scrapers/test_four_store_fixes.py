@@ -278,6 +278,61 @@ class CertidealIpadTests(unittest.TestCase):
         self.assertEqual(calls[1], (CANONICAL_IPAD_LISTING_URL, False))
         self.assertEqual(len(calls), 2)
 
+    def test_non_200_tablet_family_reads_canonical_listing_once(self) -> None:
+        """Um goto que não devolve 200 (redirect HTTP pendurado) não salta a listagem."""
+        calls: list[tuple[str, bool]] = []
+
+        def open_failed(page, url: str) -> None:
+            page.url = url
+            return None
+
+        def scrape(page, url: str, page_ready: bool = False) -> list[dict]:
+            del page
+            calls.append((url, page_ready))
+            return [{"model": "iPad Mini 6", "url": MINI_URL}]
+
+        visited: set[str] = set()
+        page = type("Page", (), {"url": ""})()
+        with (
+            patch("certideal_scraper.open_listing_url", open_failed),
+            patch("certideal_scraper.scrape_category_listing", scrape),
+        ):
+            first = scrape_family_listing(
+                page,
+                "https://www.certideal.pt/ipad-11-wifi-580",
+                "iPad 11",
+                "ipads",
+                visited_hubs=visited,
+            )
+            second = scrape_family_listing(
+                page,
+                "https://www.certideal.pt/ipad-10-wifi-5g-369",
+                "iPad 10",
+                "tablets",
+                visited_hubs=visited,
+            )
+            iphone = scrape_family_listing(
+                page,
+                "https://www.certideal.pt/iphone-11-recondicionado-213",
+                "iPhone 11",
+                "iphones",
+                visited_hubs=visited,
+            )
+            canonical = scrape_family_listing(
+                page,
+                CANONICAL_IPAD_LISTING_URL,
+                "iPad (listagem geral)",
+                "ipads",
+                visited_hubs=set(),
+            )
+
+        self.assertEqual(first, [{"model": "iPad Mini 6", "url": MINI_URL, "source_page": CANONICAL_IPAD_LISTING_URL}])
+        self.assertEqual(calls, [(CANONICAL_IPAD_LISTING_URL, False)])
+        self.assertIn("ipad-recondicionados-118", visited)
+        self.assertEqual(second, [])
+        self.assertEqual(iphone, [])
+        self.assertEqual(canonical, [])
+
     def test_iphone_redirect_to_hub_is_still_skipped(self) -> None:
         def open_redirect(page, url: str) -> int:
             del url
