@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+# Listagem geral de iPads. /ipad faz 301 para http://…/tablettes-reconditionnees-118;
+# a porta 80 pode pendurar, por isso o scraper usa sempre este URL HTTPS.
+CANONICAL_IPAD_LISTING_URL = "https://www.certideal.pt/ipad-recondicionados-118"
+
 CERTIDEAL_URLS: dict[str, list[dict[str, str]]] = {
     "iphones": [
         {"model": "iPhone 11 Pro Max", "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado-248"},
@@ -47,7 +51,12 @@ CERTIDEAL_URLS: dict[str, list[dict[str, str]]] = {
     # (ipad-11-wifi-580, ipad-10-wifi-5g-369, ipad-9-wifi-5g-316),
     # páginas 200 sem grelha (ipad-air-348, ipad-349, ipad-pro-129-2021-wifi-339)
     # e ipad-air-6-wifi-649 (loop de redirect).
+    # 2026-10-12: a listagem geral de iPads (destino dos redirects acima) passa a ser
+    # lida directamente — é a única página que lista todos os SKUs de iPad com preço.
+    # O redirect /ipad → http://…/tablettes-reconditionnees-118 desce para HTTP e pode
+    # pendurar; por isso usa-se o URL HTTPS canónico da listagem.
     "ipads": [
+        {"model": "iPad (listagem geral)", "url": CANONICAL_IPAD_LISTING_URL},
         {"model": "iPad Mini", "url": "https://www.certideal.pt/ipad-mini-350"},
         {"model": "iPad Mini 6 WiFi", "url": "https://www.certideal.pt/ipad-mini-6-wifi-365"},
         {"model": "iPad Pro", "url": "https://www.certideal.pt/ipad-pro-347"},
