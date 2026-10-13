@@ -7,12 +7,12 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-12T15:39:31.680665+00:00",
+  "scraped_at": "2026-10-13T11:21:00.686374+00:00",
   "total_products": 31,
   "products": [
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1792-iphone-air_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -33,7 +33,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1791-iphone-17-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -41,7 +41,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 1219.0,
+      "price": 1234.0,
       "original_price": 1.0,
       "currency": "EUR",
       "warranty_months": 36,
@@ -54,7 +54,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1790-iphone-17-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -75,7 +75,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1787-iphone-17_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -83,7 +83,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 809.0,
+      "price": 849.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -96,7 +96,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1752-iphone-16-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -104,7 +104,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 694.0,
+      "price": 673.18,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -117,7 +117,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1719-iphone-16e_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -138,7 +138,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1666-iphone-16-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -146,7 +146,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 879.0,
+      "price": 920.96,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -159,7 +159,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1636-iphone-16_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -180,7 +180,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1618-iphone-16-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -201,7 +201,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1356-iphone-15-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -222,7 +222,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1355-iphone-15-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -243,7 +243,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1331-iphone-15-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -264,7 +264,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1330-iphone-15_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -285,7 +285,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1263-iphone-se-2022_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -306,7 +306,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1153-iphone-14-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -327,7 +327,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1152-iphone-14-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -348,7 +348,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1005-iphone-13-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -369,7 +369,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1137-iphone-14-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -390,7 +390,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1117-iphone-14_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -411,7 +411,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1094-iphone-13-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -432,7 +432,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1077-iphone-13-mini_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -453,7 +453,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1022-iphone-13_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -474,7 +474,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_776-iphone-12-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -495,7 +495,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_775-iphone-12-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -516,7 +516,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_774-iphone-12_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -537,7 +537,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_773-iphone-12-mini_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -558,7 +558,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_772-iphone-11-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -579,7 +579,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1654-ipad-pro-129-2022-6a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -600,7 +600,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1424-ipad-pro-11-2021-3a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -621,7 +621,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1408-ipad-air-2022-5a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -642,7 +642,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-10-11T10:04:20.135022+00:00",
+      "scraped_at": "2026-10-13T11:21:00.686374+00:00",
       "product_id": "iservices_1407-ipad-102-2021-9a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -662,6 +662,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-12T16:39:45.504272+00:00",
-  "merged_at": "2026-10-12T16:39:45.752590+00:00"
+  "validated_at": "2026-10-13T12:21:11.823035+00:00",
+  "merged_at": "2026-10-13T12:25:30.352101+00:00"
 }
