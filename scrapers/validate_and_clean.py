@@ -72,7 +72,24 @@ HEADERS = {
         "Chrome/120.0.0.0 Safari/537.36"
     ),
     "Accept-Language": "pt-PT,pt;q=0.9,en;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Upgrade-Insecure-Requests": "1",
 }
+
+# Respostas de bloqueio/limitação (Cloudflare, WAF, rate limit): não provam que a
+# oferta morreu. A 11/10/2026 a Swappie respondeu 403 a 86/86 pedidos vindos do
+# runner do GitHub Actions (na box os mesmos URLs dão 200) e a validação apagou
+# a loja inteira. Estes códigos passam a ser «inconclusivos»: a oferta mantém-se.
+INCONCLUSIVE_STATUS = frozenset({401, 403, 407, 429, 503})
+RETRY_STATUS = frozenset({429, 503})
+LIVE_RETRIES = 2
+# Se mais de metade das verificações live de uma loja falhar (removível ou
+# inconclusiva), não se remove nada por motivo live: é bloqueio, não catálogo.
+MASS_FAILURE_RATIO = 0.5
+MASS_FAILURE_MIN_CHECKS = 5
+# Depois de N inconclusivos seguidos deixa de verificar a loja (poupa tempo e pedidos).
+INCONCLUSIVE_STREAK_STOP = 10
+INCONCLUSIVE_PREFIX = "Inconclusivo"
 
 REQUEST_DELAY = 0.5
 REQUEST_TIMEOUT = 12
@@ -125,6 +142,15 @@ def verify_url_live(url: str, client: httpx.Client, *, source: str = "") -> tupl
     """
     try:
         response = client.get(url, timeout=REQUEST_TIMEOUT, follow_redirects=True)
+        for attempt in range(LIVE_RETRIES):
+            if response.status_code not in RETRY_STATUS:
+                break
+            retry_after = response.headers.get("Retry-After", "")
+            time.sleep(min(float(retry_after), 30.0) if retry_after.isdigit() else 3.0 * (attempt + 1))
+            response = client.get(url, timeout=REQUEST_TIMEOUT, follow_redirects=True)
+
+        if response.status_code in INCONCLUSIVE_STATUS or response.headers.get("cf-mitigated"):
+            return False, f"{INCONCLUSIVE_PREFIX}: HTTP {response.status_code} (bloqueio/limite)"
 
         if response.status_code == 404:
             return False, "404 Not Found"
@@ -150,9 +176,13 @@ def verify_url_live(url: str, client: httpx.Client, *, source: str = "") -> tupl
         return True, ""
 
     except httpx.TimeoutException:
-        return False, "Timeout"
+        return False, f"{INCONCLUSIVE_PREFIX}: Timeout"
     except httpx.RequestError as exc:
-        return False, f"Erro de rede: {exc}"
+        return False, f"{INCONCLUSIVE_PREFIX}: erro de rede ({type(exc).__name__})"
+
+
+def is_inconclusive(reason: str) -> bool:
+    return reason.startswith(INCONCLUSIVE_PREFIX)
 
 
 def validate_price(product: dict) -> tuple[bool, str]:
@@ -238,6 +268,14 @@ def validate_source(
     removed: list[dict] = []
     removed_items: list[dict] = []
     reasons: dict[str, int] = {}
+    inconclusive: dict[str, int] = {}
+    live_checked = 0
+    live_failed = 0
+    inconclusive_streak = 0
+    live_stopped = False
+    # Candidatos a remoção por motivo live: só se removem no fim, se não houver
+    # falha em massa.
+    live_removals: list[tuple[dict, str]] = []
 
     with httpx.Client(headers=HEADERS, follow_redirects=True) as client:
         for index, product in enumerate(products):
@@ -268,20 +306,59 @@ def validate_source(
                 log.debug("[REMOVE] %s — %s", model, reason)
                 continue
 
-            if check_live:
+            if check_live and not live_stopped:
                 if (index + 1) % 10 == 0:
                     log.info("  Verificando %s/%s...", index + 1, len(products))
                 live_ok, live_reason = verify_url_live(url, client, source=source_name)
-                if not live_ok:
-                    removed.append(product)
-                    reasons[live_reason] = reasons.get(live_reason, 0) + 1
-                    removed_items.append({"model": model, "url": url, "reason": live_reason})
-                    log.info("[REMOVE] %s — %s", model[:50], live_reason)
-                    time.sleep(REQUEST_DELAY)
-                    continue
+                live_checked += 1
                 time.sleep(REQUEST_DELAY)
+                if not live_ok:
+                    live_failed += 1
+                    if is_inconclusive(live_reason):
+                        inconclusive[live_reason] = inconclusive.get(live_reason, 0) + 1
+                        inconclusive_streak += 1
+                        log.info("[MANTER] %s — %s", model[:50], live_reason)
+                        if inconclusive_streak >= INCONCLUSIVE_STREAK_STOP:
+                            live_stopped = True
+                            log.warning(
+                                "[%s] %s verificações inconclusivas seguidas — verificação live "
+                                "suspensa para esta loja (provável bloqueio do IP).",
+                                source_name,
+                                inconclusive_streak,
+                            )
+                    else:
+                        inconclusive_streak = 0
+                        live_removals.append((product, live_reason))
+                    kept.append(product)
+                    continue
+                inconclusive_streak = 0
 
             kept.append(product)
+
+    mass_failure = (
+        live_checked >= MASS_FAILURE_MIN_CHECKS
+        and live_failed / live_checked > MASS_FAILURE_RATIO
+    )
+    live_aborted = bool(live_removals) and (mass_failure or live_stopped)
+    if live_aborted:
+        log.warning(
+            "[%s] Falha em massa na verificação live (%s/%s falharam%s) — "
+            "remoção de %s oferta(s) por motivo live ABORTADA.",
+            source_name,
+            live_failed,
+            live_checked,
+            ", verificação suspensa" if live_stopped else "",
+            len(live_removals),
+        )
+    else:
+        removal_ids = {id(product) for product, _ in live_removals}
+        kept = [product for product in kept if id(product) not in removal_ids]
+        for product, reason in live_removals:
+            model = product.get("model") or product.get("name") or "?"
+            removed.append(product)
+            reasons[reason] = reasons.get(reason, 0) + 1
+            removed_items.append({"model": model, "url": product.get("url", ""), "reason": reason})
+            log.info("[REMOVE] %s — %s", model[:50], reason)
 
     log.info("\n  Resultado %s:", source_name)
     log.info("  ✅ Mantidos:  %s", len(kept))
@@ -309,6 +386,11 @@ def validate_source(
         "removed": len(removed),
         "reasons": reasons,
         "removed_items": removed_items,
+        "live_checked": live_checked,
+        "live_failed": live_failed,
+        "inconclusive": inconclusive,
+        "live_check_stopped": live_stopped,
+        "live_removal_aborted": live_aborted,
     }
 
 

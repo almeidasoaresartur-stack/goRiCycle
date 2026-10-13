@@ -33,6 +33,7 @@ from common import (
     human_delay,
     log_discarded_listing,
     normalize_model_name,
+    normalize_product_url,
     page_indicates_out_of_stock,
     page_wait_ms,
     parse_price_eur,
@@ -42,6 +43,7 @@ from common import (
     text_indicates_out_of_stock,
     validate_listing_card,
 )
+from certideal_urls import CANONICAL_IPAD_LISTING_URL
 from config import CATEGORY_KEYS, CERTIDEAL_CONFIG, CERTIDEAL_URLS
 
 CFG = CERTIDEAL_CONFIG
@@ -134,7 +136,12 @@ def display_clean_model(model: str) -> str:
     if lower.startswith("iphone"):
         return "iPhone" + normalized[len("iphone") :]
     if lower.startswith("ipad"):
-        return "iPad" + normalized[len("ipad") :]
+        # Nomes completos de iPad trazem cor composta e conectividade
+        # («… 256 GB Cinzento Sideral - Wifi + 5G»): fica só o modelo.
+        ipad = re.sub(r"\s+-\s+(wi-?fi|cellular|4g|5g).*$", "", normalized, flags=re.IGNORECASE)
+        ipad = re.sub(r"\b(sideral|space)\b", "", ipad, flags=re.IGNORECASE)
+        ipad = re.sub(r"\s+", " ", ipad).strip()
+        return "iPad" + ipad[len("ipad") :]
     if lower.startswith("samsung"):
         return "Samsung" + normalized[len("samsung") :]
     return normalized
@@ -178,6 +185,35 @@ def parse_certideal_listing_text(text: str) -> dict[str, Any]:
         "color": color,
         "storage": storage,
     }
+
+
+_URL_STORAGE_RE = re.compile(r"-(\d{1,4})-(gb|tb)(?:-|$)", re.IGNORECASE)
+
+
+def storage_from_url(url: str) -> str | None:
+    """Capacidade a partir do slug do SKU (ex. …-256-gb-cinzento-…-7281 → 256GB)."""
+    match = _URL_STORAGE_RE.search(urlparse(url).path)
+    if not match:
+        return None
+    return extract_storage(f"{match.group(1)} {match.group(2)}")
+
+
+def _is_truncated(text: str) -> bool:
+    stripped = text.strip()
+    return stripped.endswith("...") or stripped.endswith("…")
+
+
+def _full_card_name(image_loc: Any) -> str | None:
+    try:
+        if not image_loc.count():
+            return None
+        for attr in ("title", "alt"):
+            value = (image_loc.get_attribute(attr) or "").strip()
+            if value and not _is_truncated(value):
+                return value
+    except Exception:
+        return None
+    return None
 
 
 def collect_listing_cards(
@@ -227,6 +263,23 @@ def collect_listing_cards(
 
             price = parsed.get("price")
             model = parsed.get("model")
+            # Só para iPad: nos iPhones o nome truncado já gera slugs publicados e
+            # expandi-lo mudaria slugs/canónicos existentes.
+            full_name = (
+                _full_card_name(image_loc)
+                if model and _is_truncated(model) and model.lower().startswith("ipad")
+                else None
+            )
+            if full_name:
+                # A grelha corta o título («iPad Pro 12.9 (2021) 5a...»); o nome completo,
+                # com GB e cor, vem no title/alt da imagem do cartão.
+                model = full_name
+                full_parsed = parse_certideal_listing_text(full_name)
+                for key in ("storage", "color", "grade"):
+                    if full_parsed.get(key):
+                        parsed[key] = full_parsed[key]
+            if not parsed.get("storage") and href and (model or "").lower().startswith("ipad"):
+                parsed["storage"] = storage_from_url(href)
             ok, reason = validate_listing_card(
                 model=model,
                 url=href,
@@ -445,11 +498,32 @@ _GENERIC_HUB_MARKERS = (
     "ipad-reconditionnes",
 )
 _GENERIC_HUB_SLUGS = frozenset({"ipad", "tablettes", "tablets"})
+# Categorias em que um redirect para o hub genérico deve ser seguido (ler a listagem).
+TABLET_HUB_CATEGORIES = frozenset({"ipads", "tablets"})
 
 
 def _url_slug(url: str) -> str:
     path = urlparse(url).path.strip("/")
     return path.split("/")[0].lower() if path else ""
+
+
+def tablet_listing_to_read(landed_url: str) -> str:
+    """Listagem HTTPS a ler depois de um redirect para o hub de iPads.
+
+    Famílias como /ipad-11-wifi-580 respondem 302 para /ipad, que faz 301 para
+    http://www.certideal.pt/tablettes-reconditionnees-118. Seguir esse HTTP pode
+    pendurar na porta 80; a mesma listagem está em CANONICAL_IPAD_LISTING_URL.
+    """
+    parsed = urlparse(landed_url)
+    slug = _url_slug(landed_url)
+    unsafe = (
+        parsed.scheme != "https"
+        or slug in _GENERIC_HUB_SLUGS
+        or "tablettes-reconditionnees" in slug
+    )
+    if unsafe:
+        return CANONICAL_IPAD_LISTING_URL
+    return landed_url
 
 
 def is_unrelated_catalog_hub(requested_url: str, final_url: str) -> bool:
@@ -533,16 +607,75 @@ def scrape_category_listing(
     return all_cards
 
 
+def _canonical_ipad_listing_fallback(
+    page: Page,
+    *,
+    family_model: str,
+    family_url: str,
+    status: int | None,
+    visited_hubs: set[str] | None,
+) -> list[dict[str, Any]]:
+    """Lê a listagem geral de iPads quando uma família de tablet não abre.
+
+    Só corre se essa listagem ainda não foi lida nesta execução. Se o URL que
+    falhou já é o canónico, não se volta a abri-lo.
+    """
+    hub_key = _url_slug(CANONICAL_IPAD_LISTING_URL)
+    status_label = status or "desconhecido"
+    if visited_hubs is not None and hub_key in visited_hubs:
+        logger.info(
+            "%s: HTTP %s em %s — listagem geral %s já lida nesta execução.",
+            family_model,
+            status_label,
+            family_url,
+            CANONICAL_IPAD_LISTING_URL,
+        )
+        return []
+    if _url_slug(family_url) == hub_key:
+        logger.warning(
+            "Família '%s' indisponível (%s) — HTTP %s, a saltar.",
+            family_model,
+            family_url,
+            status_label,
+        )
+        return []
+    if visited_hubs is not None:
+        visited_hubs.add(hub_key)
+    logger.warning(
+        "Família '%s' indisponível (%s) — HTTP %s; a ler a listagem geral %s.",
+        family_model,
+        family_url,
+        status_label,
+        CANONICAL_IPAD_LISTING_URL,
+    )
+    cards = scrape_category_listing(page, CANONICAL_IPAD_LISTING_URL, page_ready=False)
+    for card in cards:
+        card.setdefault("source_page", CANONICAL_IPAD_LISTING_URL)
+    return cards
+
+
 def scrape_family_listing(
     page: Page,
     family_url: str,
     family_model: str,
     category: str,
     warnings: list[str] | None = None,
+    visited_hubs: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Scrape uma família (ex. iPhone 16). Se não houver SKUs com preço, tenta sub-páginas hub."""
     status = open_listing_url(page, family_url)
     if status != 200:
+        if category in TABLET_HUB_CATEGORIES:
+            # Famílias como /ipad-11-wifi-580 não devolvem 200: o goto segue
+            # /ipad → http://…/tablettes-reconditionnees-118 e pode pendurar.
+            # Lê-se a listagem HTTPS canónica, uma vez por execução.
+            return _canonical_ipad_listing_fallback(
+                page,
+                family_model=family_model,
+                family_url=family_url,
+                status=status,
+                visited_hubs=visited_hubs,
+            )
         logger.warning(
             "Família '%s' indisponível (%s) — HTTP %s, a saltar.",
             family_model,
@@ -551,7 +684,48 @@ def scrape_family_listing(
         )
         return []
 
+    if (
+        visited_hubs is not None
+        and category in TABLET_HUB_CATEGORIES
+        and not is_unrelated_catalog_hub(family_url, page.url)
+        and _url_slug(family_url) == _url_slug(CANONICAL_IPAD_LISTING_URL)
+    ):
+        # A listagem canónica é a primeira família de iPads. Registar já evita
+        # que um redirect posterior (outro slug, por vezes HTTP) a releia.
+        visited_hubs.add(_url_slug(CANONICAL_IPAD_LISTING_URL))
+
     if is_unrelated_catalog_hub(family_url, page.url):
+        hub_url = page.url
+        if category in TABLET_HUB_CATEGORIES:
+            # Desde out/2026 a Certideal redirecciona famílias de iPad (ex. /ipad-11-wifi-580)
+            # para a listagem geral de iPads. Em vez de saltar, lê-se essa listagem
+            # (uma única vez por execução) e extraem-se os SKUs com preço.
+            read_url = tablet_listing_to_read(hub_url)
+            hub_key = _url_slug(read_url)
+            if visited_hubs is not None and hub_key in visited_hubs:
+                logger.info("%s: redirect para hub %s já lido nesta execução.", family_model, hub_url)
+                return []
+            if visited_hubs is not None:
+                visited_hubs.add(hub_key)
+            logger.info(
+                "%s: redirect para hub %s — a ler a listagem geral %s.",
+                family_model,
+                hub_url,
+                read_url,
+            )
+            same_https_page = (
+                urlparse(page.url).scheme == "https" and _url_slug(page.url) == hub_key
+            )
+            if same_https_page:
+                human_delay(CFG["delays"], "after_navigation")
+                page_wait_ms(CFG["delays"], "page_load")
+                dismiss_cookie_banner(page)
+                cards = scrape_category_listing(page, read_url, page_ready=True)
+            else:
+                cards = scrape_category_listing(page, read_url, page_ready=False)
+            for card in cards:
+                card.setdefault("source_page", read_url)
+            return cards
         message = (
             f"{family_model}: {family_url} redireccionou para hub genérico {page.url} — ignorada"
         )
@@ -617,6 +791,11 @@ def certideal_variant_key(model: str | None, storage: str | None) -> str:
     return f"{model_norm}|{storage_norm}"
 
 
+def is_known_duplicate(result: list[dict[str, Any]] | None, card: dict[str, Any]) -> bool:
+    """[] com _duplicate não é falta de stock — o registo original tem de ficar."""
+    return not result and bool(card.get("_duplicate"))
+
+
 def extract_product(
     card: dict[str, Any],
     category: str,
@@ -659,6 +838,14 @@ def extract_product(
             return []
 
         if variant_registry is not None:
+            record_url = normalize_product_url(record.get("url"))
+            if category in TABLET_HUB_CATEGORIES and record_url and any(
+                normalize_product_url(r.get("url")) == record_url for r in variant_registry.values()
+            ):
+                # Mesmo SKU visto noutra página (ex. listagem geral + família), possivelmente
+                # com título truncado: fica o primeiro registo.
+                card["_duplicate"] = True
+                return []
             key = certideal_variant_key(record.get("model"), record.get("storage"))
             price_val = record.get("price")
             if not isinstance(price_val, (int, float)):
@@ -668,6 +855,12 @@ def extract_product(
             if existing is not None:
                 existing_price = existing.get("price")
                 if isinstance(existing_price, (int, float)) and price_val >= existing_price:
+                    # Duplicado (mesmo modelo+GB já registado ao mesmo preço ou mais barato).
+                    # NÃO é sinal de falta de stock: não pode disparar remove_products_by_url,
+                    # senão o registo original sai de `products` e perde-se quando o registo
+                    # é reconstruído (purge da categoria seguinte). Foi assim que os iPads
+                    # desapareceram no full de 11/10/2026.
+                    card["_duplicate"] = True
                     return []
                 old_id = existing.get("product_id")
                 if old_id and removed_product_ids is not None:
@@ -724,6 +917,7 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
     variant_registry = init_variant_registry(products)
     removed_product_ids: set[str] = set()
     warnings: list[str] = []
+    visited_hubs: set[str] = set()
 
     with sync_playwright() as playwright:
         browser = launch_chromium(playwright, headless=CFG["headless"])
@@ -760,7 +954,12 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                 )
 
                 cards = scrape_family_listing(
-                    page, family_url, family_model, category, warnings=warnings
+                    page,
+                    family_url,
+                    family_model,
+                    category,
+                    warnings=warnings,
+                    visited_hubs=visited_hubs,
                 )
                 if not cards:
                     continue
@@ -785,6 +984,8 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
                         ]
                         known_ids -= removed_product_ids
                         removed_product_ids.clear()
+                    if is_known_duplicate(result, card):
+                        continue
                     if not result:
                         products, n_removed = remove_products_by_url(products, card.get("url"))
                         if n_removed:

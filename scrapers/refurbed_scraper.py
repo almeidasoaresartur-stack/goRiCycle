@@ -879,6 +879,104 @@ def cheapest_per_storage(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [best[key] for key in order]
 
 
+_LD_JSON_RE = re.compile(
+    r"<script[^>]*application/ld\+json[^>]*>(.*?)</script>", re.IGNORECASE | re.DOTALL
+)
+
+
+def parse_product_group_variants(html: str) -> list[dict[str, Any]]:
+    """Variantes do JSON-LD `ProductGroup` (páginas de família /p/<modelo>/).
+
+    A Refurbed serve no HTML estático (sem JS) um `ProductGroup` com `hasVariant`:
+    cada variante traz `size` («64 GB»), `color` e `offers` (preço, URL da variante
+    /p/<modelo>/<id>/ e disponibilidade). Só se devolvem variantes em stock.
+    """
+    variants: list[dict[str, Any]] = []
+    for match in _LD_JSON_RE.finditer(html or ""):
+        try:
+            data = json.loads(match.group(1))
+        except (ValueError, TypeError):
+            continue
+        nodes = data if isinstance(data, list) else [data]
+        for node in nodes:
+            if not isinstance(node, dict) or node.get("@type") != "ProductGroup":
+                continue
+            for variant in node.get("hasVariant") or []:
+                if not isinstance(variant, dict):
+                    continue
+                offer = variant.get("offers") or {}
+                if isinstance(offer, list):
+                    offer = offer[0] if offer else {}
+                availability = str(offer.get("availability") or "")
+                if availability and "InStock" not in availability:
+                    continue
+                try:
+                    price = float(offer.get("price"))
+                except (TypeError, ValueError):
+                    continue
+                storage = extract_storage(str(variant.get("size") or "")) or extract_storage(
+                    str(variant.get("name") or "")
+                )
+                url = str(offer.get("url") or "").split("?", 1)[0]
+                if url and not url.endswith("/"):
+                    url += "/"
+                variants.append(
+                    {
+                        "storage": storage,
+                        "color": variant.get("color"),
+                        "price": price,
+                        "url": url or None,
+                    }
+                )
+    return variants
+
+
+def records_from_product_group(
+    *,
+    html: str,
+    category: str,
+    model: str,
+    image_url: str | None,
+    source_page: str,
+    scraped_at: str,
+    original_price: float | None,
+    seller_rating: float | None,
+) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for variant in parse_product_group_variants(html):
+        if not variant.get("storage") or not variant.get("url"):
+            continue
+        price = accept_refurbed_price(variant["price"], model)
+        if price is None:
+            continue
+        record = normalize_record(
+            category=category,
+            url=variant["url"],
+            model=model,
+            price=price,
+            image_url=image_url,
+            source_page=source_page,
+            scraped_at=scraped_at,
+            storage=variant["storage"],
+            color=variant.get("color"),
+            original_price=original_price,
+            seller_rating=seller_rating,
+        )
+        if record:
+            records.append(record)
+    return cheapest_per_storage(records)
+
+
+def keep_generic_and_append_variants(
+    records: list[dict[str, Any]],
+    group_records: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Mantém o registo sem GB (slug já publicado) e acrescenta variantes com GB."""
+    if not group_records:
+        return records
+    return records + group_records
+
+
 def _variants_from_detail_page(
     page: Page,
     card: dict[str, Any],
@@ -971,6 +1069,36 @@ def _variants_from_detail_page(
             )
         )
 
+    if records and any(not r.get("storage") for r in records):
+        # Página de família sem variante seleccionada: o cabeçalho/carrossel não dá GB.
+        # As variantes (GB, preço, URL) estão no JSON-LD ProductGroup do HTML.
+        try:
+            group_records = records_from_product_group(
+                html=page.content(),
+                category=category,
+                model=model,
+                image_url=image_url,
+                source_page=source_page,
+                scraped_at=scraped_at,
+                original_price=original_price or card.get("original_price"),
+                seller_rating=seller_rating,
+            )
+        except Exception as exc:
+            logger.warning("  %s: JSON-LD ProductGroup ilegível: %s", model, exc)
+            group_records = []
+        if group_records:
+            logger.info(
+                "  %s: +%s variante(s) com GB via JSON-LD ProductGroup",
+                model,
+                len(group_records),
+            )
+            # O registo genérico (sem GB) mantém-se: o slug /produto/<modelo>-recondicionado
+            # já publicado continua a existir e, tendo agora irmãos com GB, passa a noindex
+            # com canonical para a variante com GB (política fase 1 em web/lib/product-pages.ts).
+            records = keep_generic_and_append_variants(records, group_records)
+        else:
+            logger.warning("  %s: família sem GB e sem variantes no JSON-LD", model)
+
     if records:
         kept = cheapest_per_storage(records)
         logger.info(
@@ -994,6 +1122,23 @@ def _variants_from_detail_page(
     except Exception:
         pass
 
+    if not extract_storage(subtitle):
+        try:
+            group_records = records_from_product_group(
+                html=page.content(),
+                category=category,
+                model=model,
+                image_url=image_url,
+                source_page=source_page,
+                scraped_at=scraped_at,
+                original_price=original_price or card.get("original_price"),
+                seller_rating=seller_rating,
+            )
+        except Exception:
+            group_records = []
+    else:
+        group_records = []
+
     record = normalize_record(
         category=category,
         url=_variant_url_from_page(page, product_url),
@@ -1006,7 +1151,8 @@ def _variants_from_detail_page(
         original_price=original_price or card.get("original_price"),
         seller_rating=seller_rating,
     )
-    return [record] if record else []
+    # Genérico mantido (slug existente) + variantes com GB do JSON-LD.
+    return keep_generic_and_append_variants([record] if record else [], group_records)
 
 
 def extract_product(

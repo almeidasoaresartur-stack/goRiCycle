@@ -214,6 +214,57 @@ def extract_variant_info(variant: dict, product_title: str) -> dict:
     }
 
 
+MAX_FETCH_ATTEMPTS = 5
+RETRY_STATUS = {429, 500, 502, 503, 504}
+
+
+class CallphoneFetchError(RuntimeError):
+    """products.json inacessível depois de todas as tentativas."""
+
+
+def _retry_delay(response: httpx.Response | None, attempt: int) -> float:
+    if response is not None:
+        retry_after = response.headers.get("Retry-After", "").strip()
+        if retry_after.isdigit():
+            return min(float(retry_after), 120.0)
+    return min(5.0 * (2 ** (attempt - 1)), 60.0)  # 5, 10, 20, 40 s
+
+
+def fetch_products_page(client: httpx.Client, url: str) -> dict:
+    """GET com retry/backoff para 429/5xx e erros de rede.
+
+    A 11/10/2026 o runner do GitHub Actions recebeu «429 Too Many Requests» na
+    página 1; o código anterior registava o erro, fazia `break` e gravava 0 ofertas
+    com errors=0 — o job ficava verde.
+    """
+    last_error: str = ""
+    for attempt in range(1, MAX_FETCH_ATTEMPTS + 1):
+        response: httpx.Response | None = None
+        try:
+            response = client.get(url, timeout=30)
+            if response.status_code in RETRY_STATUS:
+                last_error = f"HTTP {response.status_code}"
+            else:
+                response.raise_for_status()
+                return response.json()
+        except (httpx.TransportError, ValueError) as exc:
+            last_error = f"{type(exc).__name__}: {exc}"
+        except httpx.HTTPStatusError as exc:
+            raise CallphoneFetchError(f"{url}: HTTP {exc.response.status_code}") from exc
+        if attempt < MAX_FETCH_ATTEMPTS:
+            delay = _retry_delay(response, attempt)
+            logger.warning(
+                "Callphone %s (tentativa %s/%s): %s — nova tentativa em %.0fs",
+                url,
+                attempt,
+                MAX_FETCH_ATTEMPTS,
+                last_error,
+                delay,
+            )
+            time.sleep(delay)
+    raise CallphoneFetchError(f"{url}: {last_error} após {MAX_FETCH_ATTEMPTS} tentativas")
+
+
 def fetch_all_products(client: httpx.Client) -> list[dict]:
     all_products: list[dict] = []
     page = 1
@@ -222,13 +273,9 @@ def fetch_all_products(client: httpx.Client) -> list[dict]:
         url = f"{PRODUCTS_JSON}?limit={PAGE_LIMIT}&page={page}"
         logger.info("A carregar página %s: %s", page, url)
 
-        try:
-            response = client.get(url, timeout=30)
-            response.raise_for_status()
-            data = response.json()
-        except Exception as exc:
-            logger.error("Erro ao carregar página %s: %s", page, exc)
-            break
+        # Falha persistente propaga-se: run_all regista fatal_error e o JSON anterior
+        # não é sobrescrito com 0 ofertas.
+        data = fetch_products_page(client, url)
 
         products = data.get("products", [])
         if not products:
@@ -242,7 +289,7 @@ def fetch_all_products(client: httpx.Client) -> list[dict]:
             break
 
         page += 1
-        time.sleep(0.5)
+        time.sleep(1.0)
 
     return all_products
 
@@ -413,6 +460,10 @@ def run_scraper(mode: str = "full", categories: list[str] | None = None) -> dict
         shopify_products = fetch_all_products(client)
 
         logger.info("Total produtos Shopify: %s", len(shopify_products))
+        if not shopify_products:
+            raise CallphoneFetchError(
+                f"{PRODUCTS_JSON} devolveu 0 produtos — JSON anterior mantido"
+            )
 
         for shopify_product in shopify_products:
             records = process_product(shopify_product, scraped_at, client, html_cache)
