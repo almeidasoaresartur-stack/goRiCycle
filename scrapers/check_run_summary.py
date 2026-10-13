@@ -5,12 +5,17 @@ O workflow «Scrape diário» chama este script no passo «Verificar sumário»,
 que fica antes de «Commit dados actualizados». Exit 1 impede o commit, por
 isso um catálogo vazio ou em queda não chega ao site.
 
-Falhas:
-- loja crítica com fatal_error (qualquer modo) ou total 0 no full
+Falhas (bloqueiam o commit):
+- loja crítica com fatal_error cujo JSON anterior NÃO ficou intacto
+- loja crítica com total 0 no full (sem fatal_error)
 - Certideal com 0 iPads no full
 - loja que tinha ofertas e ficou com 0 (qualquer modo)
 - queda de ofertas superior a 80% no full
 - all_products.json em falta ou com menos de 400 produtos
+
+Alertas (publica as outras lojas; o job falha no fim, no passo «Falhar se houve alertas»):
+- loja crítica com fatal_error e JSON publicado preservado (ex.: Callphone 429)
+  — gravados em RUN_ALERTS_PATH, fora de data/ para nunca serem commitados
 
 Avisos (não falham o job):
 - total 0 no incremental
@@ -21,6 +26,7 @@ Avisos (não falham o job):
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -34,6 +40,14 @@ VALIDATION_REPORT_PATH = DATA_DIR / "validate_and_clean_report.json"
 CRITICAL_STORES = ("iservices", "refurbed", "swappie", "certideal", "callphone")
 DROP_LIMIT = 0.80
 MIN_CATALOG_PRODUCTS = 400
+
+
+def run_alerts_path() -> Path:
+    """Fora do repositório: o commit faz `git add data/` em caso de conflito."""
+    explicit = os.environ.get("RUN_ALERTS_PATH")
+    if explicit:
+        return Path(explicit)
+    return Path(os.environ.get("RUNNER_TEMP") or "/tmp") / "goricycle_run_alerts.txt"
 
 
 def product_count(payload: object) -> int:
@@ -50,8 +64,14 @@ def evaluate_run(
     after_counts: dict[str, int],
     validation_sources: dict | None = None,
     catalog_total: int | None,
+    alerts: list[str] | None = None,
 ) -> tuple[list[str], list[str]]:
-    """Devolve (falhas que abortam o job, linhas para o log)."""
+    """Devolve (falhas que abortam o job, linhas para o log).
+
+    `alerts`, se dado, recebe as falhas que não bloqueiam a publicação.
+    """
+    if alerts is None:
+        alerts = []
     lines: list[str] = []
     hard_fails: list[str] = []
     sources = summary.get("sources") or {}
@@ -76,8 +96,15 @@ def evaluate_run(
     for name in CRITICAL_STORES:
         stats = sources.get(name) or {}
         if stats.get("fatal_error"):
-            hard_fails.append(f"{name}: fatal_error")
             lines.append(f"::error::{name} fatal_error: {str(stats.get('fatal_error'))[:200]}")
+            before = before_counts.get(name)
+            after = after_counts.get(name, 0)
+            if before is None or after == before:
+                # O scraper não sobrescreveu o JSON: o publicado fica como estava.
+                # Alerta (falha no fim do job), sem impedir publicar as outras lojas.
+                alerts.append(f"{name}: fatal_error (JSON anterior preservado)")
+            else:
+                hard_fails.append(f"{name}: fatal_error")
         elif stats.get("total", 0) == 0:
             message = f"{name}: 0 produtos"
             if mode == "full":
@@ -190,8 +217,10 @@ def main() -> int:
         products = catalog.get("products", []) if isinstance(catalog, dict) else []
         catalog_total = catalog.get("total_products", len(products)) if isinstance(catalog, dict) else 0
 
+    alerts: list[str] = []
     hard_fails, lines = evaluate_run(
         summary,
+        alerts=alerts,
         before_counts=before_counts,
         after_counts=after_counts,
         validation_sources=validation_sources,
@@ -199,6 +228,14 @@ def main() -> int:
     )
     for line in lines:
         print(line)
+
+    alerts_path = run_alerts_path()
+    alerts_path.parent.mkdir(parents=True, exist_ok=True)
+    alerts_path.write_text("".join(f"{item}\n" for item in alerts), encoding="utf-8")
+    if alerts:
+        print(f"⚠️ Alertas (publica as outras lojas, falha no fim): {alerts_path}")
+        for item in alerts:
+            print(f"  - {item}")
     return 1 if hard_fails else 0
 
 
