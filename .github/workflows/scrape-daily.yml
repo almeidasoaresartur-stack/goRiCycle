@@ -39,7 +39,11 @@ permissions:
 
 env:
   # Lojas activas no site (Back Market excluído — Cloudflare)
-  SCRAPE_SOURCES: iservices,refurbed,swappie,certideal,callphone
+  # Callphone primeiro: o products.json devolveu 429 ao runner quando corria em último
+  # (~1 h de scrape depois); no início do job o IP ainda não foi limitado.
+  SCRAPE_SOURCES: callphone,iservices,refurbed,swappie,certideal
+  # Alertas de check_run_summary.py (fora de data/ para não serem commitados).
+  RUN_ALERTS_PATH: ${{ github.workspace }}/../run_alerts.txt
   PYTHONUNBUFFERED: "1"
 
 jobs:
@@ -136,6 +140,7 @@ jobs:
       - name: Verificar sumário
         # Falha aqui, antes de «Commit dados actualizados», para não publicar
         # uma loja a 0, uma queda > 80% no full, ou a Certideal sem iPads.
+        # fatal_error com JSON anterior preservado é só alerta: publica e falha no fim.
         run: python scrapers/check_run_summary.py
 
       - name: Sync relatórios para Next.js (Vercel)
@@ -216,3 +221,14 @@ jobs:
             git status
             exit 1
           fi
+
+      - name: Falhar se houve alertas
+        # Ex.: Callphone com 429 — as outras lojas já foram publicadas acima.
+        if: always()
+        run: |
+          if [ -s "$RUN_ALERTS_PATH" ]; then
+            echo "❌ Alertas deste run (dados das outras lojas publicados):"
+            while IFS= read -r line; do echo "::error::$line"; done < "$RUN_ALERTS_PATH"
+            exit 1
+          fi
+          echo "Sem alertas."

@@ -738,6 +738,7 @@ class SummaryGuardTests(unittest.TestCase):
         after: dict[str, int] | None = None,
         validation: dict | None = None,
         catalog: int | None = 800,
+        alerts: list[str] | None = None,
     ) -> tuple[list[str], list[str]]:
         summary = {
             "mode": mode,
@@ -757,7 +758,18 @@ class SummaryGuardTests(unittest.TestCase):
             after_counts=after_counts,
             validation_sources=validation,
             catalog_total=catalog,
+            alerts=alerts,
         )
+
+    def test_fatal_alert_with_blocking_failure_still_blocks(self) -> None:
+        sources = self._stores()
+        sources["callphone"] = {"total": 0, "errors": 1, "fatal_error": "429", "by_category": {}}
+        alerts: list[str] = []
+        fails, _ = self._check(
+            sources, before={"callphone": 0}, after={"callphone": 0, "swappie": 0}, alerts=alerts
+        )
+        self.assertIn("swappie: 86 → 0 ofertas", fails)
+        self.assertEqual(len(alerts), 1)
 
     def test_healthy_full_run_passes_and_prints_deltas(self) -> None:
         fails, lines = self._check(self._stores())
@@ -791,9 +803,49 @@ class SummaryGuardTests(unittest.TestCase):
             "fatal_error": "HTTP 429 após 5 tentativas",
             "by_category": {},
         }
-        fails, lines = self._check(sources)
-        self.assertTrue(any(item.startswith("callphone: fatal_error") for item in fails))
+        # JSON anterior preservado (antes == depois): alerta, não bloqueia o commit.
+        alerts: list[str] = []
+        fails, lines = self._check(sources, before={"callphone": 0}, after={"callphone": 0}, alerts=alerts)
+        self.assertEqual(fails, [])
+        self.assertEqual(alerts, ["callphone: fatal_error (JSON anterior preservado)"])
         self.assertTrue(any("::error::callphone fatal_error:" in line for line in lines))
+
+        # JSON alterado apesar do fatal_error: continua a bloquear.
+        alerts = []
+        fails, _lines = self._check(
+            sources, before={"callphone": 269}, after={"callphone": 100}, alerts=alerts
+        )
+        self.assertIn("callphone: fatal_error", fails)
+        self.assertEqual(alerts, [])
+
+        # Sumário a 0 com o ficheiro intacto e com ofertas: alerta, não bloqueia.
+        alerts = []
+        fails, _lines = self._check(
+            sources, before={"callphone": 1200}, after={"callphone": 1200}, alerts=alerts
+        )
+        self.assertEqual(fails, [])
+        self.assertEqual(alerts, ["callphone: fatal_error (JSON anterior preservado)"])
+
+        # Ficheiro apagado (tinha ofertas, ficou a 0): bloqueia e não publica vazio.
+        alerts = []
+        fails, _lines = self._check(
+            sources, before={"callphone": 1200}, after={"callphone": 0}, alerts=alerts
+        )
+        self.assertIn("callphone: fatal_error", fails)
+        self.assertIn("callphone: 1200 → 0 ofertas", fails)
+        self.assertEqual(alerts, [])
+
+        # Catálogo abaixo de 400 continua a bloquear, mesmo com o alerta.
+        alerts = []
+        fails, _lines = self._check(
+            sources,
+            before={"callphone": 0},
+            after={"callphone": 0},
+            catalog=369,
+            alerts=alerts,
+        )
+        self.assertTrue(any("abaixo de 400" in item for item in fails))
+        self.assertEqual(alerts, ["callphone: fatal_error (JSON anterior preservado)"])
 
         sources["callphone"] = {"total": 0, "errors": 0, "by_category": {}}
         fails, lines = self._check(sources, before={"callphone": None})
@@ -860,8 +912,22 @@ class WorkflowOrderTests(unittest.TestCase):
         workflow = (_ROOT / ".github" / "workflows" / "scrape-daily.yml").read_text(encoding="utf-8")
         verify_at = workflow.index("run: python scrapers/check_run_summary.py")
         commit_at = workflow.index("- name: Commit dados actualizados")
+        alert_at = workflow.index("- name: Falhar se houve alertas")
         self.assertLess(verify_at, commit_at)
+        self.assertLess(commit_at, alert_at)
+        # O passo de alertas corre depois do commit e não publica dados.
+        alert_step = workflow[alert_at:]
+        self.assertIn("if: always()", alert_step)
+        self.assertNotIn("git ", alert_step)
         self.assertNotIn("<<'PY'", workflow)
+        self.assertIn(
+            "SCRAPE_SOURCES: callphone,iservices,refurbed,swappie,certideal",
+            workflow,
+        )
+        self.assertIn(
+            "RUN_ALERTS_PATH: ${{ github.workspace }}/../run_alerts.txt",
+            workflow,
+        )
         self.assertIn("callphone", ( _SCRAPERS_DIR / "check_run_summary.py").read_text(encoding="utf-8"))
 
 
