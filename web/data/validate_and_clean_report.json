@@ -1,7 +1,7 @@
 {
-  "validated_at": "2026-10-13T12:20:42.075378+00:00",
+  "validated_at": "2026-10-14T13:06:46.643943+00:00",
   "dry_run": false,
-  "check_live": true,
+  "check_live": false,
   "sources": {
     "iservices": {
       "total": 31,
@@ -9,19 +9,19 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 31,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 127,
-      "kept": 127,
+      "total": 131,
+      "kept": 131,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 127,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
@@ -33,30 +33,20 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 10,
-      "live_failed": 10,
-      "inconclusive": {
-        "Inconclusivo: HTTP 403 (bloqueio/limite)": 10
-      },
-      "live_check_stopped": true,
+      "live_checked": 0,
+      "live_failed": 0,
+      "inconclusive": {},
+      "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "certideal": {
-      "total": 126,
-      "kept": 125,
-      "removed": 1,
-      "reasons": {
-        "404 Not Found": 1
-      },
-      "removed_items": [
-        {
-          "model": "iPhone 11 Pro Max meia‑noite",
-          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
-          "reason": "404 Not Found"
-        }
-      ],
-      "live_checked": 126,
-      "live_failed": 1,
+      "total": 127,
+      "kept": 127,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": [],
+      "live_checked": 0,
+      "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
@@ -75,8 +65,8 @@
     }
   },
   "summary": {
-    "total": 371,
-    "kept": 370,
-    "removed": 1
+    "total": 376,
+    "kept": 376,
+    "removed": 0
   }
 }
