@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-10-17T10:53:22.842293+00:00",
-  "mode": "incremental",
+  "run_at": "2026-10-18T08:05:36.049548+00:00",
+  "mode": "full",
   "categories": [
     "iphones",
     "ipads",
@@ -10,16 +10,19 @@
   ],
   "sources": {
     "callphone": {
-      "total": 0,
-      "by_category": {},
-      "errors": 1,
-      "fatal_error": "https://www.callphone.pt/products.json?limit=250&page=1: HTTP 429 após 5 tentativas"
+      "total": 1560,
+      "by_category": {
+        "iphones": 1559,
+        "ipads": 1
+      },
+      "errors": 0,
+      "unavailable": 1499
     },
     "iservices": {
-      "total": 1,
+      "total": 32,
       "by_category": {
-        "iphones": 0,
-        "ipads": 1,
+        "iphones": 27,
+        "ipads": 5,
         "tablets": 0,
         "samsung_phones": 0,
         "google_phones": 0
@@ -29,23 +32,23 @@
       "skipped_unavailable": 4
     },
     "refurbed": {
-      "total": 127,
+      "total": 117,
       "by_category": {
-        "iphones": 49,
-        "ipads": 37,
-        "tablets": 34,
-        "samsung_phones": 7
+        "iphones": 41,
+        "ipads": 39,
+        "tablets": 31,
+        "samsung_phones": 6
       },
       "errors": 0,
       "timeouts": 0,
       "removed_out_of_stock": 0,
-      "dedup_removed": 25
+      "dedup_removed": 21
     },
     "swappie": {
-      "total": 95,
+      "total": 89,
       "by_category": {
-        "iphones": 68,
-        "ipads": 27
+        "iphones": 63,
+        "ipads": 26
       },
       "errors": 0,
       "removed_out_of_stock": 0
@@ -61,7 +64,7 @@
       "removed_out_of_stock": 0
     }
   },
-  "grand_total": 385,
+  "grand_total": 1960,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,

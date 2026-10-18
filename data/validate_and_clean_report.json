@@ -1,7 +1,7 @@
 {
-  "validated_at": "2026-10-17T11:53:50.368851+00:00",
+  "validated_at": "2026-10-18T09:03:11.962374+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
       "total": 32,
@@ -9,64 +9,76 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 32,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 127,
-      "kept": 127,
+      "total": 117,
+      "kept": 117,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 117,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "swappie": {
-      "total": 95,
-      "kept": 95,
+      "total": 89,
+      "kept": 89,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
-      "inconclusive": {},
-      "live_check_stopped": false,
+      "live_checked": 10,
+      "live_failed": 10,
+      "inconclusive": {
+        "Inconclusivo: HTTP 403 (bloqueio/limite)": 10
+      },
+      "live_check_stopped": true,
       "live_removal_aborted": false
     },
     "certideal": {
       "total": 162,
-      "kept": 162,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
+      "kept": 161,
+      "removed": 1,
+      "reasons": {
+        "404 Not Found": 1
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        }
+      ],
+      "live_checked": 162,
+      "live_failed": 1,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "callphone": {
-      "total": 281,
-      "kept": 281,
+      "total": 1560,
+      "kept": 1560,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
-      "inconclusive": {},
+      "live_checked": 1560,
+      "live_failed": 6,
+      "inconclusive": {
+        "Inconclusivo: HTTP 429 (bloqueio/limite)": 6
+      },
       "live_check_stopped": false,
       "live_removal_aborted": false
     }
   },
   "summary": {
-    "total": 697,
-    "kept": 697,
-    "removed": 0
+    "total": 1960,
+    "kept": 1959,
+    "removed": 1
   }
 }
