@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-20T11:48:11.672898+00:00",
+  "scraped_at": "2026-10-21T12:00:27.477040+00:00",
   "total_products": 36,
   "products": [
     {
@@ -706,27 +706,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-10-20T11:48:11.672898+00:00",
-      "product_id": "iservices_1425-ipad-air-2020-4a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Air 2020 (4ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 340.77,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1425-ipad-air-2020-4a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-air-2020-4th-generation.jpg",
-      "source_page": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-10-20T11:48:11.672898+00:00",
       "product_id": "iservices_1415-ipad-102-2019-7a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -765,8 +744,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-10-21T12:00:27.477040+00:00",
+      "product_id": "iservices_1614-ipad-pro-11-2020-2a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Pro 11\" 2020 (2ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 459.19,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1614-ipad-pro-11-2020-2a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2020-2nd-generation.jpg",
+      "source_page": "https://iservices.pt/produto/1654-ipad-pro-129-2022-6a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-20T12:45:47.501725+00:00",
-  "merged_at": "2026-10-20T12:45:47.705591+00:00"
+  "validated_at": "2026-10-21T12:58:36.621390+00:00",
+  "merged_at": "2026-10-21T12:58:36.924604+00:00"
 }
