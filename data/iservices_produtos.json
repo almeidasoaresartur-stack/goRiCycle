@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-21T12:00:27.477040+00:00",
-  "total_products": 36,
+  "scraped_at": "2026-10-22T12:02:52.947690+00:00",
+  "total_products": 37,
   "products": [
     {
       "source": "iservices",
@@ -765,8 +765,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-10-22T12:02:52.947690+00:00",
+      "product_id": "iservices_1417-ipad-mini-2019-5a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Mini 2019 (5ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 329.77,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1417-ipad-mini-2019-5a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-mini-2019-5th-generation.jpg",
+      "source_page": "https://iservices.pt/produto/1424-ipad-pro-11-2021-3a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-21T12:58:36.621390+00:00",
-  "merged_at": "2026-10-21T12:58:36.924604+00:00"
+  "validated_at": "2026-10-22T13:01:45.379585+00:00",
+  "merged_at": "2026-10-22T13:01:45.660310+00:00"
 }
