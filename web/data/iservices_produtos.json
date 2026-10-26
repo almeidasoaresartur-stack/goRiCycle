@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-25T08:29:18.347267+00:00",
-  "total_products": 36,
+  "scraped_at": "2026-10-26T13:15:25.857223+00:00",
+  "total_products": 35,
   "products": [
     {
       "source": "iservices",
@@ -706,27 +706,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-10-25T08:29:18.347267+00:00",
-      "product_id": "iservices_1412-ipad-pro-129-2020-4a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Pro 12.9\" 2020 (4ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 647.83,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1412-ipad-pro-129-2020-4a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-129-2020-4th-generation.jpg",
-      "source_page": "https://iservices.pt/produto/1415-ipad-102-2019-7a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-10-25T08:29:18.347267+00:00",
       "product_id": "iservices_1408-ipad-air-2022-5a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -767,6 +746,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-25T09:34:52.702735+00:00",
-  "merged_at": "2026-10-25T10:06:37.347777+00:00"
+  "validated_at": "2026-10-26T14:18:58.239022+00:00",
+  "merged_at": "2026-10-26T14:18:58.516785+00:00"
 }
