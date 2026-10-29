@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-28T13:08:23.933975+00:00",
-  "total_products": 37,
+  "scraped_at": "2026-10-29T13:14:48.001252+00:00",
+  "total_products": 38,
   "products": [
     {
       "source": "iservices",
@@ -786,8 +786,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-10-29T13:14:48.001252+00:00",
+      "product_id": "iservices_1614-ipad-pro-11-2020-2a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Pro 11\" 2020 (2ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 613.32,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1614-ipad-pro-11-2020-2a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2020-2nd-generation.jpg",
+      "source_page": "https://iservices.pt/produto/1654-ipad-pro-129-2022-6a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-28T14:09:22.781590+00:00",
-  "merged_at": "2026-10-28T14:09:23.046840+00:00"
+  "validated_at": "2026-10-29T14:25:51.768321+00:00",
+  "merged_at": "2026-10-29T14:25:52.000250+00:00"
 }
