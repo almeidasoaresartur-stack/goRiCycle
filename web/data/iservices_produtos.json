@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-10-29T13:14:48.001252+00:00",
+  "scraped_at": "2026-10-30T13:06:55.943699+00:00",
   "total_products": 38,
   "products": [
     {
@@ -622,27 +622,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-10-25T08:29:18.347267+00:00",
-      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad 10.9\" 2022 (10ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 337.19,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-109-2022-10th-generation-1783506846.jpg",
-      "source_page": "https://iservices.pt/produto/1489-ipad-pro-129-2018-3a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-10-25T08:29:18.347267+00:00",
       "product_id": "iservices_1424-ipad-pro-11-2021-3a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -807,8 +786,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-10-30T13:06:55.943699+00:00",
+      "product_id": "iservices_1918-ipad-pro-11-2022-4a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Pro 11\" 2022 (4ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 692.29,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1918-ipad-pro-11-2022-4a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2022-4a-geracao.jpg",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-29T14:25:51.768321+00:00",
-  "merged_at": "2026-10-29T14:25:52.000250+00:00"
+  "validated_at": "2026-10-30T14:08:06.152564+00:00",
+  "merged_at": "2026-10-30T14:08:06.456529+00:00"
 }
