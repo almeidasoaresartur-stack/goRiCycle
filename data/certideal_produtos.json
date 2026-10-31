@@ -5,12 +5,12 @@
     "ipads",
     "samsung_phones"
   ],
-  "scraped_at": "2026-10-30T13:47:58.898806+00:00",
-  "total_products": 171,
+  "scraped_at": "2026-10-31T13:20:54.654303+00:00",
+  "total_products": 170,
   "products": [
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-dourado-correto-14182_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -31,7 +31,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-cinzento-sideral-correto-6009_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -52,7 +52,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -73,7 +73,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-256-gb-dourado-correto-14183_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -94,7 +94,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -115,7 +115,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-max-64-gb-prateado-correto-14179_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -136,7 +136,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-64-gb-verde-meia-noite-correto-5999_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -157,7 +157,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-64-gb-cinzento-sideral-correto-6001_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -178,7 +178,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-pro-256-gb-dourado-correto-6003_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -199,7 +199,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-64-gb-verde-correto-4943_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -220,7 +220,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-11-128-gb-preto-correto-14174_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -241,7 +241,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-mini-64-gb-branco-correto-6211_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -262,7 +262,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-pro-128-gb-grafite-correto-6287_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -283,7 +283,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-pro-256-gb-prateado-correto-14192_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -304,7 +304,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-pro-max-128-gb-prateado-correto-6350_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -325,7 +325,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-pro-max-256-gb-dourado-correto-14195_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -346,7 +346,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-pro-max-512-gb-grafite-correto-6346_512gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -367,7 +367,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-64-gb-preto-correto-5909_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -388,7 +388,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-12-128-gb-roxo-correto-14186_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -409,7 +409,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-128-gb-meia-noite-correto-6856_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -430,7 +430,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-mini-128-gb-vermelho-correto-7589_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -451,7 +451,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-128-gb-grafite-correto-8682_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -472,7 +472,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-128-gb-azul-sierra-correto-8815_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -493,7 +493,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-256-gb-grafite-correto-8985_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -514,7 +514,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-128-gb-verde-alpino-excelente-8707_128gb_excelente_iphone_13_pro_128_gb_verde_alpino",
       "category": "iphones",
       "brand": "Apple",
@@ -535,7 +535,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-max-128-gb-grafite-correto-8871_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -556,7 +556,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-max-128-gb-azul-sierra-correto-9061_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -577,7 +577,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-max-256-gb-prateado-correto-14206_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -598,7 +598,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-13-pro-max-256-gb-azul-sierra-correto-8699_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -619,7 +619,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-128-gb-meia-noite-correto-8711_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -640,7 +640,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-plus-128-gb-cor-surpresa-14212_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -661,7 +661,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-plus-256-gb-cor-surpresa-14213_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -682,7 +682,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-plus-256-gb-azul-correto-16629_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -703,7 +703,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-roxo-escuro-correto-9599_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -724,7 +724,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-preto-sideral-correto-9550_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -745,7 +745,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-128-gb-dourado-correto-9584_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -766,7 +766,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-cor-surpresa-14216_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -787,7 +787,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-preto-sideral-correto-9555_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -808,7 +808,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-256-gb-roxo-escuro-bom-14452_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -829,7 +829,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-preto-sideral-correto-7025_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -850,7 +850,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-roxo-escuro-correto-7052_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -871,7 +871,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-cor-surpresa-14220_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -892,7 +892,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-roxo-escuro-correto-7055_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -913,7 +913,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-256-gb-preto-sideral-correto-7028_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -934,7 +934,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-14-pro-max-128-gb-dourado-bom-9741_128gb_bom_iphone_14_pro_max_128_gb_dourado",
       "category": "iphones",
       "brand": "Apple",
@@ -955,7 +955,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-128-gb-preto-correto-8918_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -976,7 +976,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-plus-128-gb-cor-surpresa-14226_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -997,7 +997,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-plus-256-gb-preto-correto-15586_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1018,7 +1018,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-128-gb-titanio-preto-correto-10029_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1039,7 +1039,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-256-gb-titanio-preto-correto-10038_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1060,7 +1060,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-256-gb-titanio-branco-correto-16083_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1081,7 +1081,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-256-gb-titanio-natural-correto-10097_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1102,7 +1102,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-cor-surpresa-14233_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1123,7 +1123,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-titanio-natural-correto-9501_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1144,7 +1144,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-15-pro-max-256-gb-titanio-branco-correto-15630_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1165,7 +1165,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128-gb-cor-surpresa-esim-14236_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1186,7 +1186,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128-gb-verde-azulado-correto-12471_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1207,7 +1207,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128-gb-preto-correto-16098_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1228,7 +1228,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128-gb-ultramarino-correto-12467_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1249,7 +1249,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128-gb-ultramarino-correto-16110_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1270,7 +1270,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12491_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1291,7 +1291,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-12597_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1312,7 +1312,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12605_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1333,7 +1333,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-15671_128gb_premium",
       "category": "iphones",
       "brand": "Apple",
@@ -1354,7 +1354,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-128-gb-titanio-preto-correto-16168_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1375,7 +1375,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-128-gb-titanio-preto-correto-12549_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1396,7 +1396,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-16156_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1417,7 +1417,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titane-sable-esim-12503_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1438,7 +1438,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titanio-natural-correto-12520_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1459,7 +1459,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-256-gb-titanio-branco-correto-12537_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1480,7 +1480,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-pro-128-gb-titanio-natural-bom-12517_128gb_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -1501,7 +1501,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12653_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1522,7 +1522,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-12620_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1543,7 +1543,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-branco-15686_256gb_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -1564,7 +1564,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16e-128-gb-preto-correto-12977_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1585,7 +1585,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14784_256gb_excelente",
       "category": "iphones",
       "brand": "Apple",
@@ -1606,7 +1606,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14758_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1627,7 +1627,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14751_256gb_bom_iphone_17_256_gb_preto",
       "category": "iphones",
       "brand": "Apple",
@@ -1648,7 +1648,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14867_256gb_premium",
       "category": "iphones",
       "brand": "Apple",
@@ -1669,7 +1669,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14797_256gb_excelente_iphone_air_256_gb_preto_sideral_esim",
       "category": "iphones",
       "brand": "Apple",
@@ -1690,7 +1690,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14889_256gb_bom_iphone_17_pro_256_gb_azul_intenso",
       "category": "iphones",
       "brand": "Apple",
@@ -1711,7 +1711,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14878_256gb_excelente_iphone_17_pro_256_gb_prateado",
       "category": "iphones",
       "brand": "Apple",
@@ -1732,7 +1732,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-16-128gb-preto-14901_256gb_excelente",
       "category": "iphones",
       "brand": "Apple",
@@ -1753,19 +1753,19 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
-      "product_id": "certideal_iphone-7-plus-128-gb-ouro-rosa-correto-3023_128gb_correto",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
+      "product_id": "certideal_iphone-7-plus-128-gb-vermelho-excelente-3224_128gb_excelente_iphone_7_plus_128_gb_vermelho",
       "category": "iphones",
       "brand": "Apple",
       "model": "iPhone 7 Plus",
       "storage": "128GB",
-      "color": "Correto",
-      "grade": null,
-      "price": 115.99,
+      "color": "iPhone 7 Plus 128 GB Vermelho",
+      "grade": "Excelente",
+      "price": 186.99,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 24,
-      "url": "https://www.certideal.pt/iphone-7-plus/iphone-7-plus-128-gb-ouro-rosa-correto-3023",
+      "url": "https://www.certideal.pt/iphone-7-plus/iphone-7-plus-128-gb-vermelho-excelente-3224",
       "image_url": null,
       "source_page": "https://www.certideal.pt/iphone-7-plus-169",
       "is_available": true,
@@ -1774,20 +1774,20 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
-      "product_id": "certideal_iphone-7-plus-32-gb-ouro-rosa-excelente-3070_32gb_excelente_iphone_7_plus_32_gb_ouro_rosa",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
+      "product_id": "certideal_iphone-7-plus-32-gb-dourado-excelente-3053_32gb_excelente_iphone_7_plus_32_gb_dourado",
       "category": "iphones",
       "brand": "Apple",
       "model": "iPhone 7 Plus",
       "storage": "32GB",
-      "color": "iPhone 7 Plus 32 GB Ouro Rosa",
+      "color": "iPhone 7 Plus 32 GB Dourado",
       "grade": "Excelente",
       "price": 313.99,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 24,
-      "url": "https://www.certideal.pt/iphone-7-plus/iphone-7-plus-32-gb-ouro-rosa-excelente-3070",
-      "image_url": "https://cf5.certideal.com/20803-thumb_default/iphone-7-plus-32-gb-ouro-rosa-excelente.jpg",
+      "url": "https://www.certideal.pt/iphone-7-plus/iphone-7-plus-32-gb-dourado-excelente-3053",
+      "image_url": null,
       "source_page": "https://www.certideal.pt/iphone-7-plus-169",
       "is_available": true,
       "affiliate_enabled": false,
@@ -1795,7 +1795,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-7-128-gb-preto-correto-3135_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1816,7 +1816,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-plus-64-gb-dourado-correto-5377_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1837,7 +1837,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-plus-64-gb-cinzento-sideral-excelente-3621_64gb_excelente",
       "category": "iphones",
       "brand": "Apple",
@@ -1858,7 +1858,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-plus-128-gb-prateado-bom-5344_128gb_bom_iphone_8_plus_128_gb_prateado",
       "category": "iphones",
       "brand": "Apple",
@@ -1879,7 +1879,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-plus-128-gb-cinzento-sideral-bom-5341_128gb_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -1900,7 +1900,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-64-gb-prateado-correto-5370_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1921,7 +1921,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-64-gb-cinzento-sideral-correto-5372_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1942,7 +1942,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-8-256-gb-cinzento-sideral-correto-5366_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1963,7 +1963,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-2-2020-64-gb-preto-correto-5450_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -1984,7 +1984,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-2-2020-128-gb-branco-correto-5719_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2005,7 +2005,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-3-2022-64-gb-vermelho-correto-8776_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2026,7 +2026,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-3-2022-64-gb-luz-das-estrelas-correto-8785_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2047,7 +2047,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-3-2022-128-gb-meia-noite-correto-8795_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2068,7 +2068,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-se-3-2022-128-gb-luz-das-estrelas-correto-8788_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2089,7 +2089,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-x-64-gb-cinzento-sideral-correto-5254_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2110,7 +2110,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-x-64-gb-prateado-correto-5253_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2131,7 +2131,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-x-256-gb-prateado-correto-5255_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2152,7 +2152,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-x-256-gb-cinzento-sideral-correto-5256_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2173,7 +2173,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xr-128-gb-branco-correto-4393_128gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2194,7 +2194,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xr-64-gb-branco-bom-9171_64gb_bom_iphone_xr_64_gb_branco",
       "category": "iphones",
       "brand": "Apple",
@@ -2215,7 +2215,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-max-64-gb-cinzento-sideral-correto-5383_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2236,7 +2236,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-max-64-gb-prateado-correto-5052_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2257,7 +2257,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-max-256-gb-cinzento-sideral-correto-5060_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2278,7 +2278,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-max-256-gb-dourado-correto-5059_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2299,7 +2299,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-64-gb-prateado-correto-5381_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2320,7 +2320,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-64-gb-cinzento-sideral-correto-6387_64gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2341,7 +2341,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-256-gb-cinzento-sideral-correto-6388_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2362,7 +2362,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_iphone-xs-256-gb-dourado-correto-6062_256gb_correto",
       "category": "iphones",
       "brand": "Apple",
@@ -2383,7 +2383,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_ipad-mini-6-2021-a15-series-64-gb-cinzento-sideral-wifi-15384_64gb",
       "category": "ipads",
       "brand": "Apple",
@@ -2404,7 +2404,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_ipad-pro-129-2021-5a-geracao-256-gb-cinzento-sideral-wifi-5g-7281_256gb_correto",
       "category": "ipads",
       "brand": "Apple",
@@ -2425,7 +2425,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a05-64-gb-preto-correto-15786_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2446,7 +2446,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a05s-64-gb-verde-excelente-15497_64gb_excelente_samsung_galaxy_a05s_64_gb_verde",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2467,7 +2467,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a05s-128-gb-preto-bom-15785_128gb_bom_samsung_galaxy_a05s_128_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2488,7 +2488,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a06-64-gb-bleu-ciel-premium-18165_64gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2509,7 +2509,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a10-32-gb-azul-excelente-15037_32gb_excelente_samsung_galaxy_a10_32_gb_azul",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2530,7 +2530,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a12-64-gb-preto-correto-14638_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2551,7 +2551,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a12-32-gb-preto-excelente-18169_32gb_excelente_samsung_galaxy_a12_32_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2572,7 +2572,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a13-64-gb-cinzento-correto-14629_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2593,7 +2593,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a13-32-gb-preto-excelente-21815_32gb_excelente_samsung_galaxy_a13_32_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2614,7 +2614,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a14-64-gb-preto-correto-9659_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2635,7 +2635,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a15-128-gb-preto-correto-14669_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2656,7 +2656,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a16-128-gb-preto-bom-14654_128gb_bom_samsung_galaxy_a16_128_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2677,7 +2677,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a17-128-gb-preto-correto-16235_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2698,7 +2698,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a17-256-gb-preto-bom-19900_256gb_bom_samsung_galaxy_a17_256_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2719,7 +2719,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a23-64-gb-preto-correto-17106_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2740,7 +2740,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a23-128-gb-preto-correto-17103_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2761,7 +2761,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a33-128-gb-preto-correto-15361_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2782,7 +2782,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a36-128-gb-preto-premium-16217_128gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2803,7 +2803,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a41-64-gb-preto-correto-15857_64gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2824,7 +2824,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a6-32-gb-preto-excelente-19919_32gb_excelente_samsung_galaxy_a6_32_gb_preto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2845,7 +2845,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-a71-128-gb-preto-correto-15525_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2866,7 +2866,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-note-10-lite-128-gb-preto-correto-15370_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2887,7 +2887,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-note-10-lite-128-gb-vermelho-correto-15903_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2908,7 +2908,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s10e-128-gb-preto-correto-12419_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2929,7 +2929,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-128-gb-violeta-correto-9449_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2950,7 +2950,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-128-gb-preto-correto-9418_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2971,7 +2971,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-256-gb-branco-premium-9466_256gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -2992,7 +2992,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-plus-256-gb-preto-correto-13104_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3013,7 +3013,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-plus-128-gb-rosa-excelente-13573_128gb_excelente_samsung_galaxy_s22_plus_128_gb_rosa",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3034,7 +3034,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-ultra-128-gb-preto-correto-11889_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3055,7 +3055,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-ultra-128-gb-borgonha-correto-14250_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3076,7 +3076,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s22-ultra-512-gb-preto-correto-13753_512gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3097,7 +3097,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-fe-128-gb-verde-correto-14691_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3118,7 +3118,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-fe-256-gb-roxo-correto-15484_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3139,7 +3139,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-plus-256-gb-preto-correto-13699_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3160,7 +3160,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-ultra-256-gb-verde-correto-9855_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3181,7 +3181,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-ultra-512-gb-preto-premium-13165_512gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3202,7 +3202,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-128-gb-preto-correto-12779_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3223,7 +3223,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-128-gb-cream-correto-13685_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3244,28 +3244,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
-      "product_id": "certideal_samsung-galaxy-s23-256-gb-lavanda-correto-13680_256gb_correto",
-      "category": "samsung_phones",
-      "brand": "Samsung",
-      "model": "Samsung Galaxy S23",
-      "storage": "256GB",
-      "color": "Correto",
-      "grade": null,
-      "price": 304.99,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.certideal.pt/samsung-galaxy-s23samsung-galaxy-s23/samsung-galaxy-s23-256-gb-lavanda-correto-13680",
-      "image_url": null,
-      "source_page": "https://www.certideal.pt/samsung-galaxy-s23samsung-galaxy-s23-465",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s23-256-gb-cream-excelente-12363_256gb_excelente",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3286,7 +3265,28 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
+      "product_id": "certideal_samsung-galaxy-s23-256-gb-verde-premium-12153_256gb_premium",
+      "category": "samsung_phones",
+      "brand": "Samsung",
+      "model": "Samsung Galaxy S23",
+      "storage": "256GB",
+      "color": "Premium",
+      "grade": null,
+      "price": 428.99,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 24,
+      "url": "https://www.certideal.pt/samsung-galaxy-s23samsung-galaxy-s23/samsung-galaxy-s23-256-gb-verde-premium-12153",
+      "image_url": "https://cf4.certideal.com/43714-thumb_default/samsung-galaxy-s23-256-gb-verde-premium.jpg",
+      "source_page": "https://www.certideal.pt/samsung-galaxy-s23samsung-galaxy-s23-465",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
+      "source": "certideal",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-128-gb-prateado-correto-15482_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3307,7 +3307,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-128-gb-violeta-correto-15352_128gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3328,7 +3328,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-256-gb-roxo-correto-15981_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3349,7 +3349,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-plus-256-gb-preto-correto-15464_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3370,7 +3370,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-plus-256-gb-violeta-premium-14280_256gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3391,7 +3391,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-plus-512-gb-violeta-premium-9842_512gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3412,7 +3412,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-plus-512-gb-preto-premium-15065_512gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3433,7 +3433,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s24-ultra-256-gb-dourado-excelente-9841_256gb_excelente_samsung_galaxy_s24_ultra_256_gb_dourado",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3454,7 +3454,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s25-ultra-256-gb-titanio-azul-premium-15443_256gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3475,7 +3475,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-s25-ultra-512-gb-titanio-natural-premium-15441_512gb_premium",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3496,7 +3496,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-z-flip6-256-gb-azul-correto-15558_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3517,28 +3517,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
-      "product_id": "certideal_samsung-galaxy-z-flip6-256-gb-lime-excelente-21932_256gb_excelente",
-      "category": "samsung_phones",
-      "brand": "Samsung",
-      "model": "Samsung Galaxy Z Flip6 lime",
-      "storage": "256GB",
-      "color": null,
-      "grade": "Excelente",
-      "price": 414.99,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 24,
-      "url": "https://www.certideal.pt/samsung-galaxy-z-flip6/samsung-galaxy-z-flip6-256-gb-lime-excelente-21932",
-      "image_url": null,
-      "source_page": "https://www.certideal.pt/samsung-galaxy-z-flip6-670",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-z-flip7-256-gb-azul-intenso-correto-15935_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3559,7 +3538,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-z-fold6-256-gb-azul-intenso-correto-15917_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3580,7 +3559,7 @@
     },
     {
       "source": "certideal",
-      "scraped_at": "2026-10-30T13:47:58.898806+00:00",
+      "scraped_at": "2026-10-31T13:20:54.654303+00:00",
       "product_id": "certideal_samsung-galaxy-z-fold6-256-gb-cinzento-correto-15912_256gb_correto",
       "category": "samsung_phones",
       "brand": "Samsung",
@@ -3600,6 +3579,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-10-30T14:08:06.217202+00:00",
-  "merged_at": "2026-10-30T14:08:06.474024+00:00"
+  "validated_at": "2026-10-31T13:42:06.205719+00:00",
+  "merged_at": "2026-10-31T13:42:06.440450+00:00"
 }
