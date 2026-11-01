@@ -1,52 +1,67 @@
 {
-  "validated_at": "2026-10-31T13:42:06.102554+00:00",
+  "validated_at": "2026-11-01T11:28:35.021058+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
-      "total": 38,
-      "kept": 38,
+      "total": 37,
+      "kept": 37,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 37,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 121,
-      "kept": 121,
+      "total": 122,
+      "kept": 122,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 122,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "swappie": {
-      "total": 98,
-      "kept": 98,
+      "total": 96,
+      "kept": 96,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
-      "inconclusive": {},
-      "live_check_stopped": false,
+      "live_checked": 10,
+      "live_failed": 10,
+      "inconclusive": {
+        "Inconclusivo: HTTP 403 (bloqueio/limite)": 10
+      },
+      "live_check_stopped": true,
       "live_removal_aborted": false
     },
     "certideal": {
       "total": 186,
-      "kept": 186,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
+      "kept": 184,
+      "removed": 2,
+      "reasons": {
+        "404 Not Found": 2
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        },
+        {
+          "model": "iPhone 11 Pro Max ...",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014",
+          "reason": "404 Not Found"
+        }
+      ],
+      "live_checked": 186,
+      "live_failed": 2,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
@@ -57,7 +72,7 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 1562,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
@@ -65,8 +80,8 @@
     }
   },
   "summary": {
-    "total": 2005,
-    "kept": 2005,
-    "removed": 0
+    "total": 2003,
+    "kept": 2001,
+    "removed": 2
   }
 }
