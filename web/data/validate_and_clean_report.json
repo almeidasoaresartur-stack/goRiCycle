@@ -1,67 +1,52 @@
 {
-  "validated_at": "2026-11-01T11:28:35.021058+00:00",
+  "validated_at": "2026-11-02T17:09:43.233408+00:00",
   "dry_run": false,
-  "check_live": true,
+  "check_live": false,
   "sources": {
     "iservices": {
-      "total": 37,
-      "kept": 37,
+      "total": 36,
+      "kept": 36,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 37,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 122,
-      "kept": 122,
+      "total": 119,
+      "kept": 119,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 122,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "swappie": {
-      "total": 96,
-      "kept": 96,
+      "total": 99,
+      "kept": 99,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 10,
-      "live_failed": 10,
-      "inconclusive": {
-        "Inconclusivo: HTTP 403 (bloqueio/limite)": 10
-      },
-      "live_check_stopped": true,
+      "live_checked": 0,
+      "live_failed": 0,
+      "inconclusive": {},
+      "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "certideal": {
-      "total": 186,
-      "kept": 184,
-      "removed": 2,
-      "reasons": {
-        "404 Not Found": 2
-      },
-      "removed_items": [
-        {
-          "model": "iPhone 11 Pro Max meia‑noite",
-          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
-          "reason": "404 Not Found"
-        },
-        {
-          "model": "iPhone 11 Pro Max ...",
-          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014",
-          "reason": "404 Not Found"
-        }
-      ],
-      "live_checked": 186,
-      "live_failed": 2,
+      "total": 176,
+      "kept": 176,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": [],
+      "live_checked": 0,
+      "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
@@ -72,7 +57,7 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 1562,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
@@ -80,8 +65,8 @@
     }
   },
   "summary": {
-    "total": 2003,
-    "kept": 2001,
-    "removed": 2
+    "total": 1992,
+    "kept": 1992,
+    "removed": 0
   }
 }
