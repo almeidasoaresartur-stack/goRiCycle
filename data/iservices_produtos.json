@@ -7,7 +7,7 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-02T16:11:17.446031+00:00",
+  "scraped_at": "2026-11-03T14:26:55.095305+00:00",
   "total_products": 36,
   "products": [
     {
@@ -685,27 +685,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-11-01T10:31:55.835195+00:00",
-      "product_id": "iservices_1417-ipad-mini-2019-5a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Mini 2019 (5ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 329.77,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1417-ipad-mini-2019-5a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-mini-2019-5th-generation.jpg",
-      "source_page": "https://iservices.pt/produto/1424-ipad-pro-11-2021-3a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-11-01T10:31:55.835195+00:00",
       "product_id": "iservices_1412-ipad-pro-129-2020-4a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -765,8 +744,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-03T14:26:55.095305+00:00",
+      "product_id": "iservices_1453-ipad-109-2022-10a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad 10.9\" 2022 (10ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 395.36,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-109-2022-10th-generation-1783506846.jpg",
+      "source_page": "https://iservices.pt/produto/1489-ipad-pro-129-2018-3a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-02T17:09:43.263027+00:00",
-  "merged_at": "2026-11-02T17:09:43.485828+00:00"
+  "validated_at": "2026-11-03T15:25:23.196078+00:00",
+  "merged_at": "2026-11-03T15:25:23.423284+00:00"
 }
