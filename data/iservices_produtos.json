@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-03T14:26:55.095305+00:00",
-  "total_products": 36,
+  "scraped_at": "2026-11-04T14:41:08.764415+00:00",
+  "total_products": 37,
   "products": [
     {
       "source": "iservices",
@@ -622,27 +622,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-11-01T10:31:55.835195+00:00",
-      "product_id": "iservices_1489-ipad-pro-129-2018-3a-geracao_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad Pro 12.9\" 2018 (3ª Geração)",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 485.49,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/1489-ipad-pro-129-2018-3a-geracao",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-129-2018-3rd-generation.jpg",
-      "source_page": "https://iservices.pt/produto/1614-ipad-pro-11-2020-2a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-11-01T10:31:55.835195+00:00",
       "product_id": "iservices_1425-ipad-air-2020-4a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -765,8 +744,50 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-04T14:41:08.764415+00:00",
+      "product_id": "iservices_2059-ipad-air-11-2024-6a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Air 11\" 2024 (6ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 607.76,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/2059-ipad-air-11-2024-6a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-air-11-2024-6a-generacion-1793718828.jpg",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-04T14:41:08.764415+00:00",
+      "product_id": "iservices_2023-ipad-a16-2025_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad A16 2025",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 439.52,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/2023-ipad-a16-2025",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-a16-2025-1793357838.jpg",
+      "source_page": "https://iservices.pt/produto/2059-ipad-air-11-2024-6a-geracao",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-03T15:25:23.196078+00:00",
-  "merged_at": "2026-11-03T15:25:23.423284+00:00"
+  "validated_at": "2026-11-04T15:52:14.374098+00:00",
+  "merged_at": "2026-11-04T15:52:14.573532+00:00"
 }
