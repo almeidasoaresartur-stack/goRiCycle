@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-04T14:41:08.764415+00:00",
-  "total_products": 37,
+  "scraped_at": "2026-11-05T14:46:06.772731+00:00",
+  "total_products": 38,
   "products": [
     {
       "source": "iservices",
@@ -786,8 +786,29 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-05T14:46:06.772731+00:00",
+      "product_id": "iservices_1918-ipad-pro-11-2022-4a-geracao_bom",
+      "category": "ipads",
+      "brand": "Apple",
+      "model": "iPad Pro 11\" 2022 (4ª Geração)",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 763.35,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/1918-ipad-pro-11-2022-4a-geracao",
+      "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2022-4a-geracao.jpg",
+      "source_page": "https://iservices.pt/produto/2023-ipad-a16-2025",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-04T15:52:14.374098+00:00",
-  "merged_at": "2026-11-04T15:52:14.573532+00:00"
+  "validated_at": "2026-11-05T15:42:47.189058+00:00",
+  "merged_at": "2026-11-05T15:42:47.443232+00:00"
 }
