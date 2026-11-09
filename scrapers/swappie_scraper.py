@@ -386,20 +386,25 @@ def dismiss_page_overlays(page: Page) -> None:
 def _listing_card_fully_out_of_stock(root) -> bool:
     """
     True só se o modelo inteiro estiver esgotado.
-    Nos cartões ModelCard2025, '(Esgotado)' aparece por capacidade — não
-    rejeitar o modelo se ainda houver pelo menos uma capacidade disponível.
+    '(Esgotado)' aparece por capacidade no chip — não rejeitar o modelo se
+    ainda houver pelo menos uma capacidade disponível.
     """
-    chips = root.locator("[class*='ModelCard2025__PropertyChipRoot']")
+    chips = root.locator(SEL["product_storage_badge"])
     chip_count = chips.count()
     if chip_count:
+        saw_storage = False
         available = 0
         for index in range(chip_count):
             text = chips.nth(index).inner_text(timeout=2000)
-            if extract_storage(text) and not text_indicates_out_of_stock(text):
+            if not extract_storage(text):
+                continue
+            saw_storage = True
+            if not text_indicates_out_of_stock(text):
                 available += 1
-        return available == 0
+        if saw_storage:
+            return available == 0
 
-    # Layout legado: só rejeitar se o texto do cartão indicar OOS global.
+    # Sem chips de capacidade: só rejeitar se o texto do cartão indicar OOS global.
     try:
         card_text = root.inner_text(timeout=3000)
     except Exception:
@@ -419,12 +424,9 @@ def _parse_listing_card(
     if not href.startswith("http"):
         href = urljoin(base_url, href)
 
-    name_el = root.locator(SEL["product_name"]).first
-    name = name_el.inner_text(timeout=3000).strip() if name_el.count() else ""
+    name = _listing_model_name(root)
     if not name:
         return None
-    # ModelCard2025 Title: "iPad Air 7 2025 13″ recondicionado"
-    name = re.sub(r"\s+recondicionado\s*$", "", name, flags=re.I).strip()
 
     price_raw = ""
     price_el = root.locator(SEL["product_price"]).first
@@ -458,44 +460,89 @@ def _parse_listing_card(
     }
 
 
+def _listing_model_name(root) -> str:
+    """Nome do modelo no cartão, sem depender do hash da classe CSS."""
+    locator = root.locator(SEL["product_name"])
+    count = min(locator.count(), 8)
+    for index in range(count):
+        try:
+            text = locator.nth(index).inner_text(timeout=2000)
+        except Exception:
+            continue
+        text = re.sub(r"\s+", " ", text).strip()
+        text = re.sub(r"\s+recondicionado\s*$", "", text, flags=re.I).strip()
+        if not text or "€" in text or len(text) > 80:
+            continue
+        if extract_storage(text) and len(text) < 12:
+            continue
+        return text
+
+    anchor = root.locator("a[href*='/modelo/'][aria-label]").first
+    if anchor.count():
+        label = re.sub(r"\s+", " ", (anchor.get_attribute("aria-label") or "")).strip()
+        label = re.sub(r"\s+recondicionado\s*$", "", label, flags=re.I).strip()
+        if label and label.lower() not in {"ver", "see", "view"}:
+            return label
+    return ""
+
+
+def _model_card_href(root) -> str | None:
+    """Link /modelo/ no próprio cartão ou num <a> interior (StretchedAnchor)."""
+    try:
+        if root.evaluate("el => el.tagName") == "A":
+            href = root.get_attribute("href")
+            if href and "/modelo/" in href:
+                return href
+    except Exception:
+        pass
+    anchor = root.locator("a[href*='/modelo/']").first
+    if anchor.count():
+        return anchor.get_attribute("href")
+    return None
+
+
+def _listing_roots(page: Page):
+    """Prefere o testid estável; senão o contentor FullHeightModelCard."""
+    tested = page.locator("[data-testid='model-card-container']")
+    if tested.count():
+        return tested
+    return page.locator("[class*='FullHeightModelCard']")
+
+
 def collect_model_cards(page: Page, base_url: str) -> list[dict[str, Any]]:
+    """
+    Cartões da grelha Swappie (iPhone e iPad).
+
+    Em Nov 2026 o site removeu `ModelCard__ProductName` e `ModelCard2025__CardFrame`.
+    A listagem passa a ser `li[data-testid=model-card-container]`, com href `/modelo/`.
+    iPhones usam `__ProductName`; iPads usam `h2` / `__Title`. O sufixo hashed muda.
+    """
     page.wait_for_selector(SEL["product_card"], timeout=60_000)
     page_wait_ms(CFG["delays"], "page_load")
 
     cards: list[dict[str, Any]] = []
     seen_urls: set[str] = set()
-
-    # Layout legado (iPhones): o <a> contém nome/preço.
-    links = page.locator(SEL["product_link"])
-    total = links.count()
+    roots = _listing_roots(page)
+    total = roots.count()
     for index in range(total):
         try:
-            link = links.nth(index)
-            card = _parse_listing_card(link, href=link.get_attribute("href"), base_url=base_url)
+            root = roots.nth(index)
+            card = _parse_listing_card(
+                root,
+                href=_model_card_href(root),
+                base_url=base_url,
+            )
             if not card or card["url"] in seen_urls:
                 continue
             seen_urls.add(card["url"])
             cards.append(card)
         except Exception as exc:
-            logger.warning("Modelo legado %s/%s ignorado: %s", index + 1, total, exc)
+            logger.warning("Modelo %s/%s ignorado: %s", index + 1, total, exc)
 
-    # Layout ModelCard2025 (iPads): título/preço no frame; link é StretchedAnchor.
-    frames = page.locator(SEL.get("product_card_2025", "[class*='ModelCard2025__CardFrame']"))
-    total_f = frames.count()
-    link_sel = SEL.get("product_link_2025", "a[class*='ModelCard2025__StretchedAnchor']")
-    for index in range(total_f):
-        try:
-            frame = frames.nth(index)
-            anchor = frame.locator(f"{link_sel}, a[href*='/modelo/']").first
-            href = anchor.get_attribute("href") if anchor.count() else None
-            card = _parse_listing_card(frame, href=href, base_url=base_url)
-            if not card or card["url"] in seen_urls:
-                continue
-            seen_urls.add(card["url"])
-            cards.append(card)
-        except Exception as exc:
-            logger.warning("Modelo 2025 %s/%s ignorado: %s", index + 1, total_f, exc)
-
+    if not cards:
+        logger.warning("Listagem sem modelos após parse (selector=%s)", SEL["product_card"])
+    else:
+        logger.info("Listagem: %s modelo(s)", len(cards))
     return cards
 
 
