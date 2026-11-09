@@ -432,32 +432,46 @@ SWAPPIE_CONFIG: dict[str, Any] = {
     },
     "selectors": {
         "listing_grid": "main",
-        # ModelCard (iPhones) + ModelCard2025 (iPads — layout novo; título fora do <a>)
+        # Nov 2026: as classes CSS-module ModelCard__* / ModelCard2025__* desapareceram.
+        # A grelha estável é li[data-testid=model-card-container] (iPhone e iPad).
+        # O título varia: __ProductName (iPhone) ou h2/__Title (iPad). O hash muda.
         "product_card": (
+            "[data-testid='model-card-container'], "
+            "[class*='FullHeightModelCard'], "
             "a:has([class*='ModelCard__ProductName']), "
             "[class*='ModelCard2025__CardFrame']"
         ),
-        "product_link": "a:has([class*='ModelCard__ProductName'])",
-        "product_card_2025": "[class*='ModelCard2025__CardFrame']",
-        "product_link_2025": "a[class*='ModelCard2025__StretchedAnchor']",
+        "product_link": "a[href*='/modelo/']",
+        "product_card_2025": (
+            "[data-testid='model-card-container'], "
+            "[class*='FullHeightModelCard']"
+        ),
+        "product_link_2025": "a[href*='/modelo/']",
         "product_name": (
+            "h2, "
+            "[class*='__ProductName'], "
+            "[class*='__Title-'], "
             "[class*='ModelCard__ProductName'], "
             "[class*='ModelCard2025__Title']"
         ),
         "product_price": (
+            "[class*='__Price-'], "
             "[class*='ModelCard__Price'], "
             "[class*='ModelCard2025__Price']"
         ),
         "product_image": (
+            "[class*='ImageContainer'] img, "
+            "[class*='deviceCategoryCard__Image'], "
             "[class*='ModelCard__ImageContainer'] img, "
             "[class*='ModelCard2025__ImageContainer'] img"
         ),
         "product_storage_badge": (
-            "[class*='ModelCard__BadgesContainer'] [class*='Badge'], "
-            "[class*='ModelCard2025__BadgesContainer'] [class*='Badge'], "
+            "[class*='PropertyChipRoot'], "
+            "[class*='BadgesContainer'] [class*='Badge'], "
             "[class*='ModelCard2025__PropertyChipRoot']"
         ),
         "product_color_dot": (
+            "[class*='ColorDot'], "
             "[class*='ModelCard__ColorDot'], "
             "[class*='ModelCard2025__ColorDot']"
         ),
