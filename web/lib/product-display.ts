@@ -91,8 +91,39 @@ export function sortFilterModelNames(models: Iterable<string>): string[] {
   );
 }
 
+/** Polegadas explícitas (11", 12.9", 11 pol). A unidade é obrigatória. */
+const IPAD_INCH_RE = /(\d+(?:\.\d+)?)\s*(?:["″'']|\bpol\b)/i;
+
+function canonicalInches(raw: string): string | null {
+  const value = Number.parseFloat(raw);
+  if (!Number.isFinite(value) || value <= 0 || value > 20) return null;
+  const rounded = Math.round(value * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : String(rounded);
+}
+
 function formatIpadDisplayName(name: string): string | null {
-  const match = name.match(
+  if (!/ipad/i.test(name)) return null;
+
+  // "iPad Air (2024) | 11"" e "iPad Air 6 (2024) 11″" são o mesmo modelo.
+  // 11" e 13" (2024+) não podem cair no slug sem tamanho.
+  const withSize = name.replace(/\s*\|\s*/g, " ");
+  const family = withSize.match(/ipad(?:\s+(pro|air|mini))?/i);
+  const line = (family?.[1] ?? "").toLowerCase();
+  const inches = canonicalInches(withSize.match(IPAD_INCH_RE)?.[1] ?? "");
+  const year = Number.parseInt(withSize.match(/\b(20\d{2})\b/)?.[1] ?? "", 10);
+
+  if (
+    (line === "air" || line === "pro") &&
+    (inches === "11" || inches === "13") &&
+    year >= 2024
+  ) {
+    const label = line === "air" ? "iPad Air" : "iPad Pro";
+    return `${label} (${year}) ${inches}"`;
+  }
+
+  // O resto mantém o recorte antigo: o que está depois de " | " não entra no nome.
+  const legacySource = name.split(/\s[-–|]\s/)[0]?.trim() ?? name;
+  const match = legacySource.match(
     /ipad(?:\s+(?:pro|air|mini))?(?:\s*\(\d{4}\))?(?:\s*[\d.]+\s*(?:["″'']|pol|mm)?)?/i,
   );
   if (!match) return null;
@@ -176,6 +207,12 @@ export function cleanBaseModel(raw: string): string {
   let name = (raw ?? "").trim();
   if (!name) return "Modelo desconhecido";
 
+  // iPad vê o tamanho atrás de " | " antes de qualquer corte.
+  if (/ipad/i.test(name)) {
+    const ipad = formatIpadDisplayName(name);
+    if (ipad) return ipad;
+  }
+
   name = name.split(/\s[-–|]\s/)[0]?.trim() ?? name;
 
   for (const pattern of NOISE_PATTERNS) {
@@ -207,7 +244,9 @@ export function cleanBaseModel(raw: string): string {
       .trim();
   }
 
-  const iphone = name.match(/iphone\s*\d+\s*(?:pro\s*max|pro|plus|mini)?/i);
+  // "16e" / "17e" são modelos distintos. O "e" tem de fechar a palavra,
+  // senão "iPhone 16 esim" e "iPhone 16 Pro e sable" viram 16e.
+  const iphone = name.match(/iphone\s*\d+e?\b(?:\s+(?:pro\s*max|pro|plus|mini))?/i);
   if (iphone) {
     return iphone[0]
       .replace(/\s{2,}/g, " ")
@@ -215,7 +254,9 @@ export function cleanBaseModel(raw: string): string {
       .replace(/pro/i, "Pro")
       .replace(/plus/i, "Plus")
       .replace(/mini/i, "Mini")
-      .replace(/^iphone/i, "iPhone");
+      .replace(/^iphone/i, "iPhone")
+      .replace(/(\d)E\b/, "$1e")
+      .trim();
   }
 
   // Normalizar "SAMSUNG S23" / "Samsung S24 Ultra" sem prefixo Galaxy
@@ -244,7 +285,10 @@ export function cleanBaseModel(raw: string): string {
     );
   }
 
-  const galaxy = name.match(/(?:samsung\s+)?galaxy\s*s\d+(?:\s*ultra|\s*plus|\s*fe|\+)?/i);
+  // "S10e" ≠ "S10". O sufixo e/s fica no nome; applySamsungDisplayCase já o normaliza.
+  const galaxy = name.match(
+    /(?:samsung\s+)?galaxy\s*s\d+[es]?\b(?:\s+(?:ultra|plus|fe)|\+)?/i,
+  );
   if (galaxy) {
     return applySamsungDisplayCase(
       galaxy[0]
@@ -264,9 +308,6 @@ export function cleanBaseModel(raw: string): string {
       .trim();
   }
 
-  const ipad = formatIpadDisplayName(name);
-  if (ipad) return ipad;
-
   const macbook = formatMacbookDisplayName(name);
   if (macbook) return macbook;
 
@@ -282,6 +323,10 @@ export function cleanBaseModel(raw: string): string {
 
   const cleaned = name.replace(/\s{2,}/g, " ").trim();
   if (!cleaned) return "Modelo desconhecido";
+  // "Samsung A17" e "Samsung Galaxy A17" partilham o mesmo slug.
+  if (/^samsung\s+(?:a|s|m|z)\d/i.test(cleaned) && !/galaxy/i.test(cleaned)) {
+    return applySamsungDisplayCase(cleaned.replace(/^samsung\s+/i, "Samsung Galaxy "));
+  }
   return applySamsungDisplayCase(cleaned);
 }
 

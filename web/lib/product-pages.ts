@@ -1,3 +1,4 @@
+import { legacyProductRedirect } from "./legacy-product-redirects";
 import { UNKNOWN_STORAGE_LABEL, cleanBaseModel, formatStorageLabel } from "./product-display";
 import { getAllListings } from "./load-listings";
 import type { ProductListing } from "./marketplace";
@@ -148,6 +149,11 @@ export function buildProductSlugIndexationMap(
 }
 
 export function getProductSlugRedirect(slug: string): string | null {
+  const legacy = legacyProductRedirect(slug);
+  if (legacy && !loadAllProducts().some((item) => listingProductSlug(item) === slug)) {
+    return legacy;
+  }
+
   const gb = storageGbFromProductSlug(slug);
   if (gb == null || isCanonicalSlugStorageGb(gb)) return null;
 

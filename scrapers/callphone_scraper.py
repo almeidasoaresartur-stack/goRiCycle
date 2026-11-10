@@ -62,8 +62,6 @@ GRADE_MAP = {
     "a": "Excelente",
     "b": "Bom",
     "b+": "Bom",
-    "novo": "Premium",
-    "new": "Premium",
     "premium": "Premium",
     "excelente": "Excelente",
     "muito bom": "Muito Bom",
@@ -131,9 +129,30 @@ def infer_category(product: dict) -> str:
     return "iphones"
 
 
+def is_brand_new_retail(product: dict) -> bool:
+    """Telemóvel novo. «Como novo» / «semi-novo» continuam a ser recondicionados."""
+    title = str(product.get("title") or "").lower()
+    handle = str(product.get("handle") or "").lower()
+    product_type = str(product.get("product_type") or "").lower()
+    raw_tags = product.get("tags") or []
+    if isinstance(raw_tags, str):
+        tags_text = raw_tags.lower()
+    else:
+        tags_text = " ".join(str(tag) for tag in raw_tags).lower()
+
+    blob = f"{title} {handle} {product_type} {tags_text}"
+    if re.search(r"como[-\s]?novo|semi[-\s]?novo", blob):
+        return False
+    return re.search(r"(^|[/\-_\s])(?:novo|new)([/\-_\s]|$)", blob) is not None
+
+
 def is_valid_product(product: dict) -> bool:
     title = product.get("title", "").lower()
     product_type = product.get("product_type", "").lower()
+
+    # O comparador só mostra recondicionados. «iphone-18-pro-max-256gb-novo» fica de fora.
+    if is_brand_new_retail(product):
+        return False
 
     skip_keywords = [
         "capa",
