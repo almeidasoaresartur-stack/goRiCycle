@@ -1,76 +1,63 @@
 {
-  "validated_at": "2026-11-08T11:23:57.895792+00:00",
+  "validated_at": "2026-11-10T15:55:16.203085+00:00",
   "dry_run": false,
-  "check_live": true,
+  "check_live": false,
   "sources": {
     "iservices": {
-      "total": 37,
-      "kept": 37,
+      "total": 36,
+      "kept": 36,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 37,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 124,
-      "kept": 124,
+      "total": 121,
+      "kept": 121,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 124,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "swappie": {
-      "total": 104,
-      "kept": 104,
+      "total": 101,
+      "kept": 101,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 104,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "certideal": {
-      "total": 180,
-      "kept": 178,
-      "removed": 2,
-      "reasons": {
-        "404 Not Found": 2
-      },
-      "removed_items": [
-        {
-          "model": "iPhone 11 Pro Max meia‑noite",
-          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
-          "reason": "404 Not Found"
-        },
-        {
-          "model": "iPhone 11 Pro Max ...",
-          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014",
-          "reason": "404 Not Found"
-        }
-      ],
-      "live_checked": 180,
-      "live_failed": 2,
+      "total": 165,
+      "kept": 165,
+      "removed": 0,
+      "reasons": {},
+      "removed_items": [],
+      "live_checked": 0,
+      "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "callphone": {
-      "total": 1568,
-      "kept": 1568,
+      "total": 1571,
+      "kept": 1571,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 1568,
+      "live_checked": 0,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
@@ -78,8 +65,8 @@
     }
   },
   "summary": {
-    "total": 2013,
-    "kept": 2011,
-    "removed": 2
+    "total": 1994,
+    "kept": 1994,
+    "removed": 0
   }
 }
