@@ -26,6 +26,32 @@ function productHasVariant(product: string, variant: string): boolean {
   return product.includes(variant);
 }
 
+/** Sufixo de letra que distingue 16e≠16, 17e≠17, S10e≠S10. */
+function letterEdition(model: string): string | null {
+  const match = model.match(/(?:iphone\s*\d+|galaxy\s*s\d+)([es])\b/i);
+  return match ? match[1].toLowerCase() : null;
+}
+
+function letterEditionMismatch(product: string, search: string): boolean {
+  return letterEdition(product) !== letterEdition(search);
+}
+
+/** 11" e 13" (ou 12.9") só contam com unidade, para não apanhar a 11.ª geração. */
+function screenInches(model: string): string | null {
+  const match = model.match(/(\d+(?:\.\d+)?)\s*(?:["″'']|\bpol\b)/i);
+  if (!match) return null;
+  const value = Number.parseFloat(match[1]);
+  if (!Number.isFinite(value) || value <= 0 || value > 20) return null;
+  const rounded = Math.round(value * 10) / 10;
+  return Number.isInteger(rounded) ? String(rounded) : String(rounded);
+}
+
+function screenSizeMismatch(product: string, search: string): boolean {
+  const left = screenInches(product);
+  const right = screenInches(search);
+  return left != null && right != null && left !== right;
+}
+
 function unwantedVariants(product: string, search: string): boolean {
   const wanted = explicitVariants(search);
   const checkList = search.includes("galaxy") ? GALAXY_VARIANTS : IPHONE_VARIANTS;
@@ -49,6 +75,9 @@ export function modelMatches(
   if (!product || !search) return false;
 
   if (product === search) return true;
+
+  if (letterEditionMismatch(product, search)) return false;
+  if (screenSizeMismatch(product, search)) return false;
 
   if (/^iphone\s+\d+$/.test(search)) {
     const base = new RegExp(`^${search.replace(/\s+/g, "\\s+")}(\\s|$)`);

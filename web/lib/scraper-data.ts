@@ -75,9 +75,21 @@ function loadAllProductsPayload(): AllProductsFile | null {
   return cachedAllProducts;
 }
 
+/**
+ * Telemóvel novo de loja (ex. Callphone «…-256gb-novo»).
+ * «Como novo» e «semi-novo» são estados de recondicionado e ficam.
+ */
+export function isNewRetailProduct(
+  product: Pick<ScrapedProduct, "url" | "model">,
+): boolean {
+  const blob = `${product.url ?? ""} ${product.model ?? ""}`.toLowerCase();
+  if (/como[-\s]?novo|semi[-\s]?novo/.test(blob)) return false;
+  return /(?:^|[/?#&_\-\s])(?:novo|new)(?:[/?#&_\-\s]|$)/.test(blob);
+}
+
 export function loadAllScrapedProducts(): ScrapedProduct[] {
   const payload = loadAllProductsPayload();
-  return payload?.products ?? [];
+  return (payload?.products ?? []).filter((product) => !isNewRetailProduct(product));
 }
 
 export function loadScrapedProducts(source: ProductSource): ScrapedProduct[] {
@@ -86,7 +98,7 @@ export function loadScrapedProducts(source: ProductSource): ScrapedProduct[] {
 
 export function getScraperCatalogMeta(): ScraperCatalogMeta {
   const payload = loadAllProductsPayload();
-  const products = payload?.products ?? [];
+  const products = loadAllScrapedProducts();
   const availableProducts = products.filter((product) => resolveScrapedAvailability(product));
 
   const brandCounts: Record<string, number> = {};
