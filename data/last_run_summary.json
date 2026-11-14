@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-13T14:41:37.651837+00:00",
+  "run_at": "2026-11-14T13:38:40.984462+00:00",
   "mode": "incremental",
   "categories": [
     "iphones",
@@ -16,7 +16,7 @@
         "ipads": 1
       },
       "errors": 0,
-      "unavailable": 1467
+      "unavailable": 1468
     },
     "iservices": {
       "total": 0,
@@ -28,16 +28,16 @@
         "google_phones": 0
       },
       "errors": 0,
-      "removed_out_of_stock": 1,
+      "removed_out_of_stock": 0,
       "skipped_unavailable": 0
     },
     "refurbed": {
-      "total": 117,
+      "total": 123,
       "by_category": {
-        "iphones": 46,
-        "ipads": 30,
-        "tablets": 33,
-        "samsung_phones": 5,
+        "iphones": 49,
+        "tablets": 35,
+        "ipads": 29,
+        "samsung_phones": 7,
         "google_phones": 3
       },
       "errors": 0,
@@ -46,26 +46,26 @@
       "dedup_removed": 13
     },
     "swappie": {
-      "total": 97,
+      "total": 95,
       "by_category": {
-        "iphones": 65,
+        "iphones": 63,
         "ipads": 32
       },
       "errors": 0,
       "removed_out_of_stock": 0
     },
     "certideal": {
-      "total": 167,
+      "total": 173,
       "by_category": {
-        "iphones": 115,
+        "iphones": 111,
         "ipads": 5,
-        "samsung_phones": 47
+        "samsung_phones": 57
       },
       "errors": 0,
       "removed_out_of_stock": 0
     }
   },
-  "grand_total": 1914,
+  "grand_total": 1924,
   "affiliate_revenue_estimate": {
     "iservices": {
       "commission_pct": null,
