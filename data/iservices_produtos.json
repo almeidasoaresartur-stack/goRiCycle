@@ -7,12 +7,12 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-14T13:38:59.422349+00:00",
+  "scraped_at": "2026-11-15T11:00:13.310771+00:00",
   "total_products": 35,
   "products": [
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1792-iphone-air_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -20,7 +20,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 799.0,
+      "price": 806.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -33,7 +33,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1791-iphone-17-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -41,7 +41,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 1259.0,
+      "price": 1249.0,
       "original_price": 1.0,
       "currency": "EUR",
       "warranty_months": 36,
@@ -54,7 +54,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1790-iphone-17-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -75,7 +75,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1787-iphone-17_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -83,7 +83,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 859.0,
+      "price": 819.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -96,7 +96,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1752-iphone-16-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -104,7 +104,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 699.0,
+      "price": 679.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -117,7 +117,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1719-iphone-16e_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -125,7 +125,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 479.0,
+      "price": 466.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -138,7 +138,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1666-iphone-16-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -159,7 +159,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1636-iphone-16_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -180,7 +180,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1618-iphone-16-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -201,7 +201,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1356-iphone-15-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -222,7 +222,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1355-iphone-15-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -243,7 +243,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1331-iphone-15-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -264,7 +264,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1330-iphone-15_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -285,7 +285,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1263-iphone-se-2022_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -306,7 +306,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1153-iphone-14-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -327,7 +327,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1152-iphone-14-plus_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -335,7 +335,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 399.0,
+      "price": 391.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -348,7 +348,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1005-iphone-13-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -369,7 +369,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1137-iphone-14-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -377,7 +377,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 489.0,
+      "price": 475.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -390,7 +390,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1117-iphone-14_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -411,7 +411,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1094-iphone-13-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -432,7 +432,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1077-iphone-13-mini_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -453,7 +453,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1022-iphone-13_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -474,7 +474,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_776-iphone-12-pro-max_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -495,7 +495,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_775-iphone-12-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -516,7 +516,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_774-iphone-12_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -537,7 +537,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_773-iphone-12-mini_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -558,7 +558,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_772-iphone-11-pro_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -566,7 +566,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 265.0,
+      "price": 251.0,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -579,7 +579,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1918-ipad-pro-11-2022-4a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -593,14 +593,14 @@
       "warranty_months": 36,
       "url": "https://iservices.pt/produto/1918-ipad-pro-11-2022-4a-geracao",
       "image_url": "https://r.iservices.pt/common/online_products/ipad-pro-11-2022-4a-geracao.jpg",
-      "source_page": "https://iservices.pt/produto/2059-ipad-air-11-2024-6a-geracao",
+      "source_page": "https://iservices.pt/produtos/ipads-recondicionados-99",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1654-ipad-pro-129-2022-6a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -621,7 +621,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1614-ipad-pro-11-2020-2a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -642,7 +642,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1425-ipad-air-2020-4a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -650,20 +650,20 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 340.77,
+      "price": 375.61,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
       "url": "https://iservices.pt/produto/1425-ipad-air-2020-4a-geracao",
       "image_url": "https://r.iservices.pt/common/online_products/ipad-air-2020-4th-generation.jpg",
-      "source_page": "https://iservices.pt/produto/1453-ipad-109-2022-10a-geracao",
+      "source_page": "https://iservices.pt/produto/1614-ipad-pro-11-2020-2a-geracao",
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1424-ipad-pro-11-2021-3a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -684,7 +684,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1412-ipad-pro-129-2020-4a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -705,7 +705,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1408-ipad-air-2022-5a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -713,7 +713,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 409.04,
+      "price": 448.41,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -726,7 +726,7 @@
     },
     {
       "source": "iservices",
-      "scraped_at": "2026-11-08T10:27:51.475957+00:00",
+      "scraped_at": "2026-11-15T11:00:13.310771+00:00",
       "product_id": "iservices_1407-ipad-102-2021-9a-geracao_bom",
       "category": "ipads",
       "brand": "Apple",
@@ -734,7 +734,7 @@
       "storage": null,
       "color": null,
       "grade": "Bom",
-      "price": 228.14,
+      "price": 216.46,
       "original_price": null,
       "currency": "EUR",
       "warranty_months": 36,
@@ -746,6 +746,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-14T14:39:27.728692+00:00",
-  "merged_at": "2026-11-14T14:39:27.898055+00:00"
+  "validated_at": "2026-11-15T12:01:33.955888+00:00",
+  "merged_at": "2026-11-15T12:34:24.366583+00:00"
 }
