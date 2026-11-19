@@ -1,5 +1,5 @@
 {
-  "curated_at": "2026-11-18T16:48:37+00:00",
+  "curated_at": "2026-11-19T16:44:48+00:00",
   "alerts": [],
   "stores": {
     "iservices": {
@@ -12,31 +12,31 @@
       "ontem": 35
     },
     "refurbed": {
-      "hoje_bruto": 124,
+      "hoje_bruto": 119,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 124,
+      "final": 119,
       "blocked": false,
-      "ontem": 129
+      "ontem": 124
     },
     "swappie": {
-      "hoje_bruto": 99,
+      "hoje_bruto": 98,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 99,
+      "final": 98,
       "blocked": false,
-      "ontem": 94
+      "ontem": 99
     },
     "certideal": {
-      "hoje_bruto": 159,
+      "hoje_bruto": 166,
       "removidos_invalidos": 0,
       "removidos_outlier_estatistico": 0,
       "removidos_duplicados": 0,
-      "final": 159,
+      "final": 166,
       "blocked": false,
-      "ontem": 161
+      "ontem": 159
     },
     "callphone": {
       "hoje_bruto": 273,
@@ -48,5 +48,5 @@
       "ontem": 273
     }
   },
-  "total_final": 690
+  "total_final": 691
 }
