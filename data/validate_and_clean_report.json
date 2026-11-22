@@ -1,7 +1,7 @@
 {
-  "validated_at": "2026-11-21T15:41:19.268140+00:00",
+  "validated_at": "2026-11-22T12:23:53.399125+00:00",
   "dry_run": false,
-  "check_live": false,
+  "check_live": true,
   "sources": {
     "iservices": {
       "total": 36,
@@ -9,44 +9,57 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 36,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "refurbed": {
-      "total": 116,
-      "kept": 116,
+      "total": 118,
+      "kept": 118,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 118,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "swappie": {
-      "total": 93,
-      "kept": 93,
+      "total": 92,
+      "kept": 92,
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 92,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
     },
     "certideal": {
-      "total": 178,
-      "kept": 178,
-      "removed": 0,
-      "reasons": {},
-      "removed_items": [],
-      "live_checked": 0,
-      "live_failed": 0,
+      "total": 177,
+      "kept": 175,
+      "removed": 2,
+      "reasons": {
+        "404 Not Found": 2
+      },
+      "removed_items": [
+        {
+          "model": "iPhone 11 Pro Max meia‑noite",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-64-gb-verde-meia‑noite-correto-6007",
+          "reason": "404 Not Found"
+        },
+        {
+          "model": "iPhone 11 Pro Max ...",
+          "url": "https://www.certideal.pt/iphone-11-pro-max-recondicionado/iphone-11-pro-max-256-gb-verde-meia‑noite-correto-6014",
+          "reason": "404 Not Found"
+        }
+      ],
+      "live_checked": 177,
+      "live_failed": 2,
       "inconclusive": {},
       "live_check_stopped": false,
       "live_removal_aborted": false
@@ -57,7 +70,7 @@
       "removed": 0,
       "reasons": {},
       "removed_items": [],
-      "live_checked": 0,
+      "live_checked": 1532,
       "live_failed": 0,
       "inconclusive": {},
       "live_check_stopped": false,
@@ -66,7 +79,7 @@
   },
   "summary": {
     "total": 1955,
-    "kept": 1955,
-    "removed": 0
+    "kept": 1953,
+    "removed": 2
   }
 }
