@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-23T18:24:38.667643+00:00",
-  "total_products": 36,
+  "scraped_at": "2026-11-24T17:54:41.047778+00:00",
+  "total_products": 38,
   "products": [
     {
       "source": "iservices",
@@ -765,8 +765,50 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-24T17:54:41.047778+00:00",
+      "product_id": "iservices_771-iphone-11_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 11",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 187.0,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/771-iphone-11",
+      "image_url": "https://r.iservices.pt/common/online_products/iphone-11.png",
+      "source_page": "https://iservices.pt/produto/1787-iphone-17",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
+    },
+    {
+      "source": "iservices",
+      "scraped_at": "2026-11-24T17:54:41.047778+00:00",
+      "product_id": "iservices_757-iphone-11-pro-max_bom",
+      "category": "iphones",
+      "brand": "Apple",
+      "model": "iPhone 11 Pro Max",
+      "storage": null,
+      "color": null,
+      "grade": "Bom",
+      "price": 270.0,
+      "original_price": null,
+      "currency": "EUR",
+      "warranty_months": 36,
+      "url": "https://iservices.pt/produto/757-iphone-11-pro-max",
+      "image_url": "https://r.iservices.pt/common/online_products/iphone-11-pro-max-1785509405.jpg",
+      "source_page": "https://iservices.pt/produto/772-iphone-11-pro",
+      "is_available": true,
+      "affiliate_enabled": false,
+      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-23T19:19:22.058055+00:00",
-  "merged_at": "2026-11-23T19:19:22.310260+00:00"
+  "validated_at": "2026-11-24T18:49:15.297377+00:00",
+  "merged_at": "2026-11-24T18:49:15.525441+00:00"
 }
