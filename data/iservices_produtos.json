@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-25T17:22:15.116791+00:00",
-  "total_products": 41,
+  "scraped_at": "2026-11-26T17:01:51.873553+00:00",
+  "total_products": 40,
   "products": [
     {
       "source": "iservices",
@@ -849,29 +849,8 @@
       "is_available": true,
       "affiliate_enabled": false,
       "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-11-25T17:22:15.116791+00:00",
-      "product_id": "iservices_2023-ipad-a16-2025_bom",
-      "category": "ipads",
-      "brand": "Apple",
-      "model": "iPad A16 2025",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 439.52,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/2023-ipad-a16-2025",
-      "image_url": "https://r.iservices.pt/common/online_products/ipad-a16-2026-1793895337.jpg",
-      "source_page": "https://iservices.pt/produto/1407-ipad-102-2021-9a-geracao",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-25T18:18:55.332385+00:00",
-  "merged_at": "2026-11-25T18:18:55.573211+00:00"
+  "validated_at": "2026-11-26T18:00:43.877845+00:00",
+  "merged_at": "2026-11-26T18:00:44.073776+00:00"
 }
