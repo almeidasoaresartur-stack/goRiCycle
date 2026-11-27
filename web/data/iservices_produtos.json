@@ -7,8 +7,8 @@
     "samsung_phones",
     "google_phones"
   ],
-  "scraped_at": "2026-11-26T17:01:51.873553+00:00",
-  "total_products": 40,
+  "scraped_at": "2026-11-27T16:47:42.757302+00:00",
+  "total_products": 39,
   "products": [
     {
       "source": "iservices",
@@ -811,27 +811,6 @@
     {
       "source": "iservices",
       "scraped_at": "2026-11-25T17:22:15.116791+00:00",
-      "product_id": "iservices_770-iphone-xs-max_bom",
-      "category": "iphones",
-      "brand": "Apple",
-      "model": "iPhone XS Max",
-      "storage": null,
-      "color": null,
-      "grade": "Bom",
-      "price": 193.69,
-      "original_price": null,
-      "currency": "EUR",
-      "warranty_months": 36,
-      "url": "https://iservices.pt/produto/770-iphone-xs-max",
-      "image_url": "https://r.iservices.pt/common/online_products/iphone-xs-max-1784718297.png",
-      "source_page": "https://iservices.pt/produto/757-iphone-11-pro-max",
-      "is_available": true,
-      "affiliate_enabled": false,
-      "affiliate_network": null
-    },
-    {
-      "source": "iservices",
-      "scraped_at": "2026-11-25T17:22:15.116791+00:00",
       "product_id": "iservices_745-iphone-xr_bom",
       "category": "iphones",
       "brand": "Apple",
@@ -851,6 +830,6 @@
       "affiliate_network": null
     }
   ],
-  "validated_at": "2026-11-26T18:00:43.877845+00:00",
-  "merged_at": "2026-11-26T18:00:44.073776+00:00"
+  "validated_at": "2026-11-27T17:49:58.058104+00:00",
+  "merged_at": "2026-11-27T17:49:58.219287+00:00"
 }
